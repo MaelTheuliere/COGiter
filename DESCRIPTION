@@ -1,12 +1,19 @@
 Package: COGifier
-Title: What the Package Does (One Line, Title Case)
+Title: Functions, Data And Map To Help People To Analyse French Territorial Data
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Maël",
+           family = "THEULIERE",
            role = c("aut", "cre"),
-           email = "first.last@example.com")
-Description: What the package does (one paragraph).
-License: What license it uses
+           email = "mael.theuliere@gmail.com")
+Description: Functions, data and map to help people to analyse french territorial data.
+License: MIT
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    dplyr,
+    rlang,
+    magrittr,
+    tibble
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.0
