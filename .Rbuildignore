@@ -1,2 +1,4 @@
+^data-raw$
+^README\.Rmd$
 ^COGifier\.Rproj$
 ^\.Rproj\.user$

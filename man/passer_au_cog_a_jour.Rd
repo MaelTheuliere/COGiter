@@ -2,7 +2,7 @@
 % Please edit documentation in R/passer_au_cog_a_jour.R
 \name{passer_au_cog_a_jour}
 \alias{passer_au_cog_a_jour}
-\title{Title}
+\title{Fonction de passage d'une table de donnée à la commune vers le millésime le plus récent du COG}
 \usage{
 passer_au_cog_a_jour(.data, code_commune = DEPCOM, aggrege = T,
   garder_info_supra = T)
@@ -20,5 +20,5 @@ passer_au_cog_a_jour(.data, code_commune = DEPCOM, aggrege = T,
 la table de données convertie
 }
 \description{
-Title
+Fonction de passage d'une table de donnée à la commune vers le millésime le plus récent du COG
 }

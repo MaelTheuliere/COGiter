@@ -4,20 +4,31 @@
 \name{communes}
 \alias{communes}
 \title{Liste des communes du dernier millésime connu.}
-\format{A data frame with 35357 rows and 19 variables:
+\format{A data frame with 35357 rows and 20 variables:
 \describe{
 \item{DEPCOM}{Code Insee}
 \item{NOM_DEPCOM}{Nom de la commune}
 \item{EPCI}{Code siren de l'EPCI de rattachement}
-\item{NOM_EPCI}{Code siren de l'EPCI de rattachement}
+\item{NOM_EPCI}{Nom de l'EPCI de rattachement}
 \item{DEP}{Code Insee du département de rattachement}
 \item{NOM_DEP}{Nom du département de rattachement}
 \item{REG}{Code Insee de la région de rattachement}
 \item{NOM_REG}{Nom de la région de rattachement}
-\item{REGIONS_DE_L_EPCI}{liste des régions dans la quelle l'epci de rattachement apparait}
+\item{DEPARTEMENTS_DE_L_EPCI}{Liste des départements dans lesquels  se retrouve au moins une commune de l'epci}
+\item{REGIONS_DE_L_EPCI}{Liste des régions dans lesquelles  se retrouve au moins une commune de l'epci}
+\item{CDC}{Découpage de la commune en cantons}
+\item{CHEFLIEU}{Chef-lieu d'arrondissement, de département, de région ou bureau centralisateur}
+\item{COM}{Code commune}
+\item{AR}{Code arrondissement}
+\item{CT}{Code canton}
+\item{TNCC}{Type de nom en clair}
+\item{ARTMAJ}{Article (majuscules)}
+\item{NCC}{Nom en clair (majuscules)}
+\item{ARTMIN}{Article (typographie riche)}
+\item{NCCENR}{Nom en clair (typographie riche)}
 }}
 \source{
-\url{https://www.insee.fr/fr/information/2016807}
+\url{https://www.insee.fr/fr/information/3363419#titre-bloc-7}
 }
 \usage{
 communes
