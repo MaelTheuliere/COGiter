@@ -18,6 +18,7 @@
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr bind_rows
 #' @importFrom dplyr funs
+#' @importFrom dplyr vars
 #' @importFrom rlang enquo
 #' @importFrom rlang !!
 #' @examples
@@ -30,7 +31,7 @@ cogifier<-function(.data,code_commune=DEPCOM,metro=T,metrodrom=F){
       mutate(Zone="France métropolitaine" %>% as.factor,
              CodeZone="FRMETRO" %>% as.factor,
              TypeZone="France" %>% as.factor) %>%
-      select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-REGIONS_DE_L_EPCI) %>%
+      select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       group_by_if(funs(!is.numeric(.))) %>%
       summarise_if(is.numeric,funs(sum(.))) %>%
       ungroup
@@ -40,7 +41,7 @@ cogifier<-function(.data,code_commune=DEPCOM,metro=T,metrodrom=F){
       mutate(Zone="France métropolitaine et DROM" %>% as.factor,
              CodeZone="FRMETREDROM" %>% as.factor,
              TypeZone="France" %>% as.factor) %>%
-      select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-REGIONS_DE_L_EPCI) %>%
+      select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       group_by_if(funs(!is.numeric(.))) %>%
       summarise_if(is.numeric,funs(sum(.))) %>%
       ungroup
@@ -51,7 +52,7 @@ cogifier<-function(.data,code_commune=DEPCOM,metro=T,metrodrom=F){
       mutate(Zone="France métropolitaine" %>% as.factor,
              CodeZone="FRMETRO" %>% as.factor,
              TypeZone="France" %>% as.factor) %>%
-      select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-REGIONS_DE_L_EPCI) %>%
+      select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       group_by_if(funs(!is.numeric(.))) %>%
       summarise_if(is.numeric,funs(sum(.))) %>%
       ungroup
@@ -59,7 +60,7 @@ cogifier<-function(.data,code_commune=DEPCOM,metro=T,metrodrom=F){
       mutate(Zone="France métropolitaine et DROM" %>% as.factor,
              CodeZone="FRMETREDROM" %>% as.factor,
              TypeZone="France" %>% as.factor) %>%
-      select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-REGIONS_DE_L_EPCI) %>%
+      select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       group_by_if(funs(!is.numeric(.))) %>%
       summarise_if(is.numeric,funs(sum(.))) %>%
       ungroup
@@ -72,7 +73,7 @@ cogifier<-function(.data,code_commune=DEPCOM,metro=T,metrodrom=F){
     mutate(Zone=NOM_REG,
            CodeZone=REG,
            TypeZone="Régions" %>% as.factor) %>%
-    select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-REGIONS_DE_L_EPCI) %>%
+    select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
     group_by_if(funs(!is.numeric(.))) %>%
     summarise_if(is.numeric,funs(sum(.))) %>%
     ungroup
@@ -80,7 +81,7 @@ cogifier<-function(.data,code_commune=DEPCOM,metro=T,metrodrom=F){
     mutate(Zone=NOM_DEP,
            CodeZone=DEP,
            TypeZone="Départements" %>% as.factor) %>%
-    select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-REGIONS_DE_L_EPCI) %>%
+    select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
     group_by_if(funs(!is.numeric(.))) %>%
     summarise_if(is.numeric,funs(sum(.))) %>%
     ungroup
@@ -88,7 +89,7 @@ cogifier<-function(.data,code_commune=DEPCOM,metro=T,metrodrom=F){
     mutate(Zone=NOM_EPCI,
            CodeZone=EPCI,
            TypeZone="Epci" %>% as.factor) %>%
-    select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-REGIONS_DE_L_EPCI) %>%
+    select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
     group_by_if(funs(!is.numeric(.))) %>%
     summarise_if(is.numeric,funs(sum(.))) %>%
     ungroup
@@ -96,7 +97,7 @@ cogifier<-function(.data,code_commune=DEPCOM,metro=T,metrodrom=F){
     mutate(Zone=NOM_DEPCOM,
            CodeZone=DEPCOM,
            TypeZone="Communes" %>% as.factor) %>%
-    select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-REGIONS_DE_L_EPCI) %>%
+    select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
     group_by_if(funs(!is.numeric(.))) %>%
     summarise_if(is.numeric,funs(sum(.))) %>%
     ungroup

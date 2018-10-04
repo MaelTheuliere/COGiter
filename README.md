@@ -1,18 +1,18 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# COGifier
+# COGiter
 
-The goal of COGifier is to provide functions, data and map to help
-people to analyse french territorial data.
+The goal of COGiter is to provide functions, data and map to help people
+to analyse french territorial data.
 
 ## Installation
 
-You can install the released version of COGifier from
+You can install the released version of COGiter from
 [github](https://https://github.com/) with:
 
 ``` r
-devtools::install_github("MaelTheuliere/COGifier")
+devtools::install_github("MaelTheuliere/COGiter")
 ```
 
 ## A propos
@@ -30,8 +30,12 @@ appariements.
 
 Le package [COGUGAISON](https://github.com/antuki/COGugaison) rempli en
 partie la même fonction et nous vous invitons à privilégier son
-utilisation, ce présent package visant à répondre à des besoins
-spécifiques du DREAL datalab Pays de la Loire. \#\# Les données sources
+utilisation. Ce présent package visant à répondre à des besoins
+spécifiques du [DREAL datalab Pays de la
+Loire](http://www.pays-de-la-loire.developpement-durable.gouv.fr/dreal-centre-de-service-de-la-donnee-r1957.html)
+et est par ailleurs non stabilisé.
+
+## Les données sources
 
 ### Le COG Insee
 

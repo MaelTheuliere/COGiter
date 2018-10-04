@@ -136,3 +136,46 @@
 #' }
 "zonage_pinel_r52"
 
+#' Contour des communes métropolitaines pour le dernier millésime connu
+#'
+#' Un dataset contenant pour chaque commune de France métropolitaine actuelle son contour
+#'
+#' @format A data frame with 35273 rows and 2 variables:
+#' \describe{
+#'   \item{DEPCOM}{Code Insee}
+#'   \item{geometry}{géométrie}
+#' }
+"communes_geo"
+
+#' Contour des epci métropolitains pour le dernier millésime connu
+#'
+#' Un dataset contenant pour chaque epci de France métropolitaine actuelle son contour
+#'
+#' @format A data frame with 1241 rows and 2 variables:
+#' \describe{
+#'   \item{EPCI}{Code Sirene}
+#'   \item{geometry}{géométrie}
+#' }
+"epci_geo"
+
+#' Contour des départements métropolitains pour le dernier millésime connu
+#'
+#' Un dataset contenant pour chaque département de France métropolitaine actuelle son contour
+#'
+#' @format A data frame with 96 rows and 2 variables:
+#' \describe{
+#'   \item{DEP}{Code Insee}
+#'   \item{geometry}{géométrie}
+#' }
+"departements_geo"
+
+#' Contour des régions métropolitaines pour le dernier millésime connu
+#'
+#' Un dataset contenant pour chaque région  de France métropolitaine actuelle son contour
+#'
+#' @format A data frame with 13 rows and 2 variables:
+#' \describe{
+#'   \item{REG}{Code Insee}
+#'   \item{geometry}{géométrie}
+#' }
+"departements_geo"
