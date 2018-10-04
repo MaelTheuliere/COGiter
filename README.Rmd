@@ -26,15 +26,16 @@ devtools::install_github("MaelTheuliere/COGifier")
 
 ## A propos
 
-Ce package R vise à fournir : 
+Ce package R vise à mettre à disposition : 
 
 - les tables du COG 2018 de l'Insee en RData;
 - une table de passage des COG historiques vers le COG millésimé 2018;
 - les couche géomatiques correspondantes au COG 2018.
-- des fonctions d'aide à au passage de jeu de données vers le millésime du COG 2018
+- des fonctions d'aide à au passage de jeu de données veres le millésime du COG 2018
 
 Le tout avec des règles de nommage identiques pour faciliter les appariements.
 
+Le package [COGUGAISON](https://github.com/antuki/COGugaison) rempli en partie la même fonction et nous vous invitons à privilégier son utilisation, ce présent package visant à répondre à des besoins spécifiques du DREAL datalab Pays de la Loire.
 ## Les données sources
 
 ### Le COG Insee
@@ -55,23 +56,23 @@ Le package contient
 
 ### 12 dataframes
 
-- [**communes**](#communes) : la table des communes existants au 1er janvier 2018 
-- [**epci**](#epci) : la table des EPCI existants au 1er janvier 2018
+- **communes** : la table des communes existants au 1er janvier 2018 
+- **epci** : la table des EPCI existants au 1er janvier 2018
 - **departements** la table des départements existants au 1er janvier 2018
 - **regions** : la table des régions existants au 1er janvier 2018
-- [**table_passage_com_epci**](#table_passage_com_epci) : une table listant la composition des communes de chaque Epci
-- [**table_passage_com_historique**](#table_passage_com_historique) : une table de passage entre l'historique des communes ayant déjà existé un jour et les communes existants au 1er janvier 2018
+- **table_passage_com_epci** : une table listant la composition des communes de chaque Epci
+- **table_passage_com_historique** : une table de passage entre l'historique des communes ayant déjà existé un jour et les communes existants au 1er janvier 2018
 - **communes_geo** : géométrie des communes métropolitaines
 - **epci_geo** : géométrie des epci métropolitains
 - **departements_geo** : géométrie des départements métropolitains
 - **regions_geo** : géométrie des regions métropolitaines
-- zonage_abc_r52 : table d'attribution du zonage abc aux communes 2018
-- zonage_pinel_r52 : table d'attribution du zonage Pinel aux communes 2018
-- liste_zone : table d'attribution d'une liste de régions d'appartenance pour les régions, départements, epci,communes
+- **zonage_abc_r52** : table d'attribution du zonage abc aux communes 2018
+- **zonage_pinel_r52** : table d'attribution du zonage Pinel aux communes 2018
+- **liste_zone** : table d'attribution d'une liste de régions d'appartenance pour les régions, départements, epci,communes
 
 ### 2 fonctions
-- [**passer_au_cog_a_jour()**](#passer_au_cog_a_jour) : permet d'attribuer un code commune à jour à une table communale
-- [**cogifier()**](#cogifier) : permet d'aggréger les données d'une table communale pour avoir les totaux par communes,epci,départements, région et france sur le millésime 2018
+- **passer_au_cog_a_jour()** : permet d'attribuer un code commune à jour à une table communale
+- **cogifier()** : permet d'aggréger les données d'une table communale pour avoir les totaux par communes,epci,départements, région et france sur le millésime 2018
 
 ## Exemple d'usage
 

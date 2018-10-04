@@ -8,18 +8,18 @@
 #' @return la fonction renvoie une table de données
 #' @export
 #' @import magrittr
-#' @inportFrom dplyr filter
-#' @inportFrom dplyr mutate
-#' @inportFrom dplyr select
-#' @inportFrom dplyr group_by
-#' @inportFrom dplyr group_by_if
-#' @inportFrom dplyr summarise_if
-#' @inportFrom dplyr ungroup
-#' @inportFrom dplyr mutate_at
-#' @inportFrom dplyr bind_rows
-#' @inportFrom dplyr funs
+#' @importFrom dplyr filter
+#' @importFrom dplyr mutate
+#' @importFrom dplyr select
+#' @importFrom dplyr group_by
+#' @importFrom dplyr group_by_if
+#' @importFrom dplyr summarise_if
+#' @importFrom dplyr ungroup
+#' @importFrom dplyr mutate_at
+#' @importFrom dplyr bind_rows
+#' @importFrom dplyr funs
 #' @importFrom rlang enquo
-#' @inportFrom rlang !!
+#' @importFrom rlang !!
 #' @examples
 cogifier<-function(.data,code_commune=DEPCOM,metro=T,metrodrom=F){
   quo_code_commune<-enquo(code_commune)

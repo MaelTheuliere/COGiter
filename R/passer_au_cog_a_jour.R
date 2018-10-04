@@ -1,5 +1,5 @@
 
-#' Title
+#' Fonction de passage d'une table de donnée à la commune vers le millésime le plus récent du COG
 #'
 #' @param .data la table de données à convertire
 #' @param code_commune le nom de la variable contenant le code commune sur 5 charactères
@@ -9,15 +9,15 @@
 #' @return la table de données convertie
 #' @export
 #' @import magrittr
-#' @inportFrom dplyr rename
-#' @inportFrom dplyr left_join
-#' @inportFrom dplyr select
-#' @inportFrom dplyr group_by_if
-#' @inportFrom dplyr summarise_all
-#' @inportFrom dplyr ungroup
-#' @inportFrom dplyr funs
+#' @importFrom dplyr rename
+#' @importFrom dplyr left_join
+#' @importFrom dplyr select
+#' @importFrom dplyr group_by_if
+#' @importFrom dplyr summarise_all
+#' @importFrom dplyr ungroup
+#' @importFrom dplyr funs
 #' @importFrom rlang enquo
-#' @inportFrom rlang !!
+#' @importFrom rlang !!
 #'
 #' @examples
 passer_au_cog_a_jour<-function(.data,code_commune=DEPCOM,aggrege=T,garder_info_supra=T) {
