@@ -247,6 +247,11 @@ x<-levels(communes$NCCENR)
 Encoding(x)<-"UTF-8"
 levels(communes$NCCENR)<-x
 
+x<-levels(epci$NOM_EPCI)
+Encoding(x)<-"UTF-8"
+levels(epci$NOM_EPCI)<-x
+
+
 x<-levels(departements$NCC)
 Encoding(x)<-"UTF-8"
 levels(departements$NCC)<-x
