@@ -220,6 +220,9 @@ pop2015 <- read_excel("data-raw/source/pop2015.xls",
 
 # Gestion encodage --------------------------------------------------------
 
+x<-levels(communes$NOM_DEPCOM)
+Encoding(x)<-"UTF-8"
+levels(communes$NOM_DEPCOM)<-x
 
 
 x<-levels(communes$NOM_DEPCOM)
