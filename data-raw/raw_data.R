@@ -218,7 +218,50 @@ pop2015 <- read_excel("data-raw/source/pop2015.xls",
   select(-DEP)
 
 
+# Gestion encodage --------------------------------------------------------
 
+
+
+x<-levels(communes$NOM_DEPCOM)
+Encoding(x)<-"UTF-8"
+levels(communes$NOM_DEPCOM)<-x
+
+
+x<-levels(communes$NOM_EPCI)
+Encoding(x)<-"UTF-8"
+levels(communes$NOM_EPCI)<-x
+
+x<-levels(communes$NOM_DEP)
+Encoding(x)<-"UTF-8"
+levels(communes$NOM_DEP)<-x
+
+x<-levels(communes$NOM_REG)
+Encoding(x)<-"UTF-8"
+levels(communes$NOM_REG)<-x
+
+x<-levels(communes$NCC)
+Encoding(x)<-"UTF-8"
+levels(communes$NCC)<-x
+
+x<-levels(communes$NCCENR)
+Encoding(x)<-"UTF-8"
+levels(communes$NCCENR)<-x
+
+x<-levels(departements$NCC)
+Encoding(x)<-"UTF-8"
+levels(departements$NCC)<-x
+
+x<-levels(departements$NOM_DEP)
+Encoding(x)<-"UTF-8"
+levels(departements$NOM_DEP)<-x
+
+x<-levels(regions$NCC)
+Encoding(x)<-"UTF-8"
+levels(regions$NCC)<-x
+
+x<-levels(regions$NOM_REG)
+Encoding(x)<-"UTF-8"
+levels(regions$NOM_REG)<-x
 
 use_data(communes_geo,internal=F)
 use_data(departements_geo,internal=F)
