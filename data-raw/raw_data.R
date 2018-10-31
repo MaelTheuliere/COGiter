@@ -7,6 +7,7 @@ library(readr)
 library(stringr)
 library(tidyverse)
 library(sf)
+library(COGiter)
 # Chargement Admin Express -------------------------------
 
 communes_geo<-st_read(dsn="S:/REFERENTIELS/ADMINEXPRESS/1_DONNEES_LIVRAISON_2018-02-15/ADE_1-1_SHP_LAMB93_FR",layer="COMMUNE") %>%
@@ -34,7 +35,17 @@ departements_geo<-st_transform(departements_geo,"+proj=longlat +datum=WGS84")
 regions_geo<-st_transform(regions_geo,"+proj=longlat +datum=WGS84")
 
 
+
 # Chargement des tables du COG---------------
+epci_type<-read_excel("data-raw/source/Intercommunalité - Métropole au 01-01-2018.xls",sheet=1,skip=5) %>%
+  mutate(EPCI=as.factor(EPCI),
+         LIBEPCI=as.factor(LIBEPCI),
+         NATURE_EPCI=as.factor(NATURE_EPCI)
+         )%>%
+  select(EPCI,NATURE_EPCI) %>%
+  as_tibble()
+
+
 epci<-read_excel("data-raw/source/Intercommunalité - Métropole au 01-01-2018.xls",sheet=2,skip=5) %>%
   mutate(CODGEO=as.factor(CODGEO),
          EPCI=as.factor(EPCI),
@@ -142,7 +153,9 @@ table_passage_com_historique<-table_passage_com_historique %>%
   setNames(c("DEPCOM_HIST","DEPCOM","NOM_DEPCOM","EPCI","NOM_EPCI","DEP","NOM_DEP","REG","NOM_REG","DEPARTEMENTS_DE_L_EPCI","REGIONS_DE_L_EPCI"))
 
 epci<-epci %>%
-  setNames(c("EPCI","NOM_EPCI","DEPARTEMENTS_DE_L_EPCI","REGIONS_DE_L_EPCI"))
+  setNames(c("EPCI","NOM_EPCI","DEPARTEMENTS_DE_L_EPCI","REGIONS_DE_L_EPCI")) %>%
+  left_join(epci_type)
+
 
 # Création de la table de passage entre les communes et leur EPCI au 1er janvier -------------
 
