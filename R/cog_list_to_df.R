@@ -1,9 +1,9 @@
-#' Préparer les données pour passer d'un type liste à un type dataframe
+#' Preparer les donnees pour passer d'un type liste a un type dataframe
 #'
-#' @param .data la table de données à convertir
+#' @param .data la table de donnees a convertir
 #' @param typezone le type de zonage
 #'
-#' @return la fonction renvoie une table de données renommée
+#' @return la fonction renvoie une table de donnees renommee
 #' @export
 #' @import magrittr
 #' @importFrom dplyr mutate
@@ -65,11 +65,11 @@ zone_list_to_df<-function(.data,typezone) {
   return(d)
 }
 
-#' Convertir les données du COG d'un type liste à un type dataframe
+#' Convertir les donnees du COG d'un type liste a un type dataframe
 #'
-#' @param list la liste de données à convertir
+#' @param list la liste de donnees a convertir
 #'
-#' @return la fonction renvoie une table de données
+#' @return la fonction renvoie une table de donnees
 #' @export
 #' @import magrittr
 #' @importFrom purrr map2_df

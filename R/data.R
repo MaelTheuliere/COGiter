@@ -55,7 +55,7 @@
 #'   \item{NOM_EPCI}{Nom de l'EPCI}
 #'   \item{DEPARTEMENTS_DE_L_EPCI}{Liste des départements dans lesquels  se retrouve au moins une commune de l'epci}
 #'   \item{REGIONS_DE_L_EPCI}{Liste des régions dans lesquelles  se retrouve au moins une commune de l'epci}
-#'   \item{TYPE_EPCI}{Type de l'epci : ME,CA,CU,CC}
+#'   \item{NATURE_EPCI}{Type de l'epci : ME,CA,CU,CC}
 #' }
 #' @source \url{https://www.insee.fr/fr/information/2510634}
 "epci"
@@ -109,6 +109,7 @@
 #' \describe{
 #'   \item{TypeZone}{Type de la zone : communes,epci,départements,régions}
 #'   \item{CodeZone}{Code de la zone}
+#'   \item{EPCI}{liste des EPCI ayant cette zone en territoire infra}
 #'   \item{DEP}{liste des départements ayant cette zone en territoire infra}
 #'   \item{REG}{liste des régions ayant cette zone en territoire infra}
 #' }
@@ -179,4 +180,4 @@
 #'   \item{REG}{Code Insee}
 #'   \item{geometry}{géométrie}
 #' }
-"departements_geo"
+"regions_geo"

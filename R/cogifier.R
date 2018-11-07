@@ -8,8 +8,10 @@
 #' @param regions booléen TRUE si on souhaite des données à la région
 #' @param metro booléen TRUE si on souhaite des données France métropolitaine
 #' @param metrodrom booléen TRUE si on souhaite des données France métropolitaine et des DROM
+#' @param as_df booléen TRUE si on souhaite des données sous un seul dataframe, false si on souhaite une liste de dataframe par type de zone
+
 #'
-#' @return la fonction renvoie une table de données
+#' @return la fonction renvoie un dataframe ou une liste de dataframe
 #' @export
 #' @import magrittr
 #' @importFrom dplyr filter

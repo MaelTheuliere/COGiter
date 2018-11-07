@@ -10,7 +10,7 @@
 \item{NOM_EPCI}{Nom de l'EPCI}
 \item{DEPARTEMENTS_DE_L_EPCI}{Liste des départements dans lesquels  se retrouve au moins une commune de l'epci}
 \item{REGIONS_DE_L_EPCI}{Liste des régions dans lesquelles  se retrouve au moins une commune de l'epci}
-\item{TYPE_EPCI}{Type de l'epci : ME,CA,CU,CC}
+\item{NATURE_EPCI}{Type de l'epci : ME,CA,CU,CC}
 }}
 \source{
 \url{https://www.insee.fr/fr/information/2510634}

@@ -4,19 +4,31 @@
 \alias{cogifier}
 \title{Consolider une table de données à la commune à tous les échelles du cog}
 \usage{
-cogifier(.data, code_commune = DEPCOM, metro = T, metrodrom = F)
+cogifier(.data, code_commune = DEPCOM, communes = T, epci = T,
+  departements = T, regions = T, metro = T, metrodrom = F,
+  as_df = T)
 }
 \arguments{
 \item{.data}{la table de données à convertire}
 
 \item{code_commune}{le nom de la variable contenant le code commune sur 5 charactères}
 
-\item{metro}{booléen TRUE si on souhaite une aggrégation sur le contour de la France métropolitaine}
+\item{communes}{booléen TRUE si on souhaite des données à la commune}
 
-\item{metrodrom}{booléen TRUE si on souhaite une aggrégation sur le contour de la France métropolitaine et des DROM}
+\item{epci}{booléen TRUE si on souhaite des données à l'epci}
+
+\item{departements}{booléen TRUE si on souhaite des données au département}
+
+\item{regions}{booléen TRUE si on souhaite des données à la région}
+
+\item{metro}{booléen TRUE si on souhaite des données France métropolitaine}
+
+\item{metrodrom}{booléen TRUE si on souhaite des données France métropolitaine et des DROM}
+
+\item{as_df}{booléen TRUE si on souhaite des données sous un seul dataframe, false si on souhaite une liste de dataframe par type de zone}
 }
 \value{
-la fonction renvoie une table de données
+la fonction renvoie un dataframe ou une liste de dataframe
 }
 \description{
 Consolider une table de données à la commune à tous les échelles du cog

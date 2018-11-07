@@ -11,12 +11,8 @@
 }}
 \usage{
 departements_geo
-
-departements_geo
 }
 \description{
 Un dataset contenant pour chaque département de France métropolitaine actuelle son contour
-
-Un dataset contenant pour chaque région  de France métropolitaine actuelle son contour
 }
 \keyword{datasets}

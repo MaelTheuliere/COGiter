@@ -1,13 +1,14 @@
 #' Filtrer une fichier du cog sur un sous ensemble du territoire
 #'
-#' @param .data la table de données à filtrer
-#' @param depcom la commune sur laquelle filtrer les données
-#' @param epci lepci sur lequel filtrer les données
-#' @param dep le département sur lequel filtrer les données
-#' @param reg la région sur laquelle filtrer les données
+#' @param .data la table de donnees a filtrer
+#' @param depcom la commune sur laquelle filtrer les donnees
+#' @param epci l'epci sur lequel filtrer les donnees
+#' @param dep le departement sur lequel filtrer les donnees
+#' @param reg la region sur laquelle filtrer les donnees
+#' @param garder_supra ">" si on souhaite garder les territoires supra, ">=" si on souhaite garder les territoires suppra et du même niveau que celui sélectionné
 #'
 #'
-#' @return la fonction renvoie une table de données filtrer
+#' @return la fonction renvoie une table de donnees filtrer
 #' @export
 #' @import magrittr
 #' @importFrom dplyr inner_join

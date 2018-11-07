@@ -8,6 +8,7 @@
 \describe{
 \item{TypeZone}{Type de la zone : communes,epci,départements,régions}
 \item{CodeZone}{Code de la zone}
+\item{EPCI}{liste des EPCI ayant cette zone en territoire infra}
 \item{DEP}{liste des départements ayant cette zone en territoire infra}
 \item{REG}{liste des régions ayant cette zone en territoire infra}
 }}
