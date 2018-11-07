@@ -182,7 +182,7 @@ table_passage_com_historique<-table_passage_com_historique %>%
 
 liste_zone<-bind_rows(
   communes %>%
-    select(CodeZone=DEPCOM,DEP,REG) %>%
+    select(CodeZone=DEPCOM,EPCI,DEP,REG) %>%
     distinct() %>%
     mutate(TypeZone="Communes",
            DEP=as.list(as.character(DEP)),
@@ -191,7 +191,7 @@ liste_zone<-bind_rows(
   epci %>%
     select(CodeZone=EPCI,DEP=DEPARTEMENTS_DE_L_EPCI,REG=REGIONS_DE_L_EPCI) %>%
     distinct() %>%
-    mutate(TypeZone="Epci"),
+    mutate(TypeZone="Epci",EPCI=CodeZone),
   departements %>%
     select(CodeZone=DEP,REG) %>%
     distinct() %>%
@@ -206,7 +206,7 @@ liste_zone<-bind_rows(
            REG=as.list(as.character(REG)))
 ) %>%
   mutate_if(is.character,as.factor) %>%
-  select(CodeZone,TypeZone,DEP,REG)
+  select(CodeZone,TypeZone,EPCI,DEP,REG)
 
 #Zonages abc
 zonage_abc_r52<-read_excel("data-raw/source/zonageabc_pdl_communes2018.xls") %>%
