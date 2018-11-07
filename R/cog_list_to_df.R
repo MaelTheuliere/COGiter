@@ -9,7 +9,7 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr select
 
-ConvertTypeZone<-function(.data,typezone) {
+zone_list_to_df<-function(.data,typezone) {
   if (typezone=="communes") {
     if (is.null(.data)){d<-NULL}
     else {
@@ -76,6 +76,6 @@ ConvertTypeZone<-function(.data,typezone) {
 #' @importFrom dplyr mutate_at
 
 cog_list_to_df<-function(list) {
-  map2_df(list,names(list),~ ConvertTypeZone(.data = .x,typezone = .y)) %>%
+  map2_df(list,names(list),~ zone_list_to_df(.data = .x,typezone = .y)) %>%
     mutate_at(vars(TypeZone,Zone,CodeZone),as.factor)
 }
