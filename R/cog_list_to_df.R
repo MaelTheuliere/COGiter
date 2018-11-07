@@ -1,6 +1,6 @@
 #' Préparer les données pour passer d'un type liste à un type dataframe
 #'
-#' @param .data la table de données à convertire
+#' @param .data la table de données à convertir
 #' @param typezone le type de zonage
 #'
 #' @return la fonction renvoie une table de données renommée

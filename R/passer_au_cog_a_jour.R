@@ -35,7 +35,8 @@ passer_au_cog_a_jour<-function(.data,code_commune=DEPCOM,aggrege=T,garder_info_s
   }
   if (garder_info_supra==T) {
     result<-result %>%
-      left_join(communes %>% select(DEPCOM:REGIONS_DE_L_EPCI))
+      left_join(communes %>% select(DEPCOM:REGIONS_DE_L_EPCI)) %>%
+      mutate(DEPCOM=as.factor(DEPCOM))
   }
   result
 }
