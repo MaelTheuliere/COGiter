@@ -223,8 +223,8 @@ pop2015 <- read_excel("data-raw/source/pop2015.xls",
                       col_types = c("text", "numeric", "numeric",
                                     "numeric", "text")) %>%
   mutate(DEPCOM=case_when(
-    DEP %in% c("971","972","973","974","976") ~ paste0(as.character(DEP),str_pad(as.character(DEPCOM),2,"left",pad="0")),
-    T ~ paste0(as.character(DEP),str_pad(as.character(DEPCOM),3,"left",pad="0"))
+    DEP %in% c("971","972","973","974","976") ~ paste0(as.character(DEP),substr(as.character(DEPCOM),2,3)),
+    T ~ paste0(as.character(DEP),as.character(DEPCOM))
   ) %>%
     as.factor()
   ) %>%

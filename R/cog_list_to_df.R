@@ -33,7 +33,7 @@ zone_list_to_df<-function(.data,typezone) {
     if (is.null(.data)){d<-NULL}
     else {
       d<-.data %>%
-        mutate(Zone=NOM_DEP,CodeZone=DEP,TypeZone="D\u0233partements") %>%
+        mutate(Zone=NOM_DEP,CodeZone=DEP,TypeZone="D\u00e9partements") %>%
         select(-NOM_DEP,-DEP) %>%
         select(TypeZone,Zone,CodeZone,everything())
     }
@@ -42,7 +42,7 @@ zone_list_to_df<-function(.data,typezone) {
     if (is.null(.data)){d<-NULL}
     else {
       d<-.data %>%
-        mutate(Zone=NOM_REG,CodeZone=REG,TypeZone="R\u0233gions") %>%
+        mutate(Zone=NOM_REG,CodeZone=REG,TypeZone="R\u00e9gions") %>%
         select(-NOM_REG,-REG) %>%
         select(TypeZone,Zone,CodeZone,everything())
     }
@@ -51,7 +51,7 @@ zone_list_to_df<-function(.data,typezone) {
     if (is.null(.data)){d<-NULL}
     else {
       d<-.data %>%
-        mutate(Zone="France m\u0233tropolitaine",CodeZone="FRMETRO",TypeZone="France") %>%
+        mutate(Zone="France m\u00e9tropolitaine",CodeZone="FRMETRO",TypeZone="France") %>%
         select(TypeZone,Zone,CodeZone,everything())
     }
   }
@@ -59,7 +59,7 @@ zone_list_to_df<-function(.data,typezone) {
     if (is.null(.data)){d<-NULL}
     else {
       d<-.data %>%
-        mutate(Zone="France m\u0233tropolitaine et DROM",CodeZone="FRMETRODROM",TypeZone="France") %>%
+        mutate(Zone="France m\u00e9tropolitaine et DROM",CodeZone="FRMETRODROM",TypeZone="France") %>%
         select(TypeZone,Zone,CodeZone,everything())
     }
   }

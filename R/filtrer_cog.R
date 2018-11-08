@@ -52,7 +52,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
                     filter(TypeZone %in% c("France") |
-                             (TypeZone %in% c("R\u0233gions") & !(CodeZone==!!quo_reg))
+                             (TypeZone %in% c("R\u00e9gions") & !(CodeZone==!!quo_reg))
                            )
         )
     }
@@ -73,7 +73,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
             filter(str_detect(DEP,dep)) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
-                    filter(TypeZone %in% c("France","R\u0233gions"))
+                    filter(TypeZone %in% c("France","R\u00e9gions"))
         )
     }
     if (garder_supra==">="){
@@ -83,8 +83,8 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
             filter(str_detect(DEP,dep)) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
-                    filter(TypeZone %in% c("France","R\u0233gions") |
-                             (TypeZone %in% c("D\u0233partements") & !(CodeZone==!!quo_dep))
+                    filter(TypeZone %in% c("France","R\u00e9gions") |
+                             (TypeZone %in% c("D\u00e9partements") & !(CodeZone==!!quo_dep))
                     )
         )
     }
@@ -105,7 +105,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
             filter(EPCI==!!quo_epci) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
-                    filter(TypeZone %in% c("France","R\u0233gions","D\u0233partements"))
+                    filter(TypeZone %in% c("France","R\u00e9gions","D\u00e9partements"))
         )
     }
     if (garder_supra==">="){
@@ -115,7 +115,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
             filter(EPCI==!!quo_epci) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
-                    filter(TypeZone %in% c("France","R\u0233gions","D\u0233partements") |
+                    filter(TypeZone %in% c("France","R\u00e9gions","D\u00e9partements") |
                              (TypeZone %in% c("Epci") & !(CodeZone==!!quo_epci))
                     )
         )

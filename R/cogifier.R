@@ -55,6 +55,7 @@ cogifier<-function(.data,code_commune=DEPCOM,
   if (epci==T) {
     e<-au_cog %>%
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
+      filter(EPCI!="ZZZZZZZZZ") %>%
       group_by_if(funs(!is.numeric(.))) %>%
       summarise_if(is.numeric,funs(sum(.))) %>%
       ungroup

@@ -34,7 +34,7 @@ zone_df_to_list<-function(.data,typezone) {
     }
   }
   if (typezone=="departements") {
-    d<-.data %>% filter(TypeZone=="D\u0233partements")
+    d<-.data %>% filter(TypeZone=="D\u00e9partements")
     if (!is.null(d)){
       d<-d %>%
         mutate(NOM_DEP=Zone,DEP=CodeZone) %>%
@@ -44,7 +44,7 @@ zone_df_to_list<-function(.data,typezone) {
     }
   }
   if (typezone=="regions") {
-    d<-.data %>% filter(TypeZone=="R\u0233gions")
+    d<-.data %>% filter(TypeZone=="R\u00e9gions")
     if (!is.null(d)){
       d<-d %>%
         mutate(NOM_REG=Zone,REG=CodeZone) %>%
@@ -54,14 +54,14 @@ zone_df_to_list<-function(.data,typezone) {
     }
   }
   if (typezone=="metro") {
-    d<-.data %>% filter(Zone=="France m\u0233tropolitaine")
+    d<-.data %>% filter(Zone=="France m\u00e9tropolitaine")
     if (!is.null(d)){
       d<-d %>%
         select(-Zone,-CodeZone,-TypeZone)
     }
   }
   if (typezone=="metrodrom") {
-    d<-.data %>% filter(Zone=="France m\u0233tropolitaine et DROM")
+    d<-.data %>% filter(Zone=="France m\u00e9tropolitaine et DROM")
     if (!is.null(d)){
       d<-d %>%
         select(-Zone,-CodeZone,-TypeZone)
