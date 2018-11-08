@@ -30,7 +30,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
       result<-result %>%
         inner_join(
           liste_zone %>%
-            filter(str_detect(REG,quo_reg)) %>%
+            filter(str_detect(REG,reg)) %>%
             select(TypeZone,CodeZone)
         )
     }
@@ -38,7 +38,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
       result<-result %>%
         inner_join(
           liste_zone %>%
-            filter(str_detect(REG,quo_reg)) %>%
+            filter(str_detect(REG,reg)) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
                     filter(TypeZone %in% c("France"))
@@ -48,7 +48,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
       result<-result %>%
         inner_join(
           liste_zone %>%
-            filter(str_detect(REG,quo_reg)) %>%
+            filter(str_detect(REG,reg)) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
                     filter(TypeZone %in% c("France") |
