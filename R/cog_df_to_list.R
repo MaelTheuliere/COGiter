@@ -1,14 +1,15 @@
-#' Preparer les donnees pour passer d'un type dataframe a un type liste
+#' Preparer les donn\encoding{é}es pour passer d'un type dataframe a un type liste
 #'
-#' @param .data la table de donnees a convertir
+#' @param .data la table de donn\encoding{é}es a convertir
 #' @param typezone le type de zonage
 #'
-#' @return la fonction renvoie une table de donnees renommee
+#' @return la fonction renvoie une table de donn\encoding{é}es renomm\encoding{é}e
 #' @export
 #' @import magrittr
 #' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr select
+#' @importFrom tidyselect everything
 
 
 zone_df_to_list<-function(.data,typezone) {
@@ -33,7 +34,7 @@ zone_df_to_list<-function(.data,typezone) {
     }
   }
   if (typezone=="departements") {
-    d<-.data %>% filter(TypeZone=="Départements")
+    d<-.data %>% filter(TypeZone=="D\u0233partements")
     if (!is.null(d)){
       d<-d %>%
         mutate(NOM_DEP=Zone,DEP=CodeZone) %>%
@@ -43,7 +44,7 @@ zone_df_to_list<-function(.data,typezone) {
     }
   }
   if (typezone=="regions") {
-    d<-.data %>% filter(TypeZone=="Régions")
+    d<-.data %>% filter(TypeZone=="R\u0233gions")
     if (!is.null(d)){
       d<-d %>%
         mutate(NOM_REG=Zone,REG=CodeZone) %>%
@@ -53,14 +54,14 @@ zone_df_to_list<-function(.data,typezone) {
     }
   }
   if (typezone=="metro") {
-    d<-.data %>% filter(Zone=="France métropolitaine")
+    d<-.data %>% filter(Zone=="France m\u0233tropolitaine")
     if (!is.null(d)){
       d<-d %>%
         select(-Zone,-CodeZone,-TypeZone)
     }
   }
   if (typezone=="metrodrom") {
-    d<-.data %>% filter(Zone=="France métropolitaine et DROM")
+    d<-.data %>% filter(Zone=="France m\u0233tropolitaine et DROM")
     if (!is.null(d)){
       d<-d %>%
         select(-Zone,-CodeZone,-TypeZone)
@@ -70,9 +71,9 @@ zone_df_to_list<-function(.data,typezone) {
   return(d)
 }
 
-#' Convertir les donnees du COG d'un type dataframe a un type liste
+#' Convertir les donn\encoding{é}es du COG d'un type dataframe a un type liste
 #'
-#' @param .data la liste de donnees a convertir
+#' @param .data la liste de donn\encoding{é}es a convertir
 #'
 #' @return la fonction renvoie une liste de dataframe
 #' @export
