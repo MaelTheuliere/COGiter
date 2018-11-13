@@ -8,7 +8,7 @@
 #' @param garder_supra ">" si on souhaite garder les territoires supra, ">=" si on souhaite garder les territoires suppra et du même niveau que celui sélectionné
 #'
 #'
-#' @return la fonction renvoie une table de donnees filtrer
+#' @return la fonction renvoie une table de donnees filtrées
 #' @export
 #' @import magrittr
 #' @importFrom dplyr inner_join
