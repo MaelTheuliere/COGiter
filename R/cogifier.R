@@ -1,14 +1,14 @@
-#' Consolider une table de données à la commune à tous les échelles du cog
+#' Consolider une table de donn\encoding{é}es à la commune à tous les \encoding{é}chelles du cog
 #'
-#' @param .data la table de données à convertire
+#' @param .data la table de donn\encoding{é}es à convertire
 #' @param code_commune le nom de la variable contenant le code commune sur 5 charactères
-#' @param communes booléen TRUE si on souhaite des données à la commune
-#' @param epci booléen TRUE si on souhaite des données à l'epci
-#' @param departements booléen TRUE si on souhaite des données au département
-#' @param regions booléen TRUE si on souhaite des données à la région
-#' @param metro booléen TRUE si on souhaite des données France métropolitaine
-#' @param metrodrom booléen TRUE si on souhaite des données France métropolitaine et des DROM
-#' @param as_df booléen TRUE si on souhaite des données sous un seul dataframe, false si on souhaite une liste de dataframe par type de zone
+#' @param communes bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es à la commune
+#' @param epci bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es à l'epci
+#' @param departements bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es au d\encoding{é}partement
+#' @param regions bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es à la r\encoding{é}gion
+#' @param metro bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es France m\encoding{é}tropolitaine
+#' @param metrodrom bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es France m\encoding{é}tropolitaine et des DROM
+#' @param as_df bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es sous un seul dataframe, false si on souhaite une liste de dataframe par type de zone
 
 #'
 #' @return la fonction renvoie un dataframe ou une liste de dataframe
@@ -55,6 +55,7 @@ cogifier<-function(.data,code_commune=DEPCOM,
   if (epci==T) {
     e<-au_cog %>%
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
+      filter(EPCI!="ZZZZZZZZZ") %>%
       group_by_if(funs(!is.numeric(.))) %>%
       summarise_if(is.numeric,funs(sum(.))) %>%
       ungroup

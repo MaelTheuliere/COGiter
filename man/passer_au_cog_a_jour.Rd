@@ -2,23 +2,23 @@
 % Please edit documentation in R/passer_au_cog_a_jour.R
 \name{passer_au_cog_a_jour}
 \alias{passer_au_cog_a_jour}
-\title{Fonction de passage d'une table de donnée à la commune vers le millésime le plus récent du COG}
+\title{Fonction de passage d'une table de donn\encoding{é}e à la commune vers le mill\encoding{é}sime le plus r\encoding{é}cent du COG}
 \usage{
 passer_au_cog_a_jour(.data, code_commune = DEPCOM, aggrege = T,
   garder_info_supra = T)
 }
 \arguments{
-\item{.data}{la table de données à convertire}
+\item{.data}{la table de donn\encoding{é}es à convertir}
 
 \item{code_commune}{le nom de la variable contenant le code commune sur 5 charactères}
 
-\item{aggrege}{booléen TRUE si on souhaite réaggréger les colonnes numériques sur la nouvelle carte communale}
+\item{aggrege}{bool\encoding{é}en TRUE si on souhaite r\encoding{é}aggr\encoding{é}ger les colonnes num\encoding{é}riques sur la nouvelle carte communale}
 
-\item{garder_info_supra}{booléen TRUE si on souhaite garder les informations sur les territoires supra des communes}
+\item{garder_info_supra}{bool\encoding{é}en TRUE si on souhaite garder les informations sur les territoires supra des communes}
 }
 \value{
-la table de données convertie
+la table de donn\encoding{é}es convertie
 }
 \description{
-Fonction de passage d'une table de donnée à la commune vers le millésime le plus récent du COG
+Fonction de passage d'une table de donn\encoding{é}e à la commune vers le mill\encoding{é}sime le plus r\encoding{é}cent du COG
 }
