@@ -1,6 +1,6 @@
 #' Consolider une table de donn\encoding{é}es à la commune à tous les \encoding{é}chelles du cog
 #'
-#' @param .data la table de donn\encoding{é}es à convertire
+#' @param .data la table de donn\encoding{é}es à convertir
 #' @param code_commune le nom de la variable contenant le code commune sur 5 charactères
 #' @param communes bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es à la commune
 #' @param epci bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es à l'epci
@@ -8,7 +8,7 @@
 #' @param regions bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es à la r\encoding{é}gion
 #' @param metro bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es France m\encoding{é}tropolitaine
 #' @param metrodrom bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es France m\encoding{é}tropolitaine et des DROM
-#' @param as_df bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es sous un seul dataframe, false si on souhaite une liste de dataframe par type de zone
+#' @param as_df bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es sous un seul dataframe, FALSE si on souhaite une liste de dataframe par type de zone
 
 #'
 #' @return la fonction renvoie un dataframe ou une liste de dataframe
