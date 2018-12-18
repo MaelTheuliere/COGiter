@@ -1,13 +1,14 @@
-#' Preparer les donnees pour passer d'un type liste a un type dataframe
+#' Preparer les donn\encoding{é}es pour passer d'un type liste a un type dataframe
 #'
-#' @param .data la table de donnees a convertir
+#' @param .data la table de donn\encoding{é}es a convertir
 #' @param typezone le type de zonage
 #'
-#' @return la fonction renvoie une table de donnees renommee
+#' @return la fonction renvoie une table de donn\encoding{é}es renomm\encoding{é}e
 #' @export
 #' @import magrittr
 #' @importFrom dplyr mutate
 #' @importFrom dplyr select
+#' @importFrom tidyselect everything
 
 zone_list_to_df<-function(.data,typezone) {
   if (typezone=="communes") {
@@ -32,7 +33,7 @@ zone_list_to_df<-function(.data,typezone) {
     if (is.null(.data)){d<-NULL}
     else {
       d<-.data %>%
-        mutate(Zone=NOM_DEP,CodeZone=DEP,TypeZone="Départements") %>%
+        mutate(Zone=NOM_DEP,CodeZone=DEP,TypeZone="D\u00e9partements") %>%
         select(-NOM_DEP,-DEP) %>%
         select(TypeZone,Zone,CodeZone,everything())
     }
@@ -41,7 +42,7 @@ zone_list_to_df<-function(.data,typezone) {
     if (is.null(.data)){d<-NULL}
     else {
       d<-.data %>%
-        mutate(Zone=NOM_REG,CodeZone=REG,TypeZone="Régions") %>%
+        mutate(Zone=NOM_REG,CodeZone=REG,TypeZone="R\u00e9gions") %>%
         select(-NOM_REG,-REG) %>%
         select(TypeZone,Zone,CodeZone,everything())
     }
@@ -50,7 +51,7 @@ zone_list_to_df<-function(.data,typezone) {
     if (is.null(.data)){d<-NULL}
     else {
       d<-.data %>%
-        mutate(Zone="France métropolitaine",CodeZone="FRMETRO",TypeZone="France") %>%
+        mutate(Zone="France m\u00e9tropolitaine",CodeZone="FRMETRO",TypeZone="France") %>%
         select(TypeZone,Zone,CodeZone,everything())
     }
   }
@@ -58,7 +59,7 @@ zone_list_to_df<-function(.data,typezone) {
     if (is.null(.data)){d<-NULL}
     else {
       d<-.data %>%
-        mutate(Zone="France métropolitaine et DROM",CodeZone="FRMETRODROM",TypeZone="France") %>%
+        mutate(Zone="France m\u00e9tropolitaine et DROM",CodeZone="FRMETRODROM",TypeZone="France") %>%
         select(TypeZone,Zone,CodeZone,everything())
     }
   }

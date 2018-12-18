@@ -2,16 +2,16 @@
 % Please edit documentation in R/cog_df_to_list.R
 \name{cog_df_to_list}
 \alias{cog_df_to_list}
-\title{Convertir les donnees du COG d'un type dataframe a un type liste}
+\title{Convertir les donn\encoding{é}es du COG d'un type dataframe a un type liste}
 \usage{
 cog_df_to_list(.data)
 }
 \arguments{
-\item{.data}{la liste de donnees a convertir}
+\item{.data}{la liste de donn\encoding{é}es a convertir}
 }
 \value{
 la fonction renvoie une liste de dataframe
 }
 \description{
-Convertir les donnees du COG d'un type dataframe a un type liste
+Convertir les donn\encoding{é}es du COG d'un type dataframe a un type liste
 }

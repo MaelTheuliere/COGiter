@@ -2,18 +2,18 @@
 % Please edit documentation in R/cog_list_to_df.R
 \name{zone_list_to_df}
 \alias{zone_list_to_df}
-\title{Preparer les donnees pour passer d'un type liste a un type dataframe}
+\title{Preparer les donn\encoding{é}es pour passer d'un type liste a un type dataframe}
 \usage{
 zone_list_to_df(.data, typezone)
 }
 \arguments{
-\item{.data}{la table de donnees a convertir}
+\item{.data}{la table de donn\encoding{é}es a convertir}
 
 \item{typezone}{le type de zonage}
 }
 \value{
-la fonction renvoie une table de donnees renommee
+la fonction renvoie une table de donn\encoding{é}es renomm\encoding{é}e
 }
 \description{
-Preparer les donnees pour passer d'un type liste a un type dataframe
+Preparer les donn\encoding{é}es pour passer d'un type liste a un type dataframe
 }

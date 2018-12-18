@@ -8,17 +8,17 @@ filtrer_cog(.data, depcom = NULL, epci = NULL, dep = NULL,
   reg = NULL, garder_supra = "non")
 }
 \arguments{
-\item{.data}{la table de donnees a filtrer}
+\item{.data}{la table de donn\encoding{é}es a filtrer}
 
-\item{depcom}{la commune sur laquelle filtrer les donnees}
+\item{depcom}{la commune sur laquelle filtrer les donn\encoding{é}es}
 
-\item{epci}{l'epci sur lequel filtrer les donnees}
+\item{epci}{l'epci sur lequel filtrer les donn\encoding{é}es}
 
-\item{dep}{le departement sur lequel filtrer les donnees}
+\item{dep}{le departement sur lequel filtrer les donn\encoding{é}es}
 
-\item{reg}{la region sur laquelle filtrer les donnees}
+\item{reg}{la region sur laquelle filtrer les donn\encoding{é}es}
 
-\item{garder_supra}{">" si on souhaite garder les territoires supra, ">=" si on souhaite garder les territoires suppra et du même niveau que celui sélectionné}
+\item{garder_supra}{">" si on souhaite garder les territoires supra, ">=" si on souhaite garder les territoires suppra et du même niveau que celui s\encoding{é}lectionn\encoding{é}}
 }
 \value{
 la fonction renvoie une table de donnees filtrer

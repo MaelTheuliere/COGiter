@@ -1,12 +1,12 @@
 
-#' Fonction de passage d'une table de donnée à la commune vers le millésime le plus récent du COG
+#' Fonction de passage d'une table de donn\encoding{é}e à la commune vers le mill\encoding{é}sime le plus r\encoding{é}cent du COG
 #'
-#' @param .data la table de données à convertire
+#' @param .data la table de donn\encoding{é}es à convertir
 #' @param code_commune le nom de la variable contenant le code commune sur 5 charactères
-#' @param aggrege booléen TRUE si on souhaite réaggréger les colonnes numériques sur la nouvelle carte communale
-#' @param garder_info_supra booléen TRUE si on souhaite garder les informations sur les territoires supra des communes
+#' @param aggrege bool\encoding{é}en TRUE si on souhaite r\encoding{é}aggr\encoding{é}ger les colonnes num\encoding{é}riques sur la nouvelle carte communale
+#' @param garder_info_supra bool\encoding{é}en TRUE si on souhaite garder les informations sur les territoires supra des communes
 #'
-#' @return la table de données convertie
+#' @return la table de donn\encoding{é}es convertie
 #' @export
 #' @import magrittr
 #' @importFrom dplyr rename
