@@ -8,32 +8,70 @@ library(stringr)
 library(tidyverse)
 library(sf)
 library(COGiter)
+library(curl)
+
 # Chargement Admin Express -------------------------------
 
-communes_geo<-st_read(dsn="S:/REFERENTIELS/ADMINEXPRESS/1_DONNEES_LIVRAISON_2018-02-15/ADE_1-1_SHP_LAMB93_FR",layer="COMMUNE") %>%
-  rename(DEPCOM=INSEE_COM,
-         DEP=INSEE_DEP,
-         REG=INSEE_REG) %>%
-  select(DEPCOM)
+## téléchargement des couches IGN  ----
 
-epci_geo<-st_read(dsn="S:/REFERENTIELS/ADMINEXPRESS/1_DONNEES_LIVRAISON_2018-02-15/ADE_1-1_SHP_LAMB93_FR",layer="EPCI") %>%
-  rename(EPCI=CODE_EPCI) %>%
-  select(EPCI)
+url_admin_express <- "https://wxs-telechargement.ign.fr/x02uy2aiwjo9bm8ce5plwqmr/telechargement/prepackage/ADMINEXPRESS-COG-PACK_2018-05-04$ADMIN-EXPRESS-COG_1-1__SHP__FRA_2018-04-03/file/ADMIN-EXPRESS-COG_1-1__SHP__FRA_2018-04-03.7z"
+ie_get_proxy_for_url(url_admin_express)
+curl_download(url_admin_express , "data-raw/source/adminexpress.7z" , mode = "wb" )
 
-departements_geo<-st_read(dsn="S:/REFERENTIELS/ADMINEXPRESS/1_DONNEES_LIVRAISON_2018-02-15/ADE_1-1_SHP_LAMB93_FR",layer="DEPARTEMENT")%>%
-  rename(DEP=INSEE_DEP,
-         REG=INSEE_REG) %>%
-  select(DEP)
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/metro data-raw/source/adminexpress.7z *FR/COMMUNE_CARTO* -r')
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/971 data-raw/source/adminexpress.7z *D971/COMMUNE_CARTO* -r')
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/972 data-raw/source/adminexpress.7z *D972/COMMUNE_CARTO* -r')
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/973 data-raw/source/adminexpress.7z *D973/COMMUNE_CARTO* -r')
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/974 data-raw/source/adminexpress.7z *D974/COMMUNE_CARTO* -r')
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/976 data-raw/source/adminexpress.7z *D976/COMMUNE_CARTO* -r')
 
-regions_geo<-st_read(dsn="S:/REFERENTIELS/ADMINEXPRESS/1_DONNEES_LIVRAISON_2018-02-15/ADE_1-1_SHP_LAMB93_FR",layer="REGION")%>%
-  rename(REG=INSEE_REG)%>%
-  select(REG)
+## compilation des couches communales metropole + DOM ----
 
-communes_geo<-st_transform(communes_geo,"+proj=longlat +datum=WGS84")
-epci_geo<-st_transform(epci_geo,"+proj=longlat +datum=WGS84")
-departements_geo<-st_transform(departements_geo,"+proj=longlat +datum=WGS84")
-regions_geo<-st_transform(regions_geo,"+proj=longlat +datum=WGS84")
+com_metro<- st_read("data-raw/source/adminexpress/metro/COMMUNE_CARTO.shp") %>%
+  st_set_crs(2154)
 
+origine_metro <- c(st_as_sfc(st_bbox(com_metro))[[1]][[1]][[1,1]], st_as_sfc(st_bbox(com_metro))[[1]][[1]][[1,2]] )
+doms<-c("971", "972", "973", "974", "976")
+
+for (i in 1:5) {
+  
+  dom <- doms[[i]]
+  
+  com_dom <- st_read(paste0("data-raw/source/adminexpress/",dom,"/COMMUNE_CARTO.shp")) %>%
+    st_set_crs(st_crs(com_metro)) 
+  
+  ctrd_com_dom <- st_centroid(st_geometry(com_dom)) # vecteur des centroïdes de communes du dom
+  bbox_dom <- st_bbox(com_dom)  
+  ctrd_dom <- st_centroid(st_as_sfc(bbox_dom)) # centre de la bbox du dom
+  alpha <- 160000/(bbox_dom$ymax - bbox_dom$ymin) # rapport de proportionnalité (pour un emplacement de 210 km de hauteur)
+  
+  st_geometry(com_dom) <- (st_geometry(com_dom) - ctrd_com_dom ) * alpha + ctrd_com_dom * alpha  # agrandissement de la géometrie du dom
+  st_geometry(com_dom) <- st_geometry(com_dom) - ctrd_dom * alpha + origine_metro + c(-175000,7110500-6049646-210000*(i-0.5)) # translation vers l'emplacement
+  
+  assign(paste0("com_",dom), com_dom)
+  
+}
+
+communes_geo <- bind_rows(com_metro, com_971, com_972, com_973, com_974, com_976) %>% 
+  as_tibble %>% 
+  select(DEPCOM=INSEE_COM, geometry)%>%
+  st_as_sf()%>%
+  st_set_crs(2154)
+
+rm(i, origine_metro, doms, dom, com_dom, com_metro, com_971, com_972, com_973, com_974, com_976, ctrd_com_dom, bbox_dom, ctrd_dom, alpha, url_admin_express)
+
+
+## constitution des tables géo supra ----
+data("communes")
+
+epci_geo <- inner_join(communes_geo, communes, by="DEPCOM") %>%
+  select(EPCI) %>% group_by(EPCI) %>% summarise(do_union=T) %>% ungroup()
+
+departements_geo <- inner_join(communes_geo, communes, by="DEPCOM") %>%
+  select(DEP) %>% group_by(DEP) %>% summarise(do_union=T) %>% ungroup()
+
+regions_geo <- inner_join(communes_geo, communes, by="DEPCOM")%>%
+  select(REG) %>% group_by(REG) %>% summarise(do_union=T) %>% ungroup()
 
 
 # Chargement des tables du COG---------------
@@ -92,7 +130,7 @@ table_passage_com_historique<-read.delim("data-raw/source/France2018.txt",fileEn
   filter(CDC==0|CDC==2|is.na(CDC)) %>%
   as_tibble()
 
-#Gestion des fusions de fusion de communes et integration des donées des tables EPCI, DEP, ET REG----------------------
+#Gestion des fusions de fusion de communes et integration des données des tables EPCI, DEP, ET REG----------------------
 table_passage_com_historique<-table_passage_com_historique %>%
   left_join(select(table_passage_com_historique,depcom,depcom_a_jour),by=c("depcom_a_jour"="depcom")) %>%
   select(-depcom_a_jour) %>%
@@ -114,15 +152,15 @@ table_passage_com_historique<-table_passage_com_historique %>%
 
 epci<-left_join(
   table_passage_com_historique %>%
-  filter(!is.na(nepci_a_jour),nepci_a_jour != "Sans objet") %>%
-  select(epci_a_jour,nepci_a_jour,dep_a_jour) %>%
-  distinct() %>%
-  mutate(dep_a_jour=as.character(dep_a_jour)
-         ) %>%
-  group_by(epci_a_jour,nepci_a_jour) %>%
-  summarise(departements_de_l_epci_a_jour=list(dep_a_jour)
-  ) %>%
-  ungroup,
+    filter(!is.na(nepci_a_jour),nepci_a_jour != "Sans objet") %>%
+    select(epci_a_jour,nepci_a_jour,dep_a_jour) %>%
+    distinct() %>%
+    mutate(dep_a_jour=as.character(dep_a_jour)
+    ) %>%
+    group_by(epci_a_jour,nepci_a_jour) %>%
+    summarise(departements_de_l_epci_a_jour=list(dep_a_jour)
+    ) %>%
+    ungroup,
   table_passage_com_historique %>%
     filter(!is.na(nepci_a_jour),nepci_a_jour != "Sans objet") %>%
     select(epci_a_jour,nepci_a_jour,reg_a_jour) %>%
