@@ -8,7 +8,7 @@
 #' @param garder_supra ">" si on souhaite garder les territoires supra, ">=" si on souhaite garder les territoires suppra et du même niveau que celui s\encoding{é}lectionn\encoding{é}
 #'
 #'
-#' @return la fonction renvoie une table de donnees filtrer
+#' @return la fonction renvoie une table de donnees filtrées
 #' @export
 #' @import magrittr
 #' @importFrom dplyr inner_join

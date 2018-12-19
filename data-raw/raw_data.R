@@ -8,35 +8,65 @@ library(stringr)
 library(tidyverse)
 library(sf)
 library(COGiter)
+library(curl)
+library(usethis)
+
 # Chargement Admin Express -------------------------------
 
-communes_geo<-st_read(dsn="S:/REFERENTIELS/ADMINEXPRESS/1_DONNEES_LIVRAISON_2018-02-15/ADE_1-1_SHP_LAMB93_FR",layer="COMMUNE") %>%
-  rename(DEPCOM=INSEE_COM,
-         DEP=INSEE_DEP,
-         REG=INSEE_REG) %>%
-  select(DEPCOM)
+## téléchargement des couches IGN  ----
 
-epci_geo<-st_read(dsn="S:/REFERENTIELS/ADMINEXPRESS/1_DONNEES_LIVRAISON_2018-02-15/ADE_1-1_SHP_LAMB93_FR",layer="EPCI") %>%
-  rename(EPCI=CODE_EPCI) %>%
-  select(EPCI)
+url_admin_express <- "https://wxs-telechargement.ign.fr/x02uy2aiwjo9bm8ce5plwqmr/telechargement/prepackage/ADMINEXPRESS-COG-PACK_2018-05-04$ADMIN-EXPRESS-COG_1-1__SHP__FRA_2018-04-03/file/ADMIN-EXPRESS-COG_1-1__SHP__FRA_2018-04-03.7z"
+ie_get_proxy_for_url(url_admin_express)
+curl_download(url_admin_express , "data-raw/source/adminexpress.7z" , mode = "wb" )
 
-departements_geo<-st_read(dsn="S:/REFERENTIELS/ADMINEXPRESS/1_DONNEES_LIVRAISON_2018-02-15/ADE_1-1_SHP_LAMB93_FR",layer="DEPARTEMENT")%>%
-  rename(DEP=INSEE_DEP,
-         REG=INSEE_REG) %>%
-  select(DEP)
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/metro data-raw/source/adminexpress.7z *FR/COMMUNE_CARTO* -r')
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/971 data-raw/source/adminexpress.7z *D971/COMMUNE_CARTO* -r')
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/972 data-raw/source/adminexpress.7z *D972/COMMUNE_CARTO* -r')
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/973 data-raw/source/adminexpress.7z *D973/COMMUNE_CARTO* -r')
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/974 data-raw/source/adminexpress.7z *D974/COMMUNE_CARTO* -r')
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/976 data-raw/source/adminexpress.7z *D976/COMMUNE_CARTO* -r')
 
-regions_geo<-st_read(dsn="S:/REFERENTIELS/ADMINEXPRESS/1_DONNEES_LIVRAISON_2018-02-15/ADE_1-1_SHP_LAMB93_FR",layer="REGION")%>%
-  rename(REG=INSEE_REG)%>%
-  select(REG)
+## compilation des couches communales metropole + DOM ----
 
-communes_geo<-st_transform(communes_geo,"+proj=longlat +datum=WGS84")
-epci_geo<-st_transform(epci_geo,"+proj=longlat +datum=WGS84")
-departements_geo<-st_transform(departements_geo,"+proj=longlat +datum=WGS84")
-regions_geo<-st_transform(regions_geo,"+proj=longlat +datum=WGS84")
+com_metro<- st_read("data-raw/source/adminexpress/metro/COMMUNE_CARTO.shp") %>%
+  st_set_crs(2154)
+
+origine_metro <- c(st_as_sfc(st_bbox(com_metro))[[1]][[1]][[1,1]], st_as_sfc(st_bbox(com_metro))[[1]][[1]][[1,2]] )
+doms<-c("971", "972", "973", "974", "976")
+
+for (i in 1:5) {
+  
+  dom <- doms[[i]]
+  
+  com_dom <- st_read(paste0("data-raw/source/adminexpress/",dom,"/COMMUNE_CARTO.shp")) %>%
+    st_set_crs(st_crs(com_metro)) 
+  
+  ctrd_com_dom <- st_centroid(st_geometry(com_dom)) # vecteur des centroïdes de communes du dom
+  bbox_dom <- st_bbox(com_dom)  
+  ctrd_dom <- st_centroid(st_as_sfc(bbox_dom)) # centre de la bbox du dom
+  alpha <- 160000/(bbox_dom$ymax - bbox_dom$ymin) # rapport de proportionnalité (pour un emplacement de 210 km de hauteur)
+  
+  st_geometry(com_dom) <- (st_geometry(com_dom) - ctrd_com_dom ) * alpha + ctrd_com_dom * alpha  # agrandissement de la géometrie du dom
+  st_geometry(com_dom) <- st_geometry(com_dom) - ctrd_dom * alpha + origine_metro + c(-175000,7110500-6049646-210000*(i-0.5)) # translation vers l'emplacement
+  
+  assign(paste0("com_",dom), com_dom)
+  
+}
+
+communes_geo <- bind_rows(com_metro, com_971, com_972, com_973, com_974, com_976) %>% 
+  as_tibble %>% 
+  select(DEPCOM=INSEE_COM, geometry)%>%
+  st_as_sf()%>%
+  st_set_crs(2154)
+
+rm(i, origine_metro, doms, dom, com_dom, com_metro, com_971, com_972, com_973, com_974, com_976, ctrd_com_dom, bbox_dom, ctrd_dom, alpha, url_admin_express)
 
 
 
-# Chargement des tables du COG---------------
+# Chargement des tables du COG ------------------------------------------
+# https://www.data.gouv.fr/fr/datasets/code-officiel-geographique-cog/#_ 
+# https://www.insee.fr/fr/information/2510634
+
 epci_type<-read_excel("data-raw/source/Intercommunalité - Métropole au 01-01-2018.xls",sheet=1,skip=5) %>%
   mutate(EPCI=as.factor(EPCI),
          LIBEPCI=as.factor(LIBEPCI),
@@ -53,19 +83,19 @@ epci<-read_excel("data-raw/source/Intercommunalité - Métropole au 01-01-2018.x
          DEP=as.factor(DEP))%>%
   as_tibble()
 
-departements<-read.delim("data-raw/source/depts2018.txt",fileEncoding = "Latin1") %>%
+departements<-read.delim("data-raw/source/depts2018.txt",encoding = "latin1") %>%
   mutate(REGION=REGION %>% as.character(.) %>% str_pad(.,2,"left",0) %>% as.factor) %>%
   rename(REG=REGION,
          NOM_DEP=NCCENR) %>%
   as_tibble()
 
-regions<-read.delim("data-raw/source/reg2018.txt",fileEncoding = "Latin1")  %>%
+regions<-read.delim("data-raw/source/reg2018.txt",encoding = "latin1")  %>%
   mutate(REGION=REGION %>% as.character(.) %>% str_pad(.,2,"left",0) %>% as.factor)%>%
   rename(REG=REGION,
          NOM_REG=NCCENR) %>%
   as_tibble()
 
-communes<-read.delim("data-raw/source/comsimp2018.txt",fileEncoding="latin1") %>%
+communes<-read.delim("data-raw/source/comsimp2018.txt",encoding="latin1") %>%
   mutate(DEPCOM=case_when(
     REG %in% c(1,2,3,4,6) ~ paste0(as.character(DEP),str_pad(as.character(COM),2,"left",pad="0")),
     T ~ paste0(as.character(DEP),str_pad(as.character(COM),3,"left",pad="0"))
@@ -78,7 +108,7 @@ communes<-read.delim("data-raw/source/comsimp2018.txt",fileEncoding="latin1") %>
 # Création de la table de passage entre l'historique des communes et les communes existants--------------
 # On commence par enlever les 8 communes périmées (actual = 3) et sans pole de rattachemen( pole à blanc)
 
-table_passage_com_historique<-read.delim("data-raw/source/France2018.txt",fileEncoding="latin1") %>%
+table_passage_com_historique<-read.delim("data-raw/source/France2018.txt", encoding="latin1") %>%
   filter(!(ACTUAL==3 & POLE=="")) %>%
   mutate(depcom=case_when(
     REG %in% c(1,2,3,4,6) ~ paste0(as.character(DEP),str_pad(as.character(COM),2,"left",pad="0")),
@@ -87,12 +117,13 @@ table_passage_com_historique<-read.delim("data-raw/source/France2018.txt",fileEn
   depcom_a_jour=ifelse(POLE=="",
                        depcom,
                        as.character(str_pad(POLE,5,"left",0))),
-  REG=REG %>% as.character(.) %>% str_pad(.,2,"left",0) %>% as.factor
-  ) %>%
+  REG=REG %>% as.character(.) %>% str_pad(.,2,"left",0) %>% as.factor,
+  DEP=DEP %>% as.character(.) %>% str_pad(.,2,"left",0) %>% as.factor
+    ) %>%
   filter(CDC==0|CDC==2|is.na(CDC)) %>%
   as_tibble()
 
-#Gestion des fusions de fusion de communes et integration des donées des tables EPCI, DEP, ET REG----------------------
+#Gestion des fusions de fusion de communes et integration des données des tables EPCI, DEP, ET REG----------------------
 table_passage_com_historique<-table_passage_com_historique %>%
   left_join(select(table_passage_com_historique,depcom,depcom_a_jour),by=c("depcom_a_jour"="depcom")) %>%
   select(-depcom_a_jour) %>%
@@ -114,15 +145,15 @@ table_passage_com_historique<-table_passage_com_historique %>%
 
 epci<-left_join(
   table_passage_com_historique %>%
-  filter(!is.na(nepci_a_jour),nepci_a_jour != "Sans objet") %>%
-  select(epci_a_jour,nepci_a_jour,dep_a_jour) %>%
-  distinct() %>%
-  mutate(dep_a_jour=as.character(dep_a_jour)
-         ) %>%
-  group_by(epci_a_jour,nepci_a_jour) %>%
-  summarise(departements_de_l_epci_a_jour=list(dep_a_jour)
-  ) %>%
-  ungroup,
+    filter(!is.na(nepci_a_jour),nepci_a_jour != "Sans objet") %>%
+    select(epci_a_jour,nepci_a_jour,dep_a_jour) %>%
+    distinct() %>%
+    mutate(dep_a_jour=as.character(dep_a_jour)
+    ) %>%
+    group_by(epci_a_jour,nepci_a_jour) %>%
+    summarise(departements_de_l_epci_a_jour=list(dep_a_jour)
+    ) %>%
+    ungroup,
   table_passage_com_historique %>%
     filter(!is.na(nepci_a_jour),nepci_a_jour != "Sans objet") %>%
     select(epci_a_jour,nepci_a_jour,reg_a_jour) %>%
@@ -154,7 +185,8 @@ table_passage_com_historique<-table_passage_com_historique %>%
 
 epci<-epci %>%
   setNames(c("EPCI","NOM_EPCI","DEPARTEMENTS_DE_L_EPCI","REGIONS_DE_L_EPCI")) %>%
-  left_join(epci_type)
+  left_join(epci_type)%>%
+  mutate(NOM_EPCI=as.factor(NOM_EPCI))
 
 
 # Création de la table de passage entre les communes et leur EPCI au 1er janvier -------------
@@ -171,7 +203,10 @@ temp<-table_passage_com_historique %>%
 communes<-communes %>%
   inner_join(temp) %>%
   left_join(epci %>% select(EPCI,DEPARTEMENTS_DE_L_EPCI,REGIONS_DE_L_EPCI)) %>%
-  select(DEPCOM,NOM_DEPCOM,EPCI,NOM_EPCI,DEP,NOM_DEP,REG,NOM_REG,DEPARTEMENTS_DE_L_EPCI,REGIONS_DE_L_EPCI,CDC,CHEFLIEU,COM,AR,CT,TNCC,ARTMAJ,NCC,ARTMIN,NCCENR)
+  select(DEPCOM,NOM_DEPCOM,EPCI,NOM_EPCI,DEP,NOM_DEP,REG,NOM_REG,DEPARTEMENTS_DE_L_EPCI,REGIONS_DE_L_EPCI,CDC,CHEFLIEU,COM,AR,CT,TNCC,ARTMAJ,NCC,ARTMIN,NCCENR) %>%
+  mutate(DEPARTEMENTS_DE_L_EPCI=if_else(!DEPARTEMENTS_DE_L_EPCI=="NULL", DEPARTEMENTS_DE_L_EPCI, as.list(as.character(DEP))), 
+         REGIONS_DE_L_EPCI=if_else(!REGIONS_DE_L_EPCI=="NULL", REGIONS_DE_L_EPCI, as.list(as.character(REG))),
+         DEPCOM=as.factor(DEPCOM))
 rm(temp)
 
 # suppression des données communales à jour de la table de passage
@@ -232,62 +267,40 @@ pop2015 <- read_excel("data-raw/source/pop2015.xls",
 
 
 # Gestion encodage --------------------------------------------------------
+enc.fact.utf8 <- function(a) {
+  x<-levels(a)
+  Encoding(x)<-"UTF-8"
+  levels(a)<-x }
 
-x<-levels(communes$NOM_DEPCOM)
-Encoding(x)<-"UTF-8"
-levels(communes$NOM_DEPCOM)<-x
+enc.fact.utf8(communes$NOM_DEPCOM)
+enc.fact.utf8(communes$NOM_EPCI)
+enc.fact.utf8(communes$NOM_DEP)
+enc.fact.utf8(communes$NOM_REG)
+enc.fact.utf8(communes$NCC)
+enc.fact.utf8(communes$NCCENR)
+enc.fact.utf8(epci$NOM_EPCI)
+enc.fact.utf8(departements$NCC)
+enc.fact.utf8(departements$NOM_DEP)
+enc.fact.utf8(regions$NCC)
+enc.fact.utf8(regions$NOM_REG)
 
+# constitution des tables géo supra ----
 
-x<-levels(communes$NOM_DEPCOM)
-Encoding(x)<-"UTF-8"
-levels(communes$NOM_DEPCOM)<-x
+epci_geo <- filter(communes, NOM_EPCI != "Sans objet")%>%
+  inner_join(communes_geo, ., by="DEPCOM") %>%
+  select(EPCI) %>% group_by(EPCI) %>% summarise(do_union=T) %>% ungroup()
 
+departements_geo <- inner_join(communes_geo, communes, by="DEPCOM") %>%
+  select(DEP) %>% group_by(DEP) %>% summarise(do_union=T) %>% ungroup()
 
-x<-levels(communes$NOM_EPCI)
-Encoding(x)<-"UTF-8"
-levels(communes$NOM_EPCI)<-x
+regions_geo <- inner_join(communes_geo, communes, by="DEPCOM")%>%
+  select(REG) %>% group_by(REG) %>% summarise(do_union=T) %>% ungroup()
 
-x<-levels(communes$NOM_DEP)
-Encoding(x)<-"UTF-8"
-levels(communes$NOM_DEP)<-x
-
-x<-levels(communes$NOM_REG)
-Encoding(x)<-"UTF-8"
-levels(communes$NOM_REG)<-x
-
-x<-levels(communes$NCC)
-Encoding(x)<-"UTF-8"
-levels(communes$NCC)<-x
-
-x<-levels(communes$NCCENR)
-Encoding(x)<-"UTF-8"
-levels(communes$NCCENR)<-x
-
-x<-levels(epci$NOM_EPCI)
-Encoding(x)<-"UTF-8"
-levels(epci$NOM_EPCI)<-x
-
-
-x<-levels(departements$NCC)
-Encoding(x)<-"UTF-8"
-levels(departements$NCC)<-x
-
-x<-levels(departements$NOM_DEP)
-Encoding(x)<-"UTF-8"
-levels(departements$NOM_DEP)<-x
-
-x<-levels(regions$NCC)
-Encoding(x)<-"UTF-8"
-levels(regions$NCC)<-x
-
-x<-levels(regions$NOM_REG)
-Encoding(x)<-"UTF-8"
-levels(regions$NOM_REG)<-x
-
-use_data(communes_geo,internal=F)
-use_data(departements_geo,internal=F)
-use_data(epci_geo,internal=F)
-use_data(regions_geo,internal=F)
+# sauvegarde des données --------------------------------------------------------
+use_data(communes_geo,internal=F, overwrite = T)
+use_data(departements_geo,internal=F,overwrite = T)
+use_data(epci_geo,internal=F,overwrite = T)
+use_data(regions_geo,internal=F,overwrite = T)
 
 use_data(communes,internal=F,overwrite = T)
 use_data(departements,internal=F,overwrite = T)
@@ -299,3 +312,4 @@ use_data(zonage_abc_r52,overwrite = T)
 use_data(zonage_pinel_r52,overwrite = T)
 use_data(pop2015,overwrite = T)
 use_data(liste_zone,overwrite = T)
+
