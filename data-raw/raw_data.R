@@ -9,6 +9,7 @@ library(tidyverse)
 library(sf)
 library(COGiter)
 library(curl)
+library(usethis)
 
 # Chargement Admin Express -------------------------------
 
@@ -61,20 +62,11 @@ communes_geo <- bind_rows(com_metro, com_971, com_972, com_973, com_974, com_976
 rm(i, origine_metro, doms, dom, com_dom, com_metro, com_971, com_972, com_973, com_974, com_976, ctrd_com_dom, bbox_dom, ctrd_dom, alpha, url_admin_express)
 
 
-## constitution des tables géo supra ----
-data("communes")
 
-epci_geo <- inner_join(communes_geo, communes, by="DEPCOM") %>%
-  select(EPCI) %>% group_by(EPCI) %>% summarise(do_union=T) %>% ungroup()
+# Chargement des tables du COG ------------------------------------------
+# https://www.data.gouv.fr/fr/datasets/code-officiel-geographique-cog/#_ 
+# https://www.insee.fr/fr/information/2510634
 
-departements_geo <- inner_join(communes_geo, communes, by="DEPCOM") %>%
-  select(DEP) %>% group_by(DEP) %>% summarise(do_union=T) %>% ungroup()
-
-regions_geo <- inner_join(communes_geo, communes, by="DEPCOM")%>%
-  select(REG) %>% group_by(REG) %>% summarise(do_union=T) %>% ungroup()
-
-
-# Chargement des tables du COG---------------
 epci_type<-read_excel("data-raw/source/Intercommunalité - Métropole au 01-01-2018.xls",sheet=1,skip=5) %>%
   mutate(EPCI=as.factor(EPCI),
          LIBEPCI=as.factor(LIBEPCI),
@@ -91,19 +83,19 @@ epci<-read_excel("data-raw/source/Intercommunalité - Métropole au 01-01-2018.x
          DEP=as.factor(DEP))%>%
   as_tibble()
 
-departements<-read.delim("data-raw/source/depts2018.txt",fileEncoding = "Latin1") %>%
+departements<-read.delim("data-raw/source/depts2018.txt",encoding = "latin1") %>%
   mutate(REGION=REGION %>% as.character(.) %>% str_pad(.,2,"left",0) %>% as.factor) %>%
   rename(REG=REGION,
          NOM_DEP=NCCENR) %>%
   as_tibble()
 
-regions<-read.delim("data-raw/source/reg2018.txt",fileEncoding = "Latin1")  %>%
+regions<-read.delim("data-raw/source/reg2018.txt",encoding = "latin1")  %>%
   mutate(REGION=REGION %>% as.character(.) %>% str_pad(.,2,"left",0) %>% as.factor)%>%
   rename(REG=REGION,
          NOM_REG=NCCENR) %>%
   as_tibble()
 
-communes<-read.delim("data-raw/source/comsimp2018.txt",fileEncoding="latin1") %>%
+communes<-read.delim("data-raw/source/comsimp2018.txt",encoding="latin1") %>%
   mutate(DEPCOM=case_when(
     REG %in% c(1,2,3,4,6) ~ paste0(as.character(DEP),str_pad(as.character(COM),2,"left",pad="0")),
     T ~ paste0(as.character(DEP),str_pad(as.character(COM),3,"left",pad="0"))
@@ -116,7 +108,7 @@ communes<-read.delim("data-raw/source/comsimp2018.txt",fileEncoding="latin1") %>
 # Création de la table de passage entre l'historique des communes et les communes existants--------------
 # On commence par enlever les 8 communes périmées (actual = 3) et sans pole de rattachemen( pole à blanc)
 
-table_passage_com_historique<-read.delim("data-raw/source/France2018.txt",fileEncoding="latin1") %>%
+table_passage_com_historique<-read.delim("data-raw/source/France2018.txt", encoding="latin1") %>%
   filter(!(ACTUAL==3 & POLE=="")) %>%
   mutate(depcom=case_when(
     REG %in% c(1,2,3,4,6) ~ paste0(as.character(DEP),str_pad(as.character(COM),2,"left",pad="0")),
@@ -125,8 +117,9 @@ table_passage_com_historique<-read.delim("data-raw/source/France2018.txt",fileEn
   depcom_a_jour=ifelse(POLE=="",
                        depcom,
                        as.character(str_pad(POLE,5,"left",0))),
-  REG=REG %>% as.character(.) %>% str_pad(.,2,"left",0) %>% as.factor
-  ) %>%
+  REG=REG %>% as.character(.) %>% str_pad(.,2,"left",0) %>% as.factor,
+  DEP=DEP %>% as.character(.) %>% str_pad(.,2,"left",0) %>% as.factor
+    ) %>%
   filter(CDC==0|CDC==2|is.na(CDC)) %>%
   as_tibble()
 
@@ -192,7 +185,8 @@ table_passage_com_historique<-table_passage_com_historique %>%
 
 epci<-epci %>%
   setNames(c("EPCI","NOM_EPCI","DEPARTEMENTS_DE_L_EPCI","REGIONS_DE_L_EPCI")) %>%
-  left_join(epci_type)
+  left_join(epci_type)%>%
+  mutate(NOM_EPCI=as.factor(NOM_EPCI))
 
 
 # Création de la table de passage entre les communes et leur EPCI au 1er janvier -------------
@@ -209,7 +203,10 @@ temp<-table_passage_com_historique %>%
 communes<-communes %>%
   inner_join(temp) %>%
   left_join(epci %>% select(EPCI,DEPARTEMENTS_DE_L_EPCI,REGIONS_DE_L_EPCI)) %>%
-  select(DEPCOM,NOM_DEPCOM,EPCI,NOM_EPCI,DEP,NOM_DEP,REG,NOM_REG,DEPARTEMENTS_DE_L_EPCI,REGIONS_DE_L_EPCI,CDC,CHEFLIEU,COM,AR,CT,TNCC,ARTMAJ,NCC,ARTMIN,NCCENR)
+  select(DEPCOM,NOM_DEPCOM,EPCI,NOM_EPCI,DEP,NOM_DEP,REG,NOM_REG,DEPARTEMENTS_DE_L_EPCI,REGIONS_DE_L_EPCI,CDC,CHEFLIEU,COM,AR,CT,TNCC,ARTMAJ,NCC,ARTMIN,NCCENR) %>%
+  mutate(DEPARTEMENTS_DE_L_EPCI=if_else(!DEPARTEMENTS_DE_L_EPCI=="NULL", DEPARTEMENTS_DE_L_EPCI, as.list(as.character(DEP))), 
+         REGIONS_DE_L_EPCI=if_else(!REGIONS_DE_L_EPCI=="NULL", REGIONS_DE_L_EPCI, as.list(as.character(REG))),
+         DEPCOM=as.factor(DEPCOM))
 rm(temp)
 
 # suppression des données communales à jour de la table de passage
@@ -270,62 +267,40 @@ pop2015 <- read_excel("data-raw/source/pop2015.xls",
 
 
 # Gestion encodage --------------------------------------------------------
+enc.fact.utf8 <- function(a) {
+  x<-levels(a)
+  Encoding(x)<-"UTF-8"
+  levels(a)<-x }
 
-x<-levels(communes$NOM_DEPCOM)
-Encoding(x)<-"UTF-8"
-levels(communes$NOM_DEPCOM)<-x
+enc.fact.utf8(communes$NOM_DEPCOM)
+enc.fact.utf8(communes$NOM_EPCI)
+enc.fact.utf8(communes$NOM_DEP)
+enc.fact.utf8(communes$NOM_REG)
+enc.fact.utf8(communes$NCC)
+enc.fact.utf8(communes$NCCENR)
+enc.fact.utf8(epci$NOM_EPCI)
+enc.fact.utf8(departements$NCC)
+enc.fact.utf8(departements$NOM_DEP)
+enc.fact.utf8(regions$NCC)
+enc.fact.utf8(regions$NOM_REG)
 
+# constitution des tables géo supra ----
 
-x<-levels(communes$NOM_DEPCOM)
-Encoding(x)<-"UTF-8"
-levels(communes$NOM_DEPCOM)<-x
+epci_geo <- filter(communes, NOM_EPCI != "Sans objet")%>%
+  inner_join(communes_geo, ., by="DEPCOM") %>%
+  select(EPCI) %>% group_by(EPCI) %>% summarise(do_union=T) %>% ungroup()
 
+departements_geo <- inner_join(communes_geo, communes, by="DEPCOM") %>%
+  select(DEP) %>% group_by(DEP) %>% summarise(do_union=T) %>% ungroup()
 
-x<-levels(communes$NOM_EPCI)
-Encoding(x)<-"UTF-8"
-levels(communes$NOM_EPCI)<-x
+regions_geo <- inner_join(communes_geo, communes, by="DEPCOM")%>%
+  select(REG) %>% group_by(REG) %>% summarise(do_union=T) %>% ungroup()
 
-x<-levels(communes$NOM_DEP)
-Encoding(x)<-"UTF-8"
-levels(communes$NOM_DEP)<-x
-
-x<-levels(communes$NOM_REG)
-Encoding(x)<-"UTF-8"
-levels(communes$NOM_REG)<-x
-
-x<-levels(communes$NCC)
-Encoding(x)<-"UTF-8"
-levels(communes$NCC)<-x
-
-x<-levels(communes$NCCENR)
-Encoding(x)<-"UTF-8"
-levels(communes$NCCENR)<-x
-
-x<-levels(epci$NOM_EPCI)
-Encoding(x)<-"UTF-8"
-levels(epci$NOM_EPCI)<-x
-
-
-x<-levels(departements$NCC)
-Encoding(x)<-"UTF-8"
-levels(departements$NCC)<-x
-
-x<-levels(departements$NOM_DEP)
-Encoding(x)<-"UTF-8"
-levels(departements$NOM_DEP)<-x
-
-x<-levels(regions$NCC)
-Encoding(x)<-"UTF-8"
-levels(regions$NCC)<-x
-
-x<-levels(regions$NOM_REG)
-Encoding(x)<-"UTF-8"
-levels(regions$NOM_REG)<-x
-
-use_data(communes_geo,internal=F)
-use_data(departements_geo,internal=F)
-use_data(epci_geo,internal=F)
-use_data(regions_geo,internal=F)
+# sauvegarde des données --------------------------------------------------------
+use_data(communes_geo,internal=F, overwrite = T)
+use_data(departements_geo,internal=F,overwrite = T)
+use_data(epci_geo,internal=F,overwrite = T)
+use_data(regions_geo,internal=F,overwrite = T)
 
 use_data(communes,internal=F,overwrite = T)
 use_data(departements,internal=F,overwrite = T)
@@ -337,3 +312,4 @@ use_data(zonage_abc_r52,overwrite = T)
 use_data(zonage_pinel_r52,overwrite = T)
 use_data(pop2015,overwrite = T)
 use_data(liste_zone,overwrite = T)
+
