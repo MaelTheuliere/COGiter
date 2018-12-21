@@ -19,17 +19,23 @@ url_admin_express <- "https://wxs-telechargement.ign.fr/x02uy2aiwjo9bm8ce5plwqmr
 ie_get_proxy_for_url(url_admin_express)
 curl_download(url_admin_express , "data-raw/source/adminexpress.7z" , mode = "wb" )
 
-system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/metro data-raw/source/adminexpress.7z *FR/COMMUNE_CARTO* -r')
-system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/971 data-raw/source/adminexpress.7z *D971/COMMUNE_CARTO* -r')
-system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/972 data-raw/source/adminexpress.7z *D972/COMMUNE_CARTO* -r')
-system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/973 data-raw/source/adminexpress.7z *D973/COMMUNE_CARTO* -r')
-system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/974 data-raw/source/adminexpress.7z *D974/COMMUNE_CARTO* -r')
-system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/976 data-raw/source/adminexpress.7z *D976/COMMUNE_CARTO* -r')
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/metro data-raw/source/adminexpress.7z *FR/COMMUNE* -r')
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/971 data-raw/source/adminexpress.7z *D971/COMMUNE* -r')
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/972 data-raw/source/adminexpress.7z *D972/COMMUNE* -r')
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/973 data-raw/source/adminexpress.7z *D973/COMMUNE* -r')
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/974 data-raw/source/adminexpress.7z *D974/COMMUNE* -r')
+system('"C:/Program Files (x86)/7-Zip/7z.exe" e -aoa -odata-raw/source/adminexpress/976 data-raw/source/adminexpress.7z *D976/COMMUNE* -r')
 
 ## compilation des couches communales metropole + DOM ----
 
+EPSG_metro <- 2154
+EPSG_world <- 3857 # 3857 ou 4326?
+
 com_metro<- st_read("data-raw/source/adminexpress/metro/COMMUNE_CARTO.shp") %>%
-  st_set_crs(2154)
+  st_set_crs(EPSG_metro)
+
+com_metro_world <- st_read("data-raw/source/adminexpress/metro/COMMUNE.shp") %>%
+  st_transform(EPSG_world)
 
 origine_metro <- c(st_as_sfc(st_bbox(com_metro))[[1]][[1]][[1,1]], st_as_sfc(st_bbox(com_metro))[[1]][[1]][[1,2]] )
 doms<-c("971", "972", "973", "974", "976")
@@ -38,9 +44,12 @@ for (i in 1:5) {
   
   dom <- doms[[i]]
   
-  com_dom <- st_read(paste0("data-raw/source/adminexpress/",dom,"/COMMUNE_CARTO.shp")) %>%
-    st_set_crs(st_crs(com_metro)) 
+  com_dom <- st_read(paste0("data-raw/source/adminexpress/",dom,"/COMMUNE_CARTO.shp")) 
   
+  com_dom_world <- st_read(paste0("data-raw/source/adminexpress/",dom,"/COMMUNE.shp")) %>%
+    st_transform(EPSG_world)
+  
+  com_dom <- st_set_crs(com_dom, st_crs(com_metro)) # on ramène le dom dans le système de coordonnées de la métropole
   ctrd_com_dom <- st_centroid(st_geometry(com_dom)) # vecteur des centroïdes de communes du dom
   bbox_dom <- st_bbox(com_dom)  
   ctrd_dom <- st_centroid(st_as_sfc(bbox_dom)) # centre de la bbox du dom
@@ -49,17 +58,27 @@ for (i in 1:5) {
   st_geometry(com_dom) <- (st_geometry(com_dom) - ctrd_com_dom ) * alpha + ctrd_com_dom * alpha  # agrandissement de la géometrie du dom
   st_geometry(com_dom) <- st_geometry(com_dom) - ctrd_dom * alpha + origine_metro + c(-175000,7110500-6049646-210000*(i-0.5)) # translation vers l'emplacement
   
-  assign(paste0("com_",dom), com_dom)
+  assign(paste0("com_", dom), com_dom)
+  assign(paste0("com_", dom, "_world"), com_dom_world)
   
 }
 
 communes_geo <- bind_rows(com_metro, com_971, com_972, com_973, com_974, com_976) %>% 
   as_tibble %>% 
   select(DEPCOM=INSEE_COM, geometry)%>%
-  st_as_sf()%>%
-  st_set_crs(2154)
+  st_as_sf(sf_column_name = "geometry")%>%
+  st_set_crs(EPSG_metro)
 
-rm(i, origine_metro, doms, dom, com_dom, com_metro, com_971, com_972, com_973, com_974, com_976, ctrd_com_dom, bbox_dom, ctrd_dom, alpha, url_admin_express)
+communes_geo_world <- bind_rows(com_metro_world, com_971_world, com_972_world, com_973_world, com_974_world, com_976_world) %>% 
+  as_tibble %>% 
+  select(DEPCOM=INSEE_COM, geometry) %>%
+  st_as_sf(sf_column_name = "geometry") %>%
+  st_set_crs(EPSG_world)
+
+
+rm(i, origine_metro, doms, dom, com_dom, com_metro, com_971, com_972, com_973, com_974, com_976, ctrd_com_dom, bbox_dom, ctrd_dom, 
+   alpha, url_admin_express, com_metro_world, com_dom_world, com_971_world, com_972_world, com_973_world, com_974_world, com_976_world,
+   EPSG_metro, EPSG_world)
 
 
 
@@ -71,7 +90,7 @@ epci_type<-read_excel("data-raw/source/Intercommunalité - Métropole au 01-01-2
   mutate(EPCI=as.factor(EPCI),
          LIBEPCI=as.factor(LIBEPCI),
          NATURE_EPCI=as.factor(NATURE_EPCI)
-         )%>%
+  )%>%
   select(EPCI,NATURE_EPCI) %>%
   as_tibble()
 
@@ -119,7 +138,7 @@ table_passage_com_historique<-read.delim("data-raw/source/France2018.txt", encod
                        as.character(str_pad(POLE,5,"left",0))),
   REG=REG %>% as.character(.) %>% str_pad(.,2,"left",0) %>% as.factor,
   DEP=DEP %>% as.character(.) %>% str_pad(.,2,"left",0) %>% as.factor
-    ) %>%
+  ) %>%
   filter(CDC==0|CDC==2|is.na(CDC)) %>%
   as_tibble()
 
@@ -265,6 +284,8 @@ pop2015 <- read_excel("data-raw/source/pop2015.xls",
   ) %>%
   select(-DEP)
 
+step <- st_read("https://www.data.gouv.fr/fr/datasets/r/e086adb2-1163-4f02-bf7d-0405783914d9")
+
 
 # Gestion encodage --------------------------------------------------------
 enc.fact.utf8 <- function(a) {
@@ -284,6 +305,8 @@ enc.fact.utf8(departements$NOM_DEP)
 enc.fact.utf8(regions$NCC)
 enc.fact.utf8(regions$NOM_REG)
 
+rm(enc.fact.utf8)
+
 # constitution des tables géo supra ----
 
 epci_geo <- filter(communes, NOM_EPCI != "Sans objet")%>%
@@ -298,6 +321,7 @@ regions_geo <- inner_join(communes_geo, communes, by="DEPCOM")%>%
 
 # sauvegarde des données --------------------------------------------------------
 use_data(communes_geo,internal=F, overwrite = T)
+use_data(communes_geo_world, internal = F, overwrite = T)
 use_data(departements_geo,internal=F,overwrite = T)
 use_data(epci_geo,internal=F,overwrite = T)
 use_data(regions_geo,internal=F,overwrite = T)
@@ -312,4 +336,4 @@ use_data(zonage_abc_r52,overwrite = T)
 use_data(zonage_pinel_r52,overwrite = T)
 use_data(pop2015,overwrite = T)
 use_data(liste_zone,overwrite = T)
-
+use_data(step,overwrite = T)
