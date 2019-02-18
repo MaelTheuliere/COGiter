@@ -2,7 +2,7 @@
 % Please edit documentation in R/cog_df_to_list.R
 \name{zone_df_to_list}
 \alias{zone_df_to_list}
-\title{Preparer les donn\encoding{é}es pour passer d'un type dataframe a un type liste}
+\title{Pr\encoding{é}parer les donn\encoding{é}es pour passer d'un type dataframe a un type liste}
 \usage{
 zone_df_to_list(.data, typezone)
 }
@@ -15,5 +15,5 @@ zone_df_to_list(.data, typezone)
 la fonction renvoie une table de donn\encoding{é}es renomm\encoding{é}e
 }
 \description{
-Preparer les donn\encoding{é}es pour passer d'un type dataframe a un type liste
+Pr\encoding{é}parer les donn\encoding{é}es pour passer d'un type dataframe a un type liste
 }

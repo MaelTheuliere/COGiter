@@ -9,7 +9,7 @@ cogifier(.data, code_commune = DEPCOM, communes = T, epci = T,
   as_df = T)
 }
 \arguments{
-\item{.data}{la table de donn\encoding{é}es à convertire}
+\item{.data}{la table de donn\encoding{é}es à convertir}
 
 \item{code_commune}{le nom de la variable contenant le code commune sur 5 charactères}
 
@@ -25,7 +25,7 @@ cogifier(.data, code_commune = DEPCOM, communes = T, epci = T,
 
 \item{metrodrom}{bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es France m\encoding{é}tropolitaine et des DROM}
 
-\item{as_df}{bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es sous un seul dataframe, false si on souhaite une liste de dataframe par type de zone}
+\item{as_df}{bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es sous un seul dataframe, FALSE si on souhaite une liste de dataframe par type de zone}
 }
 \value{
 la fonction renvoie un dataframe ou une liste de dataframe

@@ -21,7 +21,7 @@ filtrer_cog(.data, depcom = NULL, epci = NULL, dep = NULL,
 \item{garder_supra}{">" si on souhaite garder les territoires supra, ">=" si on souhaite garder les territoires suppra et du même niveau que celui s\encoding{é}lectionn\encoding{é}}
 }
 \value{
-la fonction renvoie une table de donnees filtrer
+la fonction renvoie une table de donnees filtrées
 }
 \description{
 Filtrer une fichier du cog sur un sous ensemble du territoire

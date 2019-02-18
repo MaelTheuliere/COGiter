@@ -1,4 +1,4 @@
-#' Preparer les donn\encoding{é}es pour passer d'un type dataframe a un type liste
+#' Pr\encoding{é}parer les donn\encoding{é}es pour passer d'un type dataframe a un type liste
 #'
 #' @param .data la table de donn\encoding{é}es a convertir
 #' @param typezone le type de zonage
