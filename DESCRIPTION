@@ -1,6 +1,6 @@
 Package: COGiter
 Title: Functions, Data And Map To Help People To Analyse French Territorial Data
-Version: 0.0.0.9001
+Version: 0.0.0.9002
 Authors@R: 
     person(given = "Maël",
            family = "THEULIERE",
