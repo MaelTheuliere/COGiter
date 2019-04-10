@@ -4,21 +4,22 @@
 \name{regions}
 \alias{regions}
 \title{Liste des régions du dernier millésime connu.}
-\format{A data frame with 18 rows and 5 variables:
+\format{A data frame with 18 rows and 6 variables:
 \describe{
 \item{REG}{Code Insee de la région}
 \item{CHEFLIEU}{Chef-lieu d'arrondissement, de département, de région ou bureau centralisateur}
 \item{TNCC}{Type de nom en clair}
 \item{NCC}{Nom en clair (majuscules)}
-\item{NOM_REG}{Nom de la région}
+\item{NCCENR}{Nom en clair (typographie riche)}
+\item{NOM_REG}{Nom en clair (typographie riche) avec article}
 }}
 \source{
-\url{https://www.insee.fr/fr/information/3363419#titre-bloc-26}
+\url{https://www.insee.fr/fr/information/3720946#titre-bloc-17}
 }
 \usage{
 regions
 }
 \description{
-Un dataset contenant pour chaque régions de France actuelle son code Insee, son nom
+Un dataset contenant chaque régions de France
 }
 \keyword{datasets}

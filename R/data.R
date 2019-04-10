@@ -1,61 +1,71 @@
 #' Liste des communes du dernier millésime connu.
 #'
-#' Un dataset contenant pour chaque commune de France actuelle son code Insee, son nom et les identifiants des territoire supra
+#' Un dataset contenant chaque commune, communes déléguées,arrondissements, de France
 #'
-#' @format A data frame with 35357 rows and 20 variables:
+#' @format A data frame with 37932 rows and 11 variables:
 #' \describe{
+#'   \item{TYPECOM}{Code Insee}
 #'   \item{DEPCOM}{Code Insee}
-#'   \item{NOM_DEPCOM}{Nom de la commune}
-#'   \item{EPCI}{Code siren de l'EPCI de rattachement}
-#'   \item{NOM_EPCI}{Nom de l'EPCI de rattachement}
-#'   \item{DEP}{Code Insee du département de rattachement}
-#'   \item{NOM_DEP}{Nom du département de rattachement}
+#'   \item{NOM_DEPCOM}{Nom en clair (typographie riche) avec article }
 #'   \item{REG}{Code Insee de la région de rattachement}
-#'   \item{NOM_REG}{Nom de la région de rattachement}
-#'   \item{DEPARTEMENTS_DE_L_EPCI}{Liste des départements dans lesquels  se retrouve au moins une commune de l'epci}
-#'   \item{REGIONS_DE_L_EPCI}{Liste des régions dans lesquelles  se retrouve au moins une commune de l'epci}
-#'   \item{CDC}{Découpage de la commune en cantons}
-#'   \item{CHEFLIEU}{Chef-lieu d'arrondissement, de département, de région ou bureau centralisateur}
-#'   \item{COM}{Code commune}
-#'   \item{AR}{Code arrondissement}
-#'   \item{CT}{Code canton}
+#'   \item{DEP}{Code Insee du département de rattachement}
+#'   \item{ARR}{Code arrondissement}
 #'   \item{TNCC}{Type de nom en clair}
-#'   \item{ARTMAJ}{Article (majuscules)}
 #'   \item{NCC}{Nom en clair (majuscules)}
-#'   \item{ARTMIN}{Article (typographie riche)}
 #'   \item{NCCENR}{Nom en clair (typographie riche)}
+#'   \item{CAN}{Code canton. Pour les communes « multi-cantonales » code décliné de 99 à 90 (pseudo-canton) ou de 89 à 80 (communes nouvelles) }
+#'   \item{COMPARENT}{Code de la commune parente pour les arrondissements municipaux et les communes associées ou déléguées. }
 #' }
-#' @source \url{https://www.insee.fr/fr/information/3363419#titre-bloc-7}
+#' @source \url{https://www.insee.fr/fr/information/3720946#titre-bloc-3}
 "communes"
 
+#' Information supracommunales pour les communes actuelles.
+#'
+#' Un dataset contenant chaque commune les informations de rattachement supracommunales
+#'
+#' @format A data frame with 34970 rows and 10 variables:
+#' \describe{
+#'   \item{DEPCOM}{Code Insee}
+#'   \item{NOM_DEPCOM}{Nom en clair (typographie riche) avec article }
+#'   \item{DEP}{Code Insee du département de rattachement}
+#'   \item{NOM_DEP}{Nom en clair (typographie riche) avec article du département}
+#'   \item{REG}{Code Insee de la région de rattachement}
+#'   \item{NOM_REG}{Nom en clair (typographie riche) avec article de la région}
+#'   \item{EPCI}{Code Insee de la région de rattachement}
+#'   \item{NOM_EPCI}{Nom de l'EPCI}
+#'   \item{DEPARTEMENTS_DE_L_EPCI}{Liste des départements dans lesquels se retrouve au moins une commune de l'epci de rattachement de la commune}
+#'   \item{REGIONS_DE_L_EPCI}{Liste des régions dans lesquelles se retrouve au moins une commune de l'epci de rattachement de la commune}
+#' }
+"communes_info_supra"
 
 #' Liste des départements du dernier millésime connu.
 #'
-#' Un dataset contenant pour chaque départements de France actuelle son code Insee, son nom et les identifiants des territoire supra
+#' Un dataset contenant chaque départements de France
 #'
-#' @format A data frame with 101 rows and 6 variables:
+#' @format A data frame with 101 rows and 7 variables:
 #' \describe{
-#'   \item{REG}{Code Insee de la région de rattachement}
 #'   \item{DEP}{Code Insee du département}
+#'   \item{REG}{Code Insee de la région de rattachement}
 #'   \item{CHEFLIEU}{Chef-lieu d'arrondissement, de département, de région ou bureau centralisateur}
 #'   \item{TNCC}{Type de nom en clair}
 #'   \item{NCC}{Nom en clair (majuscules)}
-#'   \item{NOM_DEP}{Nom du département}
+#'   \item{NCCENR}{Nom en clair (typographie riche)}
+#'   \item{NOM_DEP}{Nom en clair (typographie riche) avec article}
 #' }
-#' @source \url{https://www.insee.fr/fr/information/3363419#titre-bloc-23}
+#' @source \url{https://www.insee.fr/fr/information/3720946#titre-bloc-14}
 "departements"
 
 #' Liste des epci du dernier millésime connu.
 #'
-#' Un dataset contenant pour chaque epci de France actuel son code Insee, son nom et les identifiants des territoire supra
+#' Un dataset contenant chaque epci de France
 #'
 #' @format A data frame with 1264 rows and 4 variables:
 #' \describe{
 #'   \item{EPCI}{Code siren de l'EPCI}
 #'   \item{NOM_EPCI}{Nom de l'EPCI}
-#'   \item{DEPARTEMENTS_DE_L_EPCI}{Liste des départements dans lesquels  se retrouve au moins une commune de l'epci}
-#'   \item{REGIONS_DE_L_EPCI}{Liste des régions dans lesquelles  se retrouve au moins une commune de l'epci}
 #'   \item{NATURE_EPCI}{Type de l'epci : ME,CA,CU,CC}
+#'   \item{DEPARTEMENTS_DE_L_EPCI}{Liste des départements dans lesquels se retrouve au moins une commune de l'epci}
+#'   \item{REGIONS_DE_L_EPCI}{Liste des régions dans lesquelles se retrouve au moins une commune de l'epci}
 #' }
 #' @source \url{https://www.insee.fr/fr/information/2510634}
 "epci"
@@ -63,24 +73,25 @@
 
 #' Liste des régions du dernier millésime connu.
 #'
-#' Un dataset contenant pour chaque régions de France actuelle son code Insee, son nom
+#' Un dataset contenant chaque régions de France
 #'
-#' @format A data frame with 18 rows and 5 variables:
+#' @format A data frame with 18 rows and 6 variables:
 #' \describe{
 #'   \item{REG}{Code Insee de la région}
 #'   \item{CHEFLIEU}{Chef-lieu d'arrondissement, de département, de région ou bureau centralisateur}
 #'   \item{TNCC}{Type de nom en clair}
 #'   \item{NCC}{Nom en clair (majuscules)}
-#'   \item{NOM_REG}{Nom de la région}
+#'   \item{NCCENR}{Nom en clair (typographie riche)}
+#'   \item{NOM_REG}{Nom en clair (typographie riche) avec article}
 #' }
-#' @source \url{https://www.insee.fr/fr/information/3363419#titre-bloc-26}
+#' @source \url{https://www.insee.fr/fr/information/3720946#titre-bloc-17}
 "regions"
 
 #' Rattachement des communes à leur epci.
 #'
 #' Un dataset contenant pour chaque commune de France actuelle le code sirene de son EPCI
 #'
-#' @format A data frame with 35357 rows and 2 variables:
+#' @format A data frame with 34970 rows and 2 variables:
 #' \describe{
 #'   \item{DEPCOM}{Code Insee de la commune}
 #'   \item{EPCI}{Code siren de l'EPCI de rattachement}
@@ -89,16 +100,41 @@
 "table_passage_com_epci"
 
 
+#' Table des mouvements des communes
+#'
+#' Un dataset listant les mouvements opérés sur la carte communale
+#' @format A data frame with 13157 rows and 14 variables:
+#' \describe{
+#'   \item{MOD}{Type d'événement de communes}
+#'   \item{DATE_EFF}{Date d'effet}
+#'   \item{TYPECOM_AV}{Type de la commune avant événement}
+#'   \item{COM_AV}{Code de la commune avant événement}
+#'   \item{TNCC_AV}{Type de nom en clair }
+#'   \item{NCC_AV}{Nom en clair (majuscules)}
+#'   \item{NCCENR_AV}{Nom en clair (typographie riche)}
+#'   \item{LIBELLE_AV}{Nom en clair (typographie riche) avec article}
+#'   \item{TYPECOM_AP}{Type de la commune après événement}
+#'   \item{COM_AP}{Code de la commune après événement}
+#'   \item{TNCC_AP}{Type de nom en clair }
+#'   \item{NCC_AP}{Nom en clair (majuscules)}
+#'   \item{NCCENR_AP}{Nom en clair (typographie riche)}
+#'   \item{LIBELLE_AP}{Nom en clair (typographie riche) avec article}
+#' }
+#' @source \url{https://www.insee.fr/fr/information/3720946#titre-bloc-23}
+"mvtcommunes"
+
 #' Table de passage des fusions de communes.
 #'
 #' Un dataset contenant pour chaque commune historique de France le code de la commune actuelle de rattachement
+#' Cette table permet de gérer le suivi des fusions de communes.
+#' Elle se base sur un exploitation de la table historique du COG 2018 et de la table des mouvements du COG 2019
 #'
 #' @format A data frame with 39161 rows and 2 variables:
 #' \describe{
 #'   \item{DEPCOM_HIST}{Code Insee de la commune historique}
 #'   \item{DEPCOM}{Code Insee de la commune}
 #' }
-#' @source \url{https://www.insee.fr/fr/information/3363419#titre-bloc-3}
+#' @source \url{https://www.insee.fr/fr/information/3720946#titre-bloc-23}
 "table_passage_com_historique"
 
 #' Une table permettant de lister pour chaque département ou région les zonages infra
@@ -114,6 +150,19 @@
 #'   \item{REG}{liste des régions ayant cette zone en territoire infra}
 #' }
 "liste_zone"
+
+#' Une table du recensement de la population 2015
+#'
+#' Une table du recencement de la population de 2015
+#'
+#' @format A data frame with 35441 rows and 4 variables:
+#' \describe{
+#'   \item{DEPCOM}{Code commune (géographie 2014)}
+#'   \item{pop2015}{population 2015}
+#'   \item{pop2015_a_part}{population 2015 comptée à part}
+#'   \item{pop2015_totale}{population 2015 total}
+#' }
+"pop2015"
 
 
 #' Zonage ABC région Pays de la Loire.

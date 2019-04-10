@@ -8,7 +8,6 @@
 #'
 #' @return la table de donn\encoding{é}es convertie
 #' @export
-#' @import magrittr
 #' @importFrom dplyr rename
 #' @importFrom dplyr left_join
 #' @importFrom dplyr select
@@ -19,7 +18,8 @@
 #' @importFrom rlang enquo
 #' @importFrom rlang !!
 #'
-#' @examples
+#' @encoding UTF-8
+
 passer_au_cog_a_jour<-function(.data,code_commune=DEPCOM,aggrege=T,garder_info_supra=T) {
   quo_code_commune<-enquo(code_commune)
   result<-.data %>%
@@ -35,8 +35,7 @@ passer_au_cog_a_jour<-function(.data,code_commune=DEPCOM,aggrege=T,garder_info_s
   }
   if (garder_info_supra==T) {
     result<-result %>%
-      left_join(communes %>% select(DEPCOM:REGIONS_DE_L_EPCI)) %>%
-      mutate(DEPCOM=as.factor(DEPCOM))
+      left_join(communes_info_supra)
   }
   result
 }

@@ -8,9 +8,9 @@
 \describe{
 \item{EPCI}{Code siren de l'EPCI}
 \item{NOM_EPCI}{Nom de l'EPCI}
-\item{DEPARTEMENTS_DE_L_EPCI}{Liste des départements dans lesquels  se retrouve au moins une commune de l'epci}
-\item{REGIONS_DE_L_EPCI}{Liste des régions dans lesquelles  se retrouve au moins une commune de l'epci}
 \item{NATURE_EPCI}{Type de l'epci : ME,CA,CU,CC}
+\item{DEPARTEMENTS_DE_L_EPCI}{Liste des départements dans lesquels se retrouve au moins une commune de l'epci}
+\item{REGIONS_DE_L_EPCI}{Liste des régions dans lesquelles se retrouve au moins une commune de l'epci}
 }}
 \source{
 \url{https://www.insee.fr/fr/information/2510634}
@@ -19,6 +19,6 @@
 epci
 }
 \description{
-Un dataset contenant pour chaque epci de France actuel son code Insee, son nom et les identifiants des territoire supra
+Un dataset contenant chaque epci de France
 }
 \keyword{datasets}

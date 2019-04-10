@@ -5,11 +5,11 @@
 #'
 #' @return la fonction renvoie une table de donn\encoding{é}es renomm\encoding{é}e
 #' @export
-#' @import magrittr
 #' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr select
 #' @importFrom tidyselect everything
+#' @encoding UTF-8
 
 
 zone_df_to_list<-function(.data,typezone) {
@@ -77,9 +77,9 @@ zone_df_to_list<-function(.data,typezone) {
 #'
 #' @return la fonction renvoie une liste de dataframe
 #' @export
-#' @import magrittr
 #' @importFrom purrr map
 #' @importFrom purrr set_names
+#' @encoding UTF-8
 
 cog_df_to_list<-function(.data) {
   map(c("communes","epci","departements","regions","metro","metrodrom"),~zone_df_to_list(.data,typezone = .x)) %>%

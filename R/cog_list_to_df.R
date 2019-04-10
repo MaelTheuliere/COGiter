@@ -5,10 +5,10 @@
 #'
 #' @return la fonction renvoie une table de donn\encoding{é}es renomm\encoding{é}e
 #' @export
-#' @import magrittr
 #' @importFrom dplyr mutate
 #' @importFrom dplyr select
 #' @importFrom tidyselect everything
+#' @encoding UTF-8
 
 zone_list_to_df<-function(.data,typezone) {
   if (typezone=="communes") {
@@ -72,9 +72,9 @@ zone_list_to_df<-function(.data,typezone) {
 #'
 #' @return la fonction renvoie une table de donnees
 #' @export
-#' @import magrittr
 #' @importFrom purrr map2_df
 #' @importFrom dplyr mutate_at
+#' @encoding UTF-8
 
 cog_list_to_df<-function(list) {
   map2_df(list,names(list),~ zone_list_to_df(.data = .x,typezone = .y)) %>%

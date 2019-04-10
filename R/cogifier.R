@@ -9,11 +9,9 @@
 #' @param metro bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es France m\encoding{é}tropolitaine
 #' @param metrodrom bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es France m\encoding{é}tropolitaine et des DROM
 #' @param as_df bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es sous un seul dataframe, FALSE si on souhaite une liste de dataframe par type de zone
-
 #'
 #' @return la fonction renvoie un dataframe ou une liste de dataframe
 #' @export
-#' @import magrittr
 #' @importFrom dplyr filter
 #' @importFrom dplyr mutate
 #' @importFrom dplyr select
@@ -27,6 +25,7 @@
 #' @importFrom dplyr vars
 #' @importFrom rlang enquo
 #' @importFrom rlang !!
+#' @encoding UTF-8
 
 cogifier<-function(.data,code_commune=DEPCOM,
                    communes=T,

@@ -4,22 +4,23 @@
 \name{departements}
 \alias{departements}
 \title{Liste des départements du dernier millésime connu.}
-\format{A data frame with 101 rows and 6 variables:
+\format{A data frame with 101 rows and 7 variables:
 \describe{
-\item{REG}{Code Insee de la région de rattachement}
 \item{DEP}{Code Insee du département}
+\item{REG}{Code Insee de la région de rattachement}
 \item{CHEFLIEU}{Chef-lieu d'arrondissement, de département, de région ou bureau centralisateur}
 \item{TNCC}{Type de nom en clair}
 \item{NCC}{Nom en clair (majuscules)}
-\item{NOM_DEP}{Nom du département}
+\item{NCCENR}{Nom en clair (typographie riche)}
+\item{NOM_DEP}{Nom en clair (typographie riche) avec article}
 }}
 \source{
-\url{https://www.insee.fr/fr/information/3363419#titre-bloc-23}
+\url{https://www.insee.fr/fr/information/3720946#titre-bloc-14}
 }
 \usage{
 departements
 }
 \description{
-Un dataset contenant pour chaque départements de France actuelle son code Insee, son nom et les identifiants des territoire supra
+Un dataset contenant chaque départements de France
 }
 \keyword{datasets}

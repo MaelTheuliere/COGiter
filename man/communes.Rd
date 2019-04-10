@@ -4,36 +4,27 @@
 \name{communes}
 \alias{communes}
 \title{Liste des communes du dernier millésime connu.}
-\format{A data frame with 35357 rows and 20 variables:
+\format{A data frame with 37932 rows and 11 variables:
 \describe{
+\item{TYPECOM}{Code Insee}
 \item{DEPCOM}{Code Insee}
-\item{NOM_DEPCOM}{Nom de la commune}
-\item{EPCI}{Code siren de l'EPCI de rattachement}
-\item{NOM_EPCI}{Nom de l'EPCI de rattachement}
-\item{DEP}{Code Insee du département de rattachement}
-\item{NOM_DEP}{Nom du département de rattachement}
+\item{NOM_DEPCOM}{Nom en clair (typographie riche) avec article }
 \item{REG}{Code Insee de la région de rattachement}
-\item{NOM_REG}{Nom de la région de rattachement}
-\item{DEPARTEMENTS_DE_L_EPCI}{Liste des départements dans lesquels  se retrouve au moins une commune de l'epci}
-\item{REGIONS_DE_L_EPCI}{Liste des régions dans lesquelles  se retrouve au moins une commune de l'epci}
-\item{CDC}{Découpage de la commune en cantons}
-\item{CHEFLIEU}{Chef-lieu d'arrondissement, de département, de région ou bureau centralisateur}
-\item{COM}{Code commune}
-\item{AR}{Code arrondissement}
-\item{CT}{Code canton}
+\item{DEP}{Code Insee du département de rattachement}
+\item{ARR}{Code arrondissement}
 \item{TNCC}{Type de nom en clair}
-\item{ARTMAJ}{Article (majuscules)}
 \item{NCC}{Nom en clair (majuscules)}
-\item{ARTMIN}{Article (typographie riche)}
 \item{NCCENR}{Nom en clair (typographie riche)}
+\item{CAN}{Code canton. Pour les communes « multi-cantonales » code décliné de 99 à 90 (pseudo-canton) ou de 89 à 80 (communes nouvelles) }
+\item{COMPARENT}{Code de la commune parente pour les arrondissements municipaux et les communes associées ou déléguées. }
 }}
 \source{
-\url{https://www.insee.fr/fr/information/3363419#titre-bloc-7}
+\url{https://www.insee.fr/fr/information/3720946#titre-bloc-3}
 }
 \usage{
 communes
 }
 \description{
-Un dataset contenant pour chaque commune de France actuelle son code Insee, son nom et les identifiants des territoire supra
+Un dataset contenant chaque commune, communes déléguées,arrondissements, de France
 }
 \keyword{datasets}

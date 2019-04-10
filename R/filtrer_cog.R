@@ -10,7 +10,6 @@
 #'
 #' @return la fonction renvoie une table de donnees filtrées
 #' @export
-#' @import magrittr
 #' @importFrom dplyr inner_join
 #' @importFrom dplyr mutate
 #' @importFrom dplyr select
@@ -18,6 +17,7 @@
 #' @importFrom dplyr bind_rows
 #' @importFrom rlang enquo
 #' @importFrom rlang !!
+#' @encoding UTF-8
 
 filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra="non"){
   quo_depcom<-enquo(depcom)
