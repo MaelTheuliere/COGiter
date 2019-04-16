@@ -71,6 +71,7 @@ regions_geo_2019<-communes_geo_2019 %>%
   select(-DEPCOM) %>%
   group_by(REG) %>%
   summarise(do_union=T)
+
 communes_geo<-communes_geo_2019
 departements_geo<-departements_geo_2019
 epci_geo<-epci_geo_2019
