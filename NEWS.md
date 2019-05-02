@@ -1,5 +1,12 @@
 # COGiter 0.0.0.9003
 
+## Nouvelles fonctionnalités
+
+- Ajout des données du COG 2019 et admin express 2019
+- Ajout d'une fonction ajouter_zonage pour ajouter un regrouppement de commune spécifique après cogification.
+- Ajout site pkgdown
+- Ajout d'une vignette d'exemples d'usage
+
 # COGiter 0.0.0.9002
 
 ## Nouvelles fonctionnalités
