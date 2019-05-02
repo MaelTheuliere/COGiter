@@ -1,11 +1,16 @@
 Package: COGiter
 Title: Functions, Data And Map To Help People To Analyse French Territorial Data
 Version: 0.0.0.9002
-Authors@R: 
+Authors@R: c(
     person(given = "Maël",
            family = "THEULIERE",
            role = c("aut", "cre"),
-           email = "mael.theuliere@gmail.com")
+           email = "mael.theuliere@gmail.com"),
+    person(given = "Juliette",
+           family = "ENGELARE-LEFEBVRE",
+           role = c("ctb"),
+           email = "juliette.engelaere-lefebvre@developpement-durable.gouv.fr")
+           )
 Description: Functions, data and map to help people to analyse french territorial data.
 License: MIT
 Encoding: UTF-8
