@@ -11,7 +11,7 @@ cog_list_to_df(list)
 \item{list}{la liste de donnees a convertir}
 }
 \value{
-la fonction renvoie une table de donnees
+Renvoie une table de donnees
 }
 \description{
 Convertir les donnees du COG d'un type liste a un type dataframe

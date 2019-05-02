@@ -11,7 +11,7 @@ cog_df_to_list(.data)
 \item{.data}{la liste de donn\encoding{é}es a convertir}
 }
 \value{
-la fonction renvoie une liste de dataframe
+Renvoie une liste de dataframe
 }
 \description{
 Convertir les donn\encoding{é}es du COG d'un type dataframe a un type liste

@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{ajouter_zonage}
 \alias{ajouter_zonage}
-\title{Ajouter un zonage supra communal spécifique}
+\title{Ajouter un zonage supra communal spécifique à une table cogifiée}
 \usage{
 ajouter_zonage(.data, zonage_df, var_depcom = DEPCOM,
   var_code_zone = CodeZone, var_type_zone = TypeZone,
@@ -23,8 +23,8 @@ ajouter_zonage(.data, zonage_df, var_depcom = DEPCOM,
 \item{var_zone}{le nom de la variable zone dans zonage_df}
 }
 \value{
-la fonction renvoie une table de donnees cogifiée augmenté des calculs pour ce nouveau zonage
+Renvoie une table de donnees cogifi\encoding{é}e augment\encoding{é}e des calculs pour ce nouveau zonage
 }
 \description{
-Ajouter un zonage supra communal spécifique
+Ajouter un zonage supra communal spécifique à une table cogifiée
 }

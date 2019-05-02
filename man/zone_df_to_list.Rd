@@ -13,8 +13,9 @@ zone_df_to_list(.data, typezone)
 \item{typezone}{le type de zonage}
 }
 \value{
-la fonction renvoie une table de donn\encoding{é}es renomm\encoding{é}e
+Renvoie une table de donn\encoding{é}es renomm\encoding{é}e
 }
 \description{
 Pr\encoding{é}parer les donn\encoding{é}es pour passer d'un type dataframe a un type liste
 }
+\keyword{internal}

@@ -13,8 +13,9 @@ zone_list_to_df(.data, typezone)
 \item{typezone}{le type de zonage}
 }
 \value{
-la fonction renvoie une table de donn\encoding{é}es renomm\encoding{é}e
+Renvoie une table de donn\encoding{é}es renomm\encoding{é}e
 }
 \description{
 Preparer les donn\encoding{é}es pour passer d'un type liste a un type dataframe
 }
+\keyword{internal}

@@ -8,12 +8,12 @@
 \describe{
 \item{DEPCOM}{Code Insee}
 \item{NOM_DEPCOM}{Nom en clair (typographie riche) avec article }
+\item{EPCI}{Code Insee de la région de rattachement}
+\item{NOM_EPCI}{Nom de l'EPCI}
 \item{DEP}{Code Insee du département de rattachement}
 \item{NOM_DEP}{Nom en clair (typographie riche) avec article du département}
 \item{REG}{Code Insee de la région de rattachement}
 \item{NOM_REG}{Nom en clair (typographie riche) avec article de la région}
-\item{EPCI}{Code Insee de la région de rattachement}
-\item{NOM_EPCI}{Nom de l'EPCI}
 \item{DEPARTEMENTS_DE_L_EPCI}{Liste des départements dans lesquels se retrouve au moins une commune de l'epci de rattachement de la commune}
 \item{REGIONS_DE_L_EPCI}{Liste des régions dans lesquelles se retrouve au moins une commune de l'epci de rattachement de la commune}
 }}

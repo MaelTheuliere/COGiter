@@ -3,11 +3,11 @@
 #' @param .data la table de donn\encoding{é}es a convertir
 #' @param typezone le type de zonage
 #'
-#' @return la fonction renvoie une table de donn\encoding{é}es renomm\encoding{é}e
-#' @export
+#' @return Renvoie une table de donn\encoding{é}es renomm\encoding{é}e
 #' @importFrom dplyr mutate
 #' @importFrom dplyr select
 #' @importFrom tidyselect everything
+#' @keywords internal
 #' @encoding UTF-8
 
 zone_list_to_df<-function(.data,typezone) {
@@ -70,7 +70,7 @@ zone_list_to_df<-function(.data,typezone) {
 #'
 #' @param list la liste de donnees a convertir
 #'
-#' @return la fonction renvoie une table de donnees
+#' @return Renvoie une table de donnees
 #' @export
 #' @importFrom purrr map2_df
 #' @importFrom dplyr mutate_at

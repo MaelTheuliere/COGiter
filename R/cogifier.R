@@ -10,7 +10,7 @@
 #' @param metrodrom bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es France m\encoding{é}tropolitaine et des DROM
 #' @param as_df bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es sous un seul dataframe, FALSE si on souhaite une liste de dataframe par type de zone
 #'
-#' @return la fonction renvoie un dataframe ou une liste de dataframe
+#' @return Renvoie un dataframe ou une liste de dataframe
 #' @export
 #' @importFrom dplyr filter
 #' @importFrom dplyr mutate

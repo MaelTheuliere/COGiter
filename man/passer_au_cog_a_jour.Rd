@@ -18,7 +18,7 @@ passer_au_cog_a_jour(.data, code_commune = DEPCOM, aggrege = T,
 \item{garder_info_supra}{bool\encoding{é}en TRUE si on souhaite garder les informations sur les territoires supra des communes}
 }
 \value{
-la table de donn\encoding{é}es convertie
+Renvoie la table de donn\encoding{é}es convertie
 }
 \description{
 Fonction de passage d'une table de donn\encoding{é}e à la commune vers le mill\encoding{é}sime le plus r\encoding{é}cent du COG

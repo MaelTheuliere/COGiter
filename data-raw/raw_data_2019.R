@@ -55,8 +55,8 @@ epci_rattachement_reg_dep<-communes_epci %>%
   select(-DEPCOM,-NOM_DEPCOM) %>%
   distinct() %>%
   group_by(EPCI,NOM_EPCI) %>%
-  summarise(REGIONS_DE_L_EPCI=list(as.character(REG)),
-            DEPARTEMENTS_DE_L_EPCI=list(as.character(DEP))
+  summarise(DEPARTEMENTS_DE_L_EPCI=list(unique(as.character(DEP))),
+            REGIONS_DE_L_EPCI=list(unique(as.character(REG)))
             )
 
 epci<-epci %>%
@@ -67,7 +67,7 @@ table_passage_com_epci<-communes_epci %>%
 
 # Table des communes  --------------------------------------------------
 
-communes<-read_csv("data-raw/source/2019/COG/commune2019.csv",
+communes_cog<-read_csv("data-raw/source/2019/COG/commune2019.csv",
                    col_types = cols(
                      typecom = col_character(),
                      com = col_character(),
@@ -114,19 +114,26 @@ mvtcommunes<-read_csv("data-raw/source/2019/COG/mvtcommune2019.csv",
 
 # Table des informations supra communales de chaque commune ---------------
 
-communes_info_supra<-communes %>%
+communes<-communes_cog %>%
   filter(TYPECOM=="COM") %>%
-  select(DEPCOM,NOM_DEPCOM,DEP,REG) %>%
+#  select(DEPCOM,NOM_DEPCOM,DEP,REG) %>%
   mutate(DEPCOM=fct_drop(DEPCOM),
-         NOM_DEPCOM=fct_drop(DEPCOM)) %>%
+         NOM_DEPCOM=fct_drop(NOM_DEPCOM)) %>%
   left_join(communes_epci %>%
               select(DEPCOM,EPCI,NOM_EPCI)) %>%
   left_join(epci_rattachement_reg_dep) %>%
   left_join(departements %>%
               select(DEP,NOM_DEP)) %>%
   left_join(regions %>%
-              select(REG,NOM_REG))
+              select(REG,NOM_REG)) %>%
+  select(DEPCOM,NOM_DEPCOM,EPCI,NOM_EPCI,DEP,NOM_DEP,
+         REG,NOM_REG,DEPARTEMENTS_DE_L_EPCI,REGIONS_DE_L_EPCI,
+         ARR,TNCC,NCC,NCCENR,CAN,COMPARENT)
 
+communes_info_supra<-communes %>%
+  select(DEPCOM,NOM_DEPCOM,EPCI,NOM_EPCI,
+         DEP,NOM_DEP,REG,NOM_REG,DEPARTEMENTS_DE_L_EPCI,
+         REGIONS_DE_L_EPCI)
 
 # Table liste zone --------------------------------------------------------
 
@@ -180,9 +187,15 @@ enc.fact.utf8 <- function(a) {
   Encoding(x)<-"UTF-8"
   levels(a)<-x }
 
+enc.fact.utf8(communes_cog$NOM_DEPCOM)
+enc.fact.utf8(communes_cog$NCC)
+enc.fact.utf8(communes_cog$NCCENR)
 enc.fact.utf8(communes$NOM_DEPCOM)
 enc.fact.utf8(communes$NCC)
 enc.fact.utf8(communes$NCCENR)
+enc.fact.utf8(communes$NOM_EPCI)
+enc.fact.utf8(communes$NOM_DEP)
+enc.fact.utf8(communes$NOM_REG)
 enc.fact.utf8(communes_info_supra$NOM_DEPCOM)
 enc.fact.utf8(communes_info_supra$NOM_EPCI)
 enc.fact.utf8(communes_info_supra$NOM_DEP)
@@ -205,6 +218,7 @@ enc.fact.utf8(mvtcommunes$LIBELLE_AP)
 use_data(regions,internal=F,overwrite = T)
 use_data(departements,internal=F,overwrite = T)
 use_data(epci,internal=F,overwrite = T)
+use_data(communes_cog,internal=F,overwrite = T)
 use_data(communes,internal=F,overwrite = T)
 use_data(communes_info_supra,internal=F,overwrite = T)
 use_data(mvtcommunes,internal=F,overwrite = T)

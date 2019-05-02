@@ -8,13 +8,15 @@
 #' @param garder_supra ">" si on souhaite garder les territoires supra, ">=" si on souhaite garder les territoires suppra et du même niveau que celui s\encoding{é}lectionn\encoding{é}
 #'
 #'
-#' @return la fonction renvoie une table de donnees filtrées
+#' @return Renvoie une table de donnees filtrées
 #' @export
 #' @importFrom dplyr inner_join
 #' @importFrom dplyr mutate
 #' @importFrom dplyr select
 #' @importFrom dplyr filter
 #' @importFrom dplyr bind_rows
+#' @importFrom stringr str_detect
+#' @importFrom forcats fct_drop
 #' @importFrom rlang enquo
 #' @importFrom rlang !!
 #' @encoding UTF-8

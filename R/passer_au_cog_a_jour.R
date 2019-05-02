@@ -6,7 +6,7 @@
 #' @param aggrege bool\encoding{é}en TRUE si on souhaite r\encoding{é}aggr\encoding{é}ger les colonnes num\encoding{é}riques sur la nouvelle carte communale
 #' @param garder_info_supra bool\encoding{é}en TRUE si on souhaite garder les informations sur les territoires supra des communes
 #'
-#' @return la table de donn\encoding{é}es convertie
+#' @return Renvoie la table de donn\encoding{é}es convertie
 #' @export
 #' @importFrom dplyr rename
 #' @importFrom dplyr left_join

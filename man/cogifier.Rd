@@ -29,7 +29,7 @@ cogifier(.data, code_commune = DEPCOM, communes = T, epci = T,
 \item{as_df}{bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es sous un seul dataframe, FALSE si on souhaite une liste de dataframe par type de zone}
 }
 \value{
-la fonction renvoie un dataframe ou une liste de dataframe
+Renvoie un dataframe ou une liste de dataframe
 }
 \description{
 Consolider une table de donn\encoding{é}es à la commune à tous les \encoding{é}chelles du cog

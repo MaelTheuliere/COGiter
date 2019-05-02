@@ -8,7 +8,7 @@
 #' @param var_zone le nom de la variable zone dans zonage_df
 #'
 #'
-#' @return la fonction renvoie une table de donnees cogifi\encoding{é}e augment\encoding{é}e des calculs pour ce nouveau zonage
+#' @return Renvoie une table de donnees cogifi\encoding{é}e augment\encoding{é}e des calculs pour ce nouveau zonage
 #' @export
 #' @importFrom dplyr inner_join
 #' @importFrom dplyr mutate

@@ -17,7 +17,34 @@
 #'   \item{COMPARENT}{Code de la commune parente pour les arrondissements municipaux et les communes associées ou déléguées. }
 #' }
 #' @source \url{https://www.insee.fr/fr/information/3720946#titre-bloc-3}
+"communes_cog"
+
+#' Liste des communes du dernier millésime connu.
+#'
+#' Un dataset contenant chaque commune de France
+#'
+#' @format A data frame with 37932 rows and 17 variables:
+#' \describe{
+#'   \item{DEPCOM}{Code Insee}
+#'   \item{NOM_DEPCOM}{Nom en clair (typographie riche) avec article }
+#'   \item{EPCI}{Code Insee de la région de rattachement}
+#'   \item{NOM_EPCI}{Nom de l'EPCI}
+#'   \item{DEP}{Code Insee du département de rattachement}
+#'   \item{NOM_DEP}{Nom en clair (typographie riche) avec article du département}
+#'   \item{REG}{Code Insee de la région de rattachement}
+#'   \item{NOM_REG}{Nom en clair (typographie riche) avec article de la région}
+#'   \item{DEPARTEMENTS_DE_L_EPCI}{Liste des départements dans lesquels se retrouve au moins une commune de l'epci de rattachement de la commune}
+#'   \item{REGIONS_DE_L_EPCI}{Liste des régions dans lesquelles se retrouve au moins une commune de l'epci de rattachement de la commune}
+#'   \item{ARR}{Code arrondissement}
+#'   \item{TNCC}{Type de nom en clair}
+#'   \item{NCC}{Nom en clair (majuscules)}
+#'   \item{NCCENR}{Nom en clair (typographie riche)}
+#'   \item{CAN}{Code canton. Pour les communes « multi-cantonales » code décliné de 99 à 90 (pseudo-canton) ou de 89 à 80 (communes nouvelles) }
+#'   \item{COMPARENT}{Code de la commune parente pour les arrondissements municipaux et les communes associées ou déléguées. }
+#' }
+#' @source \url{https://www.insee.fr/fr/information/3720946#titre-bloc-3}
 "communes"
+
 
 #' Information supracommunales pour les communes actuelles.
 #'
@@ -27,12 +54,12 @@
 #' \describe{
 #'   \item{DEPCOM}{Code Insee}
 #'   \item{NOM_DEPCOM}{Nom en clair (typographie riche) avec article }
+#'   \item{EPCI}{Code Insee de la région de rattachement}
+#'   \item{NOM_EPCI}{Nom de l'EPCI}
 #'   \item{DEP}{Code Insee du département de rattachement}
 #'   \item{NOM_DEP}{Nom en clair (typographie riche) avec article du département}
 #'   \item{REG}{Code Insee de la région de rattachement}
 #'   \item{NOM_REG}{Nom en clair (typographie riche) avec article de la région}
-#'   \item{EPCI}{Code Insee de la région de rattachement}
-#'   \item{NOM_EPCI}{Nom de l'EPCI}
 #'   \item{DEPARTEMENTS_DE_L_EPCI}{Liste des départements dans lesquels se retrouve au moins une commune de l'epci de rattachement de la commune}
 #'   \item{REGIONS_DE_L_EPCI}{Liste des régions dans lesquelles se retrouve au moins une commune de l'epci de rattachement de la commune}
 #' }
