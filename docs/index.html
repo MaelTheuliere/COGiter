@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">COGiter</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9003</span>
       </span>
     </div>
 
@@ -87,11 +87,11 @@
 <div id="cogiter" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#cogiter" class="anchor"></a>COGiter</h1></div>
-<p>The goal of COGiter is to provide functions, data and map to help people to analyse french territorial data.</p>
+<p>COGiter fournis des fonctions, des données et des fonds de carte pour permettre des analyses territoriales sur le territoire français.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of COGiter from <a href="https://https://github.com/">github</a> with:</p>
+<p>Installer le package depuis <a href="https://https://github.com/">github</a> :</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"MaelTheuliere/COGiter"</span>)</a></code></pre></div>
 </div>
 <div id="a-propos" class="section level2">
@@ -99,10 +99,10 @@
 <a href="#a-propos" class="anchor"></a>A propos</h2>
 <p>Ce package R vise à mettre à disposition :</p>
 <ul>
-<li>les tables du COG 2018 de l’Insee en RData;</li>
-<li>une table de passage des COG historiques vers le COG millésimé 2018;</li>
-<li>les couche géomatiques correspondantes au COG 2018.</li>
-<li>des fonctions d’aide à au passage de jeu de données veres le millésime du COG 2018</li>
+<li>les tables du COG 2019 de l’Insee en RData;</li>
+<li>une table de passage des COG historiques vers le COG millésimé 2019;</li>
+<li>les couche géomatiques correspondantes au COG 2019.</li>
+<li>des fonctions d’aide à au passage de jeu de données veres le millésime du COG 2019</li>
 </ul>
 <p>Le tout avec des règles de nommage identiques pour faciliter les appariements.</p>
 <p>Le package <a href="https://github.com/antuki/COGugaison">COGUGAISON</a> rempli en partie la même fonction et nous vous invitons à privilégier son utilisation. Ce présent package visant à répondre à des besoins spécifiques du <a href="http://www.pays-de-la-loire.developpement-durable.gouv.fr/dreal-centre-de-service-de-la-donnee-r1957.html">DREAL datalab Pays de la Loire</a> et est par ailleurs non stabilisé.</p>
@@ -110,85 +110,30 @@
 <div id="les-donnees-sources" class="section level2">
 <h2 class="hasAnchor">
 <a href="#les-donnees-sources" class="anchor"></a>Les données sources</h2>
-<div id="le-cog-insee" class="section level3">
+<div id="le-cog-insee-2019" class="section level3">
 <h3 class="hasAnchor">
-<a href="#le-cog-insee" class="anchor"></a>Le COG Insee</h3>
+<a href="#le-cog-insee-2019" class="anchor"></a>Le COG Insee 2019</h3>
 <ul>
-<li>Liste des communes de la métropole et Dom (toutes les communes ayant existé depuis 1943) : <a href="https://insee.fr/fr/information/3363419#titre-bloc-3" class="uri">https://insee.fr/fr/information/3363419#titre-bloc-3</a>
-</li>
-<li>Liste des communes existantes au 1er janvier 2018 : <a href="https://insee.fr/fr/information/3363419#titre-bloc-7" class="uri">https://insee.fr/fr/information/3363419#titre-bloc-7</a>
-</li>
-<li>Liste des départements : <a href="https://insee.fr/fr/information/3363419#titre-bloc-23" class="uri">https://insee.fr/fr/information/3363419#titre-bloc-23</a>
-</li>
-<li>Liste des régions : <a href="https://insee.fr/fr/information/3363419#titre-bloc-26" class="uri">https://insee.fr/fr/information/3363419#titre-bloc-26</a>
-</li>
-<li>Liste des intercommunalités : <a href="https://insee.fr/fr/information/2510634" class="uri">https://insee.fr/fr/information/2510634</a>
-</li>
+<li><a href="https://www.insee.fr/fr/information/2560452" class="uri">https://www.insee.fr/fr/information/2560452</a></li>
 </ul>
 </div>
 <div id="admin-express" class="section level3">
 <h3 class="hasAnchor">
 <a href="#admin-express" class="anchor"></a>Admin Express</h3>
 <ul>
-<li>Admin express : <a href="http://professionnels.ign.fr/adminexpress#tab-3" class="uri">http://professionnels.ign.fr/adminexpress#tab-3</a>
-</li>
+<li><a href="http://professionnels.ign.fr/adminexpress#tab-3" class="uri">http://professionnels.ign.fr/adminexpress#tab-3</a></li>
 </ul>
 </div>
 </div>
 <div id="description-du-package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#description-du-package" class="anchor"></a>Description du package</h2>
-<p>Le package contient</p>
-<div id="dataframes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#dataframes" class="anchor"></a>12 dataframes</h3>
-<ul>
-<li>
-<strong>communes</strong> : la table des communes existants au 1er janvier 2018</li>
-<li>
-<strong>epci</strong> : la table des EPCI existants au 1er janvier 2018</li>
-<li>
-<strong>departements</strong> la table des départements existants au 1er janvier 2018</li>
-<li>
-<strong>regions</strong> : la table des régions existants au 1er janvier 2018</li>
-<li>
-<strong>table_passage_com_epci</strong> : une table listant la composition des communes de chaque Epci</li>
-<li>
-<strong>table_passage_com_historique</strong> : une table de passage entre l’historique des communes ayant déjà existé un jour et les communes existants au 1er janvier 2018</li>
-<li>
-<strong>communes_geo</strong> : géométrie des communes métropolitaines</li>
-<li>
-<strong>epci_geo</strong> : géométrie des epci métropolitains</li>
-<li>
-<strong>departements_geo</strong> : géométrie des départements métropolitains</li>
-<li>
-<strong>regions_geo</strong> : géométrie des regions métropolitaines</li>
-<li>
-<strong>zonage_abc_r52</strong> : table d’attribution du zonage abc aux communes 2018</li>
-<li>
-<strong>zonage_pinel_r52</strong> : table d’attribution du zonage Pinel aux communes 2018</li>
-<li>
-<strong>liste_zone</strong> : table d’attribution d’une liste de régions d’appartenance pour les régions, départements, epci,communes</li>
-</ul>
-</div>
-<div id="fonctions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#fonctions" class="anchor"></a>2 fonctions</h3>
-<ul>
-<li>
-<strong>passer_au_cog_a_jour()</strong> : permet d’attribuer un code commune à jour à une table communale</li>
-<li>
-<strong>cogifier()</strong> : permet d’aggréger les données d’une table communale pour avoir les totaux par communes,epci,départements, région et france sur le millésime 2018</li>
-</ul>
-</div>
+<p>Voir la <a href="https://maeltheuliere.github.io/COGiter/reference/index.html">page de référence</a></p>
 </div>
 <div id="exemple-dusage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#exemple-dusage" class="anchor"></a>Exemple d’usage</h2>
-<p>Le package contient une table Insee de recensement de la population à la commune sur le millésime 2015.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">pop2015&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"pop2015"</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">pop2015_COG2018&lt;-<span class="kw"><a href="reference/passer_au_cog_a_jour.html">passer_au_cog_a_jour</a></span>(pop2015)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">pop2015_COGIFIEE&lt;-<span class="kw"><a href="reference/cogifier.html">cogifier</a></span>(pop2015)</a></code></pre></div>
+<p>Voir la <a href="https://maeltheuliere.github.io/COGiter/articles/cogiter.html">vignette</a></p>
 </div>
 </div>
   </div>
