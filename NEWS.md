@@ -1,7 +1,5 @@
 # COGiter 0.0.1
 
-# COGiter 0.0.0.9003
-
 ## Nouvelles fonctionnalités
 
 - Ajout des données du COG 2019 et admin express 2019
