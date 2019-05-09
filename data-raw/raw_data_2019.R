@@ -60,7 +60,8 @@ epci_rattachement_reg_dep<-communes_epci %>%
             )
 
 epci<-epci %>%
-  left_join(epci_rattachement_reg_dep)
+  left_join(epci_rattachement_reg_dep) %>%
+  filter(EPCI!="ZZZZZZZZZ")
 
 table_passage_com_epci<-communes_epci %>%
   select(DEPCOM,EPCI)
@@ -128,7 +129,9 @@ communes<-communes_cog %>%
               select(REG,NOM_REG)) %>%
   select(DEPCOM,NOM_DEPCOM,EPCI,NOM_EPCI,DEP,NOM_DEP,
          REG,NOM_REG,DEPARTEMENTS_DE_L_EPCI,REGIONS_DE_L_EPCI,
-         ARR,TNCC,NCC,NCCENR,CAN,COMPARENT)
+         ARR,TNCC,NCC,NCCENR,CAN,COMPARENT) %>%
+  mutate(DEPARTEMENTS_DE_L_EPCI=else_if(EPCI!="ZZZZZZZZZ", DEPARTEMENTS_DE_L_EPCI, DEP),
+         REGIONS_DE_L_EPCI=else_if(EPCI!="ZZZZZZZZZ", REGIONS_DE_L_EPCI, REG))
 
 communes_info_supra<-communes %>%
   select(DEPCOM,NOM_DEPCOM,EPCI,NOM_EPCI,
