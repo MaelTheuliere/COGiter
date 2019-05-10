@@ -227,3 +227,7 @@ use_data(communes_info_supra,internal=F,overwrite = T)
 use_data(mvtcommunes,internal=F,overwrite = T)
 use_data(table_passage_com_epci,internal=F,overwrite = T)
 use_data(pop2015,internal=F,overwrite = T)
+use_data(liste_zone,internal=F,overwrite = T)
+
+
+
