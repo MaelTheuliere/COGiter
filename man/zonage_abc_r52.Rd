@@ -13,6 +13,6 @@
 zonage_abc_r52
 }
 \description{
-Un dataset contenant pour chaque commune actuelle de la région Pays de la Loire le zonage ABC correspondant
+Un dataset contenant pour chaque commune du GOG 2018 de la région Pays de la Loire le zonage ABC correspondant
 }
 \keyword{datasets}

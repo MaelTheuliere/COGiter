@@ -13,6 +13,6 @@
 zonage_pinel_r52
 }
 \description{
-Un dataset contenant pour chaque commune actuelle de la région Pays de la Loire le zonage Pinel correspondant
+Un dataset contenant pour chaque commune du COG 2018 de la région Pays de la Loire le zonage Pinel correspondant
 }
 \keyword{datasets}

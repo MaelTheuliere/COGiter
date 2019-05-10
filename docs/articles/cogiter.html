@@ -83,7 +83,7 @@
       <h1>Exemple d’usage</h1>
                         <h4 class="author">Maël THEULIERE</h4>
             
-            <h4 class="date">2019-05-03</h4>
+            <h4 class="date">2019-05-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/MaelTheuliere/COGiter/blob/master/vignettes/cogiter.Rmd"><code>vignettes/cogiter.Rmd</code></a></small>
       <div class="hidden name"><code>cogiter.Rmd</code></div>
@@ -99,7 +99,7 @@
 <p>Pour passer une table de données communale à la carte des communes à jour, vous pouvez utiliser la fonction <code>passer_au_cog_a_jour</code> qui permer de retrouver pour tout code commune ayant existé le code commune ajourd’hui actif sur son périmètre géographique.</p>
 <p>Attention, cette règle ne marche que pour les fusions de communes.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(COGiter)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">tibble<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/tibble/topics/glimpse">glimpse</a></span>(pop2015)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span>(pop2015)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">#&gt; Observations: 35,441</span></a>
 <a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt; Variables: 4</span></a>
 <a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#&gt; $ DEPCOM         &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, …</span></a>
@@ -111,7 +111,7 @@
 <a class="sourceLine" id="cb1-11" data-line-number="11">  <span class="dt">aggrege =</span> T,</a>
 <a class="sourceLine" id="cb1-12" data-line-number="12">  <span class="dt">garder_info_supra =</span> F</a>
 <a class="sourceLine" id="cb1-13" data-line-number="13">)</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">tibble<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/tibble/topics/glimpse">glimpse</a></span>(pop2015_a_jour)</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14">tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span>(pop2015_a_jour)</a>
 <a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt; Observations: 34,953</span></a>
 <a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co">#&gt; Variables: 4</span></a>
 <a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co">#&gt; $ DEPCOM         &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, …</span></a>
@@ -125,7 +125,7 @@
 <p>Pour reconstituer à partir d’une table de données communale l’ensemble des totaux pour les zonages supra communaux principaux de france (epci, départements, régions), vous pouvez utiliser la fonction <code>cogifier</code> qui permer de recalculer sur la base d’une table communale ces totaux.</p>
 <p>La fonction calcule le total en prenant en dimension toutes les variables facteur ou charactère de la table et en variable à aggréger toutes les variables numériques.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(COGiter)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">tibble<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/tibble/topics/glimpse">glimpse</a></span>(pop2015)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span>(pop2015)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; Observations: 35,441</span></a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; Variables: 4</span></a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; $ DEPCOM         &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, …</span></a>
@@ -135,7 +135,7 @@
 <a class="sourceLine" id="cb2-9" data-line-number="9">pop2015_cogifiee &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cogifier.html">cogifier</a></span>(pop2015,</a>
 <a class="sourceLine" id="cb2-10" data-line-number="10">  <span class="dt">code_commune =</span> DEPCOM</a>
 <a class="sourceLine" id="cb2-11" data-line-number="11">)</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">tibble<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/tibble/topics/glimpse">glimpse</a></span>(pop2015_cogifiee)</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span>(pop2015_cogifiee)</a>
 <a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; Observations: 36,325</span></a>
 <a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; Variables: 6</span></a>
 <a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; $ TypeZone       &lt;fct&gt; Communes, Communes, Communes, Communes, Communes,…</span></a>
@@ -146,7 +146,7 @@
 <a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152,…</span></a></code></pre></div>
 <p>Vous pouvez choisir deux types de format : un format dataframe qui constitue une table unique, un format liste qui constitue une liste de dataframe pour chaque zonage (communes, epci, departements, regions).</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(COGiter)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">tibble<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/tibble/topics/glimpse">glimpse</a></span>(pop2015)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span>(pop2015)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; Observations: 35,441</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; Variables: 4</span></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; $ DEPCOM         &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, …</span></a>
@@ -156,7 +156,7 @@
 <a class="sourceLine" id="cb3-9" data-line-number="9">pop2015_cogifiee_liste &lt;-<span class="st"> </span><span class="kw"><a href="../reference/cogifier.html">cogifier</a></span>(pop2015,</a>
 <a class="sourceLine" id="cb3-10" data-line-number="10">  <span class="dt">code_commune =</span> DEPCOM,<span class="dt">as_df=</span>F</a>
 <a class="sourceLine" id="cb3-11" data-line-number="11">)</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">tibble<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/tibble/topics/glimpse">glimpse</a></span>(pop2015_cogifiee)</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span>(pop2015_cogifiee)</a>
 <a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; Observations: 36,325</span></a>
 <a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; Variables: 6</span></a>
 <a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; $ TypeZone       &lt;fct&gt; Communes, Communes, Communes, Communes, Communes,…</span></a>
@@ -167,7 +167,7 @@
 <a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152,…</span></a></code></pre></div>
 <p>Les fonctions <code>cog_df_to_list</code> et <code>cog_list_to_df</code> permettent de passer d’un format à l’autre.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">pop2015_cogifiee_df&lt;-<span class="kw"><a href="../reference/cog_list_to_df.html">cog_list_to_df</a></span>(pop2015_cogifiee_liste)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">tibble<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/tibble/topics/glimpse">glimpse</a></span>(pop2015_cogifiee_df)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span>(pop2015_cogifiee_df)</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; Observations: 36,325</span></a>
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; Variables: 6</span></a>
 <a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; $ TypeZone       &lt;fct&gt; Communes, Communes, Communes, Communes, Communes,…</span></a>
@@ -183,7 +183,7 @@
 <p><code>filtrer_cog</code> va permettre, sur une table cogifiée d’appliquer un filtre pour ne garder que certains zonage.</p>
 <p>Exemple, si je ne souhaiter garder que les données relatives à la région Pays de la Loire.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">pop2015_cogifiee_r52&lt;-<span class="kw"><a href="../reference/filtrer_cog.html">filtrer_cog</a></span>(pop2015_cogifiee,<span class="dt">reg=</span><span class="st">"52"</span>)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">tibble<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/tibble/topics/glimpse">glimpse</a></span>(pop2015_cogifiee_r52)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span>(pop2015_cogifiee_r52)</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; Observations: 1,314</span></a>
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; Variables: 6</span></a>
 <a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; $ TypeZone       &lt;fct&gt; Communes, Communes, Communes, Communes, Communes,…</span></a>
@@ -194,7 +194,7 @@
 <a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 2070, 3804, 10884, 6752, 1832, 2582, 8922, 3074, …</span></a></code></pre></div>
 <p>On peut voulour garder les informations pour le total des autres régions ou le total france entière</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">pop2015_cogifiee_r52&lt;-<span class="kw"><a href="../reference/filtrer_cog.html">filtrer_cog</a></span>(pop2015_cogifiee,<span class="dt">reg=</span><span class="st">"52"</span>,<span class="dt">garder_supra =</span> <span class="st">"&gt;="</span>)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">tibble<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/tibble/topics/glimpse">glimpse</a></span>(pop2015_cogifiee_r52)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">tibble<span class="op">::</span><span class="kw"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span>(pop2015_cogifiee_r52)</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; Observations: 1,331</span></a>
 <a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; Variables: 6</span></a>
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; $ TypeZone       &lt;fct&gt; Communes, Communes, Communes, Communes, Communes,…</span></a>
