@@ -1,3 +1,9 @@
+# COGiter 0.0.1.9000
+
+- bug fix sur liste_zone
+- correction sur les communes hors epci dans les tables communes et communes_info_supra
+- précision millésime COG des tables pinel et abc
+
 # COGiter 0.0.1
 
 ## Nouvelles fonctionnalités
