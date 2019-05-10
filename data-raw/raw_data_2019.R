@@ -130,8 +130,8 @@ communes<-communes_cog %>%
   select(DEPCOM,NOM_DEPCOM,EPCI,NOM_EPCI,DEP,NOM_DEP,
          REG,NOM_REG,DEPARTEMENTS_DE_L_EPCI,REGIONS_DE_L_EPCI,
          ARR,TNCC,NCC,NCCENR,CAN,COMPARENT) %>%
-  mutate(DEPARTEMENTS_DE_L_EPCI=if_else(EPCI!="ZZZZZZZZZ", DEPARTEMENTS_DE_L_EPCI, list(as.character(DEP))),
-         REGIONS_DE_L_EPCI=if_else(EPCI!="ZZZZZZZZZ", REGIONS_DE_L_EPCI, list(as.character(REG))))
+  mutate(DEPARTEMENTS_DE_L_EPCI=if_else(EPCI!="ZZZZZZZZZ", DEPARTEMENTS_DE_L_EPCI, as.list(as.character(DEP))),
+         REGIONS_DE_L_EPCI=if_else(EPCI!="ZZZZZZZZZ", REGIONS_DE_L_EPCI, as.list(as.character(REG))))
 
 communes_info_supra<-communes %>%
   select(DEPCOM,NOM_DEPCOM,EPCI,NOM_EPCI,
