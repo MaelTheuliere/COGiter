@@ -11,7 +11,8 @@ load("data/table_passage_com_historique.rda")
 # Stockée ici :
 ## compilation des couches communales metropole + DOM ----
 ## data-raw/source/2019/adminexpress/
-## probleme sur la table commune_carto sur la métropole, on utilise donc une simplification de commune via mapshaper
+## probleme sur la table commune_carto sur la métropole, on utilise donc une simplification de commune via mapshaper :
+#simplification utilisant une simplification à 5% en décochant la possibilité d'un
 
 com_metro<- st_read("data-raw/source/2019/adminexpress/metro_simplifie/COMMUNE.shp") %>%
   st_set_crs(2154)
