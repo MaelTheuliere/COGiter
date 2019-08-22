@@ -184,6 +184,14 @@ pop2015 <- read_excel("data-raw/source/pop2015.xls",
   set_names(c("DEPCOM","pop2015","pop2015_a_part","pop2015_totale"))
 
 
+# Zonage ABC --------------------------------------------------------------
+# On repart de la version 2018 : un seul conflit sur la fusion de Ancennis et ?, on prend Ancennis en référence
+load("data/table_passage_com_historique.rda")
+zonage_abc_r52<-read_excel("data-raw/source/2019/zonageabc_pdl_communes2019.xls") %>%
+  mutate(zonage_abc=str_c("Zone ",zonage_abc) %>% as.factor(.),
+         DEPCOM=as.factor(DEPCOM))
+
+
 # Gestion des encodages ----------------------------------------------------
 enc.fact.utf8 <- function(a) {
   x<-levels(a)
@@ -228,6 +236,6 @@ use_data(mvtcommunes,internal=F,overwrite = T)
 use_data(table_passage_com_epci,internal=F,overwrite = T)
 use_data(pop2015,internal=F,overwrite = T)
 use_data(liste_zone,internal=F,overwrite = T)
-
+use_data(zonage_abc_r52,internal = F,overwrite = T)
 
 
