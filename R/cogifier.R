@@ -9,6 +9,7 @@
 #' @param metro bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es France m\encoding{é}tropolitaine
 #' @param metrodrom bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es France m\encoding{é}tropolitaine et des DROM
 #' @param as_df bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es sous un seul dataframe, FALSE si on souhaite une liste de dataframe par type de zone
+#' @param ... argument(s) pass\encoding{é}(s) à la fonction d'aggr\encoding{é}gation (sum), na.rm=F par défaut
 #'
 #' @return Renvoie un dataframe ou une liste de dataframe
 #' @export
@@ -34,10 +35,11 @@ cogifier<-function(.data,code_commune=DEPCOM,
                    regions=T,
                    metro=T,
                    metrodrom=F,
-                   as_df=T){
+                   as_df=T,
+                   ...){
   quo_code_commune<-enquo(code_commune)
   au_cog<-passer_au_cog_a_jour(.data=.data,code_commune=!!quo_code_commune,
-                               garder_info_supra = T)
+                               garder_info_supra = T, aggrege = F)
   c<-NULL
   e<-NULL
   d<-NULL
@@ -48,7 +50,7 @@ cogifier<-function(.data,code_commune=DEPCOM,
     c<-au_cog %>%
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(.))) %>%
+      summarise_if(is.numeric,funs(sum(., ...))) %>%
       ungroup
   }
   if (epci==T) {
@@ -56,35 +58,35 @@ cogifier<-function(.data,code_commune=DEPCOM,
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       filter(EPCI!="ZZZZZZZZZ") %>%
       group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(.))) %>%
+      summarise_if(is.numeric,funs(sum(., ...))) %>%
       ungroup
   }
   if (departements==T) {
     d<-au_cog %>%
       select(-REG,-NOM_REG,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(.))) %>%
+      summarise_if(is.numeric,funs(sum(., ...))) %>%
       ungroup
   }
   if (regions==T) {
     r<-au_cog %>%
       select(-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(.))) %>%
+      summarise_if(is.numeric,funs(sum(., ...))) %>%
       ungroup
     if(metro==T) {
       m<-au_cog %>%
         dplyr::filter(!(REG %in% c("01","02","03","04","05","06"))) %>%
         select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
         group_by_if(funs(!is.numeric(.))) %>%
-        summarise_if(is.numeric,funs(sum(.))) %>%
+        summarise_if(is.numeric,funs(sum(., ...))) %>%
         ungroup
     }
     if(metrodrom==T) {
       md<-au_cog %>%
         select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
         group_by_if(funs(!is.numeric(.))) %>%
-        summarise_if(is.numeric,funs(sum(.))) %>%
+        summarise_if(is.numeric,funs(sum(., ...))) %>%
         ungroup
     }
   }
