@@ -222,6 +222,7 @@
 #' \describe{
 #'   \item{DEPCOM}{Code Insee}
 #'   \item{geometry}{géométrie}
+#'   \item{AREA}{Aire de la commune}
 #' }
 "communes_geo"
 
@@ -233,6 +234,7 @@
 #' \describe{
 #'   \item{EPCI}{Code Sirene}
 #'   \item{geometry}{géométrie}
+#'   \item{AREA}{Aire de l'EPCI}
 #' }
 "epci_geo"
 
@@ -244,6 +246,7 @@
 #' \describe{
 #'   \item{DEP}{Code Insee}
 #'   \item{geometry}{géométrie}
+#'   \item{AREA}{Aire du département}
 #' }
 "departements_geo"
 
@@ -255,5 +258,6 @@
 #' \describe{
 #'   \item{REG}{Code Insee}
 #'   \item{geometry}{géométrie}
+#'   \item{AREA}{Aire de la région}
 #' }
 "regions_geo"

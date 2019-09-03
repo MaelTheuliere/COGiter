@@ -8,6 +8,7 @@
 \describe{
 \item{EPCI}{Code Sirene}
 \item{geometry}{géométrie}
+\item{AREA}{Aire de l'EPCI}
 }}
 \usage{
 epci_geo

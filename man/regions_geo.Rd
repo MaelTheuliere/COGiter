@@ -8,6 +8,7 @@
 \describe{
 \item{REG}{Code Insee}
 \item{geometry}{géométrie}
+\item{AREA}{Aire de la région}
 }}
 \usage{
 regions_geo

@@ -8,6 +8,7 @@
 \describe{
 \item{DEPCOM}{Code Insee}
 \item{geometry}{géométrie}
+\item{AREA}{Aire de la commune}
 }}
 \usage{
 communes_geo

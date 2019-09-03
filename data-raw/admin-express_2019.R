@@ -48,6 +48,7 @@ communes_geo <- bind_rows(com_metro, com_971, com_972, com_973, com_974, com_976
   select(DEPCOM=INSEE_COM, geometry)%>%
   st_as_sf()%>%
   st_set_crs(2154)
+
 rm(i, origine_metro, doms, dom, com_dom, com_metro, com_971, com_972, com_973, com_974, com_976, ctrd_com_dom, bbox_dom, ctrd_dom, alpha, url_admin_express)
 
 # gestion des arrondissements de Paris, Lyon, Marseille dorénavant intégré à admin express
@@ -57,17 +58,34 @@ communes_geo<-communes_geo %>%
   left_join(table_passage_com_historique) %>%
   select(-DEPCOM_HIST) %>%
   group_by(DEPCOM) %>%
-  summarise(do_union=T)
+  summarise(do_union=T) %>%
+  mutate(AREA=st_area(geometry))
 
 epci_geo <- filter(communes_info_supra, NOM_EPCI != "Sans objet")%>%
-  inner_join(communes_geo, ., by="DEPCOM") %>%
-  select(EPCI) %>% group_by(EPCI) %>% summarise(do_union=T) %>% ungroup()
+  inner_join(communes_geo %>% select(DEPCOM), ., by="DEPCOM") %>%
+  select(EPCI) %>%
+  group_by(EPCI) %>%
+  summarise(do_union=T) %>%
+  ungroup() %>%
+  mutate(AREA=st_area(geometry))
 
-departements_geo <- inner_join(communes_geo, communes_info_supra, by="DEPCOM") %>%
-  select(DEP) %>% group_by(DEP) %>% summarise(do_union=T) %>% ungroup()
+departements_geo <- inner_join(communes_geo %>% select(DEPCOM),
+                               communes_info_supra,
+                               by = "DEPCOM") %>%
+  select(DEP) %>%
+  group_by(DEP) %>%
+  summarise(do_union=T) %>%
+  ungroup() %>%
+  mutate(AREA=st_area(geometry))
 
-regions_geo <- inner_join(communes_geo, communes_info_supra, by="DEPCOM")%>%
-  select(REG) %>% group_by(REG) %>% summarise(do_union=T) %>% ungroup()
+regions_geo <- inner_join(communes_geo %>% select(DEPCOM),
+                          communes_info_supra,
+                          by = "DEPCOM") %>%
+  select(REG) %>%
+  group_by(REG) %>%
+  summarise(do_union = T) %>%
+  ungroup() %>%
+  mutate(AREA=st_area(geometry))
 
 # sauvegarde des données --------------------------------------------------------
 use_data(communes_geo,internal=F, overwrite = T)

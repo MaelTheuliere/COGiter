@@ -8,6 +8,7 @@
 \describe{
 \item{DEP}{Code Insee}
 \item{geometry}{géométrie}
+\item{AREA}{Aire du département}
 }}
 \usage{
 departements_geo
