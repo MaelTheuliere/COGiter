@@ -7,7 +7,7 @@
 \usage{
 cogifier(.data, code_commune = DEPCOM, communes = T, epci = T,
   departements = T, regions = T, metro = T, metrodrom = F,
-  as_df = T)
+  as_df = T, ...)
 }
 \arguments{
 \item{.data}{la table de donn\encoding{é}es à convertir}
@@ -27,6 +27,8 @@ cogifier(.data, code_commune = DEPCOM, communes = T, epci = T,
 \item{metrodrom}{bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es France m\encoding{é}tropolitaine et des DROM}
 
 \item{as_df}{bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es sous un seul dataframe, FALSE si on souhaite une liste de dataframe par type de zone}
+
+\item{...}{argument(s) pass\encoding{é}(s) à la fonction d'aggr\encoding{é}gation (sum), na.rm=F par défaut}
 }
 \value{
 Renvoie un dataframe ou une liste de dataframe

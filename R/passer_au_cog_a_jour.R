@@ -5,6 +5,7 @@
 #' @param code_commune le nom de la variable contenant le code commune sur 5 charactères
 #' @param aggrege bool\encoding{é}en TRUE si on souhaite r\encoding{é}aggr\encoding{é}ger les colonnes num\encoding{é}riques sur la nouvelle carte communale
 #' @param garder_info_supra bool\encoding{é}en TRUE si on souhaite garder les informations sur les territoires supra des communes
+#' @param ... argument(s) pass\encoding{é}(s) à la fonction d'aggr\encoding{é}gation (sum), na.rm=F par défaut
 #'
 #' @return Renvoie la table de donn\encoding{é}es convertie
 #' @export
@@ -20,7 +21,7 @@
 #'
 #' @encoding UTF-8
 
-passer_au_cog_a_jour<-function(.data,code_commune=DEPCOM,aggrege=T,garder_info_supra=T) {
+passer_au_cog_a_jour<-function(.data,code_commune=DEPCOM,aggrege=T,garder_info_supra=T,...) {
   quo_code_commune<-enquo(code_commune)
   result<-.data %>%
     rename(DEPCOM_HIST=!!quo_code_commune) %>%
@@ -30,7 +31,7 @@ passer_au_cog_a_jour<-function(.data,code_commune=DEPCOM,aggrege=T,garder_info_s
   if (aggrege==T) {
     result<-result %>%
       group_by_if(funs(!is.numeric(.))) %>%
-      summarise_all(funs(sum)) %>%
+      summarise_all(funs(sum(.,...))) %>%
       ungroup()
   }
   if (garder_info_supra==T) {
