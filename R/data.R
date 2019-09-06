@@ -194,7 +194,7 @@
 
 #' Zonage ABC région Pays de la Loire.
 #'
-#' Un dataset contenant pour chaque commune du GOG 2019 de la région Pays de la Loire le zonage ABC correspondant
+#' Un dataset contenant pour chaque commune du GOG 2019 de la région Pays de la Loire le zonage ABC 2014 révisé en 2019 correspondant
 #'
 #' @format A data frame with 1238 rows and 2 variables:
 #' \describe{
@@ -205,7 +205,7 @@
 
 #' Zonage ABC France entière
 #'
-#' Un dataset contenant pour chaque commune du GOG 2019 le zonage ABC correspondant
+#' Un dataset contenant pour chaque commune du GOG 2019 le zonage ABC 2014 révisé en 2019  correspondant
 #'
 #' @format A data frame with 34970 rows and 2 variables:
 #' \describe{
@@ -216,9 +216,9 @@
 
 #' Zonage Pinel région Pays de la Loire.
 #'
-#' Un dataset contenant pour chaque commune du COG 2018 de la région Pays de la Loire le zonage Pinel correspondant
+#' Un dataset contenant pour la liste des communes 2019 éligible au pinel en 2019
 #'
-#' @format A data frame with 1272 rows and 2 variables:
+#' @format A data frame with 70 rows and 2 variables:
 #' \describe{
 #'   \item{DEPCOM}{Code Insee de la commune}
 #'   \item{zonage_pinel}{Zonage Pinel}
