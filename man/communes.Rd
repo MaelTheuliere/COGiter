@@ -4,7 +4,7 @@
 \name{communes}
 \alias{communes}
 \title{Liste des communes du dernier millésime connu.}
-\format{A data frame with 37932 rows and 17 variables:
+\format{A data frame with 34970 rows and 16 variables:
 \describe{
 \item{DEPCOM}{Code Insee}
 \item{NOM_DEPCOM}{Nom en clair (typographie riche) avec article }
