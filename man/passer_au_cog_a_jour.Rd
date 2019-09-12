@@ -20,8 +20,9 @@ passer_au_cog_a_jour(.data, code_commune = DEPCOM, aggrege = T,
 \item{...}{argument(s) pass\encoding{é}(s) à la fonction d'aggr\encoding{é}gation (sum), na.rm=F par défaut}
 }
 \value{
-Renvoie la table de donn\encoding{é}es convertie
+Renvoie la table de donn\encoding{é}es convertie pour les codes communes valide en entrée
 }
 \description{
-Fonction de passage d'une table de donn\encoding{é}e à la commune vers le mill\encoding{é}sime le plus r\encoding{é}cent du COG
+Cette fonction vous permet de convertir vos dataframe ayant une variable correspondant au code commun Insee vers le COG le plus récent.
+Champ : code communes de la France métropolitaine et des DROM
 }

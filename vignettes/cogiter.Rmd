@@ -24,6 +24,8 @@ Pour passer une table de données communale à la carte des communes à jour, vo
 
 Attention, cette règle ne marche que pour les fusions de communes.
 
+Le périmètre de couverture de la fonction est pour l'instant la France métropolitaine et les DROM.
+
 ```{r,message=F,warning=F}
 library(COGiter)
 tibble::glimpse(pop2015)

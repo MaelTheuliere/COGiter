@@ -1,13 +1,16 @@
 
 #' Fonction de passage d'une table de donn\encoding{é}e à la commune vers le mill\encoding{é}sime le plus r\encoding{é}cent du COG
 #'
+#' Cette fonction vous permet de convertir vos dataframe ayant une variable correspondant au code commun Insee vers le COG le plus récent.
+#' Champ : code communes de la France métropolitaine et des DROM
+#'
 #' @param .data la table de donn\encoding{é}es à convertir
 #' @param code_commune le nom de la variable contenant le code commune sur 5 charactères
 #' @param aggrege bool\encoding{é}en TRUE si on souhaite r\encoding{é}aggr\encoding{é}ger les colonnes num\encoding{é}riques sur la nouvelle carte communale
 #' @param garder_info_supra bool\encoding{é}en TRUE si on souhaite garder les informations sur les territoires supra des communes
 #' @param ... argument(s) pass\encoding{é}(s) à la fonction d'aggr\encoding{é}gation (sum), na.rm=F par défaut
 #'
-#' @return Renvoie la table de donn\encoding{é}es convertie
+#' @return Renvoie la table de donn\encoding{é}es convertie pour les codes communes valide en entrée
 #' @export
 #' @importFrom dplyr rename
 #' @importFrom dplyr left_join
@@ -25,7 +28,7 @@ passer_au_cog_a_jour<-function(.data,code_commune=DEPCOM,aggrege=T,garder_info_s
   quo_code_commune<-enquo(code_commune)
   result<-.data %>%
     rename(DEPCOM_HIST=!!quo_code_commune) %>%
-    left_join(table_passage_com_historique) %>%
+    inner_join(table_passage_com_historique) %>%
     select(-DEPCOM_HIST)
 
   if (aggrege==T) {
