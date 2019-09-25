@@ -1,5 +1,5 @@
 Package: COGiter
-Title: Functions, Data And Map To Help People To Analyse French Territorial Data
+Title: Fonctions, données et fonds de carte pour gérer les données au territoire
 Version: 0.0.1.9000
 Authors@R: c(
     person(given = "Maël",
@@ -11,7 +11,7 @@ Authors@R: c(
            role = c("ctb"),
            email = "juliette.engelaere-lefebvre@developpement-durable.gouv.fr")
            )
-Description: Functions, data and map to help people to analyse french territorial data.
+Description: Fonctions, données et fonds de carte pour gérer les données au territoire : https://maeltheuliere.github.io/COGiter/
 License: MIT
 Encoding: UTF-8
 LazyData: true

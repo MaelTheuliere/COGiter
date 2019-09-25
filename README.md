@@ -8,10 +8,12 @@ permettre des analyses territoriales sur le territoire français.
 
 ## Installation
 
-Installer le package depuis [github](https://https://github.com/) :
+Installer le package depuis [github](https://github.com/) ou
+[gitlab](https://gitlab.com)
 
 ``` r
-devtools::install_github("MaelTheuliere/COGiter")
+remotes::install_github("MaelTheuliere/COGiter")
+remotes::install_github("dreal-datalab/COGiter")
 ```
 
 ## A propos
