@@ -3,8 +3,8 @@
 
 # COGiter
 
-COGiter fournis des fonctions, des données et des fonds de carte pour
-permettre des analyses territoriales sur le territoire français.
+COGiter fournit des fonctions, des données et des fonds de carte pour
+permettre des analyses territoriales sur les collectivités française.
 
 ## Installation
 
@@ -13,7 +13,7 @@ Installer le package depuis [github](https://github.com/) ou
 
 ``` r
 remotes::install_github("MaelTheuliere/COGiter")
-remotes::install_github("dreal-datalab/COGiter")
+remotes::install_gitlab("dreal-datalab/COGiter")
 ```
 
 ## A propos
