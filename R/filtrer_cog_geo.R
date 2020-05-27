@@ -115,11 +115,3 @@ filtrer_cog_metro_geo <- function(depcom=NULL,
 
 }
 
-
-res<-filtrer_cog_metro_geo(epci=200000438,garder_supra = 'oui')
-res<-filtrer_cog_metro_geo(epci='200000438',garder_supra = 'non')
-
-res<-filtrer_cog_metro_geo(depcom='44001',garder_supra = 'oui')
-plot(res$communes)
-res$epci$EPCI
-
