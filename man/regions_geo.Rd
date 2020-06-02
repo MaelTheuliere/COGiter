@@ -4,12 +4,14 @@
 \name{regions_geo}
 \alias{regions_geo}
 \title{Contour des régions métropolitaines pour le dernier millésime connu}
-\format{A data frame with 13 rows and 2 variables:
+\format{
+A data frame with 13 rows and 2 variables:
 \describe{
 \item{REG}{Code Insee}
 \item{geometry}{géométrie}
 \item{AREA}{Aire de la région}
-}}
+}
+}
 \usage{
 regions_geo
 }

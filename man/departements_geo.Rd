@@ -4,12 +4,14 @@
 \name{departements_geo}
 \alias{departements_geo}
 \title{Contour des départements métropolitains pour le dernier millésime connu}
-\format{A data frame with 96 rows and 2 variables:
+\format{
+A data frame with 96 rows and 2 variables:
 \describe{
 \item{DEP}{Code Insee}
 \item{geometry}{géométrie}
 \item{AREA}{Aire du département}
-}}
+}
+}
 \usage{
 departements_geo
 }

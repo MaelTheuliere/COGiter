@@ -4,13 +4,15 @@
 \name{pop2015}
 \alias{pop2015}
 \title{Une table du recensement de la population 2015}
-\format{A data frame with 35441 rows and 4 variables:
+\format{
+A data frame with 35441 rows and 4 variables:
 \describe{
 \item{DEPCOM}{Code commune (géographie 2014)}
 \item{pop2015}{population 2015}
 \item{pop2015_a_part}{population 2015 comptée à part}
 \item{pop2015_totale}{population 2015 total}
-}}
+}
+}
 \usage{
 pop2015
 }

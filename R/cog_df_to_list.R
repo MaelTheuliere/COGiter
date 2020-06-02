@@ -1,9 +1,9 @@
-#' Pr\encoding{é}parer les donn\encoding{é}es pour passer d'un type dataframe a un type liste
+#' Préparer les données pour passer d'un type dataframe a un type liste
 #'
-#' @param .data la table de donn\encoding{é}es a convertir
+#' @param .data la table de données a convertir
 #' @param typezone le type de zonage
 #'
-#' @return Renvoie une table de donn\encoding{é}es renomm\encoding{é}e
+#' @return Renvoie une table de données renommée
 #' @importFrom dplyr mutate
 #' @importFrom dplyr mutate_at
 #' @importFrom dplyr select
@@ -71,9 +71,9 @@ zone_df_to_list<-function(.data,typezone) {
   return(d)
 }
 
-#' Convertir les donn\encoding{é}es du COG d'un type dataframe a un type liste
+#' Convertir les données du COG d'un type dataframe a un type liste
 #'
-#' @param .data la liste de donn\encoding{é}es a convertir
+#' @param .data la liste de données a convertir
 #'
 #' @return Renvoie une liste de dataframe
 #' @export

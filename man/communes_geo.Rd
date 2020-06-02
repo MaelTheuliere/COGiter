@@ -4,12 +4,14 @@
 \name{communes_geo}
 \alias{communes_geo}
 \title{Contour des communes métropolitaines pour le dernier millésime connu}
-\format{A data frame with 35273 rows and 2 variables:
+\format{
+A data frame with 35273 rows and 2 variables:
 \describe{
 \item{DEPCOM}{Code Insee}
 \item{geometry}{géométrie}
 \item{AREA}{Aire de la commune}
-}}
+}
+}
 \usage{
 communes_geo
 }

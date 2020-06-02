@@ -4,12 +4,14 @@
 \name{epci_geo}
 \alias{epci_geo}
 \title{Contour des epci métropolitains pour le dernier millésime connu}
-\format{A data frame with 1241 rows and 2 variables:
+\format{
+A data frame with 1241 rows and 2 variables:
 \describe{
 \item{EPCI}{Code Sirene}
 \item{geometry}{géométrie}
 \item{AREA}{Aire de l'EPCI}
-}}
+}
+}
 \usage{
 epci_geo
 }

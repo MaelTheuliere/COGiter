@@ -4,14 +4,16 @@
 \name{epci}
 \alias{epci}
 \title{Liste des epci du dernier millésime connu.}
-\format{A data frame with 1264 rows and 4 variables:
+\format{
+A data frame with 1264 rows and 4 variables:
 \describe{
 \item{EPCI}{Code siren de l'EPCI}
 \item{NOM_EPCI}{Nom de l'EPCI}
 \item{NATURE_EPCI}{Type de l'epci : ME,CA,CU,CC}
 \item{DEPARTEMENTS_DE_L_EPCI}{Liste des départements dans lesquels se retrouve au moins une commune de l'epci}
 \item{REGIONS_DE_L_EPCI}{Liste des régions dans lesquelles se retrouve au moins une commune de l'epci}
-}}
+}
+}
 \source{
 \url{https://www.insee.fr/fr/information/2510634}
 }

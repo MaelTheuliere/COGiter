@@ -1,9 +1,9 @@
-#' Preparer les donn\encoding{é}es pour passer d'un type liste a un type dataframe
+#' Preparer les données pour passer d'un type liste a un type dataframe
 #'
-#' @param .data la table de donn\encoding{é}es a convertir
+#' @param .data la table de données a convertir
 #' @param typezone le type de zonage
 #'
-#' @return Renvoie une table de donn\encoding{é}es renomm\encoding{é}e
+#' @return Renvoie une table de données renommée
 #' @importFrom dplyr mutate
 #' @importFrom dplyr select
 #' @importFrom tidyselect everything
