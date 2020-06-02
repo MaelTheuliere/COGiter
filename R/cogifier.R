@@ -38,7 +38,7 @@ cogifier<-function(.data,code_commune=DEPCOM,
                    as_df=T,
                    ...){
   quo_code_commune<-enquo(code_commune)
-  au_cog<-passer_au_cog_a_jour(.data=.data,code_commune=!!quo_code_commune,
+  au_cog<-COGiter::passer_au_cog_a_jour(.data=.data,code_commune=!!quo_code_commune,
                                garder_info_supra = T, aggrege = F)
   c<-NULL
   e<-NULL
