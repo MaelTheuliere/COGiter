@@ -8,6 +8,8 @@
 #' @param regions booléen TRUE si on souhaite des données à la région
 #' @param metro booléen TRUE si on souhaite des données France métropolitaine
 #' @param metrodrom booléen TRUE si on souhaite des données France métropolitaine et des DROM
+#' @param franceprovince booléen TRUE si on souhaite des données France de province
+#' @param drom booléen TRUE si on souhaite des données Départements et régions d'outre mer
 #' @param as_df booléen TRUE si on souhaite des données sous un seul dataframe, FALSE si on souhaite une liste de dataframe par type de zone
 #' @param ... argument(s) passé(s) à la fonction d'aggrégation (sum), na.rm=F par défaut
 #'
@@ -35,17 +37,21 @@ cogifier<-function(.data,code_commune=DEPCOM,
                    regions=T,
                    metro=T,
                    metrodrom=F,
+                   franceprovince=F,
+                   drom=F,
                    as_df=T,
                    ...){
   quo_code_commune<-enquo(code_commune)
-  au_cog<-COGiter::passer_au_cog_a_jour(.data=.data,code_commune=!!quo_code_commune,
+  au_cog<-passer_au_cog_a_jour(.data=.data,code_commune=!!quo_code_commune,
                                garder_info_supra = T, aggrege = F)
-  c<-NULL
-  e<-NULL
-  d<-NULL
-  r<-NULL
-  m<-NULL
-  md<-NULL
+  c <- NULL
+  e <- NULL
+  d <- NULL
+  r <- NULL
+  m <- NULL
+  md <- NULL
+  fp <- NULL
+  dr <- NULL
   if (communes==T) {
     c<-au_cog %>%
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
@@ -74,24 +80,41 @@ cogifier<-function(.data,code_commune=DEPCOM,
       group_by_if(funs(!is.numeric(.))) %>%
       summarise_if(is.numeric,funs(sum(., ...))) %>%
       ungroup
-    if(metro==T) {
-      m<-au_cog %>%
-        dplyr::filter(!(REG %in% c("01","02","03","04","05","06"))) %>%
-        select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
-        group_by_if(funs(!is.numeric(.))) %>%
-        summarise_if(is.numeric,funs(sum(., ...))) %>%
-        ungroup
-    }
-    if(metrodrom==T) {
-      md<-au_cog %>%
-        select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
-        group_by_if(funs(!is.numeric(.))) %>%
-        summarise_if(is.numeric,funs(sum(., ...))) %>%
-        ungroup
-    }
+  }
+  if(metro==T) {
+    m<-au_cog %>%
+      dplyr::filter(!(REG %in% c("01","02","03","04","05","06"))) %>%
+      select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
+      group_by_if(funs(!is.numeric(.))) %>%
+      summarise_if(is.numeric,funs(sum(., ...))) %>%
+      ungroup
+  }
+  if(metrodrom==T) {
+    md<-au_cog %>%
+      select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
+      group_by_if(funs(!is.numeric(.))) %>%
+      summarise_if(is.numeric,funs(sum(., ...))) %>%
+      ungroup
+  }
+  if(franceprovince==T) {
+    fp <- au_cog %>%
+      dplyr::filter(!(REG %in% c("01","02","03","04","05","06","11"))) %>%
+      select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
+      group_by_if(funs(!is.numeric(.))) %>%
+      summarise_if(is.numeric,funs(sum(., ...))) %>%
+      ungroup
+  }
+  if(drom == T) {
+    dr <- au_cog %>%
+      dplyr::filter(REG %in% c("01","02","03","04","05","06")) %>%
+      select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
+      group_by_if(funs(!is.numeric(.))) %>%
+      summarise_if(is.numeric,funs(sum(., ...))) %>%
+      ungroup
   }
 
-  result<-list("communes"=c,"epci"=e,"departements"=d,"regions"=r,"metro"=m,"metrodrom"=md)
+
+  result<-list("communes"=c,"epci"=e,"departements"=d,"regions"=r,"metro"=m,"metrodrom"=md,"franceprovince"=fp,"drom"=dr)
 
   if (as_df==T) {
     result<-cog_list_to_df(result)

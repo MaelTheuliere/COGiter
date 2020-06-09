@@ -41,7 +41,14 @@ tibble::glimpse(pop2015_a_jour)
 
 Pour reconstituer à partir d'une table de données communale l'ensemble des totaux pour les zonages supra communaux principaux de france (epci, départements, régions), vous pouvez utiliser la fonction `cogifier` qui permer de recalculer sur la base d'une table communale ces totaux. 
 
-La fonction calcule le total en prenant en dimension toutes les variables facteur ou charactère de la table et en variable à aggréger toutes les variables numériques. 
+La fonction calcule le total en prenant en dimension toutes les variables facteur ou caractère de la table et en variable à agréger toutes les variables numériques. 
+
+En plus des aggrégats epci, départements, région, la fonction cogifier permet de calculer : 
+
+- le total France métro (`metro = T`)
+- le total France métro et DROM (`metrodrom = T`)
+- le total Départements et régions d'outre mer (`drom = T`)
+- le total France de province (`franceprovince = T`)
 
 ```{r,message=F,warning=F}
 library(COGiter)
