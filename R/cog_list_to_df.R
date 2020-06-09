@@ -63,6 +63,22 @@ zone_list_to_df<-function(.data,typezone) {
         select(TypeZone,Zone,CodeZone,everything())
     }
   }
+  if (typezone=="franceprovince") {
+    if (is.null(.data)){d<-NULL}
+    else {
+      d<-.data %>%
+        mutate(Zone="France de province",CodeZone="FRPROV",TypeZone="France") %>%
+        select(TypeZone,Zone,CodeZone,everything())
+    }
+  }
+  if (typezone=="drom") {
+    if (is.null(.data)){d<-NULL}
+    else {
+      d<-.data %>%
+        mutate(Zone="D\u00e9partements et r\u00e9gions d'outre-mer",CodeZone="DROM",TypeZone="France") %>%
+        select(TypeZone,Zone,CodeZone,everything())
+    }
+  }
   return(d)
 }
 

@@ -14,6 +14,8 @@ cogifier(
   regions = T,
   metro = T,
   metrodrom = F,
+  franceprovince = F,
+  drom = F,
   as_df = T,
   ...
 )
@@ -34,6 +36,10 @@ cogifier(
 \item{metro}{booléen TRUE si on souhaite des données France métropolitaine}
 
 \item{metrodrom}{booléen TRUE si on souhaite des données France métropolitaine et des DROM}
+
+\item{franceprovince}{booléen TRUE si on souhaite des données France de province}
+
+\item{drom}{booléen TRUE si on souhaite des données Départements et régions d'outre mer}
 
 \item{as_df}{booléen TRUE si on souhaite des données sous un seul dataframe, FALSE si on souhaite une liste de dataframe par type de zone}
 

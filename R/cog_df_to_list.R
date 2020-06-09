@@ -67,6 +67,20 @@ zone_df_to_list<-function(.data,typezone) {
         select(-Zone,-CodeZone,-TypeZone)
     }
   }
+  if (typezone=="franceprovince") {
+    d<-.data %>% filter(Zone=="France de province")
+    if (!is.null(d)){
+      d<-d %>%
+        select(-Zone,-CodeZone,-TypeZone)
+    }
+  }
+  if (typezone=="drom") {
+    d<-.data %>% filter(Zone=="D\u00e9partements et r\u00e9gions d'outre-mer")
+    if (!is.null(d)){
+      d<-d %>%
+        select(-Zone,-CodeZone,-TypeZone)
+    }
+  }
   if (nrow(d)==0){d<-NULL}
   return(d)
 }
@@ -82,6 +96,6 @@ zone_df_to_list<-function(.data,typezone) {
 #' @encoding UTF-8
 
 cog_df_to_list<-function(.data) {
-  map(c("communes","epci","departements","regions","metro","metrodrom"),~zone_df_to_list(.data,typezone = .x)) %>%
-    set_names(c("communes","epci","departements","regions","metro","metrodrom"))
+  map(c("communes","epci","departements","regions","metro","metrodrom","franceprovince","drom"),~zone_df_to_list(.data,typezone = .x)) %>%
+    set_names(c("communes","epci","departements","regions","metro","metrodrom","franceprovince","drom"))
 }

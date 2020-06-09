@@ -1,3 +1,8 @@
+# COGiter 0.0.2
+
+- rajout de deux aggrégats possibles pour la cogification : France de province et Départements et régions d'outre-mer
+
+
 # COGiter 0.0.1.9000
 
 - bug fix sur liste_zone
