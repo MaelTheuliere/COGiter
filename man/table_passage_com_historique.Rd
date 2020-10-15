@@ -4,11 +4,13 @@
 \name{table_passage_com_historique}
 \alias{table_passage_com_historique}
 \title{Table de passage des fusions de communes.}
-\format{A data frame with 39161 rows and 2 variables:
+\format{
+A data frame with 39161 rows and 2 variables:
 \describe{
 \item{DEPCOM_HIST}{Code Insee de la commune historique}
 \item{DEPCOM}{Code Insee de la commune}
-}}
+}
+}
 \source{
 \url{https://www.insee.fr/fr/information/3720946#titre-bloc-23}
 }

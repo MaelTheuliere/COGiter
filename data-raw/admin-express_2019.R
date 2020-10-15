@@ -118,6 +118,7 @@ departements_geo <- inner_join(communes_geo %>% select(DEPCOM),
   summarise(do_union=T) %>%
   ungroup() %>%
   mutate(AREA=st_area(geometry))
+
 departements_metro_geo <- inner_join(communes_metro_geo %>% select(DEPCOM),
                                      communes_info_supra,
                                      by = "DEPCOM") %>%
@@ -126,8 +127,17 @@ departements_metro_geo <- inner_join(communes_metro_geo %>% select(DEPCOM),
   summarise(do_union=T) %>%
   ungroup() %>%
   mutate(AREA=st_area(geometry))
-plot(departements_metro_geo)
+
 regions_geo <- inner_join(communes_geo %>% select(DEPCOM),
+                          communes_info_supra,
+                          by = "DEPCOM") %>%
+  select(REG) %>%
+  group_by(REG) %>%
+  summarise(do_union = T) %>%
+  ungroup() %>%
+  mutate(AREA=st_area(geometry))
+
+regions_metro_geo <- inner_join(communes_metro_geo %>% select(DEPCOM),
                           communes_info_supra,
                           by = "DEPCOM") %>%
   select(REG) %>%
@@ -193,20 +203,120 @@ epci_976_geo <- filter(communes_info_supra, NOM_EPCI != "Sans objet")%>%
   ungroup() %>%
   mutate(AREA=st_area(geometry))
 
+# Départements DOM -----------------
+
+departements_971_geo <- filter(communes_info_supra, NOM_EPCI != "Sans objet")%>%
+  inner_join(communes_971_geo %>% select(DEPCOM), ., by="DEPCOM") %>%
+  select(DEP) %>%
+  group_by(DEP) %>%
+  summarise(do_union=T) %>%
+  ungroup() %>%
+  mutate(AREA=st_area(geometry))
+
+departements_972_geo <- filter(communes_info_supra, NOM_EPCI != "Sans objet")%>%
+  inner_join(communes_972_geo %>% select(DEPCOM), ., by="DEPCOM") %>%
+  select(DEP) %>%
+  group_by(DEP) %>%
+  summarise(do_union=T) %>%
+  ungroup() %>%
+  mutate(AREA=st_area(geometry))
+
+departements_973_geo <- filter(communes_info_supra, NOM_EPCI != "Sans objet")%>%
+  inner_join(communes_973_geo %>% select(DEPCOM), ., by="DEPCOM") %>%
+  select(DEP) %>%
+  group_by(DEP) %>%
+  summarise(do_union=T) %>%
+  ungroup() %>%
+  mutate(AREA=st_area(geometry))
+
+departements_974_geo <- filter(communes_info_supra, NOM_EPCI != "Sans objet")%>%
+  inner_join(communes_974_geo %>% select(DEPCOM), ., by="DEPCOM") %>%
+  select(DEP) %>%
+  group_by(DEP) %>%
+  summarise(do_union=T) %>%
+  ungroup() %>%
+  mutate(AREA=st_area(geometry))
+
+departements_976_geo <- filter(communes_info_supra, NOM_EPCI != "Sans objet")%>%
+  inner_join(communes_976_geo %>% select(DEPCOM), ., by="DEPCOM") %>%
+  select(DEP) %>%
+  group_by(DEP) %>%
+  summarise(do_union=T) %>%
+  ungroup() %>%
+  mutate(AREA=st_area(geometry))
+
+
+
+# Régions DOM -----------------
+
+regions_971_geo <- filter(communes_info_supra, NOM_EPCI != "Sans objet")%>%
+  inner_join(communes_971_geo %>% select(DEPCOM), ., by="DEPCOM") %>%
+  select(REG) %>%
+  group_by(REG) %>%
+  summarise(do_union=T) %>%
+  ungroup() %>%
+  mutate(AREA=st_area(geometry))
+
+regions_972_geo <- filter(communes_info_supra, NOM_EPCI != "Sans objet")%>%
+  inner_join(communes_972_geo %>% select(DEPCOM), ., by="DEPCOM") %>%
+  select(REG) %>%
+  group_by(REG) %>%
+  summarise(do_union=T) %>%
+  ungroup() %>%
+  mutate(AREA=st_area(geometry))
+
+regions_973_geo <- filter(communes_info_supra, NOM_EPCI != "Sans objet")%>%
+  inner_join(communes_973_geo %>% select(DEPCOM), ., by="DEPCOM") %>%
+  select(REG) %>%
+  group_by(REG) %>%
+  summarise(do_union=T) %>%
+  ungroup() %>%
+  mutate(AREA=st_area(geometry))
+
+regions_974_geo <- filter(communes_info_supra, NOM_EPCI != "Sans objet")%>%
+  inner_join(communes_974_geo %>% select(DEPCOM), ., by="DEPCOM") %>%
+  select(REG) %>%
+  group_by(REG) %>%
+  summarise(do_union=T) %>%
+  ungroup() %>%
+  mutate(AREA=st_area(geometry))
+
+regions_976_geo <- filter(communes_info_supra, NOM_EPCI != "Sans objet")%>%
+  inner_join(communes_976_geo %>% select(DEPCOM), ., by="DEPCOM") %>%
+  select(REG) %>%
+  group_by(REG) %>%
+  summarise(do_union=T) %>%
+  ungroup() %>%
+  mutate(AREA=st_area(geometry))
+
 # sauvegarde des données --------------------------------------------------------
 use_data(communes_geo,internal=F, overwrite = T)
+use_data(communes_metro_geo,internal=F, overwrite = T)
 use_data(communes_971_geo,internal=F, overwrite = T)
 use_data(communes_972_geo,internal=F, overwrite = T)
 use_data(communes_973_geo,internal=F, overwrite = T)
 use_data(communes_974_geo,internal=F, overwrite = T)
 use_data(communes_976_geo,internal=F, overwrite = T)
 use_data(epci_geo,internal=F,overwrite = T)
+use_data(epci_metro_geo,internal=F, overwrite = T)
 use_data(epci_971_geo,internal=F,overwrite = T)
 use_data(epci_972_geo,internal=F,overwrite = T)
 use_data(epci_973_geo,internal=F,overwrite = T)
 use_data(epci_974_geo,internal=F,overwrite = T)
 use_data(epci_976_geo,internal=F,overwrite = T)
 use_data(departements_geo,internal=F,overwrite = T)
+use_data(departements_metro_geo,internal=F,overwrite = T)
+use_data(departements_971_geo,internal=F,overwrite = T)
+use_data(departements_972_geo,internal=F,overwrite = T)
+use_data(departements_973_geo,internal=F,overwrite = T)
+use_data(departements_974_geo,internal=F,overwrite = T)
+use_data(departements_976_geo,internal=F,overwrite = T)
 use_data(regions_geo,internal=F,overwrite = T)
+use_data(regions_metro_geo,internal=F,overwrite = T)
+use_data(regions_971_geo,internal=F,overwrite = T)
+use_data(regions_972_geo,internal=F,overwrite = T)
+use_data(regions_973_geo,internal=F,overwrite = T)
+use_data(regions_974_geo,internal=F,overwrite = T)
+use_data(regions_976_geo,internal=F,overwrite = T)
 
 rm(i, origine_metro, doms, dom, com_dom, com_metro, com_971, com_972, com_973, com_974, com_976, ctrd_com_dom, bbox_dom, ctrd_dom, alpha, url_admin_express)

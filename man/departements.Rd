@@ -4,7 +4,8 @@
 \name{departements}
 \alias{departements}
 \title{Liste des départements du dernier millésime connu.}
-\format{A data frame with 101 rows and 7 variables:
+\format{
+A data frame with 101 rows and 7 variables:
 \describe{
 \item{DEP}{Code Insee du département}
 \item{REG}{Code Insee de la région de rattachement}
@@ -13,7 +14,8 @@
 \item{NCC}{Nom en clair (majuscules)}
 \item{NCCENR}{Nom en clair (typographie riche)}
 \item{NOM_DEP}{Nom en clair (typographie riche) avec article}
-}}
+}
+}
 \source{
 \url{https://www.insee.fr/fr/information/3720946#titre-bloc-14}
 }

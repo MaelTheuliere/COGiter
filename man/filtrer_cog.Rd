@@ -5,8 +5,14 @@
 \alias{filtrer_cog}
 \title{Filtrer une fichier du cog sur un sous ensemble du territoire}
 \usage{
-filtrer_cog(.data, depcom = NULL, epci = NULL, dep = NULL,
-  reg = NULL, garder_supra = "non")
+filtrer_cog(
+  .data,
+  depcom = NULL,
+  epci = NULL,
+  dep = NULL,
+  reg = NULL,
+  garder_supra = "non"
+)
 }
 \arguments{
 \item{.data}{la table de donn\encoding{é}es a filtrer}

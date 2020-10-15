@@ -4,7 +4,8 @@
 \name{communes_info_supra}
 \alias{communes_info_supra}
 \title{Information supracommunales pour les communes actuelles.}
-\format{A data frame with 34970 rows and 10 variables:
+\format{
+A data frame with 34970 rows and 10 variables:
 \describe{
 \item{DEPCOM}{Code Insee}
 \item{NOM_DEPCOM}{Nom en clair (typographie riche) avec article }
@@ -16,7 +17,8 @@
 \item{NOM_REG}{Nom en clair (typographie riche) avec article de la région}
 \item{DEPARTEMENTS_DE_L_EPCI}{Liste des départements dans lesquels se retrouve au moins une commune de l'epci de rattachement de la commune}
 \item{REGIONS_DE_L_EPCI}{Liste des régions dans lesquelles se retrouve au moins une commune de l'epci de rattachement de la commune}
-}}
+}
+}
 \usage{
 communes_info_supra
 }

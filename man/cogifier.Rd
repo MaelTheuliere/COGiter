@@ -5,9 +5,18 @@
 \alias{cogifier}
 \title{Consolider une table de donn\encoding{é}es à la commune à tous les \encoding{é}chelles du cog}
 \usage{
-cogifier(.data, code_commune = DEPCOM, communes = T, epci = T,
-  departements = T, regions = T, metro = T, metrodrom = F,
-  as_df = T, ...)
+cogifier(
+  .data,
+  code_commune = DEPCOM,
+  communes = T,
+  epci = T,
+  departements = T,
+  regions = T,
+  metro = T,
+  metrodrom = F,
+  as_df = T,
+  ...
+)
 }
 \arguments{
 \item{.data}{la table de donn\encoding{é}es à convertir}

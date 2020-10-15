@@ -4,7 +4,8 @@
 \name{mvtcommunes}
 \alias{mvtcommunes}
 \title{Table des mouvements des communes}
-\format{A data frame with 13157 rows and 14 variables:
+\format{
+A data frame with 13157 rows and 14 variables:
 \describe{
 \item{MOD}{Type d'événement de communes}
 \item{DATE_EFF}{Date d'effet}
@@ -20,7 +21,8 @@
 \item{NCC_AP}{Nom en clair (majuscules)}
 \item{NCCENR_AP}{Nom en clair (typographie riche)}
 \item{LIBELLE_AP}{Nom en clair (typographie riche) avec article}
-}}
+}
+}
 \source{
 \url{https://www.insee.fr/fr/information/3720946#titre-bloc-23}
 }

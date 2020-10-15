@@ -5,8 +5,13 @@
 \alias{passer_au_cog_a_jour}
 \title{Fonction de passage d'une table de donn\encoding{é}e à la commune vers le mill\encoding{é}sime le plus r\encoding{é}cent du COG}
 \usage{
-passer_au_cog_a_jour(.data, code_commune = DEPCOM, aggrege = T,
-  garder_info_supra = T, ...)
+passer_au_cog_a_jour(
+  .data,
+  code_commune = DEPCOM,
+  aggrege = T,
+  garder_info_supra = T,
+  ...
+)
 }
 \arguments{
 \item{.data}{la table de donn\encoding{é}es à convertir}

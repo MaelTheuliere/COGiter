@@ -5,9 +5,14 @@
 \alias{ajouter_zonage}
 \title{Ajouter un zonage supra communal spécifique à une table cogifiée}
 \usage{
-ajouter_zonage(.data, zonage_df, var_depcom = DEPCOM,
-  var_code_zone = CodeZone, var_type_zone = TypeZone,
-  var_zone = Zone)
+ajouter_zonage(
+  .data,
+  zonage_df,
+  var_depcom = DEPCOM,
+  var_code_zone = CodeZone,
+  var_type_zone = TypeZone,
+  var_zone = Zone
+)
 }
 \arguments{
 \item{.data}{la table de donn\encoding{é}es a filtrer}
