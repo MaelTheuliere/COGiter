@@ -1,6 +1,6 @@
 #' Ajouter un zonage supra communal spécifique à une table cogifiée
 #'
-#' @param .data la table de donn\encoding{é}es a filtrer
+#' @param .data la table de données a filtrer
 #' @param zonage_df le dataframe contenant le rattachement entre le code commune et le nouveau zonage
 #' @param var_depcom le nom de la variable code commune dans zonage_df
 #' @param var_code_zone le nom de la variable code zone dans zonage_df
@@ -8,7 +8,7 @@
 #' @param var_zone le nom de la variable zone dans zonage_df
 #'
 #'
-#' @return Renvoie une table de donnees cogifi\encoding{é}e augment\encoding{é}e des calculs pour ce nouveau zonage
+#' @return Renvoie une table de donnees cogifiée augmentée des calculs pour ce nouveau zonage
 #' @export
 #' @importFrom dplyr inner_join
 #' @importFrom dplyr mutate
@@ -25,7 +25,7 @@
 #' @importFrom rlang enquo
 #' @importFrom rlang !!
 #' @importFrom rlang .data
-#' @encoding UTF-8
+
 
 ajouter_zonage<-function(.data,
                          zonage_df,

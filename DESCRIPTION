@@ -11,13 +11,14 @@ Authors@R: c(
            role = c("ctb"),
            email = "juliette.engelaere-lefebvre@developpement-durable.gouv.fr")
            )
-Description: Fonctions, données et fonds de carte pour gérer les données au territoire : https://maeltheuliere.github.io/COGiter/
-License: MIT
+Description: Fonctions, données et fonds de carte pour gérer les données au territoire.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends: 
     R (>= 2.10)
 Imports: 
+    attempt,
     dplyr,
     forcats,
     stringr,

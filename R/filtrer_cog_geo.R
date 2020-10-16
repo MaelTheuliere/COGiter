@@ -1,45 +1,33 @@
 #' filtrer les fonds de carte sur un territoire métropolitain
 #'
-#' @param depcom la commune sur laquelle filtrer les donn\encoding{é}es
-#' @param epci l'epci sur lequel filtrer les donn\encoding{é}es
-#' @param dep le departement sur lequel filtrer les donn\encoding{é}es
-#' @param reg la region sur laquelle filtrer les donn\encoding{é}es
+#' @param depcom la commune sur laquelle filtrer les données
+#' @param epci l'epci sur lequel filtrer les données
+#' @param dep le departement sur lequel filtrer les données
+#' @param reg la region sur laquelle filtrer les données
 #' @param metro
 #' @param garder_supra TRUE si on souhaite une carte centrée sur le territoire mais avec les territoires environnant visible, non si on souhaite garder que le territoire sélectionné
 #' @return Renvoie une table de donnees filtrées
 #' @export
-#' @importFrom dplyr filter
+#' @importFrom dplyr filter pull
 #' @importFrom stringr str_detect
-#' @importFrom dplyr pull
 #' @importFrom sf st_bbox
 #' @importFrom sf st_crop
 #' @importFrom attempt stop_if_any
-#' @encoding UTF-8
 
-filtrer_cog_metro_geo <- function(depcom=NULL,
+
+filtrer_cog_geo <- function(depcom=NULL,
                                   epci=NULL,
                                   dep=NULL,
                                   reg=NULL,
                                   garder_supra=FALSE
 ) {
-  stop_if_any(c(depcom,epci,dep,reg),is.numeric,msg="Les paramètres doivent être des chaines de caractère")
-  reg_drom <- c('01','02','03','04','06')
-  dep_drom <- c('971','972','973','974','976')
-  epci_drom <- liste_zone %>% filter(str_detect(DEP,dep_drom),TypeZone=='Epci') %>% pull(CodeZone)
-  depcom_drom <- liste_zone %>% filter(str_detect(DEP,dep_drom),TypeZone=='Communes') %>% pull(CodeZone)
+  stop_if_any(c(depcom,epci,dep,reg),is.numeric,msg="Les param\u00e8tres doivent \u00eatre des chaines de caract\u00e8re")
   # on sélectionne les tables de départ suivant que le territoire est en métropole ou en drom
-  if (!(reg %in% reg_drom)) {
-    reg_geo <- regions_metro_geo
-    dep_geo <- departements_metro_geo
-    epci_geo <- epci_metro_geo
-    com_geo <- communes_metro_geo
-  }
-  if (reg == '01') {
-    reg_geo <- regions_971_geo
-    dep_geo <- departements_971_geo
-    epci_geo <- epci_971_geo
-    com_geo <- communes_971_geo
-  }
+  map <- get_map(depcom,epci,dep,reg)
+  com_geo <- map$com_geo
+  epci_geo <- map$epci_geo
+  dep_geo <- map$dep_geo
+  reg_geo <- map$reg_geo
   if (!is.null(reg)){
     if (!garder_supra) {
       liste_dep <- filter(liste_zone,str_detect(REG,reg),TypeZone=="D\u00e9partements") %>% pull(CodeZone)
@@ -66,7 +54,6 @@ filtrer_cog_metro_geo <- function(depcom=NULL,
       result <- list(communes=communes,epci=epci,departements=dep,regions=reg)
     }
     return(result)
-
   }
   if (!is.null(dep)){
     if (!garder_supra){
@@ -128,11 +115,12 @@ filtrer_cog_metro_geo <- function(depcom=NULL,
 
 #' Obtenir les cartes en fonction de la localisation en métropole ou dans les DROM
 #'
-#' @param depcom la commune sur laquelle filtrer les donn\encoding{é}es
-#' @param epci l'epci sur lequel filtrer les donn\encoding{é}es
-#' @param dep le departement sur lequel filtrer les donn\encoding{é}es
-#' @param reg la region sur laquelle filtrer les donn\encoding{é}es
+#' @param depcom la commune sur laquelle filtrer les données
+#' @param epci l'epci sur lequel filtrer les données
+#' @param dep le departement sur lequel filtrer les données
+#' @param reg la region sur laquelle filtrer les données
 #'
+#' @importFrom dplyr filter pull
 #' @return une liste de spatial dataframe
 #' @export
 #'
@@ -141,6 +129,7 @@ get_map <- function(depcom=NULL,
                     epci=NULL,
                     dep=NULL,
                     reg=NULL) {
+  stop_if_any(c(depcom,epci,dep,reg),is.numeric,msg="Les param\u00e8tres doivent \u00eatre des chaines de caract\u00e8re")
   reg_drom <- c('01','02','03','04','06')
   dep_drom <- c('971','972','973','974','976')
   epci_drom <- liste_zone %>% filter(str_detect(DEP,dep_drom),TypeZone=='Epci') %>% pull(CodeZone)
@@ -163,31 +152,31 @@ get_map <- function(depcom=NULL,
       epci_geo <- epci_metro_geo
       com_geo <- communes_metro_geo
     }
-    if (reg ==01) {
+    if (reg == '01') {
       reg_geo <- regions_971_geo
       dep_geo <- departements_971_geo
       epci_geo <- epci_971_geo
       com_geo <- communes_971_geo
     }
-    if (reg == 02) {
+    if (reg == '02') {
       reg_geo <- regions_972_geo
       dep_geo <- departements_972_geo
       epci_geo <- epci_972_geo
       com_geo <- communes_972_geo
     }
-    if (reg == 03) {
+    if (reg == '03') {
       reg_geo <- regions_973_geo
       dep_geo <- departements_973_geo
       epci_geo <- epci_973_geo
       com_geo <- communes_973_geo
     }
-    if (reg == 04) {
+    if (reg == '04') {
       reg_geo <- regions_974_geo
       dep_geo <- departements_974_geo
       epci_geo <- epci_974_geo
       com_geo <- communes_974_geo
     }
-    if (reg == 06) {
+    if (reg == '06') {
       reg_geo <- regions_976_geo
       dep_geo <- departements_976_geo
       epci_geo <- epci_976_geo
