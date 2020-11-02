@@ -85,7 +85,7 @@ pop2015_cogifiee_r52 <- filtrer_cog(pop2015_cogifiee, reg = "52")
 tibble::glimpse(pop2015_cogifiee_r52)
 ```
 
-On peut voulour garder les informations pour le total des autres régions ou le total France entière
+On peut vouloir garder les informations pour le total des autres régions ou le total France entière.
 
 ```{r,message=F,warning=F}
 pop2015_cogifiee_r52 <- filtrer_cog(pop2015_cogifiee, reg = "52", garder_supra = ">=")
