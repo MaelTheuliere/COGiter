@@ -22,5 +22,5 @@ une liste de spatial dataframe
 Obtenir les cartes en fonction de la localisation en métropole ou dans les DROM
 }
 \examples{
-get_map(epci = '244400404')
+get_map(epci = "244400404")
 }
