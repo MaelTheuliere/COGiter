@@ -1,3 +1,8 @@
+# COGiter 0.0.1.1
+
+- Intégration des données 2020
+- Mise en place d'une fonction `filtrer_cog_geo()` qui permet de filtrer les fonds de cartes
+
 # COGiter 0.0.1.9000
 
 - bug fix sur liste_zone
