@@ -1,15 +1,15 @@
-#' Consolider une table de donn\encoding{é}es à la commune à tous les \encoding{é}chelles du cog
+#' Consolider une table de données à la commune à tous les échelles du cog
 #'
-#' @param .data la table de donn\encoding{é}es à convertir
+#' @param .data la table de données à convertir
 #' @param code_commune le nom de la variable contenant le code commune sur 5 charactères
-#' @param communes bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es à la commune
-#' @param epci bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es à l'epci
-#' @param departements bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es au d\encoding{é}partement
-#' @param regions bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es à la r\encoding{é}gion
-#' @param metro bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es France m\encoding{é}tropolitaine
-#' @param metrodrom bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es France m\encoding{é}tropolitaine et des DROM
-#' @param as_df bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es sous un seul dataframe, FALSE si on souhaite une liste de dataframe par type de zone
-#' @param ... argument(s) pass\encoding{é}(s) à la fonction d'aggr\encoding{é}gation (sum), na.rm=F par défaut
+#' @param communes booléen TRUE si on souhaite des données à la commune
+#' @param epci booléen TRUE si on souhaite des données à l'epci
+#' @param departements booléen TRUE si on souhaite des données au département
+#' @param regions booléen TRUE si on souhaite des données à la région
+#' @param metro booléen TRUE si on souhaite des données France métropolitaine
+#' @param metrodrom booléen TRUE si on souhaite des données France métropolitaine et des DROM
+#' @param as_df booléen TRUE si on souhaite des données sous un seul dataframe, FALSE si on souhaite une liste de dataframe par type de zone
+#' @param ... argument(s) passé(s) à la fonction d'aggrégation (sum), na.rm=F par défaut
 #'
 #' @return Renvoie un dataframe ou une liste de dataframe
 #' @export
@@ -26,7 +26,7 @@
 #' @importFrom dplyr vars
 #' @importFrom rlang enquo
 #' @importFrom rlang !!
-#' @encoding UTF-8
+
 
 cogifier<-function(.data,code_commune=DEPCOM,
                    communes=T,

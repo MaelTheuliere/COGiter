@@ -5,3 +5,4 @@
 ^COGifier\.Rproj$
 ^\.Rproj\.user$
 ^.*\.Rproj$
+^\.github$

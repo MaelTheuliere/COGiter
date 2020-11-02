@@ -4,11 +4,13 @@
 \name{zonage_pinel_r52}
 \alias{zonage_pinel_r52}
 \title{Zonage Pinel région Pays de la Loire.}
-\format{A data frame with 70 rows and 2 variables:
+\format{
+A data frame with 70 rows and 2 variables:
 \describe{
 \item{DEPCOM}{Code Insee de la commune}
 \item{zonage_pinel}{Zonage Pinel}
-}}
+}
+}
 \usage{
 zonage_pinel_r52
 }

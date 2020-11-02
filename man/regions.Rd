@@ -4,7 +4,8 @@
 \name{regions}
 \alias{regions}
 \title{Liste des régions du dernier millésime connu.}
-\format{A data frame with 18 rows and 6 variables:
+\format{
+A data frame with 18 rows and 6 variables:
 \describe{
 \item{REG}{Code Insee de la région}
 \item{CHEFLIEU}{Chef-lieu d'arrondissement, de département, de région ou bureau centralisateur}
@@ -12,7 +13,8 @@
 \item{NCC}{Nom en clair (majuscules)}
 \item{NCCENR}{Nom en clair (typographie riche)}
 \item{NOM_REG}{Nom en clair (typographie riche) avec article}
-}}
+}
+}
 \source{
 \url{https://www.insee.fr/fr/information/3720946#titre-bloc-17}
 }

@@ -1,14 +1,14 @@
-#' Preparer les donn\encoding{é}es pour passer d'un type liste a un type dataframe
+#' Preparer les données pour passer d'un type liste a un type dataframe
 #'
-#' @param .data la table de donn\encoding{é}es a convertir
+#' @param .data la table de données a convertir
 #' @param typezone le type de zonage
 #'
-#' @return Renvoie une table de donn\encoding{é}es renomm\encoding{é}e
+#' @return Renvoie une table de données renommée
 #' @importFrom dplyr mutate
 #' @importFrom dplyr select
 #' @importFrom tidyselect everything
 #' @keywords internal
-#' @encoding UTF-8
+
 
 zone_list_to_df<-function(.data,typezone) {
   if (typezone=="communes") {
@@ -74,7 +74,7 @@ zone_list_to_df<-function(.data,typezone) {
 #' @export
 #' @importFrom purrr map2_df
 #' @importFrom dplyr mutate_at
-#' @encoding UTF-8
+
 
 cog_list_to_df<-function(list) {
   map2_df(list,names(list),~ zone_list_to_df(.data = .x,typezone = .y)) %>%

@@ -4,7 +4,8 @@
 \name{communes}
 \alias{communes}
 \title{Liste des communes du dernier millésime connu.}
-\format{A data frame with 34970 rows and 16 variables:
+\format{
+A data frame with 34970 rows and 16 variables:
 \describe{
 \item{DEPCOM}{Code Insee}
 \item{NOM_DEPCOM}{Nom en clair (typographie riche) avec article }
@@ -22,7 +23,8 @@
 \item{NCCENR}{Nom en clair (typographie riche)}
 \item{CAN}{Code canton. Pour les communes « multi-cantonales » code décliné de 99 à 90 (pseudo-canton) ou de 89 à 80 (communes nouvelles) }
 \item{COMPARENT}{Code de la commune parente pour les arrondissements municipaux et les communes associées ou déléguées. }
-}}
+}
+}
 \source{
 \url{https://www.insee.fr/fr/information/3720946#titre-bloc-3}
 }

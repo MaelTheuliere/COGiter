@@ -4,11 +4,13 @@
 \name{zonage_abc}
 \alias{zonage_abc}
 \title{Zonage ABC France entière}
-\format{A data frame with 34970 rows and 2 variables:
+\format{
+A data frame with 34970 rows and 2 variables:
 \describe{
 \item{DEPCOM}{Code Insee de la commune}
 \item{zonage_abc}{Zonage ABC}
-}}
+}
+}
 \usage{
 zonage_abc
 }
