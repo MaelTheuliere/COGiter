@@ -2,7 +2,7 @@
 % Please edit documentation in R/filtrer_cog_geo.R
 \name{filtrer_cog_geo}
 \alias{filtrer_cog_geo}
-\title{filtrer les fonds de carte sur un territoire métropolitain}
+\title{Filtrer les fonds de carte sur un territoire métropolitain}
 \usage{
 filtrer_cog_geo(
   depcom = NULL,
@@ -24,8 +24,8 @@ filtrer_cog_geo(
 \item{garder_supra}{TRUE si on souhaite une carte centrée sur le territoire mais avec les territoires environnant visible, non si on souhaite garder que le territoire sélectionné}
 }
 \value{
-Renvoie une table de donnees filtrées
+une liste de spatial dataframe
 }
 \description{
-filtrer les fonds de carte sur un territoire métropolitain
+Filtrer les fonds de carte sur un territoire métropolitain
 }

@@ -1,19 +1,20 @@
-#' filtrer les fonds de carte sur un territoire métropolitain
+#' Filtrer les fonds de carte sur un territoire métropolitain
 #'
 #' @param depcom la commune sur laquelle filtrer les données
 #' @param epci l'epci sur lequel filtrer les données
 #' @param dep le departement sur lequel filtrer les données
 #' @param reg la region sur laquelle filtrer les données
-#' @param metro
 #' @param garder_supra TRUE si on souhaite une carte centrée sur le territoire mais avec les territoires environnant visible, non si on souhaite garder que le territoire sélectionné
-#' @return Renvoie une table de donnees filtrées
+#' @return une liste de spatial dataframe
 #' @export
 #' @importFrom dplyr filter pull
 #' @importFrom stringr str_detect
 #' @importFrom sf st_bbox
 #' @importFrom sf st_crop
 #' @importFrom attempt stop_if_any
-
+#' @example
+#' nantes_metropole <- filtrer_cog_geo(epci = '244400404')
+#' plot(nantes_metropole$communes)
 
 filtrer_cog_geo <- function(depcom=NULL,
                                   epci=NULL,
@@ -125,6 +126,7 @@ filtrer_cog_geo <- function(depcom=NULL,
 #' @export
 #'
 #' @examples
+#' get_map(epci = '244400404')
 get_map <- function(depcom=NULL,
                     epci=NULL,
                     dep=NULL,
@@ -132,7 +134,6 @@ get_map <- function(depcom=NULL,
   stop_if_any(c(depcom,epci,dep,reg),is.numeric,msg="Les param\u00e8tres doivent \u00eatre des chaines de caract\u00e8re")
   reg_drom <- c('01','02','03','04','06')
   dep_drom <- c('971','972','973','974','976')
-  epci_drom <- liste_zone %>% filter(str_detect(DEP,dep_drom),TypeZone=='Epci') %>% pull(CodeZone)
   epci_drom <- liste_zone %>% filter(str_detect(DEP,dep_drom),TypeZone=='Epci') %>% pull(CodeZone)
   epci_971 <- liste_zone %>% filter(str_detect(DEP,'971'),TypeZone=='Epci') %>% pull(CodeZone)
   epci_972 <- liste_zone %>% filter(str_detect(DEP,'972'),TypeZone=='Epci') %>% pull(CodeZone)
@@ -221,8 +222,46 @@ get_map <- function(depcom=NULL,
       com_geo <- communes_976_geo
     }
   }
+  if (not_null(epci)) {
+    if (epci %not_in% epci_drom) {
+      reg_geo <- regions_metro_geo
+      dep_geo <- departements_metro_geo
+      epci_geo <- epci_metro_geo
+      com_geo <- communes_metro_geo
+    }
+    if (epci %in% epci_971) {
+      reg_geo <- regions_971_geo
+      dep_geo <- departements_971_geo
+      epci_geo <- epci_971_geo
+      com_geo <- communes_971_geo
+    }
+    if (epci %in% epci_972) {
+      reg_geo <- regions_972_geo
+      dep_geo <- departements_972_geo
+      epci_geo <- epci_972_geo
+      com_geo <- communes_972_geo
+    }
+    if (epci %in% epci_973) {
+      reg_geo <- regions_973_geo
+      dep_geo <- departements_973_geo
+      epci_geo <- epci_973_geo
+      com_geo <- communes_973_geo
+    }
+    if (epci %in% epci_974) {
+      reg_geo <- regions_974_geo
+      dep_geo <- departements_974_geo
+      epci_geo <- epci_974_geo
+      com_geo <- communes_974_geo
+    }
+    if (epci %in% epci_976) {
+      reg_geo <- regions_976_geo
+      dep_geo <- departements_976_geo
+      epci_geo <- epci_976_geo
+      com_geo <- communes_976_geo
+    }
+  }
   if (not_null(depcom)) {
-    if (epci %not_in% depcom_drom) {
+    if (depcom %not_in% depcom_drom) {
       reg_geo <- regions_metro_geo
       dep_geo <- departements_metro_geo
       epci_geo <- epci_metro_geo
