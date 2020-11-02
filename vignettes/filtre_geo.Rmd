@@ -1,0 +1,78 @@
+---
+title: "Gestion des fonds de carte"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Gestion des fonds de carte}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Ce document va vous permettre de comprendre comment  `{COGiter}` vous permet de gérer les fonds de carte de France.
+
+```{r setup}
+library(COGiter)
+```
+
+
+## Fonds de carte disponibles
+
+Il existe pour la métropole et chaque drom un fond de carte pour les niveaux communes, epci, départements, régions : 
+
+```{r}
+ls("package:COGiter", pattern = "_geo$")
+```
+
+```{r}
+plot(communes_973_geo)
+```
+
+## Filtrer les fonds de carte
+
+`filtrer_cog_geo()` vous permet d'obtenir une liste de spatial dataframe centée sur une partie du territoire (que ce soit une commune, un epci, un département ou une région).
+
+Exemple sur Nantes métropole : 
+
+```{r}
+nantes_metropole <- filtrer_cog_geo(epci = "244400404")
+glimpse(nantes_metropole)
+```
+
+`nantes_metropole` est une liste de deux spatial dataframe `communes` et `epci` qui correspondent aux deux niveau de zoom possible sur la métropole.
+
+```{r}
+plot(nantes_metropole$communes)
+plot(nantes_metropole$epci)
+```
+
+On peut obtenir l'équivalent sur la région Bretagne, dans ce cas, la liste renvoyée contient également le fond de carte des départements et de la région : 
+
+```{r}
+bretagne <- filtrer_cog_geo(reg = "53")
+glimpse(bretagne)
+```
+
+```{r}
+plot(bretagne$communes)
+plot(bretagne$epci)
+plot(bretagne$departements)
+plot(bretagne$regions)
+```
+
+l'option `garder_supra` permet de ne pas simplement filtrer mais de centrer la bbox des cartes sur le territoire, ce qui permet de visualiser la carte des territoires voisins.
+
+```{r}
+nantes_metropole <- filtrer_cog_geo(epci = "244400404", garder_supra = TRUE)
+glimpse(nantes_metropole)
+```
+
+```{r}
+plot(nantes_metropole$communes)
+plot(nantes_metropole$epci)
+```
