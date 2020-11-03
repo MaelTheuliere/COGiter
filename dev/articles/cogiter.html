@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COGiter</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.1.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.2.1</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@
       <h1 data-toc-skip>Gestion des fusions de communes et consolidation supra communales</h1>
                         <h4 class="author">Maël THEULIERE</h4>
             
-            <h4 class="date">2020-11-02</h4>
+            <h4 class="date">2020-11-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/MaelTheuliere/COGiter/blob/master/vignettes/cogiter.Rmd"><code>vignettes/cogiter.Rmd</code></a></small>
       <div class="hidden name"><code>cogiter.Rmd</code></div>
@@ -126,8 +126,15 @@
 <div id="construire-des-aggrégations-supra-communale" class="section level2">
 <h2 class="hasAnchor">
 <a href="#construire-des-aggr%C3%A9gations-supra-communale" class="anchor"></a>Construire des aggrégations supra communale</h2>
-<p>Pour reconstituer à partir d’une table de données communale l’ensemble des totaux pour les zonages supra communaux principaux de france (epci, départements, régions), vous pouvez utiliser la fonction <code><a href="../reference/cogifier.html">cogifier()</a></code> qui permet de recalculer sur la base d’une table communale ces totaux.</p>
+<p>Pour reconstituer à partir d’une table de données communale l’ensemble des totaux pour les zonages supra communaux principaux de France (epci, départements, régions), vous pouvez utiliser la fonction <code><a href="../reference/cogifier.html">cogifier()</a></code> qui permet de recalculer sur la base d’une table communale ces totaux.</p>
 <p>La fonction calcule le total en prenant en dimension toutes les variables facteur ou caractère de la table et en variable à agréger toutes les variables numériques.</p>
+<p>En plus des agrégats epci, départements, régions, la fonction <code><a href="../reference/cogifier.html">cogifier()</a></code> permet de calculer :</p>
+<ul>
+<li>le total France métropolitaine (<code>metro = T</code>)</li>
+<li>le total France métropolitaine et DROM (<code>metrodrom = T</code>)</li>
+<li>le total Départements et régions d’outre mer (<code>drom = T</code>)</li>
+<li>le total France de province (<code>franceprovince = T</code>)</li>
+</ul>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 35,441</span>
