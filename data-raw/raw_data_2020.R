@@ -39,6 +39,8 @@ epci<-read_excel("data-raw/source/2020/COG/Intercommunalité - Métropole au 01-
            fct_relevel(c("ME", "CU", "CA", "CC", "ZZ"))
   )%>%
   rename(NOM_EPCI=LIBEPCI) %>%
+  arrange(NATURE_EPCI,NOM_EPCI) %>%
+  mutate(EPCI = fct_inorder(EPCI)) %>%
   select(EPCI,NOM_EPCI,NATURE_EPCI) %>%
   as_tibble()
 

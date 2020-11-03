@@ -2,6 +2,8 @@
 
 - Intégration des données 2020
 - Mise en place d'une fonction `filtrer_cog_geo()` qui permet de filtrer les fonds de cartes
+- Modification du tri du code epci de la table epci trié maintenant en fonction de la nature de l'epci
+- La fonction `passer_au_cog_a_jour()` conserve maintenant les groupes pour les dataframes groupés.
 
 # COGiter 0.0.2
 
