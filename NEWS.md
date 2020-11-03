@@ -1,7 +1,12 @@
-# COGiter 0.0.1.1
+# COGiter 0.0.2.1
 
 - Intégration des données 2020
 - Mise en place d'une fonction `filtrer_cog_geo()` qui permet de filtrer les fonds de cartes
+
+# COGiter 0.0.2
+
+- rajout de deux agrégats possibles pour la cogification : France de province et Départements et régions d'outre-mer
+
 
 # COGiter 0.0.1.9000
 

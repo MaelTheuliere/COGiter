@@ -8,8 +8,6 @@
 #' @importFrom dplyr select
 #' @importFrom tidyselect everything
 #' @keywords internal
-
-
 zone_list_to_df<-function(.data,typezone) {
   if (typezone=="communes") {
     if (is.null(.data)){d<-NULL}
@@ -63,6 +61,22 @@ zone_list_to_df<-function(.data,typezone) {
         select(TypeZone,Zone,CodeZone,everything())
     }
   }
+  if (typezone=="franceprovince") {
+    if (is.null(.data)){d<-NULL}
+    else {
+      d<-.data %>%
+        mutate(Zone="France de province",CodeZone="FRPROV",TypeZone="France") %>%
+        select(TypeZone,Zone,CodeZone,everything())
+    }
+  }
+  if (typezone=="drom") {
+    if (is.null(.data)){d<-NULL}
+    else {
+      d<-.data %>%
+        mutate(Zone="D\u00e9partements et r\u00e9gions d'outre-mer",CodeZone="DROM",TypeZone="France") %>%
+        select(TypeZone,Zone,CodeZone,everything())
+    }
+  }
   return(d)
 }
 
@@ -74,8 +88,6 @@ zone_list_to_df<-function(.data,typezone) {
 #' @export
 #' @importFrom purrr map2_df
 #' @importFrom dplyr mutate_at
-
-
 cog_list_to_df<-function(list) {
   map2_df(list,names(list),~ zone_list_to_df(.data = .x,typezone = .y)) %>%
     mutate_at(vars(TypeZone,Zone,CodeZone),as.factor)

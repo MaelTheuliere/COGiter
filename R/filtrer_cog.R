@@ -31,7 +31,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra=="non"){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(str_detect(REG,reg)) %>%
             select(TypeZone,CodeZone)
         )
@@ -39,7 +39,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra==">"){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(str_detect(REG,reg)) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
@@ -49,7 +49,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra==">="){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(str_detect(REG,reg)) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
@@ -63,7 +63,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra=="non"){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(str_detect(DEP,dep)) %>%
             select(TypeZone,CodeZone)
         )
@@ -71,7 +71,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra==">"){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(str_detect(DEP,dep)) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
@@ -81,7 +81,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra==">="){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(str_detect(DEP,dep)) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
@@ -95,7 +95,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra=="non"){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(EPCI==!!quo_epci) %>%
             select(TypeZone,CodeZone)
         )
@@ -103,7 +103,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra==">"){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(EPCI==!!quo_epci) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
@@ -113,7 +113,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra==">="){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(EPCI==!!quo_epci) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%

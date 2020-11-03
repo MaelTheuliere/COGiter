@@ -28,7 +28,7 @@ passer_au_cog_a_jour<-function(.data,code_commune=DEPCOM,aggrege=T,garder_info_s
   quo_code_commune<-enquo(code_commune)
   result<-.data %>%
     rename(DEPCOM_HIST=!!quo_code_commune) %>%
-    inner_join(table_passage_com_historique) %>%
+    inner_join(COGiter::table_passage_com_historique) %>%
     select(-DEPCOM_HIST)
 
   if (aggrege==T) {
@@ -39,7 +39,7 @@ passer_au_cog_a_jour<-function(.data,code_commune=DEPCOM,aggrege=T,garder_info_s
   }
   if (garder_info_supra==T) {
     result<-result %>%
-      left_join(communes_info_supra)
+      left_join(COGiter::communes_info_supra)
   }
   result
 }
