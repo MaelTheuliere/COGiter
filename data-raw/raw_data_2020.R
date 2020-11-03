@@ -35,7 +35,8 @@ departements<-read_csv("data-raw/source/2020/COG/departement2020.csv")%>%
 epci<-read_excel("data-raw/source/2020/COG/Intercommunalité - Métropole au 01-01-2020.xlsx",sheet=1,skip=5) %>%
   mutate(EPCI=as.factor(EPCI),
          LIBEPCI=as.factor(LIBEPCI),
-         NATURE_EPCI=as.factor(NATURE_EPCI)
+         NATURE_EPCI=as.factor(NATURE_EPCI) %>%
+           fct_relevel(c("ME", "CU", "CA", "CC", "ZZ"))
   )%>%
   rename(NOM_EPCI=LIBEPCI) %>%
   select(EPCI,NOM_EPCI,NATURE_EPCI) %>%
@@ -175,6 +176,7 @@ liste_zone<-bind_rows(
 table_passage_com_historique <- read_xlsx('data-raw/source/2020/COG/table_passage_geo2003_geo2020.xlsx',skip = 5) %>%
   select(DEPCOM_HIST = CODGEO_INI, DEPCOM = CODGEO_2020) %>%
   mutate(across(everything(),as.factor))
+
 
 # Gestion des encodages ----------------------------------------------------
 enc.fact.utf8 <- function(a) {
