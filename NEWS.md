@@ -1,4 +1,4 @@
-# COGiter 0.0.2.1
+# COGiter 0.0.3
 
 - Intégration des données 2020
 - Mise en place d'une fonction `filtrer_cog_geo()` qui permet de filtrer les fonds de cartes
