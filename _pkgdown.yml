@@ -1,0 +1,10 @@
+template:
+  params:
+    bootswatch: flatly
+
+navbar:
+  components:
+    home: ~
+
+development:
+  mode: auto

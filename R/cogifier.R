@@ -28,7 +28,6 @@
 #' @importFrom dplyr vars
 #' @importFrom rlang enquo
 #' @importFrom rlang !!
-#' @encoding UTF-8
 
 cogifier<-function(.data,code_commune=DEPCOM,
                    communes=T,

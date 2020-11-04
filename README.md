@@ -20,11 +20,11 @@ remotes::install_gitlab("dreal-datalab/COGiter")
 
 Ce package R vise à mettre à disposition :
 
-  - les tables du COG 2019 de l’Insee en RData;
-  - une table de passage des COG historiques vers le COG millésimé 2019;
-  - les couche géomatiques correspondantes au COG 2019.
+  - les tables du COG 2020 de l’Insee en RData;
+  - une table de passage des COG historiques vers le COG millésimé 2020;
+  - les couche géomatiques correspondantes au COG 2020
   - des fonctions d’aide à au passage de jeu de données veres le
-    millésime du COG 2019
+    millésime du COG 2020
 
 Le tout avec des règles de nommage identiques pour faciliter les
 appariements.
@@ -38,13 +38,13 @@ et est par ailleurs non stabilisé.
 
 ## Les données sources
 
-### Le COG Insee 2019
+### Le COG Insee 2020
 
   - <https://www.insee.fr/fr/information/2560452>
 
 ### Admin Express
 
-  - <http://professionnels.ign.fr/adminexpress#tab-3>
+  - <https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html#admin-express>
 
 ## Description du package
 

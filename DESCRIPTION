@@ -1,6 +1,6 @@
 Package: COGiter
 Title: Fonctions, données et fonds de carte pour gérer les données au territoire
-Version: 0.0.2
+Version: 0.0.3
 Authors@R: c(
     person(given = "Maël",
            family = "THEULIERE",
@@ -11,13 +11,14 @@ Authors@R: c(
            role = c("ctb"),
            email = "juliette.engelaere-lefebvre@developpement-durable.gouv.fr")
            )
-Description: Fonctions, données et fonds de carte pour gérer les données au territoire. Ce package permet notamment de gérer les fusions de communes intervenues entre 2015 et 2019.
+Description: Fonctions, données et fonds de carte pour gérer les données au territoire. Ce package permet notamment de gérer les fusions de communes intervenues entre 2015 et 2020.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends: 
     R (>= 2.10)
 Imports: 
+    attempt,
     dplyr,
     forcats,
     stringr,
@@ -25,9 +26,10 @@ Imports:
     magrittr,
     tibble,
     purrr,
-    tidyselect
+    tidyselect,
+    sf
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 URL: https://github.com/MaelTheuliere/COGiter
 BugReports: https://github.com/MaelTheuliere/COGiter/issues
 Suggests: 

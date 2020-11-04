@@ -9,8 +9,6 @@
 #' @importFrom dplyr select
 #' @importFrom tidyselect everything
 #' @keywords internal
-#' @encoding UTF-8
-
 
 zone_df_to_list<-function(.data,typezone) {
   if (typezone=="communes") {
@@ -93,8 +91,6 @@ zone_df_to_list<-function(.data,typezone) {
 #' @export
 #' @importFrom purrr map
 #' @importFrom purrr set_names
-#' @encoding UTF-8
-
 cog_df_to_list<-function(.data) {
   map(c("communes","epci","departements","regions","metro","metrodrom","franceprovince","drom"),~zone_df_to_list(.data,typezone = .x)) %>%
     set_names(c("communes","epci","departements","regions","metro","metrodrom","franceprovince","drom"))

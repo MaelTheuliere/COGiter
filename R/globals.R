@@ -1,3 +1,10 @@
-utils::globalVariables(c("CodeZone","DEP", "DEPARTEMENTS_DE_L_EPCI", "DEPCOM", "DEPCOM_HIST",
-                         "EPCI", "NOM_DEP", "NOM_DEPCOM", "NOM_EPCI", "NOM_REG", "REG", "REGIONS_DE_L_EPCI",
-                         "TypeZone", "Zone", "communes_info_supra", "liste_zone","."))
+utils::globalVariables(c(".", "CodeZone", "DEP", "DEPARTEMENTS_DE_L_EPCI", "DEPCOM", "DEPCOM_HIST", "EPCI", "NOM_DEP",
+                         "NOM_DEPCOM", "NOM_EPCI", "NOM_REG", "REG", "REGIONS_DE_L_EPCI", "TypeZone", "Zone",
+                         "communes_971_geo", "communes_972_geo", "communes_973_geo", "communes_974_geo",
+                         "communes_976_geo", "communes_info_supra", "communes_metro_geo",
+                         "departements_971_geo", "departements_972_geo", "departements_973_geo",
+                         "departements_974_geo", "departements_976_geo", "departements_metro_geo",
+                         "epci_971_geo", "epci_972_geo", "epci_973_geo", "epci_974_geo", "epci_976_geo",
+                         "epci_metro_geo", "liste_zone", "regions_971_geo", "regions_972_geo",
+                         "regions_973_geo", "regions_974_geo", "regions_976_geo", "regions_metro_geo",
+                         "table_passage_com_historique"))

@@ -19,7 +19,7 @@
 #' @importFrom forcats fct_drop
 #' @importFrom rlang enquo
 #' @importFrom rlang !!
-#' @encoding UTF-8
+
 
 filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra="non"){
   quo_depcom<-enquo(depcom)

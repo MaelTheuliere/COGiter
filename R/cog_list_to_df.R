@@ -8,8 +8,6 @@
 #' @importFrom dplyr select
 #' @importFrom tidyselect everything
 #' @keywords internal
-#' @encoding UTF-8
-
 zone_list_to_df<-function(.data,typezone) {
   if (typezone=="communes") {
     if (is.null(.data)){d<-NULL}
@@ -90,8 +88,6 @@ zone_list_to_df<-function(.data,typezone) {
 #' @export
 #' @importFrom purrr map2_df
 #' @importFrom dplyr mutate_at
-#' @encoding UTF-8
-
 cog_list_to_df<-function(list) {
   map2_df(list,names(list),~ zone_list_to_df(.data = .x,typezone = .y)) %>%
     mutate_at(vars(TypeZone,Zone,CodeZone),as.factor)
