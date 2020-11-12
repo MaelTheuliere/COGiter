@@ -23,7 +23,7 @@ passer_au_cog_a_jour <- function(.data, code_commune = DEPCOM, aggrege = T, gard
 
   if (aggrege == T) {
     result <- result %>%
-      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric)), .add = TRUE) %>%
+      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
       summarise(across(.fns = ~ sum(.x, ...))) %>%
       ungroup()
   }
