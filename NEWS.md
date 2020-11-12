@@ -1,3 +1,7 @@
+# COGiter 0.0.4
+
+- correction bug sur `passer_au_cog_a_jour()` avec le passage à la nouvelle table de passage.
+
 # COGiter 0.0.3
 
 - Intégration des données 2020

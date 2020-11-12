@@ -173,12 +173,19 @@ liste_zone<-bind_rows(
   mutate_if(is.character,as.factor) %>%
   select(CodeZone,TypeZone,EPCI,DEP,REG)
 
-# Table de passage des communes historiques
+# Table de passage des communes historiques ---------------------------------------
 # source : https://www.insee.fr/fr/information/2028028
 table_passage_com_historique <- read_xlsx('data-raw/source/2020/COG/table_passage_geo2003_geo2020.xlsx',skip = 5) %>%
   select(DEPCOM_HIST = CODGEO_INI, DEPCOM = CODGEO_2020) %>%
-  mutate(across(everything(),as.factor))
+  mutate(across(.cols = everything(),as.factor))
 
+table_passage_arm_com <- read.csv2('data-raw/source/2020/COG/arm.csv') %>%
+  select(DEPCOM_HIST = CODGEO_INI, DEPCOM = CODGEO_2020) %>%
+  mutate(across(.cols = everything(),as.factor))
+
+table_passage_com_historique <- table_passage_com_historique %>%
+  bind_rows(table_passage_arm_com) %>%
+  mutate(across(.cols = everything(),as.factor))
 
 # Gestion des encodages ----------------------------------------------------
 enc.fact.utf8 <- function(a) {
