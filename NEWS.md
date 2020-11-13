@@ -1,4 +1,4 @@
-# COGiter 0.0.4
+# COGiter 0.0.5
 
 - correction bug sur `passer_au_cog_a_jour()` avec le passage à la nouvelle table de passage.
 
