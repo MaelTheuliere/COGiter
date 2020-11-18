@@ -9,8 +9,7 @@
 #' @export
 #' @importFrom dplyr filter pull
 #' @importFrom stringr str_detect
-#' @importFrom sf st_bbox
-#' @importFrom sf st_crop
+#' @importFrom sf st_bbox st_crop st_buffer
 #' @importFrom attempt stop_if_any
 #' @example
 #' nantes_metropole <- filtrer_cog_geo(epci = '244400404')
@@ -46,19 +45,23 @@ filtrer_cog_geo <- function(depcom = NULL,
       reg <- st_crop(
         reg_geo,
         bbox
-      )
+      ) %>%
+        st_buffer(dist = 0)
       dep <- st_crop(
         dep_geo,
         bbox
-      )
+      ) %>%
+        st_buffer(dist = 0)
       epci <- st_crop(
         epci_geo,
         bbox
-      )
+      ) %>%
+        st_buffer(dist = 0)
       communes <- st_crop(
         com_geo,
         bbox
-      )
+      ) %>%
+        st_buffer(dist = 0)
       result <- list(communes = communes, epci = epci, departements = dep, regions = reg)
     }
     return(result)
@@ -78,15 +81,18 @@ filtrer_cog_geo <- function(depcom = NULL,
       dep <- st_crop(
         dep_geo,
         bbox
-      )
+      ) %>%
+        st_buffer(dist = 0)
       epci <- st_crop(
         epci_geo,
         bbox
-      )
+      ) %>%
+        st_buffer(dist = 0)
       communes <- st_crop(
         com_geo,
         bbox
-      )
+      ) %>%
+        st_buffer(dist = 0)
       result <- list(communes = communes, epci = epci, departements = dep)
     }
     return(result)
@@ -104,11 +110,13 @@ filtrer_cog_geo <- function(depcom = NULL,
       epci <- st_crop(
         epci_geo,
         bbox
-      )
+      ) %>%
+        st_buffer(dist = 0)
       communes <- st_crop(
         com_geo,
         bbox
-      )
+      ) %>%
+        st_buffer(dist = 0)
       result <- list(communes = communes, epci = epci)
     }
   }
@@ -124,7 +132,8 @@ filtrer_cog_geo <- function(depcom = NULL,
       communes <- st_crop(
         com_geo,
         bbox
-      )
+      ) %>%
+        st_buffer(dist = 0)
       result <- list(communes = communes)
     }
   }
