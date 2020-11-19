@@ -7,6 +7,7 @@
 
 - ajout de tests
 
+
 # COGiter 0.0.6
 
 - Correction filtrer_cog_geo : rajout d'un sf_buffer à 0 pour nettoyer la géometrie après st_crop()
