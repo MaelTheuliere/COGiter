@@ -16,7 +16,7 @@ cogifier(
   franceprovince = F,
   drom = F,
   as_df = T,
-  ...
+  na.rm = FALSE
 )
 }
 \arguments{
@@ -42,7 +42,7 @@ cogifier(
 
 \item{as_df}{booléen TRUE si on souhaite des données sous un seul dataframe, FALSE si on souhaite une liste de dataframe par type de zone}
 
-\item{...}{argument(s) passé(s) à la fonction d'aggrégation (sum), na.rm=F par défaut}
+\item{na.rm}{argument(s) passé(s) à la fonction d'aggrégation (sum), na.rm=F par défaut}
 }
 \value{
 Renvoie un dataframe ou une liste de dataframe

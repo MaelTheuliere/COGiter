@@ -11,7 +11,7 @@
 #' @param franceprovince booléen TRUE si on souhaite des données France de province
 #' @param drom booléen TRUE si on souhaite des données Départements et régions d'outre mer
 #' @param as_df booléen TRUE si on souhaite des données sous un seul dataframe, FALSE si on souhaite une liste de dataframe par type de zone
-#' @param ... argument(s) passé(s) à la fonction d'aggrégation (sum), na.rm=F par défaut
+#' @param na.rm argument(s) passé(s) à la fonction d'aggrégation (sum), na.rm=F par défaut
 #'
 #' @return Renvoie un dataframe ou une liste de dataframe
 #' @export
@@ -39,10 +39,10 @@ cogifier<-function(.data,code_commune=DEPCOM,
                    franceprovince=F,
                    drom=F,
                    as_df=T,
-                   ...){
+                   na.rm = FALSE){
   quo_code_commune<-enquo(code_commune)
   au_cog<-passer_au_cog_a_jour(.data=.data,code_commune=!!quo_code_commune,
-                               garder_info_supra = T, aggrege = F)
+                               garder_info_supra = T, aggrege = F,na.rm = na.rm)
   c <- NULL
   e <- NULL
   d <- NULL
@@ -55,7 +55,7 @@ cogifier<-function(.data,code_commune=DEPCOM,
     c<-au_cog %>%
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(., ...))) %>%
+      summarise_if(is.numeric,funs(sum(., na.rm = na.rm))) %>%
       ungroup
   }
   if (epci==T) {
@@ -63,21 +63,21 @@ cogifier<-function(.data,code_commune=DEPCOM,
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       filter(EPCI!="ZZZZZZZZZ") %>%
       group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(., ...))) %>%
+      summarise_if(is.numeric,funs(sum(., na.rm = na.rm))) %>%
       ungroup
   }
   if (departements==T) {
     d<-au_cog %>%
       select(-REG,-NOM_REG,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(., ...))) %>%
+      summarise_if(is.numeric,funs(sum(., na.rm = na.rm))) %>%
       ungroup
   }
   if (regions==T) {
     r<-au_cog %>%
       select(-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(., ...))) %>%
+      summarise_if(is.numeric,funs(sum(., na.rm = na.rm))) %>%
       ungroup
   }
   if(metro==T) {
@@ -85,14 +85,14 @@ cogifier<-function(.data,code_commune=DEPCOM,
       dplyr::filter(!(REG %in% c("01","02","03","04","05","06"))) %>%
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(., ...))) %>%
+      summarise_if(is.numeric,funs(sum(., na.rm = na.rm))) %>%
       ungroup
   }
   if(metrodrom==T) {
     md<-au_cog %>%
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(., ...))) %>%
+      summarise_if(is.numeric,funs(sum(., na.rm = na.rm))) %>%
       ungroup
   }
   if(franceprovince==T) {
@@ -100,7 +100,7 @@ cogifier<-function(.data,code_commune=DEPCOM,
       dplyr::filter(!(REG %in% c("01","02","03","04","05","06","11"))) %>%
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(., ...))) %>%
+      summarise_if(is.numeric,funs(sum(., na.rm = na.rm))) %>%
       ungroup
   }
   if(drom == T) {
@@ -108,7 +108,7 @@ cogifier<-function(.data,code_commune=DEPCOM,
       dplyr::filter(REG %in% c("01","02","03","04","05","06")) %>%
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(., ...))) %>%
+      summarise_if(is.numeric,funs(sum(., na.rm = na.rm))) %>%
       ungroup
   }
 
