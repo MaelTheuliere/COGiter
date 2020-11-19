@@ -1,4 +1,4 @@
-# COGiter 0.0.6.9000
+# COGiter 0.0.7
 
 - Correction bug passer_au_cog_a_jour suite à une regression
 - Explicitation de la gestion des NA dans cogifier()
