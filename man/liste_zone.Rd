@@ -9,7 +9,9 @@ A data frame with 39161 rows and 2 variables:
 \describe{
 \item{TypeZone}{Type de la zone : communes,epci,départements,régions}
 \item{CodeZone}{Code de la zone}
+\item{Zone}{Libellé de la zone}
 \item{EPCI}{liste des EPCI ayant cette zone en territoire infra}
+\item{NATURE_EPCI}{nature de l'Epci pour les EPCI}
 \item{DEP}{liste des départements ayant cette zone en territoire infra}
 \item{REG}{liste des régions ayant cette zone en territoire infra}
 }

@@ -147,31 +147,31 @@ communes_info_supra<-communes %>%
 
 liste_zone<-bind_rows(
   communes_info_supra %>%
-    select(CodeZone=DEPCOM,EPCI,DEP,REG) %>%
+    select(CodeZone=DEPCOM,Zone = NOM_DEPCOM,EPCI,DEP,REG) %>%
     distinct() %>%
     mutate(TypeZone="Communes",
            DEP=as.list(as.character(DEP)),
            REG=as.list(as.character(REG))
     ),
   epci %>%
-    select(CodeZone=EPCI,DEP=DEPARTEMENTS_DE_L_EPCI,REG=REGIONS_DE_L_EPCI) %>%
+    select(CodeZone=EPCI,Zone = NOM_EPCI,NATURE_EPCI,DEP=DEPARTEMENTS_DE_L_EPCI,REG=REGIONS_DE_L_EPCI) %>%
     distinct() %>%
     mutate(TypeZone="Epci",EPCI=CodeZone),
   departements %>%
-    select(CodeZone=DEP,REG) %>%
+    select(CodeZone=DEP,Zone = NOM_DEP,REG) %>%
     distinct() %>%
     mutate(TypeZone="Départements",
            DEP=as.list(as.character(CodeZone)),
            REG=as.list(as.character(REG))),
   regions %>%
-    select(REG) %>%
+    select(REG,Zone = NOM_REG) %>%
     distinct() %>%
     mutate(TypeZone="Régions",
            CodeZone=REG,
            REG=as.list(as.character(REG)))
 ) %>%
   mutate_if(is.character,as.factor) %>%
-  select(CodeZone,TypeZone,EPCI,DEP,REG)
+  select(CodeZone,Zone,TypeZone,EPCI,NATURE_EPCI,DEP,REG)
 
 # Table de passage des communes historiques ---------------------------------------
 # source : https://www.insee.fr/fr/information/2028028
@@ -219,6 +219,7 @@ enc.fact.utf8(mvtcommunes$LIBELLE_AV)
 enc.fact.utf8(mvtcommunes$NCC_AP)
 enc.fact.utf8(mvtcommunes$NCCENR_AP)
 enc.fact.utf8(mvtcommunes$LIBELLE_AP)
+enc.fact.utf8(liste_zone$Zone)
 
 
 use_data(regions,internal=F,overwrite = T)

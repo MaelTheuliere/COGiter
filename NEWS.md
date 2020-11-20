@@ -1,3 +1,18 @@
+# COGiter 0.0.7
+
+- Correction bug passer_au_cog_a_jour suite à une regression
+- Explicitation de la gestion des NA dans cogifier()
+
+## interne
+
+- ajout de tests
+
+
+# COGiter 0.0.6
+
+- Correction filtrer_cog_geo : rajout d'un sf_buffer à 0 pour nettoyer la géometrie après st_crop()
+- Ajout de la variable nature_epci dans liste_zone pour les epci
+
 # COGiter 0.0.5
 
 - correction bug sur `passer_au_cog_a_jour()` avec le passage à la nouvelle table de passage.
