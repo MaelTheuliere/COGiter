@@ -1,3 +1,5 @@
+# Version de développement 
+
 # COGiter 0.0.7
 
 - Correction bug passer_au_cog_a_jour suite à une regression
