@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COGiter</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.4.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.7.9000</span>
       </span>
     </div>
 
@@ -63,7 +63,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/MaelTheuliere/COGiter/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -77,14 +77,13 @@
 
       
 
-      </header><script src="cogiter_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="cogiter_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="cogiter_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="cogiter_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Gestion des fusions de communes et consolidation supra communales</h1>
                         <h4 class="author">Maël THEULIERE</h4>
             
-            <h4 class="date">2020-11-12</h4>
+            <h4 class="date">2021-03-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/MaelTheuliere/COGiter/blob/master/vignettes/cogiter.Rmd"><code>vignettes/cogiter.Rmd</code></a></small>
       <div class="hidden name"><code>cogiter.Rmd</code></div>
@@ -103,25 +102,25 @@
 <p>Attention, cette règle ne marche que pour les fusions de communes.</p>
 <p>Le périmètre de couverture de la fonction est pour l’instant la France métropolitaine et les DROM.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 35,441</span>
 <span class="co">#&gt; Columns: 4</span>
-<span class="co">#&gt; $ DEPCOM         &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, 01009…</span>
-<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 767, 241, 14127, 1619, 109, 2615, 747, 342, 1133, 390,…</span>
-<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 18, 1, 504, 33, 6, 107, 18, 9, 19, 11, 4, 3, 94, 5, 12…</span>
-<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401,…</span>
+<span class="co">#&gt; $ DEPCOM         &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, 01009,…</span>
+<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 767, 241, 14127, 1619, 109, 2615, 747, 342, 1133, 390, …</span>
+<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 18, 1, 504, 33, 6, 107, 18, 9, 19, 11, 4, 3, 94, 5, 12,…</span>
+<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401, …</span>
 <span class="va">pop2015_a_jour</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/passer_au_cog_a_jour.html">passer_au_cog_a_jour</a></span><span class="op">(</span><span class="va">pop2015</span>,
   code_commune <span class="op">=</span> <span class="va">DEPCOM</span>,
   aggrege <span class="op">=</span> <span class="cn">T</span>,
   garder_info_supra <span class="op">=</span> <span class="cn">F</span>
 <span class="op">)</span>
-<span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015_a_jour</span><span class="op">)</span>
+<span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015_a_jour</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 34,950</span>
 <span class="co">#&gt; Columns: 4</span>
-<span class="co">#&gt; $ DEPCOM         &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, 01009…</span>
-<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 1534, 482, 28254, 3238, 218, 5230, 1494, 684, 2266, 78…</span>
-<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 36, 2, 1008, 66, 12, 214, 36, 18, 38, 22, 8, 6, 188, 2…</span>
-<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 1570, 484, 29262, 3304, 230, 5444, 1530, 702, 2304, 80…</span></code></pre></div>
+<span class="co">#&gt; $ DEPCOM         &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, 01009,…</span>
+<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 767, 241, 14127, 1619, 109, 2615, 747, 342, 1133, 390, …</span>
+<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 18, 1, 504, 33, 6, 107, 18, 9, 19, 11, 4, 3, 94, 12, 5,…</span>
+<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401, …</span></code></pre></div>
 </div>
 <div id="construire-des-aggrégations-supra-communale" class="section level2">
 <h2 class="hasAnchor">
@@ -136,58 +135,58 @@
 <li>le total France de province (<code>franceprovince = T</code>)</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 35,441</span>
 <span class="co">#&gt; Columns: 4</span>
-<span class="co">#&gt; $ DEPCOM         &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, 01009…</span>
-<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 767, 241, 14127, 1619, 109, 2615, 747, 342, 1133, 390,…</span>
-<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 18, 1, 504, 33, 6, 107, 18, 9, 19, 11, 4, 3, 94, 5, 12…</span>
-<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401,…</span>
+<span class="co">#&gt; $ DEPCOM         &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, 01009,…</span>
+<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 767, 241, 14127, 1619, 109, 2615, 747, 342, 1133, 390, …</span>
+<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 18, 1, 504, 33, 6, 107, 18, 9, 19, 11, 4, 3, 94, 5, 12,…</span>
+<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401, …</span>
 <span class="va">pop2015_cogifiee</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cogifier.html">cogifier</a></span><span class="op">(</span><span class="va">pop2015</span>,
   code_commune <span class="op">=</span> <span class="va">DEPCOM</span>
 <span class="op">)</span>
-<span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee</span><span class="op">)</span>
+<span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 36,318</span>
 <span class="co">#&gt; Columns: 6</span>
-<span class="co">#&gt; $ TypeZone       &lt;fct&gt; Communes, Communes, Communes, Communes, Communes, Comm…</span>
-<span class="co">#&gt; $ Zone           &lt;fct&gt; L'Abergement-Clémenciat, L'Abergement-de-Varey, Ambéri…</span>
-<span class="co">#&gt; $ CodeZone       &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, 01009…</span>
-<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 767, 241, 14127, 1619, 109, 2615, 747, 342, 1133, 390,…</span>
-<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 18, 1, 504, 33, 6, 107, 18, 9, 19, 11, 4, 3, 94, 12, 5…</span>
-<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401,…</span></code></pre></div>
+<span class="co">#&gt; $ TypeZone       &lt;fct&gt; Communes, Communes, Communes, Communes, Communes, Commu…</span>
+<span class="co">#&gt; $ Zone           &lt;fct&gt; L'Abergement-Clémenciat, L'Abergement-de-Varey, Ambérie…</span>
+<span class="co">#&gt; $ CodeZone       &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, 01009,…</span>
+<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 767, 241, 14127, 1619, 109, 2615, 747, 342, 1133, 390, …</span>
+<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 18, 1, 504, 33, 6, 107, 18, 9, 19, 11, 4, 3, 94, 12, 5,…</span>
+<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401, …</span></code></pre></div>
 <p>Vous pouvez choisir deux types de format : un format dataframe qui constitue une table unique, un format liste qui constitue une liste de dataframe pour chaque zonage (communes, epci, departements, regions).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 35,441</span>
 <span class="co">#&gt; Columns: 4</span>
-<span class="co">#&gt; $ DEPCOM         &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, 01009…</span>
-<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 767, 241, 14127, 1619, 109, 2615, 747, 342, 1133, 390,…</span>
-<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 18, 1, 504, 33, 6, 107, 18, 9, 19, 11, 4, 3, 94, 5, 12…</span>
-<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401,…</span>
+<span class="co">#&gt; $ DEPCOM         &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, 01009,…</span>
+<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 767, 241, 14127, 1619, 109, 2615, 747, 342, 1133, 390, …</span>
+<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 18, 1, 504, 33, 6, 107, 18, 9, 19, 11, 4, 3, 94, 5, 12,…</span>
+<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401, …</span>
 <span class="va">pop2015_cogifiee_liste</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cogifier.html">cogifier</a></span><span class="op">(</span><span class="va">pop2015</span>,
   code_commune <span class="op">=</span> <span class="va">DEPCOM</span>, as_df <span class="op">=</span> <span class="cn">F</span>
 <span class="op">)</span>
-<span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee</span><span class="op">)</span>
+<span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 36,318</span>
 <span class="co">#&gt; Columns: 6</span>
-<span class="co">#&gt; $ TypeZone       &lt;fct&gt; Communes, Communes, Communes, Communes, Communes, Comm…</span>
-<span class="co">#&gt; $ Zone           &lt;fct&gt; L'Abergement-Clémenciat, L'Abergement-de-Varey, Ambéri…</span>
-<span class="co">#&gt; $ CodeZone       &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, 01009…</span>
-<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 767, 241, 14127, 1619, 109, 2615, 747, 342, 1133, 390,…</span>
-<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 18, 1, 504, 33, 6, 107, 18, 9, 19, 11, 4, 3, 94, 12, 5…</span>
-<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401,…</span></code></pre></div>
+<span class="co">#&gt; $ TypeZone       &lt;fct&gt; Communes, Communes, Communes, Communes, Communes, Commu…</span>
+<span class="co">#&gt; $ Zone           &lt;fct&gt; L'Abergement-Clémenciat, L'Abergement-de-Varey, Ambérie…</span>
+<span class="co">#&gt; $ CodeZone       &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, 01009,…</span>
+<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 767, 241, 14127, 1619, 109, 2615, 747, 342, 1133, 390, …</span>
+<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 18, 1, 504, 33, 6, 107, 18, 9, 19, 11, 4, 3, 94, 12, 5,…</span>
+<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401, …</span></code></pre></div>
 <p>Les fonctions <code><a href="../reference/cog_df_to_list.html">cog_df_to_list()</a></code> et <code><a href="../reference/cog_list_to_df.html">cog_list_to_df()</a></code> permettent de passer d’un format à l’autre.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pop2015_cogifiee_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cog_list_to_df.html">cog_list_to_df</a></span><span class="op">(</span><span class="va">pop2015_cogifiee_liste</span><span class="op">)</span>
-<span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee_df</span><span class="op">)</span>
+<span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee_df</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 36,318</span>
 <span class="co">#&gt; Columns: 6</span>
-<span class="co">#&gt; $ TypeZone       &lt;fct&gt; Communes, Communes, Communes, Communes, Communes, Comm…</span>
-<span class="co">#&gt; $ Zone           &lt;fct&gt; L'Abergement-Clémenciat, L'Abergement-de-Varey, Ambéri…</span>
-<span class="co">#&gt; $ CodeZone       &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, 01009…</span>
-<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 767, 241, 14127, 1619, 109, 2615, 747, 342, 1133, 390,…</span>
-<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 18, 1, 504, 33, 6, 107, 18, 9, 19, 11, 4, 3, 94, 12, 5…</span>
-<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401,…</span></code></pre></div>
+<span class="co">#&gt; $ TypeZone       &lt;fct&gt; Communes, Communes, Communes, Communes, Communes, Commu…</span>
+<span class="co">#&gt; $ Zone           &lt;fct&gt; L'Abergement-Clémenciat, L'Abergement-de-Varey, Ambérie…</span>
+<span class="co">#&gt; $ CodeZone       &lt;fct&gt; 01001, 01002, 01004, 01005, 01006, 01007, 01008, 01009,…</span>
+<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 767, 241, 14127, 1619, 109, 2615, 747, 342, 1133, 390, …</span>
+<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 18, 1, 504, 33, 6, 107, 18, 9, 19, 11, 4, 3, 94, 12, 5,…</span>
+<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401, …</span></code></pre></div>
 </div>
 <div id="filtrer-sur-un-sous-ensemble-du-territoire" class="section level2">
 <h2 class="hasAnchor">
@@ -196,27 +195,27 @@
 <p>Exemple, si je ne souhaiter garder que les données relatives à la région Pays de la Loire.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pop2015_cogifiee_r52</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog.html">filtrer_cog</a></span><span class="op">(</span><span class="va">pop2015_cogifiee</span>, reg <span class="op">=</span> <span class="st">"52"</span><span class="op">)</span>
-<span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee_r52</span><span class="op">)</span>
+<span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee_r52</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,315</span>
 <span class="co">#&gt; Columns: 6</span>
-<span class="co">#&gt; $ TypeZone       &lt;fct&gt; Communes, Communes, Communes, Communes, Communes, Comm…</span>
-<span class="co">#&gt; $ Zone           &lt;fct&gt; Abbaretz, Aigrefeuille-sur-Maine, Ancenis-Saint-Géréon…</span>
-<span class="co">#&gt; $ CodeZone       &lt;fct&gt; 44001, 44002, 44003, 44005, 44006, 44007, 44009, 44010…</span>
-<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 2042, 3700, 10403, 6666, 1801, 2525, 8698, 2974, 2834,…</span>
-<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 28, 104, 481, 86, 31, 57, 224, 100, 47, 38, 63, 194, 1…</span>
-<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 2070, 3804, 10884, 6752, 1832, 2582, 8922, 3074, 2881,…</span></code></pre></div>
+<span class="co">#&gt; $ TypeZone       &lt;fct&gt; Communes, Communes, Communes, Communes, Communes, Commu…</span>
+<span class="co">#&gt; $ Zone           &lt;fct&gt; Abbaretz, Aigrefeuille-sur-Maine, Ancenis-Saint-Géréon,…</span>
+<span class="co">#&gt; $ CodeZone       &lt;fct&gt; 44001, 44002, 44003, 44005, 44006, 44007, 44009, 44010,…</span>
+<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 2042, 3700, 10403, 6666, 1801, 2525, 8698, 2974, 2834, …</span>
+<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 28, 104, 481, 86, 31, 57, 224, 100, 47, 38, 63, 194, 14…</span>
+<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 2070, 3804, 10884, 6752, 1832, 2582, 8922, 3074, 2881, …</span></code></pre></div>
 <p>On peut vouloir garder les informations pour le total des autres régions ou le total France entière.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pop2015_cogifiee_r52</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog.html">filtrer_cog</a></span><span class="op">(</span><span class="va">pop2015_cogifiee</span>, reg <span class="op">=</span> <span class="st">"52"</span>, garder_supra <span class="op">=</span> <span class="st">"&gt;="</span><span class="op">)</span>
-<span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee_r52</span><span class="op">)</span>
+<span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee_r52</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,332</span>
 <span class="co">#&gt; Columns: 6</span>
-<span class="co">#&gt; $ TypeZone       &lt;fct&gt; Communes, Communes, Communes, Communes, Communes, Comm…</span>
-<span class="co">#&gt; $ Zone           &lt;fct&gt; Abbaretz, Aigrefeuille-sur-Maine, Ancenis-Saint-Géréon…</span>
-<span class="co">#&gt; $ CodeZone       &lt;fct&gt; 44001, 44002, 44003, 44005, 44006, 44007, 44009, 44010…</span>
-<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 2042, 3700, 10403, 6666, 1801, 2525, 8698, 2974, 2834,…</span>
-<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 28, 104, 481, 86, 31, 57, 224, 100, 47, 38, 63, 194, 1…</span>
-<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 2070, 3804, 10884, 6752, 1832, 2582, 8922, 3074, 2881,…</span></code></pre></div>
+<span class="co">#&gt; $ TypeZone       &lt;fct&gt; Communes, Communes, Communes, Communes, Communes, Commu…</span>
+<span class="co">#&gt; $ Zone           &lt;fct&gt; Abbaretz, Aigrefeuille-sur-Maine, Ancenis-Saint-Géréon,…</span>
+<span class="co">#&gt; $ CodeZone       &lt;fct&gt; 44001, 44002, 44003, 44005, 44006, 44007, 44009, 44010,…</span>
+<span class="co">#&gt; $ pop2015        &lt;dbl&gt; 2042, 3700, 10403, 6666, 1801, 2525, 8698, 2974, 2834, …</span>
+<span class="co">#&gt; $ pop2015_a_part &lt;dbl&gt; 28, 104, 481, 86, 31, 57, 224, 100, 47, 38, 63, 194, 14…</span>
+<span class="co">#&gt; $ pop2015_totale &lt;dbl&gt; 2070, 3804, 10884, 6752, 1832, 2582, 8922, 3074, 2881, …</span></code></pre></div>
 </div>
   </div>
 

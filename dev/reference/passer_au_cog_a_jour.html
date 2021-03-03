@@ -73,7 +73,7 @@ Champ : code communes de la France métropolitaine et des DROM" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COGiter</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.4.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.7.9000</span>
       </span>
     </div>
 
@@ -104,7 +104,7 @@ Champ : code communes de la France métropolitaine et des DROM" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/MaelTheuliere/COGiter/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -136,7 +136,7 @@ Champ : code communes de la France métropolitaine et des DROM</p>
   code_commune <span class='op'>=</span> <span class='va'>DEPCOM</span>,
   aggrege <span class='op'>=</span> <span class='cn'>T</span>,
   garder_info_supra <span class='op'>=</span> <span class='cn'>T</span>,
-  <span class='va'>...</span>
+  na.rm <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -148,7 +148,7 @@ Champ : code communes de la France métropolitaine et des DROM</p>
     </tr>
     <tr>
       <th>code_commune</th>
-      <td><p>le nom de la variable contenant le code commune sur 5 charactères</p></td>
+      <td><p>le nom de la variable contenant le code commune sur 5 caractères</p></td>
     </tr>
     <tr>
       <th>aggrege</th>
@@ -159,8 +159,8 @@ Champ : code communes de la France métropolitaine et des DROM</p>
       <td><p>booléen TRUE si on souhaite garder les informations sur les territoires supra des communes</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>argument(s) passé(s) à la fonction d'aggrégation (sum), na.rm=F par défaut</p></td>
+      <th>na.rm</th>
+      <td><p>argument passé à la fonction d'agrégation (sum), na.rm=FALSE par défaut</p></td>
     </tr>
     </table>
 
