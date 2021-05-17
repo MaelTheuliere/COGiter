@@ -12,12 +12,24 @@ A data frame with 37932 rows and 11 variables:
 \item{NOM_DEPCOM}{Nom en clair (typographie riche) avec article }
 \item{REG}{Code Insee de la région de rattachement}
 \item{DEP}{Code Insee du département de rattachement}
+\item{CTCD}{Code de la collectivité territoriale ayant les compétences départementales}
 \item{ARR}{Code arrondissement}
 \item{TNCC}{Type de nom en clair}
 \item{NCC}{Nom en clair (majuscules)}
 \item{NCCENR}{Nom en clair (typographie riche)}
 \item{CAN}{Code canton. Pour les communes « multi-cantonales » code décliné de 99 à 90 (pseudo-canton) ou de 89 à 80 (communes nouvelles) }
 \item{COMPARENT}{Code de la commune parente pour les arrondissements municipaux et les communes associées ou déléguées. }
+}\if{html}{\out{<div class="r">}}\preformatted{head(communes_cog)
+}\if{html}{\out{</div>}}\preformatted{## # A tibble: 6 x 12
+##   TYPECOM DEPCOM REG   DEP   CTCD  ARR   TNCC  NCC   NCCENR NOM_DEPCOM CAN  
+##   <fct>   <fct>  <fct> <fct> <fct> <fct> <fct> <fct> <fct>  <fct>      <fct>
+## 1 COM     01001  84    01    01D   012   5     ABER~ Aberg~ L'Abergem~ 0108 
+## 2 COM     01002  84    01    01D   011   5     ABER~ Aberg~ L'Abergem~ 0101 
+## 3 COM     01004  84    01    01D   011   1     AMBE~ Ambér~ Ambérieu-~ 0101 
+## 4 COM     01005  84    01    01D   012   1     AMBE~ Ambér~ Ambérieux~ 0122 
+## 5 COM     01006  84    01    01D   011   1     AMBL~ Amblé~ Ambléon    0104 
+## 6 COM     01007  84    01    01D   011   1     AMBR~ Ambro~ Ambronay   0101 
+## # ... with 1 more variable: COMPARENT <fct>
 }
 }
 \source{

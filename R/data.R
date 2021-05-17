@@ -9,6 +9,7 @@
 #'   \item{NOM_DEPCOM}{Nom en clair (typographie riche) avec article }
 #'   \item{REG}{Code Insee de la région de rattachement}
 #'   \item{DEP}{Code Insee du département de rattachement}
+#'   \item{CTCD}{Code de la collectivité territoriale ayant les compétences départementales}
 #'   \item{ARR}{Code arrondissement}
 #'   \item{TNCC}{Type de nom en clair}
 #'   \item{NCC}{Nom en clair (majuscules)}
@@ -16,6 +17,9 @@
 #'   \item{CAN}{Code canton. Pour les communes « multi-cantonales » code décliné de 99 à 90 (pseudo-canton) ou de 89 à 80 (communes nouvelles) }
 #'   \item{COMPARENT}{Code de la commune parente pour les arrondissements municipaux et les communes associées ou déléguées. }
 #' }
+#' ```{r}
+#' head(communes_cog)
+#' ```
 #' @source \url{https://www.insee.fr/fr/information/3720946#titre-bloc-3}
 "communes_cog"
 

@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 Ce document va vous permettre de comprendre comment  `{COGiter}` vous permet de gérer les fonds de carte de France.
 
-```{r setup}
+```{r}
 library(COGiter)
 library(dplyr)
 ```

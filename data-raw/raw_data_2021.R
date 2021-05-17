@@ -179,6 +179,7 @@ table_passage_com_historique <- read_xlsx('data-raw/source/2021/COG/table_passag
   mutate(across(.cols = everything(),as.factor))
 
 # Gestion des arrondissements de PLM
+# Les arrondissements sont rattachés à leur communes
 
 table_passage_arm_com <- read.csv('data-raw/source/2021/COG/arn2021.csv') %>%
   select(DEPCOM_HIST = CODGEO_INI, DEPCOM = CODGEO_2021) %>%
@@ -187,6 +188,10 @@ table_passage_arm_com <- read.csv('data-raw/source/2021/COG/arn2021.csv') %>%
 table_passage_com_historique <- table_passage_com_historique %>%
   bind_rows(table_passage_arm_com) %>%
   mutate(across(.cols = everything(),as.factor))
+
+# intégration de la table d'appartenance
+
+table_passage_com_zonages <- read_excel("data-raw/source/2021/COG/table-appartenance-geo-communes-21.xlsx", skip = 5)
 
 # Gestion des encodages ----------------------------------------------------
 enc.fact.utf8 <- function(a) {
