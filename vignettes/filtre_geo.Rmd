@@ -20,7 +20,6 @@ Ce document va vous permettre de comprendre comment  `{COGiter}` vous permet de 
 
 ```{r}
 library(COGiter)
-library(dplyr)
 ```
 
 
@@ -44,7 +43,7 @@ Exemple sur Nantes métropole :
 
 ```{r}
 nantes_metropole <- filtrer_cog_geo(epci = "244400404")
-glimpse(nantes_metropole)
+dplyr::glimpse(nantes_metropole)
 ```
 
 `nantes_metropole` est une liste de deux spatial dataframe `communes` et `epci` qui correspondent aux deux niveau de zoom possible sur la métropole.
@@ -58,7 +57,7 @@ On peut obtenir l'équivalent sur la région Bretagne, dans ce cas, la liste ren
 
 ```{r}
 bretagne <- filtrer_cog_geo(reg = "53")
-glimpse(bretagne)
+dplyr::glimpse(bretagne)
 ```
 
 ```{r}
@@ -72,7 +71,7 @@ l'option `garder_supra` permet de ne pas simplement filtrer mais de centrer la b
 
 ```{r}
 nantes_metropole <- filtrer_cog_geo(epci = "244400404", garder_supra = TRUE)
-glimpse(nantes_metropole)
+dplyr::glimpse(nantes_metropole)
 ```
 
 ```{r}

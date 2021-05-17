@@ -5,7 +5,7 @@
 \alias{epci}
 \title{Liste des epci du dernier millésime connu.}
 \format{
-A data frame with 1264 rows and 4 variables:
+A data frame with 1254 rows and 7 variables:
 \describe{
 \item{EPCI}{Code siren de l'EPCI}
 \item{NOM_EPCI}{Nom de l'EPCI}
