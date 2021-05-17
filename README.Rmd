@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# COGiter
+# COGiter <img src='man/figures/logo.png' align="right" height="139" />
 
 COGiter fournit des fonctions, des données et des fonds de carte pour permettre des analyses territoriales sur les collectivités française.
 

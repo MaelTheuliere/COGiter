@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# COGiter
+# COGiter <img src='man/figures/logo.png' align="right" height="139" />
 
 COGiter fournit des fonctions, des données et des fonds de carte pour
 permettre des analyses territoriales sur les collectivités française.
@@ -20,10 +20,10 @@ remotes::install_gitlab("dreal-datalab/COGiter")
 
 Ce package R vise à mettre à disposition :
 
-  - les tables du COG 2020 de l’Insee en RData;
-  - une table de passage des COG historiques vers le COG millésimé 2020;
-  - les couche géomatiques correspondantes au COG 2020
-  - des fonctions d’aide à au passage de jeu de données veres le
+-   les tables du COG 2020 de l’Insee en RData;
+-   une table de passage des COG historiques vers le COG millésimé 2020;
+-   les couche géomatiques correspondantes au COG 2020
+-   des fonctions d’aide à au passage de jeu de données veres le
     millésime du COG 2020
 
 Le tout avec des règles de nommage identiques pour faciliter les
@@ -40,11 +40,11 @@ et est par ailleurs non stabilisé.
 
 ### Le COG Insee 2020
 
-  - <https://www.insee.fr/fr/information/2560452>
+-   <https://www.insee.fr/fr/information/2560452>
 
 ### Admin Express
 
-  - <https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html#admin-express>
+-   <https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html#admin-express>
 
 ## Description du package
 
