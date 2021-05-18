@@ -181,12 +181,15 @@ table_passage_com_historique <- read_xlsx('data-raw/source/2021/COG/table_passag
 # Gestion des arrondissements de PLM
 # Les arrondissements sont rattachés à leur communes
 
-table_passage_arm_com <- read.csv('data-raw/source/2021/COG/arn2021.csv') %>%
-  select(DEPCOM_HIST = CODGEO_INI, DEPCOM = CODGEO_2021) %>%
+arn_plm <- read.csv('data-raw/source/2021/COG/arn2021.csv') %>%
+  select(ARN = CODGEO_INI, DEPCOM = CODGEO_2021) %>%
   mutate(across(.cols = everything(),as.factor))
 
+
+
 table_passage_com_historique <- table_passage_com_historique %>%
-  bind_rows(table_passage_arm_com) %>%
+  bind_rows(arn_plm %>%
+              rename(DEPCOM_HIST=ARN)) %>%
   mutate(across(.cols = everything(),as.factor))
 
 # intégration de la table d'appartenance
@@ -228,16 +231,17 @@ enc.fact.utf8(mvtcommunes$LIBELLE_AP)
 enc.fact.utf8(liste_zone$Zone)
 
 
-use_data(regions,internal=F,overwrite = T)
-use_data(departements,internal=F,overwrite = T)
-use_data(epci,internal=F,overwrite = T)
-use_data(communes_cog,internal=F,overwrite = T)
-use_data(communes,internal=F,overwrite = T)
-use_data(communes_info_supra,internal=F,overwrite = T)
-use_data(mvtcommunes,internal=F,overwrite = T)
-use_data(table_passage_com_epci,internal=F,overwrite = T)
-use_data(pop2015,internal=F,overwrite = T)
-use_data(liste_zone,internal=F,overwrite = T)
-use_data(table_passage_com_historique,internal=F,overwrite = T)
+usethis::use_data(regions,internal=F,overwrite = T)
+usethis::use_data(departements,internal=F,overwrite = T)
+usethis::use_data(epci,internal=F,overwrite = T)
+usethis::use_data(communes_cog,internal=F,overwrite = T)
+usethis::use_data(communes,internal=F,overwrite = T)
+usethis::use_data(communes_info_supra,internal=F,overwrite = T)
+usethis::use_data(mvtcommunes,internal=F,overwrite = T)
+usethis::use_data(table_passage_com_epci,internal=F,overwrite = T)
+usethis::use_data(pop2015,internal=F,overwrite = T)
+usethis::use_data(liste_zone,internal=F,overwrite = T)
+usethis::use_data(table_passage_com_historique,internal=F,overwrite = T)
+usethis::use_data(arn_plm,internal=F,overwrite = T)
 
 

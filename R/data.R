@@ -168,6 +168,17 @@
 #' @source \url{https://www.insee.fr/fr/information/3720946#titre-bloc-23}
 "table_passage_com_historique"
 
+#' Table de passage des arrondissements de Paris, Lyon, Marseille vers leur code commune.
+#'
+#' Un dataset contenant pour chaque arrondissement de Paris, Lyon et Marseille le code de la commune de rattachement
+#'
+#' @format A data frame with `r nrow(arn_plm)` rows and `r ncol(arn_plm)` variables:
+#' \describe{
+#'   \item{ARN}{Code Insee de l'arrondissement}
+#'   \item{DEPCOM}{Code Insee de la commune}
+#' }
+"arn_plm"
+
 #' Une table permettant de lister pour chaque département ou région les zonages infra
 #'
 #' Une table permettant de lister pour chaque département ou région les zonages infra

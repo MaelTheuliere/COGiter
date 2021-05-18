@@ -7,4 +7,4 @@ utils::globalVariables(c(".", "CodeZone", "DEP", "DEPARTEMENTS_DE_L_EPCI", "DEPC
                          "epci_971_geo", "epci_972_geo", "epci_973_geo", "epci_974_geo", "epci_976_geo",
                          "epci_metro_geo", "liste_zone", "regions_971_geo", "regions_972_geo",
                          "regions_973_geo", "regions_974_geo", "regions_976_geo", "regions_metro_geo",
-                         "table_passage_com_historique"))
+                         "table_passage_com_historique", "arn_plm"))

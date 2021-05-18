@@ -3,6 +3,10 @@
 - Mise à jour COG 2021
 - Ajout logo
 - Amélioration documentation des datasets
+- Ajout fonctions pour traiter la correspondances des territoire
+- Ajout fonctions pour savoir si un code commune/epci/departements/regions est valide
+- Ajout fonction ajouter_typologie qui permet de créer des aggrégats par typologie de territoire et type de territoire (epci, départements, région...)
+- Ajout table des arrondissements de Paris, Lyon et Marseille
 
 # COGiter 0.0.7
 

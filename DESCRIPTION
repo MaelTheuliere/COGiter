@@ -25,6 +25,7 @@ Imports:
     rlang,
     magrittr,
     tibble,
+    tidyr,
     purrr,
     tidyselect,
     sf

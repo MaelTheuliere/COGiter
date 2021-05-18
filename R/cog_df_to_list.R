@@ -12,7 +12,7 @@
 
 zone_df_to_list<-function(.data,typezone) {
   if (typezone=="communes") {
-    d<-.data %>% filter(TypeZone=="Communes")
+    d<-.data %>% dplyr::filter(TypeZone=="Communes")
     if (!is.null(d)){
       d<-d %>%
         mutate(NOM_DEPCOM=Zone,DEPCOM=CodeZone) %>%
@@ -22,7 +22,7 @@ zone_df_to_list<-function(.data,typezone) {
     }
   }
   if (typezone=="epci") {
-    d<-.data %>% filter(TypeZone=="Epci")
+    d<-.data %>% dplyr::filter(TypeZone=="Epci")
     if (!is.null(d)){
       d<-d %>%
         mutate(NOM_EPCI=Zone,EPCI=CodeZone) %>%
@@ -32,7 +32,7 @@ zone_df_to_list<-function(.data,typezone) {
     }
   }
   if (typezone=="departements") {
-    d<-.data %>% filter(TypeZone=="D\u00e9partements")
+    d<-.data %>% dplyr::filter(TypeZone=="D\u00e9partements")
     if (!is.null(d)){
       d<-d %>%
         mutate(NOM_DEP=Zone,DEP=CodeZone) %>%
@@ -42,7 +42,7 @@ zone_df_to_list<-function(.data,typezone) {
     }
   }
   if (typezone=="regions") {
-    d<-.data %>% filter(TypeZone=="R\u00e9gions")
+    d<-.data %>% dplyr::filter(TypeZone=="R\u00e9gions")
     if (!is.null(d)){
       d<-d %>%
         mutate(NOM_REG=Zone,REG=CodeZone) %>%
@@ -52,28 +52,28 @@ zone_df_to_list<-function(.data,typezone) {
     }
   }
   if (typezone=="metro") {
-    d<-.data %>% filter(Zone=="France m\u00e9tropolitaine")
+    d<-.data %>% dplyr::filter(Zone=="France m\u00e9tropolitaine")
     if (!is.null(d)){
       d<-d %>%
         select(-Zone,-CodeZone,-TypeZone)
     }
   }
   if (typezone=="metrodrom") {
-    d<-.data %>% filter(Zone=="France m\u00e9tropolitaine et DROM")
+    d<-.data %>% dplyr::filter(Zone=="France m\u00e9tropolitaine et DROM")
     if (!is.null(d)){
       d<-d %>%
         select(-Zone,-CodeZone,-TypeZone)
     }
   }
   if (typezone=="franceprovince") {
-    d<-.data %>% filter(Zone=="France de province")
+    d<-.data %>% dplyr::filter(Zone=="France de province")
     if (!is.null(d)){
       d<-d %>%
         select(-Zone,-CodeZone,-TypeZone)
     }
   }
   if (typezone=="drom") {
-    d<-.data %>% filter(Zone=="D\u00e9partements et r\u00e9gions d'outre-mer")
+    d<-.data %>% dplyr::filter(Zone=="D\u00e9partements et r\u00e9gions d'outre-mer")
     if (!is.null(d)){
       d<-d %>%
         select(-Zone,-CodeZone,-TypeZone)
