@@ -27,48 +27,57 @@
 #' @importFrom rlang .data
 
 
-ajouter_zonage<-function(.data,
-                         zonage_df,
-                         var_depcom=DEPCOM,
-                         var_code_zone=CodeZone,
-                         var_type_zone=TypeZone,
-                         var_zone=Zone){
-  quo_Depcom<-enquo(var_depcom)
-  quo_CodeZone<-enquo(var_code_zone)
-  quo_TypeZone<-enquo(var_type_zone)
-  quo_Zone<-enquo(var_zone)
+ajouter_zonage <- function(.data,
+                           zonage_df,
+                           var_depcom = DEPCOM,
+                           var_code_zone = CodeZone,
+                           var_type_zone = TypeZone,
+                           var_zone = Zone) {
+  quo_Depcom <- enquo(var_depcom)
+  quo_CodeZone <- enquo(var_code_zone)
+  quo_TypeZone <- enquo(var_type_zone)
+  quo_Zone <- enquo(var_zone)
 
-  a_ajouter<-.data %>%
-    filter(.data$TypeZone=="Communes") %>%
-    select(-.data$Zone,-.data$TypeZone) %>%
-    rename(DEPCOM=.data$CodeZone) %>%
+  a_ajouter <- .data %>%
+    filter(.data$TypeZone == "Communes") %>%
+    select(-.data$Zone, -.data$TypeZone) %>%
+    rename(DEPCOM = .data$CodeZone) %>%
     inner_join(zonage_df %>%
-                 rename(DEPCOM=!!quo_Depcom)) %>%
+      rename(DEPCOM = !!quo_Depcom)) %>%
     select(-.data$DEPCOM) %>%
     group_by_if(funs(!is.numeric(.))) %>%
     summarise_all(funs(sum)) %>%
-    ungroup %>%
-    rename(CodeZone=!!quo_CodeZone,
-           TypeZone=!!quo_TypeZone,
-           Zone=!!quo_Zone) %>%
-    mutate_at(vars(.data$CodeZone,.data$TypeZone,.data$Zone),funs(as.factor))
+    ungroup() %>%
+    rename(
+      CodeZone = !!quo_CodeZone,
+      TypeZone = !!quo_TypeZone,
+      Zone = !!quo_Zone
+    ) %>%
+    mutate_at(vars(.data$CodeZone, .data$TypeZone, .data$Zone), funs(as.factor))
 
-tmp<-.data %>%
- mutate(CodeZone=fct_expand(.data$CodeZone,
-                            levels(a_ajouter$CodeZone)),
-        TypeZone=fct_expand(.data$TypeZone,
-                            levels(a_ajouter$TypeZone)),
-        Zone=fct_expand(.data$Zone,
-                            levels(a_ajouter$Zone))
- )
+  tmp <- .data %>%
+    mutate(
+      CodeZone = fct_expand(
+        .data$CodeZone,
+        levels(a_ajouter$CodeZone)
+      ),
+      TypeZone = fct_expand(
+        .data$TypeZone,
+        levels(a_ajouter$TypeZone)
+      ),
+      Zone = fct_expand(
+        .data$Zone,
+        levels(a_ajouter$Zone)
+      )
+    )
 
-a_ajouter<-mutate(a_ajouter,
-                  CodeZone=factor(.data$CodeZone,levels=levels(tmp$CodeZone)),
-                  Zone=factor(.data$Zone,levels=levels(tmp$Zone)),
-                  TypeZone=factor(.data$TypeZone,levels=levels(tmp$TypeZone)),
-)
-res<-bind_rows(tmp,a_ajouter)
-return(res)
+  a_ajouter <- mutate(a_ajouter,
+    CodeZone = factor(.data$CodeZone, levels = levels(tmp$CodeZone)),
+    Zone = factor(.data$Zone, levels = levels(tmp$Zone)),
+    TypeZone = factor(.data$TypeZone, levels = levels(tmp$TypeZone)),
+  )
+  res <- bind_rows(tmp, a_ajouter)
+  return(res)
 }
 
 
@@ -105,62 +114,73 @@ return(res)
 #' @importFrom rlang enquo
 #' @importFrom rlang !!
 #' @importFrom rlang .data
-ajouter_typologie<-function(.data,
-                            epci = FALSE,
-                            departements = TRUE,
-                            regions = TRUE,
-                            metro = TRUE,
-                            metrodrom = TRUE,
-                            drom = TRUE,
-                            franceprovince = TRUE,
-                         zonage_df,
-                         var_depcom=DEPCOM,
-                         var_code_zone=CodeZone,
-                         var_type_zone=TypeZone,
-                         var_zone=Zone){
-  quo_Depcom<-enquo(var_depcom)
-  quo_CodeZone<-enquo(var_code_zone)
-  quo_TypeZone<-enquo(var_type_zone)
-  quo_Zone<-enquo(var_zone)
+ajouter_typologie <- function(.data,
+                              epci = FALSE,
+                              departements = TRUE,
+                              regions = TRUE,
+                              metro = TRUE,
+                              metrodrom = TRUE,
+                              drom = TRUE,
+                              franceprovince = TRUE,
+                              zonage_df,
+                              var_depcom = DEPCOM,
+                              var_code_zone = CodeZone,
+                              var_type_zone = TypeZone,
+                              var_zone = Zone) {
+  quo_Depcom <- enquo(var_depcom)
+  quo_CodeZone <- enquo(var_code_zone)
+  quo_TypeZone <- enquo(var_type_zone)
+  quo_Zone <- enquo(var_zone)
 
-  a_ajouter<-.data %>%
+  a_ajouter <- .data %>%
     cog_df_to_list() %>%
     .$communes %>%
     dplyr::inner_join(zonage_df %>%
-                        dplyr::rename(DEPCOM={{var_depcom}}) %>%
-                        dplyr::mutate(CodeZoneTypo = as.factor({{var_code_zone}}),
-                        TypeZoneTypo = as.factor({{var_type_zone}}),
-                        ZoneTypo = as.factor({{var_zone}})
-                        )
-               ) %>%
-    dplyr::select(-{{var_code_zone}},-{{var_type_zone}},-{{var_zone}}) %>%
-    cogifier(communes = FALSE,
-             epci = epci,
-             departements = departements,
-             regions = regions,
-             metro = metro,
-             metrodrom = metrodrom,
-             drom = drom,
-             franceprovince = franceprovince) %>%
-    dplyr::mutate(TypeZone = paste(TypeZoneTypo,TypeZone,sep = " - ") %>% as.factor(),
-           Zone = paste(ZoneTypo,Zone,sep = " - ") %>% as.factor(),
-           CodeZone = paste(CodeZoneTypo,CodeZone,sep = " - ") %>% as.factor()) %>%
-    dplyr::select(-CodeZoneTypo,-TypeZoneTypo,-ZoneTypo)
+      dplyr::rename(DEPCOM = {{ var_depcom }}) %>%
+      dplyr::mutate(
+        CodeZoneTypo = as.factor({{ var_code_zone }}),
+        TypeZoneTypo = as.factor({{ var_type_zone }}),
+        ZoneTypo = as.factor({{ var_zone }})
+      )) %>%
+    dplyr::select(-{{ var_code_zone }}, -{{ var_type_zone }}, -{{ var_zone }}) %>%
+    cogifier(
+      communes = FALSE,
+      epci = epci,
+      departements = departements,
+      regions = regions,
+      metro = metro,
+      metrodrom = metrodrom,
+      drom = drom,
+      franceprovince = franceprovince
+    ) %>%
+    dplyr::mutate(
+      TypeZone = paste(TypeZoneTypo, TypeZone, sep = " - ") %>% as.factor(),
+      Zone = paste(ZoneTypo, Zone, sep = " - ") %>% as.factor(),
+      CodeZone = paste(CodeZoneTypo, CodeZone, sep = " - ") %>% as.factor()
+    ) %>%
+    dplyr::select(-CodeZoneTypo, -TypeZoneTypo, -ZoneTypo)
 
-  tmp<-.data %>%
-    dplyr::mutate(CodeZone=forcats::fct_expand(.data$CodeZone,
-                               levels(a_ajouter$CodeZone)),
-           TypeZone=forcats::fct_expand(.data$TypeZone,
-                               levels(a_ajouter$TypeZone)),
-           Zone=forcats::fct_expand(.data$Zone,
-                           levels(a_ajouter$Zone))
+  tmp <- .data %>%
+    dplyr::mutate(
+      CodeZone = forcats::fct_expand(
+        .data$CodeZone,
+        levels(a_ajouter$CodeZone)
+      ),
+      TypeZone = forcats::fct_expand(
+        .data$TypeZone,
+        levels(a_ajouter$TypeZone)
+      ),
+      Zone = forcats::fct_expand(
+        .data$Zone,
+        levels(a_ajouter$Zone)
+      )
     )
 
-  a_ajouter<-dplyr::mutate(a_ajouter,
-                    CodeZone=factor(.data$CodeZone,levels=levels(tmp$CodeZone)),
-                    Zone=factor(.data$Zone,levels=levels(tmp$Zone)),
-                    TypeZone=factor(.data$TypeZone,levels=levels(tmp$TypeZone)),
+  a_ajouter <- dplyr::mutate(a_ajouter,
+    CodeZone = factor(.data$CodeZone, levels = levels(tmp$CodeZone)),
+    Zone = factor(.data$Zone, levels = levels(tmp$Zone)),
+    TypeZone = factor(.data$TypeZone, levels = levels(tmp$TypeZone)),
   )
-  res<-dplyr::bind_rows(tmp,a_ajouter)
+  res <- dplyr::bind_rows(tmp, a_ajouter)
   return(res)
 }

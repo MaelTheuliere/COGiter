@@ -4,19 +4,23 @@
 #' @return TRUE/FALSE
 #' @importFrom dplyr distinct pull
 #' @importFrom tidyr unnest
-#' @examples code_reg_existe("75")
+#' @examples
+#' code_reg_existe("75")
 #' @export
 
-code_reg_existe <- function(region){
-
-  list_code <-  COGiter::liste_zone %>%
+code_reg_existe <- function(region) {
+  list_code <- COGiter::liste_zone %>%
     tidyr::unnest(REG) %>%
     distinct(REG) %>%
     pull() %>%
     as.character()
 
-  if (region %in% list_code) { return(TRUE) }
-  else { return(FALSE)  }
+  if (region %in% list_code) {
+    return(TRUE)
+  }
+  else {
+    return(FALSE)
+  }
 }
 
 
@@ -26,19 +30,23 @@ code_reg_existe <- function(region){
 #' @return TRUE/FALSE
 #' @importFrom dplyr distinct pull
 #' @importFrom tidyr unnest
-#' @examples code_dep_existe("24")
+#' @examples
+#' code_dep_existe("24")
 #' @export
 
-code_dep_existe <- function(departement){
-
-  list_code <-  COGiter::liste_zone %>%
+code_dep_existe <- function(departement) {
+  list_code <- COGiter::liste_zone %>%
     tidyr::unnest(DEP) %>%
     distinct(DEP) %>%
     pull() %>%
     as.character()
 
-  if (departement %in% list_code) { return(TRUE) }
-  else { return(FALSE) }
+  if (departement %in% list_code) {
+    return(TRUE)
+  }
+  else {
+    return(FALSE)
+  }
 }
 
 
@@ -48,19 +56,23 @@ code_dep_existe <- function(departement){
 #' @return TRUE/FALSE
 #' @importFrom dplyr distinct pull
 #' @importFrom tidyr unnest
-#' @examples code_epci_existe("249740077")
+#' @examples
+#' code_epci_existe("249740077")
 #' @export
 
-code_epci_existe <- function(epci){
-
-  list_code <-  COGiter::liste_zone %>%
+code_epci_existe <- function(epci) {
+  list_code <- COGiter::liste_zone %>%
     tidyr::unnest(EPCI) %>%
     distinct(EPCI) %>%
     pull() %>%
     as.character()
 
-  if (epci %in% list_code) { return(TRUE) }
-  else { return(FALSE) }
+  if (epci %in% list_code) {
+    return(TRUE)
+  }
+  else {
+    return(FALSE)
+  }
 }
 
 
@@ -70,20 +82,24 @@ code_epci_existe <- function(epci){
 #' @return TRUE/FALSE
 #' @importFrom dplyr filter distinct pull
 #' @importFrom tidyr unnest
-#' @examples code_com_existe("75056")
+#' @examples
+#' code_com_existe("75056")
 #' @export
 
-code_com_existe <- function(commune){
-
-  list_code <-  COGiter::liste_zone %>%
+code_com_existe <- function(commune) {
+  list_code <- COGiter::liste_zone %>%
     tidyr::unnest(CodeZone) %>%
-    filter(TypeZone== "Communes") %>%
+    filter(TypeZone == "Communes") %>%
     distinct(CodeZone) %>%
     pull() %>%
     as.character()
 
-  if (commune %in% list_code) { return(TRUE) }
-  else { return(FALSE)  }
+  if (commune %in% list_code) {
+    return(TRUE)
+  }
+  else {
+    return(FALSE)
+  }
 }
 
 #' test si le code commune est un code ayant existé mais qui n'est plus valide
@@ -92,10 +108,13 @@ code_com_existe <- function(commune){
 #' @return TRUE/FALSE
 #' @export
 #'
-#' @examples code_com_non_a_jour("75056")
+#' @examples
+#' code_com_non_a_jour("75056")
 code_com_non_a_jour <- function(commune) {
-  liste_non_a_jour <- setdiff(table_passage_com_historique$DEPCOM_HIST,
-                              table_passage_com_historique$DEPCOM)
+  liste_non_a_jour <- setdiff(
+    table_passage_com_historique$DEPCOM_HIST,
+    table_passage_com_historique$DEPCOM
+  )
   if (!(commune %in% table_passage_com_historique$DEPCOM_HIST)) {
     stop("commune n'est pas un code commune ayant exist\u00e9")
   }
@@ -108,7 +127,8 @@ code_com_non_a_jour <- function(commune) {
 #' @return TRUE/FALSE
 #' @export
 #'
-#' @examples code_com_plm("75120")
+#' @examples
+#' code_com_plm("75120")
 code_com_plm <- function(commune) {
   if (!(commune %in% table_passage_com_historique$DEPCOM_HIST)) {
     stop("commune n'est pas un code commune valide")
@@ -122,19 +142,23 @@ code_com_plm <- function(commune) {
 #' @return une liste de caractere
 #' @importFrom dplyr filter pull
 #' @importFrom tidyr unnest
-#' @examples list_dep_in_reg("75")
+#' @examples
+#' list_dep_in_reg("75")
 #' @export
 
-list_dep_in_reg <- function(region){
-
-  list_code <-  COGiter::liste_zone %>%
+list_dep_in_reg <- function(region) {
+  list_code <- COGiter::liste_zone %>%
     tidyr::unnest(REG) %>%
-    filter(TypeZone== "D\u00e9partements", REG == as.character(region)) %>%
+    filter(TypeZone == "D\u00e9partements", REG == as.character(region)) %>%
     pull(CodeZone) %>%
     as.character()
 
-  if (length(list_code)!=0) { return(list_code) }
-  else { warning("Code non existant")  }
+  if (length(list_code) != 0) {
+    return(list_code)
+  }
+  else {
+    warning("Code non existant")
+  }
 }
 
 
@@ -144,19 +168,23 @@ list_dep_in_reg <- function(region){
 #' @return un caractere
 #' @importFrom dplyr filter pull
 #' @importFrom tidyr unnest
-#' @examples code_reg_of_dep("24")
+#' @examples
+#' code_reg_of_dep("24")
 #' @export
 
-code_reg_of_dep <- function(departement){
-
-  list_code <-  COGiter::liste_zone %>%
-    filter(TypeZone== "D\u00e9partements", DEP == as.character(departement)) %>%
+code_reg_of_dep <- function(departement) {
+  list_code <- COGiter::liste_zone %>%
+    filter(TypeZone == "D\u00e9partements", DEP == as.character(departement)) %>%
     tidyr::unnest(REG) %>%
     pull(REG) %>%
     as.character()
 
-  if (length(list_code)!=0) { return(list_code) }
-  else { warning("Code non existant")  }
+  if (length(list_code) != 0) {
+    return(list_code)
+  }
+  else {
+    warning("Code non existant")
+  }
 }
 
 
@@ -166,19 +194,23 @@ code_reg_of_dep <- function(departement){
 #' @return une liste de caractère
 #' @importFrom dplyr filter pull
 #' @importFrom tidyr unnest
-#' @examples list_epci_in_dep("24")
+#' @examples
+#' list_epci_in_dep("24")
 #' @export
 
-list_epci_in_dep <- function(departement){
-
-  list_code <-  COGiter::liste_zone %>%
+list_epci_in_dep <- function(departement) {
+  list_code <- COGiter::liste_zone %>%
     tidyr::unnest(DEP) %>%
-    filter(TypeZone== "Epci", DEP == as.character(departement)) %>%
+    filter(TypeZone == "Epci", DEP == as.character(departement)) %>%
     pull(CodeZone) %>%
     as.character()
 
-  if (length(list_code)!=0) { return(list_code) }
-  else { warning("Code non existant")  }
+  if (length(list_code) != 0) {
+    return(list_code)
+  }
+  else {
+    warning("Code non existant")
+  }
 }
 
 
@@ -188,19 +220,23 @@ list_epci_in_dep <- function(departement){
 #' @return un caractere
 #' @importFrom dplyr filter pull
 #' @importFrom tidyr unnest
-#' @examples code_dep_of_epci("200070647")
+#' @examples
+#' code_dep_of_epci("200070647")
 #' @export
 
-code_dep_of_epci <- function(epci){
-
-  list_code <-  COGiter::liste_zone %>%
-    filter(TypeZone== "Epci", EPCI == as.character(epci)) %>%
+code_dep_of_epci <- function(epci) {
+  list_code <- COGiter::liste_zone %>%
+    filter(TypeZone == "Epci", EPCI == as.character(epci)) %>%
     tidyr::unnest(DEP) %>%
     pull(DEP) %>%
     as.character()
 
-  if (length(list_code)!=0) { return(list_code) }
-  else { warning("Code non existant")  }
+  if (length(list_code) != 0) {
+    return(list_code)
+  }
+  else {
+    warning("Code non existant")
+  }
 }
 
 #' Renvoie la liste des EPCI pour une région
@@ -209,19 +245,23 @@ code_dep_of_epci <- function(epci){
 #' @return une liste de caractère
 #' @importFrom dplyr filter pull
 #' @importFrom tidyr unnest
-#' @examples list_epci_in_reg("52")
+#' @examples
+#' list_epci_in_reg("52")
 #' @export
 
-list_epci_in_reg <- function(regions){
-
-  list_code <-  COGiter::liste_zone %>%
+list_epci_in_reg <- function(regions) {
+  list_code <- COGiter::liste_zone %>%
     tidyr::unnest(REG) %>%
-    filter(TypeZone== "Epci", REG == as.character(regions)) %>%
+    filter(TypeZone == "Epci", REG == as.character(regions)) %>%
     pull(CodeZone) %>%
     as.character()
 
-  if (length(list_code)!=0) { return(list_code) }
-  else { warning("Code non existant")  }
+  if (length(list_code) != 0) {
+    return(list_code)
+  }
+  else {
+    warning("Code non existant")
+  }
 }
 
 #' Renvoie le code de la région d appartenance d un epci
@@ -230,19 +270,23 @@ list_epci_in_reg <- function(regions){
 #' @return un caractere
 #' @importFrom dplyr filter pull
 #' @importFrom tidyr unnest
-#' @examples code_reg_of_epci("200070647")
+#' @examples
+#' code_reg_of_epci("200070647")
 #' @export
 
-code_reg_of_epci <- function(epci){
-
-  list_code <-  COGiter::liste_zone %>%
-    filter(TypeZone== "Epci", EPCI == as.character(epci)) %>%
+code_reg_of_epci <- function(epci) {
+  list_code <- COGiter::liste_zone %>%
+    filter(TypeZone == "Epci", EPCI == as.character(epci)) %>%
     tidyr::unnest(REG) %>%
     pull(REG) %>%
     as.character()
 
-  if (length(list_code)!=0) { return(list_code) }
-  else { warning("Code non existant")  }
+  if (length(list_code) != 0) {
+    return(list_code)
+  }
+  else {
+    warning("Code non existant")
+  }
 }
 
 #' Renvoie la liste des communes pour un epci
@@ -251,19 +295,23 @@ code_reg_of_epci <- function(epci){
 #' @return une liste de caractère
 #' @importFrom dplyr filter pull
 #' @importFrom tidyr unnest
-#' @examples list_com_in_epci("200070647")
+#' @examples
+#' list_com_in_epci("200070647")
 #' @export
 
-list_com_in_epci <- function(epci){
-
-  list_code <-  COGiter::liste_zone %>%
+list_com_in_epci <- function(epci) {
+  list_code <- COGiter::liste_zone %>%
     tidyr::unnest(EPCI) %>%
-    filter(TypeZone== "Communes", EPCI == as.character(epci)) %>%
+    filter(TypeZone == "Communes", EPCI == as.character(epci)) %>%
     pull(CodeZone) %>%
     as.character()
 
-  if (length(list_code)!=0) { return(list_code) }
-  else { warning("Code non existant")  }
+  if (length(list_code) != 0) {
+    return(list_code)
+  }
+  else {
+    warning("Code non existant")
+  }
 }
 
 
@@ -273,19 +321,23 @@ list_com_in_epci <- function(epci){
 #' @return un caractere
 #' @importFrom dplyr filter pull
 #' @importFrom tidyr unnest
-#' @examples code_epci_of_com("24037")
+#' @examples
+#' code_epci_of_com("24037")
 #' @export
 
-code_epci_of_com <- function(com){
-
-  list_code <-  COGiter::liste_zone %>%
+code_epci_of_com <- function(com) {
+  list_code <- COGiter::liste_zone %>%
     tidyr::unnest(CodeZone) %>%
-    filter(TypeZone== "Communes", CodeZone == as.character(com)) %>%
+    filter(TypeZone == "Communes", CodeZone == as.character(com)) %>%
     pull(EPCI) %>%
     as.character()
 
-  if (length(list_code)!=0) { return(list_code) }
-  else { warning("Code non existant")  }
+  if (length(list_code) != 0) {
+    return(list_code)
+  }
+  else {
+    warning("Code non existant")
+  }
 }
 
 
@@ -295,19 +347,23 @@ code_epci_of_com <- function(com){
 #' @return un caractere
 #' @importFrom dplyr filter pull
 #' @importFrom tidyr unnest
-#' @examples code_dep_of_com("24037")
+#' @examples
+#' code_dep_of_com("24037")
 #' @export
 
-code_dep_of_com <- function(com){
-
-  list_code <-  COGiter::liste_zone %>%
+code_dep_of_com <- function(com) {
+  list_code <- COGiter::liste_zone %>%
     tidyr::unnest(CodeZone) %>%
-    filter(TypeZone== "Communes", CodeZone == as.character(com)) %>%
+    filter(TypeZone == "Communes", CodeZone == as.character(com)) %>%
     pull(DEP) %>%
     as.character()
 
-  if (length(list_code)!=0) { return(list_code) }
-  else { warning("Code non existant")  }
+  if (length(list_code) != 0) {
+    return(list_code)
+  }
+  else {
+    warning("Code non existant")
+  }
 }
 
 
@@ -317,19 +373,23 @@ code_dep_of_com <- function(com){
 #' @return une liste de caractère
 #' @importFrom dplyr filter pull
 #' @importFrom tidyr unnest
-#' @examples list_com_in_dep("24")
+#' @examples
+#' list_com_in_dep("24")
 #' @export
 
-list_com_in_dep <- function(departement){
-
-  list_code <-  COGiter::liste_zone %>%
+list_com_in_dep <- function(departement) {
+  list_code <- COGiter::liste_zone %>%
     tidyr::unnest(DEP) %>%
-    filter(TypeZone== "Communes", DEP == as.character(departement)) %>%
+    filter(TypeZone == "Communes", DEP == as.character(departement)) %>%
     pull(CodeZone) %>%
     as.character()
 
-  if (length(list_code)!=0) { return(list_code) }
-  else { warning("Code non existant")  }
+  if (length(list_code) != 0) {
+    return(list_code)
+  }
+  else {
+    warning("Code non existant")
+  }
 }
 
 #' Renvoie le code de la région d appartenance d une commune
@@ -338,19 +398,23 @@ list_com_in_dep <- function(departement){
 #' @return un caractere
 #' @importFrom dplyr filter pull
 #' @importFrom tidyr unnest
-#' @examples code_reg_of_com("24037")
+#' @examples
+#' code_reg_of_com("24037")
 #' @export
 
-code_reg_of_com <- function(com){
-
-  list_code <-  COGiter::liste_zone %>%
-    filter(TypeZone== "Communes", CodeZone == as.character(com)) %>%
+code_reg_of_com <- function(com) {
+  list_code <- COGiter::liste_zone %>%
+    filter(TypeZone == "Communes", CodeZone == as.character(com)) %>%
     tidyr::unnest(REG) %>%
     pull(REG) %>%
     as.character()
 
-  if (length(list_code)!=0) { return(list_code) }
-  else { warning("Code non existant")  }
+  if (length(list_code) != 0) {
+    return(list_code)
+  }
+  else {
+    warning("Code non existant")
+  }
 }
 
 
@@ -360,18 +424,21 @@ code_reg_of_com <- function(com){
 #' @return une liste de caractère
 #' @importFrom dplyr filter pull
 #' @importFrom tidyr unnest
-#' @examples list_com_in_reg("52")
+#' @examples
+#' list_com_in_reg("52")
 #' @export
 
-list_com_in_reg <- function(regions){
-
-  list_code <-  COGiter::liste_zone %>%
+list_com_in_reg <- function(regions) {
+  list_code <- COGiter::liste_zone %>%
     tidyr::unnest(REG) %>%
-    filter(TypeZone== "Communes", REG == as.character(regions)) %>%
+    filter(TypeZone == "Communes", REG == as.character(regions)) %>%
     pull(CodeZone) %>%
     as.character()
 
-  if (length(list_code)!=0) { return(list_code) }
-  else { warning("Code non existant")  }
+  if (length(list_code) != 0) {
+    return(list_code)
+  }
+  else {
+    warning("Code non existant")
+  }
 }
-
