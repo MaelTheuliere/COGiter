@@ -48,7 +48,7 @@ ajouter_typologie(
 \item{var_zone}{le nom de la variable zone dans zonage_df}
 }
 \value{
-Renvoie une table de donnees cogifiée augmentée des calculs pour ce nouveau zonage
+Renvoie une table de donnees cogifiée augmentée des calculs pour ces nouvelles typologies
 }
 \description{
 Ajouter une typologie supra communale spécifique à une table cogifiée

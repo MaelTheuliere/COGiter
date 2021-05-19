@@ -3,6 +3,7 @@
 export("%>%")
 export(ajouter_typologie)
 export(ajouter_zonage)
+export(charger_zonage)
 export(code_com_existe)
 export(code_com_non_a_jour)
 export(code_com_plm)

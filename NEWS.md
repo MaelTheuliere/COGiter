@@ -5,8 +5,9 @@
 - Amélioration documentation des datasets
 - Ajout fonctions pour traiter la correspondances des territoires
 - Ajout fonctions pour savoir si un code commune/epci/departements/regions est valide
-- Ajout fonction ajouter_typologie qui permet de créer des agrégats par typologie de territoire et type de territoire (epci, départements, région...)
-- Ajout table arn_plm des arrondissements de Paris, Lyon et Marseille
+- Ajout fonction ajouter_typologie() qui permet de créer des agrégats par typologie de territoire et type de territoire (epci, départements, région...)
+- Ajout "arn_plm", table des arrondissements de Paris, Lyon et Marseille
+- Ajout  "table_passage_communes_zonages", table de passage des communes vers des zonages supra
 
 # COGiter 0.0.7
 

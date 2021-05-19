@@ -154,11 +154,11 @@ ajouter_typologie <- function(.data,
       franceprovince = franceprovince
     ) %>%
     dplyr::mutate(
-      TypeZone = paste(TypeZoneTypo, TypeZone, sep = " - ") %>% as.factor(),
-      Zone = paste(ZoneTypo, Zone, sep = " - ") %>% as.factor(),
-      CodeZone = paste(CodeZoneTypo, CodeZone, sep = " - ") %>% as.factor()
+      TypeZone = paste(.data$TypeZoneTypo, .data$TypeZone, sep = " - ") %>% as.factor(),
+      Zone = paste(.data$ZoneTypo, .data$Zone, sep = " - ") %>% as.factor(),
+      CodeZone = paste(.data$CodeZoneTypo, .data$CodeZone, sep = " - ") %>% as.factor()
     ) %>%
-    dplyr::select(-CodeZoneTypo, -TypeZoneTypo, -ZoneTypo)
+    dplyr::select(-.data$CodeZoneTypo, -.data$TypeZoneTypo, -.data$ZoneTypo)
 
   tmp <- .data %>%
     dplyr::mutate(
@@ -182,5 +182,29 @@ ajouter_typologie <- function(.data,
     TypeZone = factor(.data$TypeZone, levels = levels(tmp$TypeZone)),
   )
   res <- dplyr::bind_rows(tmp, a_ajouter)
+  return(res)
+}
+
+
+#' Charger un zonage présent dans la table table_passage_communes_zonages
+#'
+#' @param zonage Caractère - Zonage parmi ceux disponibles
+#'
+#' @return Un dataframe
+#' @importFrom dplyr select mutate
+#' @importFrom purrr set_names
+#' @importFrom rlang sym
+#' @export
+#'
+#' @examples
+#' charger_zonage("ARR")
+charger_zonage <- function(zonage) {
+  res <- table_passage_communes_zonages %>%
+    dplyr::select(DEPCOM,
+                  rlang::sym(zonage),
+                  rlang::sym(paste0("LIB_",zonage))
+    ) %>%
+    dplyr::mutate(TypeZone = zonage) %>%
+    purrr::set_names("DEPCOM","CodeZone","Zone","TypeZone")
   return(res)
 }

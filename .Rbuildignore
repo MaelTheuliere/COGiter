@@ -6,3 +6,4 @@
 ^\.Rproj\.user$
 ^.*\.Rproj$
 ^\.github$
+^R/api_geo_data_gouv\.R$
