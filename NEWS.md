@@ -1,5 +1,16 @@
 # Version de développement 
 
+- Mise à jour COG 2021
+- Ajout logo
+- Amélioration documentation des datasets
+- Ajout fonctions pour traiter la correspondances des territoires
+- Ajout fonctions pour savoir si un code commune/epci/departements/regions est valide
+- Ajout fonction ajouter_typologie() qui permet de créer des agrégats par typologie de territoire et type de territoire (epci, départements, région...)
+- Ajout "arn_plm", table des arrondissements de Paris, Lyon et Marseille
+- Ajout  "table_passage_communes_zonages", table de passage des communes vers des zonages supra
+- Ajout fonction charger_zonage() qui permet de créer un zonage supra-communal adapté aux fonctions ajouter_zonage() et ajouter_typologie()
+
+
 # COGiter 0.0.7
 
 - Correction bug passer_au_cog_a_jour suite à une regression

@@ -5,7 +5,7 @@
 \alias{liste_zone}
 \title{Une table permettant de lister pour chaque département ou région les zonages infra}
 \format{
-A data frame with 39161 rows and 2 variables:
+A data frame with 36338 rows and 7 variables:
 \describe{
 \item{TypeZone}{Type de la zone : communes,epci,départements,régions}
 \item{CodeZone}{Code de la zone}

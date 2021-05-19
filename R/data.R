@@ -2,13 +2,14 @@
 #'
 #' Un dataset contenant chaque commune, communes déléguées,arrondissements, de France
 #'
-#' @format A data frame with 37932 rows and 11 variables:
+#' @format A data frame with `r nrow(communes_cog)` rows and `r ncol(communes_cog)` variables:
 #' \describe{
 #'   \item{TYPECOM}{Code Insee}
 #'   \item{DEPCOM}{Code Insee}
 #'   \item{NOM_DEPCOM}{Nom en clair (typographie riche) avec article }
 #'   \item{REG}{Code Insee de la région de rattachement}
 #'   \item{DEP}{Code Insee du département de rattachement}
+#'   \item{CTCD}{Code de la collectivité territoriale ayant les compétences départementales}
 #'   \item{ARR}{Code arrondissement}
 #'   \item{TNCC}{Type de nom en clair}
 #'   \item{NCC}{Nom en clair (majuscules)}
@@ -16,6 +17,9 @@
 #'   \item{CAN}{Code canton. Pour les communes « multi-cantonales » code décliné de 99 à 90 (pseudo-canton) ou de 89 à 80 (communes nouvelles) }
 #'   \item{COMPARENT}{Code de la commune parente pour les arrondissements municipaux et les communes associées ou déléguées. }
 #' }
+#' ```{r}
+#' head(communes_cog)
+#' ```
 #' @source \url{https://www.insee.fr/fr/information/3720946#titre-bloc-3}
 "communes_cog"
 
@@ -23,7 +27,7 @@
 #'
 #' Un dataset contenant chaque commune de France
 #'
-#' @format A data frame with 34970 rows and 16 variables:
+#' @format A data frame with `r nrow(communes)` rows and `r ncol(communes)` variables:
 #' \describe{
 #'   \item{DEPCOM}{Code Insee}
 #'   \item{NOM_DEPCOM}{Nom en clair (typographie riche) avec article }
@@ -50,7 +54,7 @@
 #'
 #' Un dataset contenant chaque commune les informations de rattachement supracommunales
 #'
-#' @format A data frame with 34970 rows and 10 variables:
+#' @format A data frame with `r nrow(communes_info_supra)` rows and `r ncol(communes_info_supra)` variables:
 #' \describe{
 #'   \item{DEPCOM}{Code Insee}
 #'   \item{NOM_DEPCOM}{Nom en clair (typographie riche) avec article }
@@ -69,7 +73,7 @@
 #'
 #' Un dataset contenant chaque départements de France
 #'
-#' @format A data frame with 101 rows and 7 variables:
+#' @format A data frame with `r nrow(departements)` rows and `r ncol(departements)` variables:
 #' \describe{
 #'   \item{DEP}{Code Insee du département}
 #'   \item{REG}{Code Insee de la région de rattachement}
@@ -86,7 +90,7 @@
 #'
 #' Un dataset contenant chaque epci de France
 #'
-#' @format A data frame with 1264 rows and 4 variables:
+#' @format A data frame with `r nrow(epci)` rows and `r ncol(departements)` variables:
 #' \describe{
 #'   \item{EPCI}{Code siren de l'EPCI}
 #'   \item{NOM_EPCI}{Nom de l'EPCI}
@@ -102,7 +106,7 @@
 #'
 #' Un dataset contenant chaque régions de France
 #'
-#' @format A data frame with 18 rows and 6 variables:
+#' @format A data frame with `r nrow(regions)` rows and `r ncol(regions)` variables:
 #' \describe{
 #'   \item{REG}{Code Insee de la région}
 #'   \item{CHEFLIEU}{Chef-lieu d'arrondissement, de département, de région ou bureau centralisateur}
@@ -118,7 +122,7 @@
 #'
 #' Un dataset contenant pour chaque commune de France actuelle le code sirene de son EPCI
 #'
-#' @format A data frame with 34970 rows and 2 variables:
+#' @format A data frame with `r nrow(table_passage_com_epci)` rows and `r ncol(table_passage_com_epci)` variables:
 #' \describe{
 #'   \item{DEPCOM}{Code Insee de la commune}
 #'   \item{EPCI}{Code siren de l'EPCI de rattachement}
@@ -130,7 +134,7 @@
 #' Table des mouvements des communes
 #'
 #' Un dataset listant les mouvements opérés sur la carte communale
-#' @format A data frame with 13157 rows and 14 variables:
+#' @format A data frame with `r nrow(mvtcommunes)` rows and `r ncol(mvtcommunes)` variables:
 #' \describe{
 #'   \item{MOD}{Type d'événement de communes}
 #'   \item{DATE_EFF}{Date d'effet}
@@ -156,7 +160,7 @@
 #' Cette table permet de gérer le suivi des fusions de communes.
 #' Elle se base sur un exploitation de la table historique du COG 2018 et de la table des mouvements du COG 2019
 #'
-#' @format A data frame with 39161 rows and 2 variables:
+#' @format A data frame with `r nrow(table_passage_com_historique)` rows and `r ncol(table_passage_com_historique)` variables:
 #' \describe{
 #'   \item{DEPCOM_HIST}{Code Insee de la commune historique}
 #'   \item{DEPCOM}{Code Insee de la commune}
@@ -164,11 +168,22 @@
 #' @source \url{https://www.insee.fr/fr/information/3720946#titre-bloc-23}
 "table_passage_com_historique"
 
+#' Table de passage des arrondissements de Paris, Lyon, Marseille vers leur code commune.
+#'
+#' Un dataset contenant pour chaque arrondissement de Paris, Lyon et Marseille le code de la commune de rattachement
+#'
+#' @format A data frame with `r nrow(arn_plm)` rows and `r ncol(arn_plm)` variables:
+#' \describe{
+#'   \item{ARN}{Code Insee de l'arrondissement}
+#'   \item{DEPCOM}{Code Insee de la commune}
+#' }
+"arn_plm"
+
 #' Une table permettant de lister pour chaque département ou région les zonages infra
 #'
 #' Une table permettant de lister pour chaque département ou région les zonages infra
 #'
-#' @format A data frame with 39161 rows and 2 variables:
+#' @format A data frame with `r nrow(liste_zone)` rows and `r ncol(liste_zone)` variables:
 #' \describe{
 #'   \item{TypeZone}{Type de la zone : communes,epci,départements,régions}
 #'   \item{CodeZone}{Code de la zone}
@@ -184,7 +199,7 @@
 #'
 #' Une table du recencement de la population de 2015
 #'
-#' @format A data frame with 35441 rows and 4 variables:
+#' @format A data frame with `r nrow(pop2015)` rows and `r ncol(pop2015)` variables:
 #' \describe{
 #'   \item{DEPCOM}{Code commune (géographie 2014)}
 #'   \item{pop2015}{population 2015}
@@ -198,7 +213,7 @@
 #'
 #' Un dataset contenant pour chaque commune du GOG 2019 de la région Pays de la Loire le zonage ABC 2014 révisé en 2019 correspondant
 #'
-#' @format A data frame with 1238 rows and 2 variables:
+#' @format A data frame with `r nrow(zonage_abc_r52)` rows and `r ncol(zonage_abc_r52)` variables:
 #' \describe{
 #'   \item{DEPCOM}{Code Insee de la commune}
 #'   \item{zonage_abc}{Zonage ABC}
@@ -209,7 +224,7 @@
 #'
 #' Un dataset contenant pour chaque commune du GOG 2019 le zonage ABC 2014 révisé en 2019  correspondant
 #'
-#' @format A data frame with 34970 rows and 2 variables:
+#' @format A data frame with `r nrow(zonage_abc)` rows and `r ncol(zonage_abc)` variables:
 #' \describe{
 #'   \item{DEPCOM}{Code Insee de la commune}
 #'   \item{zonage_abc}{Zonage ABC}
@@ -220,7 +235,7 @@
 #'
 #' Un dataset contenant pour la liste des communes 2019 éligible au pinel en 2019
 #'
-#' @format A data frame with 70 rows and 2 variables:
+#' @format A data frame with `r nrow(zonage_pinel_r52)` rows and `r ncol(zonage_pinel_r52)` variables:
 #' \describe{
 #'   \item{DEPCOM}{Code Insee de la commune}
 #'   \item{zonage_pinel}{Zonage Pinel}

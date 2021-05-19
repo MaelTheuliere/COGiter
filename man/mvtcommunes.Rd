@@ -5,7 +5,7 @@
 \alias{mvtcommunes}
 \title{Table des mouvements des communes}
 \format{
-A data frame with 13157 rows and 14 variables:
+A data frame with 13470 rows and 14 variables:
 \describe{
 \item{MOD}{Type d'événement de communes}
 \item{DATE_EFF}{Date d'effet}
