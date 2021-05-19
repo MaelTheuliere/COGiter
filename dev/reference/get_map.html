@@ -8,6 +8,13 @@
 
 <title>Obtenir les cartes en fonction de la localisation en métropole ou dans les DROM — get_map • COGiter</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -41,6 +48,7 @@
 
 <meta property="og:title" content="Obtenir les cartes en fonction de la localisation en métropole ou dans les DROM — get_map" />
 <meta property="og:description" content="Obtenir les cartes en fonction de la localisation en métropole ou dans les DROM" />
+<meta property="og:image" content="/logo.png" />
 
 
 <meta name="robots" content="noindex">
@@ -159,33 +167,33 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>get_map</span><span class='op'>(</span>epci <span class='op'>=</span> <span class='st'>"244400404"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: argument is not an atomic vector; coercing</span></div><div class='output co'>#&gt; <span class='warning'>Warning: longer object length is not a multiple of shorter object length</span></div><div class='output co'>#&gt; <span class='warning'>Warning: argument is not an atomic vector; coercing</span></div><div class='output co'>#&gt; <span class='warning'>Warning: argument is not an atomic vector; coercing</span></div><div class='output co'>#&gt; <span class='warning'>Warning: argument is not an atomic vector; coercing</span></div><div class='output co'>#&gt; <span class='warning'>Warning: argument is not an atomic vector; coercing</span></div><div class='output co'>#&gt; <span class='warning'>Warning: argument is not an atomic vector; coercing</span></div><div class='output co'>#&gt; <span class='warning'>Warning: argument is not an atomic vector; coercing</span></div><div class='output co'>#&gt; <span class='warning'>Warning: longer object length is not a multiple of shorter object length</span></div><div class='output co'>#&gt; <span class='warning'>Warning: argument is not an atomic vector; coercing</span></div><div class='output co'>#&gt; <span class='warning'>Warning: argument is not an atomic vector; coercing</span></div><div class='output co'>#&gt; <span class='warning'>Warning: argument is not an atomic vector; coercing</span></div><div class='output co'>#&gt; <span class='warning'>Warning: argument is not an atomic vector; coercing</span></div><div class='output co'>#&gt; <span class='warning'>Warning: argument is not an atomic vector; coercing</span></div><div class='output co'>#&gt; $com_geo
-#&gt; Simple feature collection with 34839 features and 2 fields
-#&gt; geometry type:  MULTIPOLYGON
-#&gt; dimension:      XY
-#&gt; bbox:           xmin: 99040 ymin: 6049681 xmax: 1242444 ymax: 7110479
-#&gt; projected CRS:  RGF93 / Lambert-93
-#&gt; <span style='color: #949494;'># A tibble: 34,839 x 3</span><span>
+#&gt; Simple feature collection with 34836 features and 2 fields
+#&gt; Geometry type: GEOMETRY
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 99040 ymin: 6049681 xmax: 1242444 ymax: 7110479
+#&gt; Projected CRS: RGF93 / Lambert-93
+#&gt; <span style='color: #949494;'># A tibble: 34,836 x 3</span><span>
 #&gt;    DEPCOM     AREA                                                      geometry
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #949494;'>[m^2]</span><span>                                            </span><span style='color: #949494;font-style: italic;'>&lt;MULTIPOLYGON [m]&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 32216   9376180 (((501878.2 6267455, 501951 6267382, 502074.3 6266956, 50242…
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 47033  10254007 (((517154.1 6383591, 516723 6383480, 516671.1 6383457, 51660…
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 38225  77705208 (((902147.8 6463688, 902165.6 6463719, 902290 6463767, 90234…
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 32009   9185168 (((473133.5 6280663, 473157.5 6280674, 473771.2 6280615, 474…
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 62890  10276478 (((641994.8 7030576, 641859.2 7030505, 641751.8 7030348, 641…
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 08018   4399794 (((823029.8 6907777, 823097.1 6907892, 823421.8 6908346, 823…
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 32113   9276726 (((461213.2 6299858, 461182.4 6299868, 460553.2 6300193, 460…
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 10319  19210557 (((744144.3 6786646, 744012.9 6786778, 743775.6 6786895, 743…
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 42070  26714264 (((779266.8 6538044, 779306.7 6538065, 779341 6538063, 77946…
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 06097  22202325 (((1025406 6315941, 1025281 6316407, 1025230 6316956, 102532…
-#&gt; </span><span style='color: #949494;'># … with 34,829 more rows</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 01001  15737871 (((846985.3 6564105, 846995.7 6564208, 847015.2 6564655, 847…
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 01002   9112278 (((886026.1 6548175, 886157.9 6548496, 886285.3 6548697, 886…
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 01004  24784212 (((884889.8 6539631, 884822.4 6539610, 884795.7 6539615, 884…
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 01005  16004376 (((845947 6547998, 846057.5 6548051, 846074.5 6548052, 84666…
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 01006   6092798 (((901335.5 6521127, 901401.1 6521152, 901549.8 6521169, 901…
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 01007  33717139 (((886026.1 6548175, 886141.6 6548106, 886188.1 6548070, 886…
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 01008   5081379 (((878932.6 6540739, 879047.1 6540688, 879288.2 6540766, 879…
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 01009   6930424 (((905769.6 6521658, 905734.7 6521678, 905713.8 6521711, 905…
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 01010  29617065 (((913981.3 6535875, 914037.1 6536215, 914046.2 6536393, 914…
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 01011  15140592 (((903239.9 6568380, 903245 6568389, 903322.7 6568716, 90323…
+#&gt; </span><span style='color: #949494;'># … with 34,826 more rows</span><span>
 #&gt; 
 #&gt; $epci_geo
-#&gt; Simple feature collection with 1232 features and 2 fields
-#&gt; geometry type:  GEOMETRY
-#&gt; dimension:      XY
-#&gt; bbox:           xmin: 111367.9 ymin: 6049681 xmax: 1242444 ymax: 7110479
-#&gt; projected CRS:  RGF93 / Lambert-93
-#&gt; </span><span style='color: #949494;'># A tibble: 1,232 x 3</span><span>
+#&gt; Simple feature collection with 1231 features and 2 fields
+#&gt; Geometry type: GEOMETRY
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 111367.9 ymin: 6049681 xmax: 1242444 ymax: 7110479
+#&gt; Projected CRS: RGF93 / Lambert-93
+#&gt; </span><span style='color: #949494;'># A tibble: 1,231 x 3</span><span>
 #&gt;    EPCI          AREA                                                   geometry
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>        </span><span style='color: #949494;'>[m^2]</span><span>                                              </span><span style='color: #949494;font-style: italic;'>&lt;POLYGON [m]&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 2000001… 150696248 ((966748.4 6552733, 966755.8 6552381, 966730.4 6551740, 9…
@@ -194,18 +202,18 @@
 #&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 2000006… 150413311 ((836207.1 6345747, 836195.7 6345851, 836197.2 6345973, 8…
 #&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 2000008… 342468283 ((631434.7 6721265, 631378 6721142, 631296.9 6720920, 631…
 #&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 2000009… 204165930 ((864723.7 6673592, 864701.5 6673591, 864660 6673555, 864…
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 2000009… 868359249 ((657974.2 6689616, 658009.5 6689367, 658084.8 6689146, 6…
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 2000009… 974277003 ((657974.2 6689616, 658009.5 6689367, 658084.8 6689146, 6…
 #&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 2000048… 408046364 ((1005237 6278923, 1005251 6278705, 1005139 6278186, 1005…
 #&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 2000059… 417855138 ((604602.7 6734013, 604749 6734098, 605124.3 6734242, 605…
 #&gt; </span><span style='color: #BCBCBC;'>10</span><span> 2000059… 328763775 ((980306.8 6808608, 980228.7 6808502, 980198.4 6808427, 9…
-#&gt; </span><span style='color: #949494;'># … with 1,222 more rows</span><span>
+#&gt; </span><span style='color: #949494;'># … with 1,221 more rows</span><span>
 #&gt; 
 #&gt; $dep_geo
 #&gt; Simple feature collection with 96 features and 2 fields
-#&gt; geometry type:  GEOMETRY
-#&gt; dimension:      XY
-#&gt; bbox:           xmin: 99040 ymin: 6049681 xmax: 1242444 ymax: 7110479
-#&gt; projected CRS:  RGF93 / Lambert-93
+#&gt; Geometry type: GEOMETRY
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 99040 ymin: 6049681 xmax: 1242444 ymax: 7110479
+#&gt; Projected CRS: RGF93 / Lambert-93
 #&gt; </span><span style='color: #949494;'># A tibble: 96 x 3</span><span>
 #&gt;    DEP         AREA                                                     geometry
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>      </span><span style='color: #949494;'>[m^2]</span><span>                                                </span><span style='color: #949494;font-style: italic;'>&lt;POLYGON [m]&gt;</span><span>
@@ -223,10 +231,10 @@
 #&gt; 
 #&gt; $reg_geo
 #&gt; Simple feature collection with 13 features and 2 fields
-#&gt; geometry type:  GEOMETRY
-#&gt; dimension:      XY
-#&gt; bbox:           xmin: 99040 ymin: 6049681 xmax: 1242444 ymax: 7110479
-#&gt; projected CRS:  RGF93 / Lambert-93
+#&gt; Geometry type: GEOMETRY
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 99040 ymin: 6049681 xmax: 1242444 ymax: 7110479
+#&gt; Projected CRS: RGF93 / Lambert-93
 #&gt; </span><span style='color: #949494;'># A tibble: 13 x 3</span><span>
 #&gt;    REG          AREA                                                    geometry
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>       </span><span style='color: #949494;'>[m^2]</span><span>                                              </span><span style='color: #949494;font-style: italic;'>&lt;GEOMETRY [m]&gt;</span><span>

@@ -8,6 +8,13 @@
 
 <title>Function reference • COGiter</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -40,6 +47,7 @@
 
 
 <meta property="og:title" content="Function reference" />
+<meta property="og:image" content="/logo.png" />
 
 
 <meta name="robots" content="noindex">
@@ -145,9 +153,99 @@
       <tr>
         
         <td>
+          <p><code><a href="ajouter_typologie.html">ajouter_typologie()</a></code> </p>
+        </td>
+        <td><p>Ajouter une typologie supra communale spécifique à une table cogifiée</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="ajouter_zonage.html">ajouter_zonage()</a></code> </p>
         </td>
         <td><p>Ajouter un zonage supra communal spécifique à une table cogifiée</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="arn_plm.html">arn_plm</a></code> </p>
+        </td>
+        <td><p>Table de passage des arrondissements de Paris, Lyon, Marseille vers leur code commune.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="charger_zonage.html">charger_zonage()</a></code> </p>
+        </td>
+        <td><p>Créer un zonage supra-communal adapté aux fonctions ajouter_zonage() et ajouter_typologie()</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="code_com_existe.html">code_com_existe()</a></code> </p>
+        </td>
+        <td><p>teste que le code commune existe</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="code_com_non_a_jour.html">code_com_non_a_jour()</a></code> </p>
+        </td>
+        <td><p>test si le code commune est un code ayant existé mais qui n'est plus valide</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="code_com_plm.html">code_com_plm()</a></code> </p>
+        </td>
+        <td><p>test si le code commune est celui d'un arrondissement de Paris, Lyon ou Marseille</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="code_dep_existe.html">code_dep_existe()</a></code> </p>
+        </td>
+        <td><p>teste que le code departement existe</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="code_dep_of_com.html">code_dep_of_com()</a></code> </p>
+        </td>
+        <td><p>Renvoie le code du département d appartenance d une commune</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="code_dep_of_epci.html">code_dep_of_epci()</a></code> </p>
+        </td>
+        <td><p>Renvoie le code du département d appartenance d un epci</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="code_epci_existe.html">code_epci_existe()</a></code> </p>
+        </td>
+        <td><p>teste que le code EPCI existe</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="code_epci_of_com.html">code_epci_of_com()</a></code> </p>
+        </td>
+        <td><p>Renvoie le code de l'epci d appartenance d une commune</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="code_reg_existe.html">code_reg_existe()</a></code> </p>
+        </td>
+        <td><p>teste que le code region existe</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="code_reg_of_com.html">code_reg_of_com()</a></code> </p>
+        </td>
+        <td><p>Renvoie le code de la région d appartenance d une commune</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="code_reg_of_dep.html">code_reg_of_dep()</a></code> </p>
+        </td>
+        <td><p>Renvoie le code de la région d appartenance d un département</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="code_reg_of_epci.html">code_reg_of_epci()</a></code> </p>
+        </td>
+        <td><p>Renvoie le code de la région d appartenance d un epci</p></td>
       </tr><tr>
         
         <td>
@@ -235,6 +333,42 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="list_com_in_dep.html">list_com_in_dep()</a></code> </p>
+        </td>
+        <td><p>Renvoie la liste des communes pour un département</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="list_com_in_epci.html">list_com_in_epci()</a></code> </p>
+        </td>
+        <td><p>Renvoie la liste des communes pour un epci</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="list_com_in_reg.html">list_com_in_reg()</a></code> </p>
+        </td>
+        <td><p>Renvoie la liste des communes pour une région</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="list_dep_in_reg.html">list_dep_in_reg()</a></code> </p>
+        </td>
+        <td><p>Renvoie la liste des departements pour une region</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="list_epci_in_dep.html">list_epci_in_dep()</a></code> </p>
+        </td>
+        <td><p>Renvoie la liste des EPCI pour un département</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="list_epci_in_reg.html">list_epci_in_reg()</a></code> </p>
+        </td>
+        <td><p>Renvoie la liste des EPCI pour une région</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="liste_zone.html">liste_zone</a></code> </p>
         </td>
         <td><p>Une table permettant de lister pour chaque département ou région les zonages infra</p></td>
@@ -280,6 +414,12 @@
           <p><code><a href="table_passage_com_historique.html">table_passage_com_historique</a></code> </p>
         </td>
         <td><p>Table de passage des fusions de communes.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="table_passage_communes_zonages.html">table_passage_communes_zonages</a></code> </p>
+        </td>
+        <td><p>table_passage_communes_zonages</p></td>
       </tr><tr>
         
         <td>
