@@ -2,18 +2,18 @@
 % Please edit documentation in R/ajouter_zonage.R
 \name{charger_zonage}
 \alias{charger_zonage}
-\title{Charger un zonage présent dans la table table_passage_communes_zonages}
+\title{Créer un zonage supra-communal adapté aux fonctions ajouter_zonage() et ajouter_typologie()}
 \usage{
 charger_zonage(zonage)
 }
 \arguments{
-\item{zonage}{Caractère - Zonage parmi ceux disponibles}
+\item{zonage}{Caractère - Zonages parmi ceux disponibles}
 }
 \value{
 Un dataframe
 }
 \description{
-Charger un zonage présent dans la table table_passage_communes_zonages
+Créer un zonage supra-communal adapté aux fonctions ajouter_zonage() et ajouter_typologie()
 }
 \examples{
 charger_zonage("ARR")

@@ -186,9 +186,9 @@ ajouter_typologie <- function(.data,
 }
 
 
-#' Charger un zonage présent dans la table table_passage_communes_zonages
+#' Créer un zonage supra-communal adapté aux fonctions ajouter_zonage() et ajouter_typologie()
 #'
-#' @param zonage Caractère - Zonage parmi ceux disponibles
+#' @param zonage Caractère - Zonages parmi ceux disponibles
 #'
 #' @return Un dataframe
 #' @importFrom dplyr select mutate
@@ -199,6 +199,12 @@ ajouter_typologie <- function(.data,
 #' @examples
 #' charger_zonage("ARR")
 charger_zonage <- function(zonage) {
+  liste_zonages_disponibles <- setdiff(
+    names(table_passage_communes_zonages) %>% stringr::str_remove("LIB_") %>% unique(),
+    c("DEPCOM")
+  )
+  zonages_disponibles <- glue::glue_collapse(liste_zonages_disponibles,sep = ", ", last = " ou ")
+  if (!zonage %in% liste_zonages_disponibles) stop(glue::glue("Zonage non disponible, merci de sélectionner un zonage dans la liste suivante : {zonages_disponibles}"))
   res <- table_passage_communes_zonages %>%
     dplyr::select(DEPCOM,
                   rlang::sym(zonage),

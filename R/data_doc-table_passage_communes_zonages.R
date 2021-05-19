@@ -5,11 +5,6 @@
 #' @format A data frame with 34965 rows and 27 variables:
 #' \describe{
   #'   \item{ DEPCOM }{  factor Code commune INSEE}
-  #'   \item{ NOM_DEPCOM }{  factor Nom commune INSEE}
-  #'   \item{ DEP }{  factor Code département INSEE}
-  #'   \item{ REG }{  factor Code région INSEE}
-  #'   \item{ EPCI }{  factor Code SIREN EPCI}
-  #'   \item{ NATURE_EPCI }{  factor Nature de l'EPCI}
   #'   \item{ ARR }{  factor Code arrondissement }
   #'   \item{ CV }{  factor Code canton ville }
   #'   \item{ ZE2020 }{  factor Code zone d'emploi 2020 }

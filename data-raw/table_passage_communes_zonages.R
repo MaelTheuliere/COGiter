@@ -93,7 +93,9 @@ table_passage_communes_zonages <- list(table_passage_com_zonages,
              libelle_ze2020) %>%
   reduce(inner_join) %>%
   mutate(across(where(is.character),as.factor)) %>%
-  rename(DEPCOM = CODGEO, NOM_DEPCOM = LIBGEO)
+  rename(DEPCOM = CODGEO, NOM_DEPCOM = LIBGEO) %>%
+  select(-NOM_DEPCOM,-DEP,-REG,-EPCI,-NATURE_EPCI)
+
 nrow(table_passage_communes_zonages) == nrow(table_passage_com_zonages)
 
 use_data(table_passage_communes_zonages, overwrite = TRUE)
