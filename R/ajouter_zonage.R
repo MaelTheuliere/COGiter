@@ -1,4 +1,5 @@
 #' Ajouter un zonage supra communal spécifique à une table cogifiée
+#' `r lifecycle::badge("experimental")`
 #'
 #' @param .data la table de données a filtrer
 #' @param zonage_df le dataframe contenant le rattachement entre le code commune et le nouveau zonage
@@ -6,9 +7,7 @@
 #' @param var_code_zone le nom de la variable code zone dans zonage_df
 #' @param var_type_zone le nom de la variable type zone dans zonage_df
 #' @param var_zone le nom de la variable zone dans zonage_df
-#'
-#'
-#' @return Renvoie une table de donnees cogifiée augmentée des calculs pour ce nouveau zonage
+#' @return Renvoie une table de données cogifiée augmentée des calculs pour ce nouveau zonage
 #' @export
 #' @importFrom dplyr inner_join
 #' @importFrom dplyr mutate
@@ -25,7 +24,6 @@
 #' @importFrom rlang enquo
 #' @importFrom rlang !!
 #' @importFrom rlang .data
-
 
 ajouter_zonage <- function(.data,
                            zonage_df,
@@ -82,6 +80,7 @@ ajouter_zonage <- function(.data,
 
 
 #' Ajouter une typologie supra communale spécifique à une table cogifiée
+#' `r lifecycle::badge("experimental")`
 #'
 #' @param .data la table de données a filtrer
 #' @param epci booléen TRUE si on souhaite des données de chaque classe de la typologiee à l'epci
@@ -96,7 +95,6 @@ ajouter_zonage <- function(.data,
 #' @param var_code_zone le nom de la variable code zone dans zonage_df
 #' @param var_type_zone le nom de la variable type zone dans zonage_df
 #' @param var_zone le nom de la variable zone dans zonage_df
-#'
 #' @return Renvoie une table de donnees cogifiée augmentée des calculs pour ces nouvelles typologies
 #' @export
 #' @importFrom dplyr inner_join
@@ -187,6 +185,7 @@ ajouter_typologie <- function(.data,
 
 
 #' Créer un zonage supra-communal adapté aux fonctions ajouter_zonage() et ajouter_typologie()
+#' `r lifecycle::badge("experimental")`
 #'
 #' @param zonage Caractère - Zonages parmi ceux disponibles
 #'
@@ -195,7 +194,6 @@ ajouter_typologie <- function(.data,
 #' @importFrom purrr set_names
 #' @importFrom rlang sym
 #' @export
-#'
 #' @examples
 #' charger_zonage("ARR")
 charger_zonage <- function(zonage) {
@@ -204,7 +202,7 @@ charger_zonage <- function(zonage) {
     c("DEPCOM")
   )
   zonages_disponibles <- glue::glue_collapse(liste_zonages_disponibles,sep = ", ", last = " ou ")
-  if (!zonage %in% liste_zonages_disponibles) stop(glue::glue("Zonage non disponible, merci de sélectionner un zonage dans la liste suivante : {zonages_disponibles}"))
+  if (!zonage %in% liste_zonages_disponibles) stop(glue::glue("Zonage non disponible, merci de s\u00e9lectionner un zonage dans la liste suivante : {zonages_disponibles}"))
   res <- table_passage_communes_zonages %>%
     dplyr::select(DEPCOM,
                   rlang::sym(zonage),

@@ -2,19 +2,19 @@
 % Please edit documentation in R/corresp_territoires.R
 \name{code_reg_of_epci}
 \alias{code_reg_of_epci}
-\title{Renvoie le code de la région d appartenance d un epci}
+\title{Renvoie le code du région d appartenance de chaque epci}
 \usage{
 code_reg_of_epci(epci)
 }
 \arguments{
-\item{epci}{Character. Le code de l'epci concerné}
+\item{epci}{Character. Un vecteur de codes epci.}
 }
 \value{
-un caractere
+une liste
 }
 \description{
-Renvoie le code de la région d appartenance d un epci
+Renvoie le code du région d appartenance de chaque epci
 }
 \examples{
-code_reg_of_epci("200070647")
+code_reg_of_epci(c("200070647"))
 }

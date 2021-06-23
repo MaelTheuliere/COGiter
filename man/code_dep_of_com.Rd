@@ -4,17 +4,17 @@
 \alias{code_dep_of_com}
 \title{Renvoie le code du département d appartenance d une commune}
 \usage{
-code_dep_of_com(com)
+code_dep_of_com(depcom)
 }
 \arguments{
-\item{com}{Character. Le code de la commune concernée}
+\item{depcom}{Character. Un vecteur de codes commune.}
 }
 \value{
-un caractere
+Un vecteur.
 }
 \description{
 Renvoie le code du département d appartenance d une commune
 }
 \examples{
-code_dep_of_com("24037")
+code_dep_of_com(c("24037","44109"))
 }

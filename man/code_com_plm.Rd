@@ -2,19 +2,19 @@
 % Please edit documentation in R/corresp_territoires.R
 \name{code_com_plm}
 \alias{code_com_plm}
-\title{test si le code commune est celui d'un arrondissement de Paris, Lyon ou Marseille}
+\title{test si les codes communes sont ceux d'un arrondissement de Paris, Lyon ou Marseille}
 \usage{
-code_com_plm(commune)
+code_com_plm(depcom)
 }
 \arguments{
-\item{commune}{Character. code commune}
+\item{depcom}{Character. Un vecteur de codes commune.}
 }
 \value{
-TRUE/FALSE
+Un vecteur de booléens.
 }
 \description{
-test si le code commune est celui d'un arrondissement de Paris, Lyon ou Marseille
+test si les codes communes sont ceux d'un arrondissement de Paris, Lyon ou Marseille
 }
 \examples{
-code_com_plm("75120")
+code_com_plm(c("75056","75112"))
 }

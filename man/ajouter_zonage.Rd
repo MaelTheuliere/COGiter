@@ -2,7 +2,8 @@
 % Please edit documentation in R/ajouter_zonage.R
 \name{ajouter_zonage}
 \alias{ajouter_zonage}
-\title{Ajouter un zonage supra communal spécifique à une table cogifiée}
+\title{Ajouter un zonage supra communal spécifique à une table cogifiée
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
 \usage{
 ajouter_zonage(
   .data,
@@ -27,8 +28,9 @@ ajouter_zonage(
 \item{var_zone}{le nom de la variable zone dans zonage_df}
 }
 \value{
-Renvoie une table de donnees cogifiée augmentée des calculs pour ce nouveau zonage
+Renvoie une table de données cogifiée augmentée des calculs pour ce nouveau zonage
 }
 \description{
 Ajouter un zonage supra communal spécifique à une table cogifiée
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
