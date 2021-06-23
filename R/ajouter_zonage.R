@@ -221,5 +221,5 @@ charger_zonage <- function(zonage) {
 
 #' liste des zonages disponibles
 lister_zonages <- function(){
-  COGiter:::liste_zonages
+  liste_zonages
 }
