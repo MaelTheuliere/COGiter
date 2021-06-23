@@ -80,6 +80,9 @@ ajouter_zonage <- function(.data,
 
 
 #' Ajouter une typologie supra communale spécifique à une table cogifiée
+#'
+#' Permet de rajouter à une table COGifiée de nouveaux type de zonage basé sur des agrégations par epci, departements, régions... de typologie de commune (exemple : aire d'attraction des villes de l'insee, zonage ABC pour le logement)
+#'
 #' `r lifecycle::badge("experimental")`
 #'
 #' @param .data la table de données a filtrer
@@ -112,6 +115,12 @@ ajouter_zonage <- function(.data,
 #' @importFrom rlang enquo
 #' @importFrom rlang !!
 #' @importFrom rlang .data
+#' library(COGiter)
+#' zonage_aav <- charger_zonage("AAV2020")
+#' cogpop2015 <- cogifier(pop2015)
+#' cogpop2015aav <- ajouter_typologie(cogpop2015,
+#'                                   zonage_df = zonage_aav)
+
 ajouter_typologie <- function(.data,
                               epci = FALSE,
                               departements = TRUE,
@@ -197,12 +206,9 @@ ajouter_typologie <- function(.data,
 #' @examples
 #' charger_zonage("ARR")
 charger_zonage <- function(zonage) {
-  liste_zonages_disponibles <- setdiff(
-    names(table_passage_communes_zonages) %>% stringr::str_remove("LIB_") %>% unique(),
-    c("DEPCOM")
-  )
-  zonages_disponibles <- glue::glue_collapse(liste_zonages_disponibles,sep = ", ", last = " ou ")
-  if (!zonage %in% liste_zonages_disponibles) stop(glue::glue("Zonage non disponible, merci de s\u00e9lectionner un zonage dans la liste suivante : {zonages_disponibles}"))
+  liste_zonages_disponibles <- lister_zonages()
+  zonages_disponibles <- paste0(liste_zonages_disponibles$`Code du zonage`," (",liste_zonages_disponibles$`Nom du zonage`," )", collapse = ", ")
+  if (!zonage %in% liste_zonages_disponibles$`Code du zonage`) stop(glue::glue("Zonage non disponible, merci de s\u00e9lectionner un zonage dans la liste suivante : \n{zonages_disponibles}"))
   res <- table_passage_communes_zonages %>%
     dplyr::select(DEPCOM,
                   rlang::sym(zonage),
@@ -211,4 +217,9 @@ charger_zonage <- function(zonage) {
     dplyr::mutate(TypeZone = zonage) %>%
     purrr::set_names("DEPCOM","CodeZone","Zone","TypeZone")
   return(res)
+}
+
+#' liste des zonages disponibles
+lister_zonages <- function(){
+  COGiter:::liste_zonages
 }
