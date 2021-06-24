@@ -10,11 +10,7 @@
 #'
 #' @return Renvoie une table de donnees filtrées
 #' @export
-#' @importFrom dplyr inner_join
-#' @importFrom dplyr mutate
-#' @importFrom dplyr select
-#' @importFrom dplyr filter
-#' @importFrom dplyr bind_rows
+#' @importFrom dplyr inner_join across mutate filter select bind_rows
 #' @importFrom stringr str_detect
 #' @importFrom forcats fct_drop
 #' @importFrom rlang enquo
@@ -124,6 +120,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     }
   }
   result<- result %>%
-    mutate_at(vars(TypeZone,Zone,CodeZone),funs(fct_drop(as.factor(.))))
+    dplyr::mutate(dplyr::across(c(TypeZone,Zone,CodeZone),as.factor)) %>%
+    dplyr::mutate(dplyr::across(c(TypeZone,Zone,CodeZone),forcats::fct_drop))
   return(result)
 }

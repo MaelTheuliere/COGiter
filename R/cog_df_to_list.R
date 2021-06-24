@@ -18,7 +18,7 @@ zone_df_to_list<-function(.data,typezone) {
         mutate(NOM_DEPCOM=Zone,DEPCOM=CodeZone) %>%
         select(-Zone,-CodeZone,-TypeZone) %>%
         select(DEPCOM,NOM_DEPCOM,everything()) %>%
-        mutate_at(vars(NOM_DEPCOM,DEPCOM),funs(fct_drop))
+        mutate(across(c(NOM_DEPCOM,DEPCOM),.fns = fct_drop))
     }
   }
   if (typezone=="epci") {
@@ -28,7 +28,7 @@ zone_df_to_list<-function(.data,typezone) {
         mutate(NOM_EPCI=Zone,EPCI=CodeZone) %>%
         select(-Zone,-CodeZone,-TypeZone) %>%
         select(EPCI,NOM_EPCI,everything()) %>%
-        mutate_at(vars(EPCI,NOM_EPCI),funs(fct_drop))
+        mutate(across(c(EPCI,NOM_EPCI),.fns = fct_drop))
     }
   }
   if (typezone=="departements") {
@@ -38,7 +38,7 @@ zone_df_to_list<-function(.data,typezone) {
         mutate(NOM_DEP=Zone,DEP=CodeZone) %>%
         select(-Zone,-CodeZone,-TypeZone) %>%
         select(DEP,NOM_DEP,everything()) %>%
-        mutate_at(vars(DEP,NOM_DEP),funs(fct_drop))
+        mutate(across(c(DEP,NOM_DEP),.fns = fct_drop))
     }
   }
   if (typezone=="regions") {
@@ -48,7 +48,7 @@ zone_df_to_list<-function(.data,typezone) {
         mutate(NOM_REG=Zone,REG=CodeZone) %>%
         select(-Zone,-CodeZone,-TypeZone) %>%
         select(REG,NOM_REG,everything()) %>%
-        mutate_at(vars(REG,NOM_REG),funs(fct_drop))
+        mutate(across(c(REG,NOM_REG),.fns = fct_drop))
     }
   }
   if (typezone=="metro") {

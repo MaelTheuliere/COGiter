@@ -43,27 +43,27 @@ ajouter_zonage <- function(.data,
     inner_join(zonage_df %>%
       rename(DEPCOM = !!quo_Depcom)) %>%
     select(-.data$DEPCOM) %>%
-    group_by_if(funs(!is.numeric(.))) %>%
-    summarise_all(funs(sum)) %>%
+    group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
+    summarise(across(.fns = sum)) %>%
     ungroup() %>%
     rename(
       CodeZone = !!quo_CodeZone,
       TypeZone = !!quo_TypeZone,
       Zone = !!quo_Zone
     ) %>%
-    mutate_at(vars(.data$CodeZone, .data$TypeZone, .data$Zone), funs(as.factor))
+    mutate(across(c(.data$CodeZone, .data$TypeZone, .data$Zone), as.factor))
 
   tmp <- .data %>%
     mutate(
-      CodeZone = fct_expand(
+      CodeZone = forcats::fct_expand(
         .data$CodeZone,
         levels(a_ajouter$CodeZone)
       ),
-      TypeZone = fct_expand(
+      TypeZone = forcats::fct_expand(
         .data$TypeZone,
         levels(a_ajouter$TypeZone)
       ),
-      Zone = fct_expand(
+      Zone = forcats::fct_expand(
         .data$Zone,
         levels(a_ajouter$Zone)
       )

@@ -15,19 +15,8 @@
 #'
 #' @return Renvoie un dataframe ou une liste de dataframe
 #' @export
-#' @importFrom dplyr filter
-#' @importFrom dplyr mutate
-#' @importFrom dplyr select
-#' @importFrom dplyr group_by
-#' @importFrom dplyr group_by_if
-#' @importFrom dplyr summarise_if
-#' @importFrom dplyr ungroup
-#' @importFrom dplyr mutate_at
-#' @importFrom dplyr bind_rows
-#' @importFrom dplyr funs
-#' @importFrom dplyr vars
-#' @importFrom rlang enquo
-#' @importFrom rlang !!
+#' @importFrom dplyr filter mutate select group_by summarise ungroup across bind_rows vars
+#' @importFrom rlang enquo !!
 
 cogifier<-function(.data,code_commune=DEPCOM,
                    communes=T,
@@ -54,61 +43,61 @@ cogifier<-function(.data,code_commune=DEPCOM,
   if (communes==T) {
     c<-au_cog %>%
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
-      group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(., na.rm = na.rm))) %>%
+      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
       ungroup
   }
   if (epci==T) {
     e<-au_cog %>%
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
       filter(EPCI!="ZZZZZZZZZ") %>%
-      group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(., na.rm = na.rm))) %>%
+      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
       ungroup
   }
   if (departements==T) {
     d<-au_cog %>%
       select(-REG,-NOM_REG,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
-      group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(., na.rm = na.rm))) %>%
+      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
       ungroup
   }
   if (regions==T) {
     r<-au_cog %>%
       select(-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
-      group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(., na.rm = na.rm))) %>%
+      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
       ungroup
   }
   if(metro==T) {
     m<-au_cog %>%
       dplyr::filter(!(REG %in% c("01","02","03","04","05","06"))) %>%
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
-      group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(., na.rm = na.rm))) %>%
+      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
       ungroup
   }
   if(metrodrom==T) {
     md<-au_cog %>%
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
-      group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(., na.rm = na.rm))) %>%
+      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
       ungroup
   }
   if(franceprovince==T) {
     fp <- au_cog %>%
       dplyr::filter(!(REG %in% c("01","02","03","04","05","06","11"))) %>%
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
-      group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(., na.rm = na.rm))) %>%
+      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
       ungroup
   }
   if(drom == T) {
     dr <- au_cog %>%
       dplyr::filter(REG %in% c("01","02","03","04","05","06")) %>%
       select(-REG,-NOM_REG,-DEP,-NOM_DEP,-DEPCOM,-NOM_DEPCOM,-EPCI,-NOM_EPCI,-DEPARTEMENTS_DE_L_EPCI,-REGIONS_DE_L_EPCI) %>%
-      group_by_if(funs(!is.numeric(.))) %>%
-      summarise_if(is.numeric,funs(sum(., na.rm = na.rm))) %>%
+      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
       ungroup
   }
 
