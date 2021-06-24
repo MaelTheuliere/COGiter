@@ -176,6 +176,11 @@ liste_zone<-bind_rows(
 # source : https://www.insee.fr/fr/information/2028028
 table_passage_com_historique <- read_xlsx('data-raw/source/2021/COG/table_passage_geo2003_geo2021.xlsx',skip = 5) %>%
   select(DEPCOM_HIST = CODGEO_INI, DEPCOM = CODGEO_2021) %>%
+  mutate(DEPCOM = case_when( # correction bug saint martin et saint barthélemy qui ne sont pas rattachés sur leurs nouveaux codes commune.
+    DEPCOM_HIST == '97123'~'97701',
+    DEPCOM_HIST == '97127'~'97801',
+    TRUE ~ DEPCOM
+  )) %>%
   mutate(across(.cols = everything(),as.factor))
 
 # Gestion des arrondissements de PLM

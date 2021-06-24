@@ -4,17 +4,17 @@
 \alias{code_epci_of_com}
 \title{Renvoie le code de l'epci d appartenance d une commune}
 \usage{
-code_epci_of_com(com)
+code_epci_of_com(depcom)
 }
 \arguments{
-\item{com}{Character. Le code de la commune concernée}
+\item{depcom}{Character. Un vecteur de code commune.}
 }
 \value{
-un caractere
+Un vecteur
 }
 \description{
 Renvoie le code de l'epci d appartenance d une commune
 }
 \examples{
-code_epci_of_com("24037")
+code_epci_of_com(c("24037"))
 }

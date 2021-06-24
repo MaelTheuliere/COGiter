@@ -2,18 +2,18 @@
 % Please edit documentation in R/corresp_territoires.R
 \name{code_com_non_a_jour}
 \alias{code_com_non_a_jour}
-\title{test si le code commune est un code ayant existé mais qui n'est plus valide}
+\title{Test si les codes communes sont des codes ayant existé mais qui ne sont plus valide}
 \usage{
-code_com_non_a_jour(commune)
+code_com_non_a_jour(depcom)
 }
 \arguments{
-\item{commune}{Character. code commune}
+\item{depcom}{Un vecteur de caractères. Un vecteur de codes commune.}
 }
 \value{
-TRUE/FALSE
+Un vecteur de booléens.
 }
 \description{
-test si le code commune est un code ayant existé mais qui n'est plus valide
+Test si les codes communes sont des codes ayant existé mais qui ne sont plus valide
 }
 \examples{
 code_com_non_a_jour("75056")

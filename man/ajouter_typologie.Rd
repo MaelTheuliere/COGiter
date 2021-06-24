@@ -2,7 +2,8 @@
 % Please edit documentation in R/ajouter_zonage.R
 \name{ajouter_typologie}
 \alias{ajouter_typologie}
-\title{Ajouter une typologie supra communale spécifique à une table cogifiée}
+\title{Ajouter une typologie supra communale spécifique à une table cogifiée
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
 \usage{
 ajouter_typologie(
   .data,
@@ -52,4 +53,5 @@ Renvoie une table de donnees cogifiée augmentée des calculs pour ces nouvelles
 }
 \description{
 Ajouter une typologie supra communale spécifique à une table cogifiée
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }

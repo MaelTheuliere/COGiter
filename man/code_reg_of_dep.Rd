@@ -2,19 +2,19 @@
 % Please edit documentation in R/corresp_territoires.R
 \name{code_reg_of_dep}
 \alias{code_reg_of_dep}
-\title{Renvoie le code de la région d appartenance d un département}
+\title{Renvoie les codes de la région d appartenance de chaque département}
 \usage{
-code_reg_of_dep(departement)
+code_reg_of_dep(dep)
 }
 \arguments{
-\item{departement}{Character. Le code du département concerné}
+\item{dep}{Character. Un vecteur de codes département}
 }
 \value{
-un caractere
+Un vecteur de caractère.
 }
 \description{
-Renvoie le code de la région d appartenance d un département
+Renvoie les codes de la région d appartenance de chaque département
 }
 \examples{
-code_reg_of_dep("24")
+code_reg_of_dep(c("75","44"))
 }

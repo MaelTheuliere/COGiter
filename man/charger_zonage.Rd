@@ -2,7 +2,8 @@
 % Please edit documentation in R/ajouter_zonage.R
 \name{charger_zonage}
 \alias{charger_zonage}
-\title{Créer un zonage supra-communal adapté aux fonctions ajouter_zonage() et ajouter_typologie()}
+\title{Créer un zonage supra-communal adapté aux fonctions ajouter_zonage() et ajouter_typologie()
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
 \usage{
 charger_zonage(zonage)
 }
@@ -14,6 +15,7 @@ Un dataframe
 }
 \description{
 Créer un zonage supra-communal adapté aux fonctions ajouter_zonage() et ajouter_typologie()
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
 \examples{
 charger_zonage("ARR")

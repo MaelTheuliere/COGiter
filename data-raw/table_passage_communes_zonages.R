@@ -98,7 +98,22 @@ table_passage_communes_zonages <- list(table_passage_com_zonages,
 
 nrow(table_passage_communes_zonages) == nrow(table_passage_com_zonages)
 
-use_data(table_passage_communes_zonages, overwrite = TRUE)
+usethis::use_data(table_passage_communes_zonages, overwrite = TRUE)
 utilitaires.ju::use_data_doc("table_passage_communes_zonages", description = "Table de passage des communes vers des zonages supra", source = "Insee : https://www.insee.fr/fr/information/2028028")
 
+liste_zonages <- tibble::tribble(
+  ~"Code du zonage",~"Nom du zonage",
+  "ARR","Arrondissement",
+  "CV","Canton ville",
+  "ZE2020","Zone d'emploi 20220",
+  "UU2020","Unité urbaine 2020",
+  "TUU2017","Tranche d'unité urbaine 2020",
+  "TDUU2017","Tranche détaillée d'unité urbaine 2017",
+  "AAV2020","Aire d'attraction des villes 2020",
+  "TAAV2017","Tranche d'aire d'attraction des villes 2020",
+  "TDAAV2017","Tranche détaillée d'aire d'attraction des villes 2020",
+  "CATEAAV2020","Catégorie commune dans aire d'attraction des villes 2020",
+  "BV2012","Bassin de vie 2012"
+)
+usethis::use_data(liste_zonages, overwrite = TRUE, internal = TRUE)
 
