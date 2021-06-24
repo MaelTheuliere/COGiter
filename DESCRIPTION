@@ -1,6 +1,6 @@
 Package: COGiter
 Title: Fonctions, Données et Fonds de Carte pour Gérer les Données au Territoire
-Version: 0.0.7.9000
+Version: 0.0.8
 Authors@R: c(
     person(given = "Maël",
            family = "THEULIERE",
@@ -20,7 +20,7 @@ Depends:
     R (>= 2.10)
 Imports: 
     attempt,
-    dplyr,
+    dplyr (>= 1.0.0),
     forcats,
     glue,
     lifecycle,

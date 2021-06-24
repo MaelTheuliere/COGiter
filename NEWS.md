@@ -1,4 +1,4 @@
-# Version de développement 
+# COGiter 0.0.8
 
 - Mise à jour COG 2021
 - Ajout logo
