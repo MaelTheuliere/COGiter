@@ -1,5 +1,5 @@
 Package: COGiter
-Title: Fonctions, Données et Fonds de Carte pour Gérer les Données au territoire
+Title: Fonctions, Données et Fonds de Carte pour Gérer les Données au Territoire
 Version: 0.0.7.9000
 Authors@R: c(
     person(given = "Maël",
