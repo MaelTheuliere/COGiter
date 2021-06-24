@@ -21,14 +21,14 @@ A data frame with 37742 rows and 12 variables:
 \item{COMPARENT}{Code de la commune parente pour les arrondissements municipaux et les communes associées ou déléguées. }
 }\if{html}{\out{<div class="r">}}\preformatted{head(communes_cog)
 }\if{html}{\out{</div>}}\preformatted{## # A tibble: 6 x 12
-##   TYPECOM DEPCOM REG   DEP   CTCD  ARR   TNCC  NCC     NCCENR  NOM_DEPCOM  CAN  
-##   <fct>   <fct>  <fct> <fct> <fct> <fct> <fct> <fct>   <fct>   <fct>       <fct>
-## 1 COM     01001  84    01    01D   012   5     ABERGE~ Aberge~ L'Abergeme~ 0108 
-## 2 COM     01002  84    01    01D   011   5     ABERGE~ Aberge~ L'Abergeme~ 0101 
-## 3 COM     01004  84    01    01D   011   1     AMBERI~ Ambéri~ Ambérieu-e~ 0101 
-## 4 COM     01005  84    01    01D   012   1     AMBERI~ Ambéri~ Ambérieux-~ 0122 
-## 5 COM     01006  84    01    01D   011   1     AMBLEON Ambléon Ambléon     0104 
-## 6 COM     01007  84    01    01D   011   1     AMBRON~ Ambron~ Ambronay    0101 
+##   TYPECOM DEPCOM REG   DEP   CTCD  ARR   TNCC  NCC       NCCENR    NOM_DEPCOM   CAN  
+##   <fct>   <fct>  <fct> <fct> <fct> <fct> <fct> <fct>     <fct>     <fct>        <fct>
+## 1 COM     01001  84    01    01D   012   5     ABERGEME~ Abergeme~ L'Abergemen~ 0108 
+## 2 COM     01002  84    01    01D   011   5     ABERGEME~ Abergeme~ L'Abergemen~ 0101 
+## 3 COM     01004  84    01    01D   011   1     AMBERIEU~ Ambérieu~ Ambérieu-en~ 0101 
+## 4 COM     01005  84    01    01D   012   1     AMBERIEU~ Ambérieu~ Ambérieux-e~ 0122 
+## 5 COM     01006  84    01    01D   011   1     AMBLEON   Ambléon   Ambléon      0104 
+## 6 COM     01007  84    01    01D   011   1     AMBRONAY  Ambronay  Ambronay     0101 
 ## # ... with 1 more variable: COMPARENT <fct>
 }
 }

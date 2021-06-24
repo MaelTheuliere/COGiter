@@ -2,8 +2,7 @@
 % Please edit documentation in R/ajouter_zonage.R
 \name{ajouter_typologie}
 \alias{ajouter_typologie}
-\title{Ajouter une typologie supra communale spécifique à une table cogifiée
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
+\title{Ajouter une typologie supra communale spécifique à une table cogifiée}
 \usage{
 ajouter_typologie(
   .data,
@@ -52,6 +51,8 @@ ajouter_typologie(
 Renvoie une table de donnees cogifiée augmentée des calculs pour ces nouvelles typologies
 }
 \description{
-Ajouter une typologie supra communale spécifique à une table cogifiée
+Permet de rajouter à une table COGifiée de nouveaux type de zonage basé sur des agrégations par epci, departements, régions... de typologie de commune (exemple : aire d'attraction des villes de l'insee, zonage ABC pour le logement)
+}
+\details{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
