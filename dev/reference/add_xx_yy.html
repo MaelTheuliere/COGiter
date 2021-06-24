@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Renvoie les codes de la région d appartenance de chaque département — code_reg_of_dep • COGiter</title>
+<title>Ajouter des variables sur le rattachement supra communal dans un dataframe a la commune — add_xx_yy • COGiter</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,11 @@
 
 
 
-<meta property="og:title" content="Renvoie les codes de la région d appartenance de chaque département — code_reg_of_dep" />
-<meta property="og:description" content="Renvoie les codes de la région d appartenance de chaque département" />
+<meta property="og:title" content="Ajouter des variables sur le rattachement supra communal dans un dataframe a la commune — add_xx_yy" />
+<meta property="og:description" content="Ajouter des variables sur le rattachement supra communal dans un dataframe a la commune
+add_epci_of_com() ajouter le code epci
+add_dep_of_com() ajouter le code département
+add_reg_of_com() ajouter le code région" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -128,33 +131,41 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Renvoie les codes de la région d appartenance de chaque département</h1>
+    <h1>Ajouter des variables sur le rattachement supra communal dans un dataframe a la commune</h1>
     <small class="dont-index">Source: <a href='https://github.com/MaelTheuliere/COGiter/blob/master/R/corresp_territoires.R'><code>R/corresp_territoires.R</code></a></small>
-    <div class="hidden name"><code>code_reg_of_dep.Rd</code></div>
+    <div class="hidden name"><code>add_xx_yy.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Renvoie les codes de la région d appartenance de chaque département</p>
+    <p>Ajouter des variables sur le rattachement supra communal dans un dataframe a la commune</p>
+<p><code>add_epci_of_com()</code> ajouter le code epci</p>
+<p><code>add_dep_of_com()</code> ajouter le code département</p>
+<p><code>add_reg_of_com()</code> ajouter le code région</p>
     </div>
 
-    <pre class="usage"><span class='fu'>code_reg_of_dep</span><span class='op'>(</span><span class='va'>dep</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>add_epci_of_com</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>code_commune</span><span class='op'>)</span>
+
+<span class='fu'>add_dep_of_com</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>code_commune</span><span class='op'>)</span>
+
+<span class='fu'>add_reg_of_com</span><span class='op'>(</span><span class='va'>.data</span>, <span class='va'>code_commune</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dep</th>
-      <td><p>Character. Un vecteur de codes département</p></td>
+      <th>.data</th>
+      <td><p>Table en entrée.</p></td>
+    </tr>
+    <tr>
+      <th>code_commune</th>
+      <td><p>Nom de la variable avec le code commune.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Un vecteur de caractère.</p>
+    <p>un dataframe</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>code_reg_of_dep</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"75"</span>,<span class='st'>"44"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "11" "52"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

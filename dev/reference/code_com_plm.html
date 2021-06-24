@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>test si le code commune est celui d'un arrondissement de Paris, Lyon ou Marseille — code_com_plm • COGiter</title>
+<title>test si les codes communes sont ceux d'un arrondissement de Paris, Lyon ou Marseille — code_com_plm • COGiter</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="test si le code commune est celui d'un arrondissement de Paris, Lyon ou Marseille — code_com_plm" />
-<meta property="og:description" content="test si le code commune est celui d'un arrondissement de Paris, Lyon ou Marseille" />
+<meta property="og:title" content="test si les codes communes sont ceux d'un arrondissement de Paris, Lyon ou Marseille — code_com_plm" />
+<meta property="og:description" content="test si les codes communes sont ceux d'un arrondissement de Paris, Lyon ou Marseille" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -128,33 +128,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>test si le code commune est celui d'un arrondissement de Paris, Lyon ou Marseille</h1>
+    <h1>test si les codes communes sont ceux d'un arrondissement de Paris, Lyon ou Marseille</h1>
     <small class="dont-index">Source: <a href='https://github.com/MaelTheuliere/COGiter/blob/master/R/corresp_territoires.R'><code>R/corresp_territoires.R</code></a></small>
     <div class="hidden name"><code>code_com_plm.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>test si le code commune est celui d'un arrondissement de Paris, Lyon ou Marseille</p>
+    <p>test si les codes communes sont ceux d'un arrondissement de Paris, Lyon ou Marseille</p>
     </div>
 
-    <pre class="usage"><span class='fu'>code_com_plm</span><span class='op'>(</span><span class='va'>commune</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>code_com_plm</span><span class='op'>(</span><span class='va'>depcom</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>commune</th>
-      <td><p>Character. code commune</p></td>
+      <th>depcom</th>
+      <td><p>Character. Un vecteur de codes commune.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>TRUE/FALSE</p>
+    <p>Un vecteur de booléens.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>code_com_plm</span><span class='op'>(</span><span class='st'>"75120"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] TRUE</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>code_com_plm</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"75056"</span>,<span class='st'>"75112"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] FALSE  TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
