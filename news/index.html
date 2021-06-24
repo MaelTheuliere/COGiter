@@ -8,6 +8,13 @@
 
 <title>Changelog • COGiter</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -40,6 +47,7 @@
 
 
 <meta property="og:title" content="Changelog" />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -71,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COGiter</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
       </span>
     </div>
 
@@ -123,6 +131,21 @@
       <small>Source: <a href='https://github.com/MaelTheuliere/COGiter/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="cogiter-008" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.8">
+<a href="#cogiter-008" class="anchor"></a>COGiter 0.0.8</h1>
+<ul>
+<li>Mise à jour COG 2021</li>
+<li>Ajout logo</li>
+<li>Amélioration documentation des datasets</li>
+<li>Ajout fonctions pour traiter la correspondances des territoires</li>
+<li>Ajout fonctions pour savoir si un code commune/epci/departements/regions est valide</li>
+<li>Ajout fonction ajouter_typologie() qui permet de créer des agrégats par typologie de territoire et type de territoire (epci, départements, région…)</li>
+<li>Ajout “arn_plm”, table des arrondissements de Paris, Lyon et Marseille</li>
+<li>Ajout “table_passage_communes_zonages”, table de passage des communes vers des zonages supra</li>
+<li>Ajout fonction charger_zonage() qui permet de créer un zonage supra-communal adapté aux fonctions ajouter_zonage() et ajouter_typologie()</li>
+</ul>
+</div>
     <div id="cogiter-007" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.7">
 <a href="#cogiter-007" class="anchor"></a>COGiter 0.0.7</h1>

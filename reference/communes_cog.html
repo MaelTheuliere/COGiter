@@ -8,6 +8,13 @@
 
 <title>Liste des communes du dernier millésime connu. — communes_cog • COGiter</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -41,6 +48,7 @@
 
 <meta property="og:title" content="Liste des communes du dernier millésime connu. — communes_cog" />
 <meta property="og:description" content="Un dataset contenant chaque commune, communes déléguées,arrondissements, de France" />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -72,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COGiter</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
       </span>
     </div>
 
@@ -134,12 +142,13 @@
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame with 37932 rows and 11 variables:</p><dl>
+    <p>A data frame with 37742 rows and 12 variables:</p><dl>
 <dt>TYPECOM</dt><dd><p>Code Insee</p></dd>
 <dt>DEPCOM</dt><dd><p>Code Insee</p></dd>
 <dt>NOM_DEPCOM</dt><dd><p>Nom en clair (typographie riche) avec article</p></dd>
 <dt>REG</dt><dd><p>Code Insee de la région de rattachement</p></dd>
 <dt>DEP</dt><dd><p>Code Insee du département de rattachement</p></dd>
+<dt>CTCD</dt><dd><p>Code de la collectivité territoriale ayant les compétences départementales</p></dd>
 <dt>ARR</dt><dd><p>Code arrondissement</p></dd>
 <dt>TNCC</dt><dd><p>Type de nom en clair</p></dd>
 <dt>NCC</dt><dd><p>Nom en clair (majuscules)</p></dd>
@@ -147,7 +156,18 @@
 <dt>CAN</dt><dd><p>Code canton. Pour les communes « multi-cantonales » code décliné de 99 à 90 (pseudo-canton) ou de 89 à 80 (communes nouvelles)</p></dd>
 <dt>COMPARENT</dt><dd><p>Code de la commune parente pour les arrondissements municipaux et les communes associées ou déléguées.</p></dd>
 
-</dl>
+</dl><p><div class="r"></p><pre><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>communes_cog</span><span class='op'>)</span>
+</pre><p></div></p><pre><span class='co'>## # A tibble: 6 x 12</span>
+<span class='co'>##   TYPECOM DEPCOM REG   DEP   CTCD  ARR   TNCC  NCC       NCCENR    NOM_DEPCOM   CAN  </span>
+<span class='co'>##   &lt;fct&gt;   &lt;fct&gt;  &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt;     &lt;fct&gt;        &lt;fct&gt;</span>
+<span class='co'>## 1 COM     01001  84    01    01D   012   5     ABERGEME~ Abergeme~ L'Abergemen~ 0108 </span>
+<span class='co'>## 2 COM     01002  84    01    01D   011   5     ABERGEME~ Abergeme~ L'Abergemen~ 0101 </span>
+<span class='co'>## 3 COM     01004  84    01    01D   011   1     AMBERIEU~ Ambérieu~ Ambérieu-en~ 0101 </span>
+<span class='co'>## 4 COM     01005  84    01    01D   012   1     AMBERIEU~ Ambérieu~ Ambérieux-e~ 0122 </span>
+<span class='co'>## 5 COM     01006  84    01    01D   011   1     AMBLEON   Ambléon   Ambléon      0104 </span>
+<span class='co'>## 6 COM     01007  84    01    01D   011   1     AMBRONAY  Ambronay  Ambronay     0101 </span>
+<span class='co'>## # ... with 1 more variable: COMPARENT &lt;fct&gt;</span>
+</pre>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
