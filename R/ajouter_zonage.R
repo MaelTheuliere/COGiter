@@ -221,6 +221,7 @@ charger_zonage <- function(zonage) {
 }
 
 #' liste des zonages disponibles
+#' @export
 lister_zonages <- function(){
   liste_zonages
 }
