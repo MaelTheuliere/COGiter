@@ -210,7 +210,7 @@ charger_zonage <- function(zonage) {
   liste_zonages_disponibles <- lister_zonages()
   zonages_disponibles <- paste0(liste_zonages_disponibles$`Code du zonage`," (",liste_zonages_disponibles$`Nom du zonage`," )", collapse = ", ")
   if (!zonage %in% liste_zonages_disponibles$`Code du zonage`) stop(glue::glue("Zonage non disponible, merci de s\u00e9lectionner un zonage dans la liste suivante : \n{zonages_disponibles}"))
-  res <- table_passage_communes_zonages %>%
+  res <- COGiter::table_passage_communes_zonages %>%
     dplyr::select(DEPCOM,
                   rlang::sym(zonage),
                   rlang::sym(paste0("LIB_",zonage))

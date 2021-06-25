@@ -1,3 +1,8 @@
+# COGiter 0.0.8.1
+
+- Bug fix sur la fonction `charger_zonage()`
+
+
 # COGiter 0.0.8
 
 - Mise à jour COG 2021
