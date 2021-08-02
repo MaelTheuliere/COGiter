@@ -29,3 +29,7 @@ une liste de spatial dataframe
 \description{
 Filtrer les fonds de carte sur un territoire métropolitain
 }
+\examples{
+nantes_metropole <- filtrer_cog_geo(epci = '244400404')
+plot(nantes_metropole$communes)
+}
