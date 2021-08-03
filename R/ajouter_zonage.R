@@ -115,7 +115,7 @@ ajouter_zonage <- function(.data,
 #' @importFrom rlang enquo
 #' @importFrom rlang !!
 #' @importFrom rlang .data
-#' @example
+#' @examples
 #' library(COGiter)
 #' zonage_aav <- charger_zonage("AAV2020")
 #' cogpop2015 <- cogifier(pop2015)

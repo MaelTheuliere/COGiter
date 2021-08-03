@@ -11,7 +11,7 @@
 #' @importFrom stringr str_detect
 #' @importFrom sf st_bbox st_crop st_buffer
 #' @importFrom attempt stop_if_any
-#' @example
+#' @examples
 #' nantes_metropole <- filtrer_cog_geo(epci = '244400404')
 #' plot(nantes_metropole$communes)
 

@@ -3,6 +3,13 @@
 
 # COGiter <img src='man/figures/logo.png' align="right" height="139" />
 
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/MaelTheuliere/COGiter/workflows/R-CMD-check/badge.svg)](https://github.com/MaelTheuliere/COGiter/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/MaelTheuliere/COGiter/branch/master/graph/badge.svg)](https://codecov.io/gh/MaelTheuliere/COGiter?branch=master)
+<!-- badges: end -->
+
 COGiter fournit des fonctions, des données et des fonds de carte pour
 permettre des analyses territoriales sur les collectivités françaises.
 

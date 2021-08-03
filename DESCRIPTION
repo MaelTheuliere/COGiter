@@ -1,25 +1,26 @@
 Package: COGiter
-Title: Fonctions, Données et Fonds de Carte pour Gérer les Données au Territoire
+Title: Fonctions, Données et Fonds de Carte pour Gérer les Données au
+    Territoire
 Version: 0.0.8.1
-Authors@R: c(
-    person(given = "Maël",
-           family = "THEULIERE",
-           role = c("aut", "cre"),
-           email = "mael.theuliere@gmail.com"),
-    person(given = "Juliette",
-           family = "ENGELARE-LEFEBVRE",
-           role = c("ctb"),
-           email = "juliette.engelaere-lefebvre@developpement-durable.gouv.fr"),
-    person(given = "Caroline",
-           family = "COUDRIN",
-           role = c("ctb"),
-           email = "caroline.coundrin@developpement-durable.gouv.fr")
-           )
-Description: Fonctions, données et fonds de carte pour gérer les données au territoire. Ce package permet notamment de gérer les fusions de communes intervenues entre 2015 et 2021.
+Authors@R: 
+    c(person(given = "Maël",
+             family = "THEULIERE",
+             role = c("aut", "cre"),
+             email = "mael.theuliere@gmail.com"),
+      person(given = "Juliette",
+             family = "ENGELARE-LEFEBVRE",
+             role = "ctb",
+             email = "juliette.engelaere-lefebvre@developpement-durable.gouv.fr"),
+      person(given = "Caroline",
+             family = "COUDRIN",
+             role = "ctb",
+             email = "caroline.coundrin@developpement-durable.gouv.fr"))
+Description: Fonctions, données et fonds de carte pour gérer les données
+    au territoire. Ce package permet notamment de gérer les fusions de
+    communes intervenues entre 2015 et 2021.
 License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
-LazyDataCompression: xz
+URL: https://github.com/MaelTheuliere/COGiter
+BugReports: https://github.com/MaelTheuliere/COGiter/issues
 Depends: 
     R (>= 2.10)
 Imports: 
@@ -27,21 +28,24 @@ Imports:
     dplyr (>= 1.0.0),
     forcats,
     glue,
-    lifecycle,
-    stringr,
-    rlang,
     magrittr,
-    tibble,
-    tidyr,
     purrr,
+    rlang,
+    sf,
+    stringr,
+    tidyr,
     tidyselect,
-    sf
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
-URL: https://github.com/MaelTheuliere/COGiter
-BugReports: https://github.com/MaelTheuliere/COGiter/issues
+    utils
 Suggests: 
     knitr,
+    lifecycle,
     rmarkdown,
-    testthat
-VignetteBuilder: knitr
+    testthat,
+    tibble
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
+LazyData: true
+LazyDataCompression: xz
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
