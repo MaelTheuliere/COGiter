@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Renvoie le code du région d appartenance de chaque epci — code_reg_of_epci • COGiter</title>
+<title>Trouver une zone à partir d'une chaîne de caractère — trouver_zone • COGiter</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Renvoie le code du région d appartenance de chaque epci — code_reg_of_epci" />
-<meta property="og:description" content="Renvoie le code du région d appartenance de chaque epci" />
+<meta property="og:title" content="Trouver une zone à partir d'une chaîne de caractère — trouver_zone" />
+<meta property="og:description" content="Trouver une zone à partir d'une chaîne de caractère" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -128,35 +128,45 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Renvoie le code du région d appartenance de chaque epci</h1>
-    <small class="dont-index">Source: <a href='https://github.com/MaelTheuliere/COGiter/blob/master/R/corresp_territoires.R'><code>R/corresp_territoires.R</code></a></small>
-    <div class="hidden name"><code>code_reg_of_epci.Rd</code></div>
+    <h1>Trouver une zone à partir d'une chaîne de caractère</h1>
+    <small class="dont-index">Source: <a href='https://github.com/MaelTheuliere/COGiter/blob/master/R/nom_zone.R'><code>R/nom_zone.R</code></a></small>
+    <div class="hidden name"><code>trouver_zone.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Renvoie le code du région d appartenance de chaque epci</p>
+    <p>Trouver une zone à partir d'une chaîne de caractère</p>
     </div>
 
-    <pre class="usage"><span class='fu'>code_reg_of_epci</span><span class='op'>(</span><span class='va'>epci</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>trouver_zone</span><span class='op'>(</span><span class='va'>pattern</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>epci</th>
-      <td><p>Character. Un vecteur de codes epci.</p></td>
+      <th>pattern</th>
+      <td><p>la chaîne de caractère à identifier</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>une liste</p>
+    <p>un tibble</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>code_reg_of_epci</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"200070647"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [[1]]
-#&gt; [1] "75"
-#&gt; </div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>trouver_zone</span><span class='op'>(</span>pattern <span class='op'>=</span> <span class='st'>"Belleville"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 × 3</span>
+#&gt;    TypeZone CodeZone Zone                           
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                          
+#&gt; <span style='color: #BCBCBC;'> 1</span> Communes 08057    Belleville-et-Châtillon-sur-Bar
+#&gt; <span style='color: #BCBCBC;'> 2</span> Communes 10308    Prunay-Belleville              
+#&gt; <span style='color: #BCBCBC;'> 3</span> Communes 18026    Belleville-sur-Loire           
+#&gt; <span style='color: #BCBCBC;'> 4</span> Communes 54060    Belleville                     
+#&gt; <span style='color: #BCBCBC;'> 5</span> Communes 55043    Belleville-sur-Meuse           
+#&gt; <span style='color: #BCBCBC;'> 6</span> Communes 60500    Le Plessis-Belleville          
+#&gt; <span style='color: #BCBCBC;'> 7</span> Communes 69019    Belleville-en-Beaujolais       
+#&gt; <span style='color: #BCBCBC;'> 8</span> Communes 73257    Les Belleville                 
+#&gt; <span style='color: #BCBCBC;'> 9</span> Communes 73272    Saint-Pierre-de-Belleville     
+#&gt; <span style='color: #BCBCBC;'>10</span> Communes 76072    Belleville-en-Caux             </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
