@@ -1,3 +1,8 @@
+# COGiter 0.0.8.2
+
+- Rajout fonction nom_zone(),code_zone() et trouver_zone()
+
+
 # COGiter 0.0.8.1
 
 - Bug fix sur la fonction `charger_zonage()`
