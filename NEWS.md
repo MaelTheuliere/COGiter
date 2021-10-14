@@ -1,3 +1,7 @@
+# COGiter 0.0.8.3
+
+-  Ajout d'un paramètre à `filtrer_cog_geo()` pour élargir l'emprise des couches.
+
 # COGiter 0.0.8.2
 
 - Rajout fonction nom_zone(),code_zone() et trouver_zone()

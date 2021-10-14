@@ -222,7 +222,7 @@
 
 #' Zonage ABC France entière
 #'
-#' Un dataset contenant pour chaque commune du GOG 2019 le zonage ABC 2014 révisé en 2019  correspondant
+#' Un dataset contenant pour chaque commune du COG 2019 le zonage ABC 2014 révisé en 2019 correspondant
 #'
 #' @format A data frame with `r nrow(zonage_abc)` rows and `r ncol(zonage_abc)` variables:
 #' \describe{
@@ -338,11 +338,11 @@ NULL
 
 #' Contour des départements de France pour le dernier millésime connu.
 #' @rdname departements_geo_xx
-#' @format Un dataframe avec une ligne par départements et 3 variables.
+#' @format Un dataframe avec une ligne par departement et 3 variables.
 #' \describe{
 #'   \item{DEP}{Code Insee}
 #'   \item{geometry}{géométrie}
-#'   \item{AREA}{Aire de l'EPCI}
+#'   \item{AREA}{Aire du departement}
 #' }
 NULL
 
@@ -351,11 +351,11 @@ NULL
 #' @rdname departements_geo_xx
 #' @details Un dataset contenant pour chaque département de France métropolitaine son contour
 #'  Un dataset pour la france métropolitaine, un pour chaque DROM, et un assemblage de ces jeux de données pour pourvoir réaliser des cartes France Métropolitaine et DROM.
-#' @format Un dataframe avec une ligne par départements et 3 variables.
+#' @format Un dataframe avec une ligne par departement et 3 variables.
 #' \describe{
 #'   \item{DEP}{Code Insee}
 #'   \item{geometry}{géométrie}
-#'   \item{AREA}{Aire du département}
+#'   \item{AREA}{Aire du departement}
 #' }
 "departements_geo"
 
@@ -391,7 +391,7 @@ NULL
 #' \describe{
 #'   \item{REG}{Code Insee}
 #'   \item{geometry}{géométrie}
-#'   \item{AREA}{Aire de l'EPCI}
+#'   \item{AREA}{Aire de la region}
 #' }
 NULL
 
@@ -405,7 +405,7 @@ NULL
 #' \describe{
 #'   \item{REG}{Code Insee}
 #'   \item{geometry}{géométrie}
-#'   \item{AREA}{Aire du département}
+#'   \item{AREA}{Aire de la region}
 #' }
 "regions_geo"
 
