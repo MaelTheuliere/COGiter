@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COGiter</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.8.2</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.8.3</span>
       </span>
     </div>
 
@@ -142,7 +142,8 @@
   epci <span class='op'>=</span> <span class='cn'>NULL</span>,
   dep <span class='op'>=</span> <span class='cn'>NULL</span>,
   reg <span class='op'>=</span> <span class='cn'>NULL</span>,
-  garder_supra <span class='op'>=</span> <span class='cn'>FALSE</span>
+  garder_supra <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  lg_buffer <span class='op'>=</span> <span class='fl'>0</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -167,6 +168,10 @@
     <tr>
       <th>garder_supra</th>
       <td><p>TRUE si on souhaite une carte centrée sur le territoire mais avec les territoires environnant visible, non si on souhaite garder que le territoire sélectionné</p></td>
+    </tr>
+    <tr>
+      <th>lg_buffer</th>
+      <td><p>si garder_supra est a true, la largeur du buffer a garder autour du territoire (metres)</p></td>
     </tr>
     </table>
 
