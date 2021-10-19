@@ -19,7 +19,7 @@ A data frame with 37742 rows and 12 variables:
 \item{NCCENR}{Nom en clair (typographie riche)}
 \item{CAN}{Code canton. Pour les communes « multi-cantonales » code décliné de 99 à 90 (pseudo-canton) ou de 89 à 80 (communes nouvelles) }
 \item{COMPARENT}{Code de la commune parente pour les arrondissements municipaux et les communes associées ou déléguées. }
-}\if{html}{\out{<div class="r">}}\preformatted{head(communes_cog)
+}\if{html}{\out{<div class="sourceCode r">}}\preformatted{head(communes_cog)
 }\if{html}{\out{</div>}}\preformatted{## # A tibble: 6 x 12
 ##   TYPECOM DEPCOM REG   DEP   CTCD  ARR   TNCC  NCC     NCCENR  NOM_DEPCOM  CAN  
 ##   <fct>   <fct>  <fct> <fct> <fct> <fct> <fct> <fct>   <fct>   <fct>       <fct>
