@@ -11,11 +11,11 @@
 \alias{departements_976_geo}
 \title{Contour des départements pour le dernier millésime connu}
 \format{
-Un dataframe avec une ligne par départements et 3 variables.
+Un dataframe avec une ligne par departement et 3 variables.
 \describe{
 \item{DEP}{Code Insee}
 \item{geometry}{géométrie}
-\item{AREA}{Aire du département}
+\item{AREA}{Aire du departement}
 }
 }
 \usage{

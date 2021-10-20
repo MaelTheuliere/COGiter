@@ -250,3 +250,16 @@ usethis::use_data(table_passage_com_historique,internal=F,overwrite = T)
 usethis::use_data(arn_plm,internal=F,overwrite = T)
 
 
+## Chargement des couches communes et table_passage_com_historique dans production.cogiter
+library(datalibaba)
+communes2 <- rowwise(communes) %>%
+  mutate(across(where(is.list), ~paste0(.x, collapse = ", ") %>% as.factor),
+         across(where(is.factor), as.character)) %>%
+  ungroup()
+poster_data(data = communes2, table = "r_communes_000", schema = "cogiter", pk = "DEPCOM", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
+poster_data(data = communes2, table = "r_communes_000_2021", schema = "cogiter", pk = "DEPCOM", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
+
+table_passage_com_historique2 <- table_passage_com_historique %>%
+  mutate(across(where(is.factor), as.character))
+poster_data(data = table_passage_com_historique2, table = "r_tb_passage_com_hist_000", schema = "cogiter", pk = "DEPCOM_HIST", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
+poster_data(data = table_passage_com_historique2, table = "r_tb_passage_com_hist_000_2021", schema = "cogiter", pk = "DEPCOM_HIST", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
