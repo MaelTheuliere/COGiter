@@ -1,4 +1,9 @@
+^docs$
+^_pkgdown\.yml$
 ^data-raw$
 ^README\.Rmd$
 ^COGifier\.Rproj$
 ^\.Rproj\.user$
+^.*\.Rproj$
+^\.github$
+^R/api_geo_data_gouv\.R$

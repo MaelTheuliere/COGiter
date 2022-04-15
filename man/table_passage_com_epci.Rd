@@ -4,11 +4,13 @@
 \name{table_passage_com_epci}
 \alias{table_passage_com_epci}
 \title{Rattachement des communes à leur epci.}
-\format{A data frame with 35357 rows and 2 variables:
+\format{
+A data frame with 34965 rows and 2 variables:
 \describe{
 \item{DEPCOM}{Code Insee de la commune}
 \item{EPCI}{Code siren de l'EPCI de rattachement}
-}}
+}
+}
 \source{
 \url{https://www.insee.fr/fr/information/2510634}
 }

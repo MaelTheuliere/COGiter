@@ -4,18 +4,22 @@
 \name{table_passage_com_historique}
 \alias{table_passage_com_historique}
 \title{Table de passage des fusions de communes.}
-\format{A data frame with 39161 rows and 2 variables:
+\format{
+A data frame with 36765 rows and 2 variables:
 \describe{
 \item{DEPCOM_HIST}{Code Insee de la commune historique}
 \item{DEPCOM}{Code Insee de la commune}
-}}
+}
+}
 \source{
-\url{https://www.insee.fr/fr/information/3363419#titre-bloc-3}
+\url{https://www.insee.fr/fr/information/3720946#titre-bloc-23}
 }
 \usage{
 table_passage_com_historique
 }
 \description{
 Un dataset contenant pour chaque commune historique de France le code de la commune actuelle de rattachement
+Cette table permet de gérer le suivi des fusions de communes.
+Elle se base sur un exploitation de la table historique du COG 2018 et de la table des mouvements du COG 2019
 }
 \keyword{datasets}

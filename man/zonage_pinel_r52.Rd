@@ -4,15 +4,17 @@
 \name{zonage_pinel_r52}
 \alias{zonage_pinel_r52}
 \title{Zonage Pinel région Pays de la Loire.}
-\format{A data frame with 1272 rows and 2 variables:
+\format{
+A data frame with 70 rows and 2 variables:
 \describe{
 \item{DEPCOM}{Code Insee de la commune}
 \item{zonage_pinel}{Zonage Pinel}
-}}
+}
+}
 \usage{
 zonage_pinel_r52
 }
 \description{
-Un dataset contenant pour chaque commune actuelle de la région Pays de la Loire le zonage Pinel correspondant
+Un dataset contenant pour la liste des communes 2019 éligible au pinel en 2019
 }
 \keyword{datasets}

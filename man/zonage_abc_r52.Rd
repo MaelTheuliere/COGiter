@@ -4,15 +4,17 @@
 \name{zonage_abc_r52}
 \alias{zonage_abc_r52}
 \title{Zonage ABC région Pays de la Loire.}
-\format{A data frame with 1272 rows and 2 variables:
+\format{
+A data frame with 1238 rows and 2 variables:
 \describe{
 \item{DEPCOM}{Code Insee de la commune}
 \item{zonage_abc}{Zonage ABC}
-}}
+}
+}
 \usage{
 zonage_abc_r52
 }
 \description{
-Un dataset contenant pour chaque commune actuelle de la région Pays de la Loire le zonage ABC correspondant
+Un dataset contenant pour chaque commune du GOG 2019 de la région Pays de la Loire le zonage ABC 2014 révisé en 2019 correspondant
 }
 \keyword{datasets}

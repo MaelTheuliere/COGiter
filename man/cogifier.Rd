@@ -2,34 +2,51 @@
 % Please edit documentation in R/cogifier.R
 \name{cogifier}
 \alias{cogifier}
-\title{Consolider une table de donn\encoding{é}es à la commune à tous les \encoding{é}chelles du cog}
+\title{Consolider une table de données à la commune à tous les échelles du cog}
 \usage{
-cogifier(.data, code_commune = DEPCOM, communes = T, epci = T,
-  departements = T, regions = T, metro = T, metrodrom = F,
-  as_df = T)
+cogifier(
+  .data,
+  code_commune = DEPCOM,
+  communes = T,
+  epci = T,
+  departements = T,
+  regions = T,
+  metro = T,
+  metrodrom = F,
+  franceprovince = F,
+  drom = F,
+  as_df = T,
+  na.rm = FALSE
+)
 }
 \arguments{
-\item{.data}{la table de donn\encoding{é}es à convertire}
+\item{.data}{la table de données à convertir}
 
 \item{code_commune}{le nom de la variable contenant le code commune sur 5 charactères}
 
-\item{communes}{bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es à la commune}
+\item{communes}{booléen TRUE si on souhaite des données à la commune}
 
-\item{epci}{bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es à l'epci}
+\item{epci}{booléen TRUE si on souhaite des données à l'epci}
 
-\item{departements}{bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es au d\encoding{é}partement}
+\item{departements}{booléen TRUE si on souhaite des données au département}
 
-\item{regions}{bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es à la r\encoding{é}gion}
+\item{regions}{booléen TRUE si on souhaite des données à la région}
 
-\item{metro}{bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es France m\encoding{é}tropolitaine}
+\item{metro}{booléen TRUE si on souhaite des données France métropolitaine}
 
-\item{metrodrom}{bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es France m\encoding{é}tropolitaine et des DROM}
+\item{metrodrom}{booléen TRUE si on souhaite des données France métropolitaine et des DROM}
 
-\item{as_df}{bool\encoding{é}en TRUE si on souhaite des donn\encoding{é}es sous un seul dataframe, false si on souhaite une liste de dataframe par type de zone}
+\item{franceprovince}{booléen TRUE si on souhaite des données France de province}
+
+\item{drom}{booléen TRUE si on souhaite des données Départements et régions d'outre mer}
+
+\item{as_df}{booléen TRUE si on souhaite des données sous un seul dataframe, FALSE si on souhaite une liste de dataframe par type de zone}
+
+\item{na.rm}{argument(s) passé(s) à la fonction d'aggrégation (sum), na.rm=F par défaut}
 }
 \value{
-la fonction renvoie un dataframe ou une liste de dataframe
+Renvoie un dataframe ou une liste de dataframe
 }
 \description{
-Consolider une table de donn\encoding{é}es à la commune à tous les \encoding{é}chelles du cog
+Consolider une table de données à la commune à tous les échelles du cog
 }

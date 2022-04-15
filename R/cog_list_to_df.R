@@ -1,15 +1,13 @@
-#' Preparer les donn\encoding{é}es pour passer d'un type liste a un type dataframe
+#' Preparer les données pour passer d'un type liste a un type dataframe
 #'
-#' @param .data la table de donn\encoding{é}es a convertir
+#' @param .data la table de données a convertir
 #' @param typezone le type de zonage
 #'
-#' @return la fonction renvoie une table de donn\encoding{é}es renomm\encoding{é}e
-#' @export
-#' @import magrittr
+#' @return Renvoie une table de données renommée
 #' @importFrom dplyr mutate
 #' @importFrom dplyr select
 #' @importFrom tidyselect everything
-
+#' @keywords internal
 zone_list_to_df<-function(.data,typezone) {
   if (typezone=="communes") {
     if (is.null(.data)){d<-NULL}
@@ -63,6 +61,22 @@ zone_list_to_df<-function(.data,typezone) {
         select(TypeZone,Zone,CodeZone,everything())
     }
   }
+  if (typezone=="franceprovince") {
+    if (is.null(.data)){d<-NULL}
+    else {
+      d<-.data %>%
+        mutate(Zone="France de province",CodeZone="FRPROV",TypeZone="France") %>%
+        select(TypeZone,Zone,CodeZone,everything())
+    }
+  }
+  if (typezone=="drom") {
+    if (is.null(.data)){d<-NULL}
+    else {
+      d<-.data %>%
+        mutate(Zone="D\u00e9partements et r\u00e9gions d'outre-mer",CodeZone="DROM",TypeZone="France") %>%
+        select(TypeZone,Zone,CodeZone,everything())
+    }
+  }
   return(d)
 }
 
@@ -70,12 +84,10 @@ zone_list_to_df<-function(.data,typezone) {
 #'
 #' @param list la liste de donnees a convertir
 #'
-#' @return la fonction renvoie une table de donnees
+#' @return Renvoie une table de donnees
 #' @export
-#' @import magrittr
 #' @importFrom purrr map2_df
 #' @importFrom dplyr mutate_at
-
 cog_list_to_df<-function(list) {
   map2_df(list,names(list),~ zone_list_to_df(.data = .x,typezone = .y)) %>%
     mutate_at(vars(TypeZone,Zone,CodeZone),as.factor)

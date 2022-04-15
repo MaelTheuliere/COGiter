@@ -1,23 +1,51 @@
 Package: COGiter
-Title: Functions, Data And Map To Help People To Analyse French Territorial Data
-Version: 0.0.0.9001
+Title: Fonctions, Données et Fonds de Carte pour Gérer les Données au
+    Territoire
+Version: 0.0.8.3
 Authors@R: 
-    person(given = "Maël",
-           family = "THEULIERE",
-           role = c("aut", "cre"),
-           email = "mael.theuliere@gmail.com")
-Description: Functions, data and map to help people to analyse french territorial data.
-License: MIT
-Encoding: UTF-8
-LazyData: true
-Imports: 
-    dplyr,
-    rlang,
-    magrittr,
-    tibble,
-    purrr,
-    tidyselect
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.0
+    c(person(given = "Maël",
+             family = "THEULIERE",
+             role = c("aut", "cre"),
+             email = "mael.theuliere@gmail.com"),
+      person(given = "Juliette",
+             family = "ENGELARE-LEFEBVRE",
+             role = "ctb",
+             email = "juliette.engelaere-lefebvre@developpement-durable.gouv.fr"),
+      person(given = "Caroline",
+             family = "COUDRIN",
+             role = "ctb",
+             email = "caroline.coundrin@developpement-durable.gouv.fr"))
+Description: Fonctions, données et fonds de carte pour gérer les données
+    au territoire. Ce package permet notamment de gérer les fusions de
+    communes intervenues entre 2015 et 2021.
+License: MIT + file LICENSE
 URL: https://github.com/MaelTheuliere/COGiter
 BugReports: https://github.com/MaelTheuliere/COGiter/issues
+Depends: 
+    R (>= 2.10)
+Imports: 
+    attempt,
+    dplyr (>= 1.0.0),
+    forcats,
+    glue,
+    magrittr,
+    purrr,
+    rlang,
+    sf,
+    stringr,
+    tidyr,
+    tidyselect,
+    utils
+Suggests: 
+    knitr,
+    lifecycle,
+    rmarkdown,
+    testthat,
+    tibble
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
+LazyData: true
+LazyDataCompression: xz
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1

@@ -1,23 +1,21 @@
 #' Filtrer une fichier du cog sur un sous ensemble du territoire
 #'
-#' @param .data la table de donn\encoding{é}es a filtrer
-#' @param depcom la commune sur laquelle filtrer les donn\encoding{é}es
-#' @param epci l'epci sur lequel filtrer les donn\encoding{é}es
-#' @param dep le departement sur lequel filtrer les donn\encoding{é}es
-#' @param reg la region sur laquelle filtrer les donn\encoding{é}es
-#' @param garder_supra ">" si on souhaite garder les territoires supra, ">=" si on souhaite garder les territoires suppra et du même niveau que celui s\encoding{é}lectionn\encoding{é}
+#' @param .data la table de données a filtrer
+#' @param depcom la commune sur laquelle filtrer les données
+#' @param epci l'epci sur lequel filtrer les données
+#' @param dep le departement sur lequel filtrer les données
+#' @param reg la region sur laquelle filtrer les données
+#' @param garder_supra ">" si on souhaite garder les territoires supra, ">=" si on souhaite garder les territoires suppra et du même niveau que celui sélectionné
 #'
 #'
-#' @return la fonction renvoie une table de donnees filtrées
+#' @return Renvoie une table de donnees filtrées
 #' @export
-#' @import magrittr
-#' @importFrom dplyr inner_join
-#' @importFrom dplyr mutate
-#' @importFrom dplyr select
-#' @importFrom dplyr filter
-#' @importFrom dplyr bind_rows
+#' @importFrom dplyr inner_join across mutate filter select bind_rows
+#' @importFrom stringr str_detect
+#' @importFrom forcats fct_drop
 #' @importFrom rlang enquo
 #' @importFrom rlang !!
+
 
 filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra="non"){
   quo_depcom<-enquo(depcom)
@@ -29,7 +27,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra=="non"){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(str_detect(REG,reg)) %>%
             select(TypeZone,CodeZone)
         )
@@ -37,7 +35,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra==">"){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(str_detect(REG,reg)) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
@@ -47,7 +45,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra==">="){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(str_detect(REG,reg)) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
@@ -61,7 +59,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra=="non"){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(str_detect(DEP,dep)) %>%
             select(TypeZone,CodeZone)
         )
@@ -69,7 +67,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra==">"){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(str_detect(DEP,dep)) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
@@ -79,7 +77,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra==">="){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(str_detect(DEP,dep)) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
@@ -93,7 +91,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra=="non"){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(EPCI==!!quo_epci) %>%
             select(TypeZone,CodeZone)
         )
@@ -101,7 +99,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra==">"){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(EPCI==!!quo_epci) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
@@ -111,7 +109,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     if (garder_supra==">="){
       result<-result %>%
         inner_join(
-          liste_zone %>%
+          COGiter::liste_zone %>%
             filter(EPCI==!!quo_epci) %>%
             select(TypeZone,CodeZone)) %>%
         bind_rows(result %>%
@@ -122,6 +120,7 @@ filtrer_cog<-function(.data,depcom=NULL,epci=NULL,dep=NULL,reg=NULL,garder_supra
     }
   }
   result<- result %>%
-    mutate_at(vars(TypeZone,Zone,CodeZone),funs(fct_drop(as.factor(.))))
+    dplyr::mutate(dplyr::across(c(TypeZone,Zone,CodeZone),as.factor)) %>%
+    dplyr::mutate(dplyr::across(c(TypeZone,Zone,CodeZone),forcats::fct_drop))
   return(result)
 }

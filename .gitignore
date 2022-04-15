@@ -1,5 +1,10 @@
+inst/doc
 .Rhistory
 .RData
 .Rproj.user
 *.Rproj
 .Renviron
+data-raw/source/
+*.html
+docs/
+archives/

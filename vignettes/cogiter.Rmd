@@ -1,0 +1,101 @@
+---
+title: "Gestion des fusions de communes et consolidation supra communales"
+author: "Maël THEULIERE"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Gestion des fusions de communes et consolidation supra communales}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(COGiter)
+```
+
+Ce document va vous permettre de comprendre comment fonctionne les différentes fonctions de `{COGiter}` pour : 
+- gérer les fusions de communes
+- consolider vos données communales au niveau epci, départements, régions ou autres zonages en votre possession.
+
+
+## Passer au cog à jour
+
+Pour passer une table de données communale à la carte des communes à jour, vous pouvez utiliser la fonction `passer_au_cog_a_jour()` qui permet de retrouver pour tout code commune ayant existé le code commune aujourd'hui actif sur son périmètre géographique. 
+
+Attention, cette règle ne marche que pour les fusions de communes.
+
+Le périmètre de couverture de la fonction est pour l'instant la France métropolitaine et les DROM.
+
+```{r,message=F,warning=F}
+tibble::glimpse(pop2015)
+pop2015_a_jour <- passer_au_cog_a_jour(pop2015,
+  code_commune = DEPCOM,
+  aggrege = T,
+  garder_info_supra = F
+)
+tibble::glimpse(pop2015_a_jour)
+```
+
+## Construire des aggrégations supra communale
+
+Pour reconstituer à partir d'une table de données communale l'ensemble des totaux pour les zonages supra communaux principaux de France (epci, départements, régions), vous pouvez utiliser la fonction `cogifier()` qui permet de recalculer sur la base d'une table communale ces totaux. 
+
+La fonction calcule le total en prenant en dimension toutes les variables facteur ou caractère de la table et en variable à agréger toutes les variables numériques. 
+
+
+En plus des agrégats epci, départements, régions, la fonction `cogifier()` permet de calculer : 
+
+- le total France métropolitaine (`metro = T`)
+- le total France métropolitaine et DROM (`metrodrom = T`)
+- le total Départements et régions d'outre mer (`drom = T`)
+- le total France de province (`franceprovince = T`)
+
+```{r,message=F,warning=F}
+tibble::glimpse(pop2015)
+pop2015_cogifiee <- cogifier(pop2015,
+  code_commune = DEPCOM
+)
+tibble::glimpse(pop2015_cogifiee)
+```
+
+Vous pouvez choisir deux types de format : un format dataframe qui constitue une table unique, un format liste qui constitue une liste de dataframe pour chaque zonage (communes, epci, departements, regions).
+
+```{r,message=F,warning=F}
+tibble::glimpse(pop2015)
+pop2015_cogifiee_liste <- cogifier(pop2015,
+  code_commune = DEPCOM, as_df = F
+)
+tibble::glimpse(pop2015_cogifiee)
+```
+
+Les fonctions `cog_df_to_list()` et `cog_list_to_df()` permettent de passer d'un format à l'autre.
+
+```{r,message=F,warning=F}
+pop2015_cogifiee_df <- cog_list_to_df(pop2015_cogifiee_liste)
+tibble::glimpse(pop2015_cogifiee_df)
+```
+
+## Filtrer sur un sous ensemble du territoire
+
+`filtrer_cog()` va permettre, sur une table cogifiée d'appliquer un filtre pour ne garder que certains zonage.
+
+Exemple, si je ne souhaiter garder que les données relatives à la région Pays de la Loire.
+
+```{r,message=F,warning=F}
+pop2015_cogifiee_r52 <- filtrer_cog(pop2015_cogifiee, reg = "52")
+tibble::glimpse(pop2015_cogifiee_r52)
+```
+
+On peut vouloir garder les informations pour le total des autres régions ou le total France entière.
+
+```{r,message=F,warning=F}
+pop2015_cogifiee_r52 <- filtrer_cog(pop2015_cogifiee, reg = "52", garder_supra = ">=")
+tibble::glimpse(pop2015_cogifiee_r52)
+```
