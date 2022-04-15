@@ -27,6 +27,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -49,7 +51,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -69,7 +71,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/MaelTheuliere/COGiter/">
+  <a href="https://github.com/MaelTheuliere/COGiter/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -90,22 +92,22 @@
       <h1 data-toc-skip>Gestion des fonds de carte</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/MaelTheuliere/COGiter/blob/master/vignettes/filtre_geo.Rmd"><code>vignettes/filtre_geo.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/MaelTheuliere/COGiter/blob/HEAD/vignettes/filtre_geo.Rmd" class="external-link"><code>vignettes/filtre_geo.Rmd</code></a></small>
       <div class="hidden name"><code>filtre_geo.Rmd</code></div>
 
     </div>
 
     
     
-<p>Ce document va vous permettre de comprendre comment <a href="https://github.com/MaelTheuliere/COGiter">COGiter</a> vous permet de gérer les fonds de carte de France.</p>
+<p>Ce document va vous permettre de comprendre comment <a href="https://github.com/MaelTheuliere/COGiter" class="external-link">COGiter</a> vous permet de gérer les fonds de carte de France.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/MaelTheuliere/COGiter">COGiter</a></span><span class="op">)</span></code></pre></div>
-<div id="fonds-de-carte-disponibles" class="section level2">
-<h2 class="hasAnchor">
-<a href="#fonds-de-carte-disponibles" class="anchor"></a>Fonds de carte disponibles</h2>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/MaelTheuliere/COGiter" class="external-link">COGiter</a></span><span class="op">)</span></code></pre></div>
+<div class="section level2">
+<h2 id="fonds-de-carte-disponibles">Fonds de carte disponibles<a class="anchor" aria-label="anchor" href="#fonds-de-carte-disponibles"></a>
+</h2>
 <p>Il existe pour la métropole et chaque drom un fond de carte pour les niveaux communes, epci, départements, régions :</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="st">"package:COGiter"</span>, pattern <span class="op">=</span> <span class="st">"_geo$"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span><span class="st">"package:COGiter"</span>, pattern <span class="op">=</span> <span class="st">"_geo$"</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "communes_971_geo"       "communes_972_geo"       "communes_973_geo"      </span>
 <span class="co">#&gt;  [4] "communes_974_geo"       "communes_976_geo"       "communes_geo"          </span>
 <span class="co">#&gt;  [7] "communes_metro_geo"     "departements_971_geo"   "departements_972_geo"  </span>
@@ -117,17 +119,17 @@
 <span class="co">#&gt; [25] "regions_973_geo"        "regions_974_geo"        "regions_976_geo"       </span>
 <span class="co">#&gt; [28] "regions_geo"            "regions_metro_geo"</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">communes_973_geo</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">communes_973_geo</span><span class="op">)</span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 </div>
-<div id="filtrer-les-fonds-de-carte" class="section level2">
-<h2 class="hasAnchor">
-<a href="#filtrer-les-fonds-de-carte" class="anchor"></a>Filtrer les fonds de carte</h2>
+<div class="section level2">
+<h2 id="filtrer-les-fonds-de-carte">Filtrer les fonds de carte<a class="anchor" aria-label="anchor" href="#filtrer-les-fonds-de-carte"></a>
+</h2>
 <p><code><a href="../reference/filtrer_cog_geo.html">filtrer_cog_geo()</a></code> vous permet d’obtenir une liste de spatial dataframe centée sur une partie du territoire (que ce soit une commune, un epci, un département ou une région).</p>
 <p>Exemple sur Nantes métropole :</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nantes_metropole</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog_geo.html">filtrer_cog_geo</a></span><span class="op">(</span>epci <span class="op">=</span> <span class="st">"244400404"</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">)</span>
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ communes: sf [24 × 3] (S3: sf/tbl_df/tbl/data.frame)</span>
 <span class="co">#&gt;   ..$ DEPCOM  : Factor w/ 34965 levels "01001","01002",..: 16220 16227 16229 16233 16235 16243 16253 16278 16297 16304 ...</span>
@@ -147,15 +149,15 @@
 <span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "EPCI" "AREA"</span></code></pre></div>
 <p><code>nantes_metropole</code> est une liste de deux spatial dataframe <code>communes</code> et <code>epci</code> qui correspondent aux deux niveau de zoom possible sur la métropole.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">$</span><span class="va">communes</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">$</span><span class="va">communes</span><span class="op">)</span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">$</span><span class="va">epci</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">$</span><span class="va">epci</span><span class="op">)</span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-6-2.png" width="700"></p>
 <p>On peut obtenir l’équivalent sur la région Bretagne, dans ce cas, la liste renvoyée contient également le fond de carte des départements et de la région :</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bretagne</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog_geo.html">filtrer_cog_geo</a></span><span class="op">(</span>reg <span class="op">=</span> <span class="st">"53"</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">)</span>
 <span class="co">#&gt; List of 4</span>
 <span class="co">#&gt;  $ communes    : sf [1,208 × 3] (S3: sf/tbl_df/tbl/data.frame)</span>
 <span class="co">#&gt;   ..$ DEPCOM  : Factor w/ 34965 levels "01001","01002",..: 7280 7281 7282 7283 7284 7285 7286 7287 7288 7289 ...</span>
@@ -190,21 +192,21 @@
 <span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span>
 <span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "REG" "AREA"</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">$</span><span class="va">communes</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">$</span><span class="va">communes</span><span class="op">)</span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">$</span><span class="va">epci</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">$</span><span class="va">epci</span><span class="op">)</span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-8-2.png" width="700"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">$</span><span class="va">departements</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">$</span><span class="va">departements</span><span class="op">)</span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-8-3.png" width="700"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">$</span><span class="va">regions</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">$</span><span class="va">regions</span><span class="op">)</span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-8-4.png" width="700"></p>
 <p>l’option <code>garder_supra</code> permet de ne pas simplement filtrer mais de centrer la bbox des cartes sur le territoire, ce qui permet de visualiser la carte des territoires voisins.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nantes_metropole</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog_geo.html">filtrer_cog_geo</a></span><span class="op">(</span>epci <span class="op">=</span> <span class="st">"244400404"</span>, garder_supra <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">)</span>
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ communes: sf [64 × 3] (S3: sf/tbl_df/tbl/data.frame)</span>
 <span class="co">#&gt;   ..$ DEPCOM  : Factor w/ 34965 levels "01001","01002",..: 16217 16220 16224 16227 16228 16229 16233 16235 16237 16238 ...</span>
@@ -223,10 +225,10 @@
 <span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span>
 <span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "EPCI" "AREA"</span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">$</span><span class="va">communes</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">$</span><span class="va">communes</span><span class="op">)</span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">$</span><span class="va">epci</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">$</span><span class="va">epci</span><span class="op">)</span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-10-2.png" width="700"></p>
 </div>
   </div>
@@ -242,11 +244,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Maël THEULIERE.</p>
+  <p></p>
+<p>Developed by Maël THEULIERE.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -254,6 +258,8 @@
 
   
 
+
+  
 
   </body>
 </html>

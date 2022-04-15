@@ -31,6 +31,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -53,7 +55,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -73,7 +75,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/MaelTheuliere/COGiter/">
+  <a href="https://github.com/MaelTheuliere/COGiter/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -90,24 +92,23 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="cogiter-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#cogiter-" class="anchor"></a>COGiter <img src="reference/figures/logo.png" align="right" height="139">
+<div class="section level1">
+<div class="page-header"><h1 id="cogiter-">COGiter <img src="reference/figures/logo.png" align="right" height="139"><a class="anchor" aria-label="anchor" href="#cogiter-"></a>
 </h1></div>
 <!-- badges: start -->
 
 <p>COGiter fournit des fonctions, des données et des fonds de carte pour permettre des analyses territoriales sur les collectivités françaises.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>Installer le package depuis <a href="https://github.com/">github</a> ou <a href="https://gitlab.com">gitlab</a></p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>Installer le package depuis <a href="https://github.com/" class="external-link">github</a> ou <a href="https://gitlab.com" class="external-link">gitlab</a></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"MaelTheuliere/COGiter"</span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_gitlab.html">install_gitlab</a></span><span class="op">(</span><span class="st">"dreal-datalab/COGiter"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"MaelTheuliere/COGiter"</span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_gitlab.html" class="external-link">install_gitlab</a></span><span class="op">(</span><span class="st">"dreal-datalab/COGiter"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="a-propos" class="section level2">
-<h2 class="hasAnchor">
-<a href="#a-propos" class="anchor"></a>A propos</h2>
+<div class="section level2">
+<h2 id="a-propos">A propos<a class="anchor" aria-label="anchor" href="#a-propos"></a>
+</h2>
 <p>Ce package R vise à mettre à disposition :</p>
 <ul>
 <li>les tables du COG 2021 de l’Insee en RData;</li>
@@ -116,82 +117,93 @@
 <li>des fonctions d’aide à au passage de jeu de données vers le millésime du COG 2021</li>
 </ul>
 <p>Le tout avec des règles de nommage identiques pour faciliter les appariements.</p>
-<p>Le package <a href="https://github.com/antuki/COGugaison">COGUGAISON</a> rempli en partie la même fonction et nous vous invitons à privilégier son utilisation. Ce présent package visant à répondre à des besoins spécifiques du <a href="http://www.pays-de-la-loire.developpement-durable.gouv.fr/dreal-centre-de-service-de-la-donnee-r1957.html">DREAL datalab Pays de la Loire</a> et est par ailleurs non stabilisé.</p>
+<p>Le package <a href="https://github.com/antuki/COGugaison" class="external-link">COGUGAISON</a> rempli en partie la même fonction et nous vous invitons à privilégier son utilisation. Ce présent package visant à répondre à des besoins spécifiques du <a href="http://www.pays-de-la-loire.developpement-durable.gouv.fr/dreal-centre-de-service-de-la-donnee-r1957.html" class="external-link">DREAL datalab Pays de la Loire</a> et est par ailleurs non stabilisé.</p>
 </div>
-<div id="les-données-sources" class="section level2">
-<h2 class="hasAnchor">
-<a href="#les-donn%C3%A9es-sources" class="anchor"></a>Les données sources</h2>
-<div id="le-cog-insee-2021" class="section level3">
-<h3 class="hasAnchor">
-<a href="#le-cog-insee-2021" class="anchor"></a>Le COG Insee 2021</h3>
+<div class="section level2">
+<h2 id="les-données-sources">Les données sources<a class="anchor" aria-label="anchor" href="#les-donn%C3%A9es-sources"></a>
+</h2>
+<div class="section level3">
+<h3 id="le-cog-insee-2021">Le COG Insee 2021<a class="anchor" aria-label="anchor" href="#le-cog-insee-2021"></a>
+</h3>
 <ul>
-<li><a href="https://www.insee.fr/fr/information/2560452" class="uri">https://www.insee.fr/fr/information/2560452</a></li>
+<li><a href="https://www.insee.fr/fr/information/2560452" class="external-link uri">https://www.insee.fr/fr/information/2560452</a></li>
 </ul>
 </div>
-<div id="admin-express" class="section level3">
-<h3 class="hasAnchor">
-<a href="#admin-express" class="anchor"></a>Admin Express</h3>
+<div class="section level3">
+<h3 id="admin-express">Admin Express<a class="anchor" aria-label="anchor" href="#admin-express"></a>
+</h3>
 <ul>
-<li><a href="https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html#admin-express" class="uri">https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html#admin-express</a></li>
+<li><a href="https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html#admin-express" class="external-link uri">https://geoservices.ign.fr/documentation/diffusion/telechargement-donnees-libres.html#admin-express</a></li>
 </ul>
 </div>
 </div>
-<div id="description-du-package" class="section level2">
-<h2 class="hasAnchor">
-<a href="#description-du-package" class="anchor"></a>Description du package</h2>
-<p>Voir la <a href="https://maeltheuliere.github.io/COGiter/reference/index.html">page de référence</a></p>
+<div class="section level2">
+<h2 id="description-du-package">Description du package<a class="anchor" aria-label="anchor" href="#description-du-package"></a>
+</h2>
+<p>Voir la <a href="https://maeltheuliere.github.io/COGiter/reference/index.html" class="external-link">page de référence</a></p>
 </div>
-<div id="exemple-dusage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#exemple-dusage" class="anchor"></a>Exemple d’usage</h2>
-<p>Voir la <a href="https://maeltheuliere.github.io/COGiter/articles/cogiter.html">vignette</a></p>
+<div class="section level2">
+<h2 id="exemple-dusage">Exemple d’usage<a class="anchor" aria-label="anchor" href="#exemple-dusage"></a>
+</h2>
+<p>Voir la <a href="https://maeltheuliere.github.io/COGiter/articles/cogiter.html" class="external-link">vignette</a></p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/MaelTheuliere/COGiter/">https://​github.com/​MaelTheuliere/​COGiter/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/MaelTheuliere/COGiter/issues">https://​github.com/​MaelTheuliere/​COGiter/​issues</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li>
-<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
-</li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Maël THEULIERE <br><small class="roles"> Author, maintainer </small>  </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="https://github.com/MaelTheuliere/COGiter/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/MaelTheuliere/COGiter/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/MaelTheuliere/COGiter/actions"><img src="https://github.com/MaelTheuliere/COGiter/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://codecov.io/gh/MaelTheuliere/COGiter?branch=master"><img src="https://codecov.io/gh/MaelTheuliere/COGiter/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li>
+<a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
+</li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing COGiter</a></li>
+</ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Maël THEULIERE <br><small class="roles"> Author, maintainer </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/MaelTheuliere/COGiter/actions" class="external-link"><img src="https://github.com/MaelTheuliere/COGiter/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://codecov.io/gh/MaelTheuliere/COGiter?branch=master" class="external-link"><img src="https://codecov.io/gh/MaelTheuliere/COGiter/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+</ul>
+</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Maël THEULIERE.</p>
+  <p></p>
+<p>Developed by Maël THEULIERE.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -199,6 +211,8 @@
 
   
 
+
+  
 
   </body>
 </html>
