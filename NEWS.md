@@ -1,3 +1,8 @@
+# COGiter 0.0.9
+
+- Mise à jour COG 2022
+
+
 # COGiter 0.0.8.3
 
 -  Ajout d'un paramètre à `filtrer_cog_geo()` pour élargir l'emprise des couches.
