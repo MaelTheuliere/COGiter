@@ -5,7 +5,7 @@
 \alias{table_passage_com_epci}
 \title{Rattachement des communes à leur epci.}
 \format{
-A data frame with 34965 rows and 2 variables:
+A data frame with 34955 rows and 2 variables:
 \describe{
 \item{DEPCOM}{Code Insee de la commune}
 \item{EPCI}{Code siren de l'EPCI de rattachement}

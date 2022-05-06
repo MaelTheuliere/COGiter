@@ -14,8 +14,8 @@
 Un dataframe avec une ligne par departement et 3 variables.
 \describe{
 \item{DEP}{Code Insee}
+\item{AREA}{Aire du departement en m2}
 \item{geometry}{géométrie}
-\item{AREA}{Aire du departement}
 }
 }
 \usage{

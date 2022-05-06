@@ -18,5 +18,5 @@ une chaîne de caractère
 Obtenir le code d'une zone
 }
 \examples{
-code_zone("Communes","Nantes")
+code_zone("Communes", "Nantes")
 }
