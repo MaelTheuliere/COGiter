@@ -259,8 +259,8 @@ NULL
 #' @format Un dataframe avec une ligne par commune et 3 variables.
 #' \describe{
 #'   \item{DEPCOM}{Code Insee}
+#'   \item{AREA}{Aire de la commune en m2}
 #'   \item{geometry}{géométrie}
-#'   \item{AREA}{Aire de la commune}
 #' }
 "communes_geo"
 
@@ -293,8 +293,8 @@ NULL
 #' @format Un dataframe avec une ligne par epci et 3 variables.
 #' \describe{
 #'   \item{EPCI}{Code Sirene}
+#'   \item{AREA}{Aire de l'EPCI en m2}
 #'   \item{geometry}{géométrie}
-#'   \item{AREA}{Aire de l'EPCI}
 #' }
 NULL
 
@@ -307,8 +307,8 @@ NULL
 #' @format Un dataframe avec une ligne par epci et 3 variables.
 #' \describe{
 #'   \item{EPCI}{Code Sirene}
+#'   \item{AREA}{Aire de l'EPCI en m2}
 #'   \item{geometry}{géométrie}
-#'   \item{AREA}{Aire de l'EPCI}
 #' }
 "epci_geo"
 
@@ -341,8 +341,8 @@ NULL
 #' @format Un dataframe avec une ligne par departement et 3 variables.
 #' \describe{
 #'   \item{DEP}{Code Insee}
+#'   \item{AREA}{Aire du departement en m2}
 #'   \item{geometry}{géométrie}
-#'   \item{AREA}{Aire du departement}
 #' }
 NULL
 
@@ -354,8 +354,8 @@ NULL
 #' @format Un dataframe avec une ligne par departement et 3 variables.
 #' \describe{
 #'   \item{DEP}{Code Insee}
+#'   \item{AREA}{Aire du departement en m2}
 #'   \item{geometry}{géométrie}
-#'   \item{AREA}{Aire du departement}
 #' }
 "departements_geo"
 
@@ -390,8 +390,8 @@ NULL
 #' @format Un dataframe avec une ligne par région et 3 variables.
 #' \describe{
 #'   \item{REG}{Code Insee}
+#'   \item{AREA}{Aire de la region en m2}
 #'   \item{geometry}{géométrie}
-#'   \item{AREA}{Aire de la region}
 #' }
 NULL
 
@@ -404,8 +404,8 @@ NULL
 #' @format Un dataframe avec une ligne par régions et 3 variables.
 #' \describe{
 #'   \item{REG}{Code Insee}
+#'   \item{AREA}{Aire de la region en m2}
 #'   \item{geometry}{géométrie}
-#'   \item{AREA}{Aire de la region}
 #' }
 "regions_geo"
 

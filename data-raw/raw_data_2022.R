@@ -245,16 +245,16 @@ table_passage_com_historique <- read_xlsx(paste0(repo_mil, "/table_passage_geo20
 
 arn_plm <- communes_cog %>%
   filter(TYPECOM == "ARM") %>%
-  rename(DEPCOM_HIST = DEPCOM) %>%
+  rename(ARN = DEPCOM) %>%
   mutate(DEPCOM = case_when(
     DEP == "75" ~ "75056", # Paris
     DEP == "69" ~ "69123", # Lyon
     DEP == "13" ~ "13055" # Marseille
   )) %>%
-  select(DEPCOM_HIST, DEPCOM)
+  select(ARN, DEPCOM)
 
 table_passage_com_historique <- table_passage_com_historique %>%
-  bind_rows(arn_plm) %>%
+  bind_rows(arn_plm %>% select(DEPCOM_HIST = ARN, DEPCOM)) %>%
   mutate(across(everything(), fact.enc.utf8))
 
 
