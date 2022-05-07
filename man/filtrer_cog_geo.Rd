@@ -9,7 +9,8 @@ filtrer_cog_geo(
   epci = NULL,
   dep = NULL,
   reg = NULL,
-  garder_supra = FALSE
+  garder_supra = FALSE,
+  lg_buffer = 0
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ filtrer_cog_geo(
 \item{reg}{la region sur laquelle filtrer les données}
 
 \item{garder_supra}{TRUE si on souhaite une carte centrée sur le territoire mais avec les territoires environnant visible, non si on souhaite garder que le territoire sélectionné}
+
+\item{lg_buffer}{si garder_supra est a true, la largeur du buffer a garder autour du territoire (metres)}
 }
 \value{
 une liste de spatial dataframe
