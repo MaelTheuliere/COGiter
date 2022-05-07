@@ -7,8 +7,8 @@
 passer_au_cog_a_jour(
   .data,
   code_commune = DEPCOM,
-  aggrege = T,
-  garder_info_supra = T,
+  aggrege = TRUE,
+  garder_info_supra = TRUE,
   na.rm = FALSE
 )
 }

@@ -18,5 +18,5 @@ une chaîne de caractère
 Obtenir le nom d'une zone
 }
 \examples{
-nom_zone(c("Communes","Communes"),c("75056","44109"))
+nom_zone(c("Communes", "Communes"), c("75056", "44109"))
 }

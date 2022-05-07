@@ -1,11 +1,11 @@
 # Pour retrouver les code zone et nom zone des totaux qui ne sont pas présent dans liste_zone
 augmenter_liste_zone <- function() {
   augment <- tibble::tribble(
-    ~CodeZone,~Zone,~TypeZone,~EPCI,~NATURE_EPCI,~DEP,~REG,
-    "FRMETRO","France m\u00e9tropolitaine","France",NA,NA,NA,NA,
-    "FRMETRODROM","France m\u00e9tropolitaine et DROM","France",NA,NA,NA,NA,
-    "FRPROV","France de province","France",NA,NA,NA,NA,
-    "DROM","D\u00e9partements et r\u00e9gions d'outre-mer","France",NA,NA,NA,NA
+    ~CodeZone, ~Zone, ~TypeZone, ~EPCI, ~NATURE_EPCI, ~DEP, ~REG,
+    "FRMETRO", "France m\u00e9tropolitaine", "France", NA, NA, NA, NA,
+    "FRMETRODROM", "France m\u00e9tropolitaine et DROM", "France", NA, NA, NA, NA,
+    "FRPROV", "France de province", "France", NA, NA, NA, NA,
+    "DROM", "D\u00e9partements et r\u00e9gions d'outre-mer", "France", NA, NA, NA, NA
   )
   res <- liste_zone %>%
     dplyr::bind_rows(augment)
@@ -21,8 +21,8 @@ augmenter_liste_zone <- function() {
 #' @export
 #'
 #' @examples
-#' nom_zone(c("Communes","Communes"),c("75056","44109"))
-nom_zone <- function(type_zone,code_zone) {
+#' nom_zone(c("Communes", "Communes"), c("75056", "44109"))
+nom_zone <- function(type_zone, code_zone) {
   filter <- data.frame(TypeZone = type_zone, CodeZone = code_zone)
   liste_zone <- augmenter_liste_zone()
   res <- filter %>%
@@ -40,8 +40,8 @@ nom_zone <- function(type_zone,code_zone) {
 #' @export
 #'
 #' @examples
-#' code_zone("Communes","Nantes")
-code_zone <- function(type_zone,zone) {
+#' code_zone("Communes", "Nantes")
+code_zone <- function(type_zone, zone) {
   filter <- data.frame(TypeZone = type_zone, Zone = zone)
   liste_zone <- augmenter_liste_zone()
   res <- filter %>%
@@ -64,7 +64,7 @@ code_zone <- function(type_zone,zone) {
 trouver_zone <- function(pattern) {
   liste_zone <- augmenter_liste_zone()
   res <- liste_zone %>%
-    dplyr::filter(stringr::str_detect(Zone,pattern)) %>%
-    dplyr::select(TypeZone,CodeZone,Zone)
+    dplyr::filter(stringr::str_detect(Zone, pattern)) %>%
+    dplyr::select(TypeZone, CodeZone, Zone)
   return(res)
 }

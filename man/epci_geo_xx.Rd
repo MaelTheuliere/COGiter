@@ -14,8 +14,8 @@
 Un dataframe avec une ligne par epci et 3 variables.
 \describe{
 \item{EPCI}{Code Sirene}
+\item{AREA}{Aire de l'EPCI en m2}
 \item{geometry}{géométrie}
-\item{AREA}{Aire de l'EPCI}
 }
 }
 \usage{

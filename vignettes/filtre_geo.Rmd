@@ -37,7 +37,7 @@ plot(communes_973_geo)
 
 ## Filtrer les fonds de carte
 
-`filtrer_cog_geo()` vous permet d'obtenir une liste de spatial dataframe centée sur une partie du territoire (que ce soit une commune, un epci, un département ou une région).
+`filtrer_cog_geo()` vous permet d'obtenir une liste de spatial dataframe centrée sur une partie du territoire (que ce soit une commune, un epci, un département ou une région).
 
 Exemple sur Nantes métropole : 
 
@@ -46,7 +46,7 @@ nantes_metropole <- filtrer_cog_geo(epci = "244400404")
 dplyr::glimpse(nantes_metropole)
 ```
 
-`nantes_metropole` est une liste de deux spatial dataframe `communes` et `epci` qui correspondent aux deux niveau de zoom possible sur la métropole.
+`nantes_metropole` est une liste de deux spatial dataframes `communes` et `epci` qui correspondent aux deux niveaux de zoom possible sur la métropole.
 
 ```{r}
 plot(nantes_metropole$communes)

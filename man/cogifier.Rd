@@ -7,15 +7,15 @@
 cogifier(
   .data,
   code_commune = DEPCOM,
-  communes = T,
-  epci = T,
-  departements = T,
-  regions = T,
-  metro = T,
-  metrodrom = F,
-  franceprovince = F,
-  drom = F,
-  as_df = T,
+  communes = TRUE,
+  epci = TRUE,
+  departements = TRUE,
+  regions = TRUE,
+  metro = TRUE,
+  metrodrom = FALSE,
+  franceprovince = FALSE,
+  drom = FALSE,
+  as_df = TRUE,
   na.rm = FALSE
 )
 }
