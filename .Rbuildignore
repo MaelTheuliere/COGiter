@@ -8,4 +8,4 @@
 ^\.github$
 ^R/api_geo_data_gouv\.R$
 ^archives$
-data-raw/source
+data-raw/source/*

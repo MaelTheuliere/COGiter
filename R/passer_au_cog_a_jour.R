@@ -14,11 +14,11 @@
 #' @importFrom dplyr rename left_join inner_join select group_by summarise ungroup group_vars across is.grouped_df
 #' @importFrom tidyselect vars_select_helpers
 #' @importFrom rlang enquo sym !!
-passer_au_cog_a_jour <- function(.data, code_commune = DEPCOM, aggrege = T, garder_info_supra = T, na.rm=FALSE) {
+passer_au_cog_a_jour <- function(.data, code_commune = DEPCOM, aggrege = TRUE, garder_info_supra = TRUE, na.rm=FALSE) {
   quo_code_commune <- enquo(code_commune)
   result <- .data %>%
     rename(DEPCOM_HIST = !!quo_code_commune) %>%
-    inner_join(COGiter::table_passage_com_historique) %>%
+    inner_join(COGiter::table_passage_com_historique, by = "DEPCOM_HIST") %>%
     select(-DEPCOM_HIST)
 
   if (aggrege == T) {
@@ -29,7 +29,7 @@ passer_au_cog_a_jour <- function(.data, code_commune = DEPCOM, aggrege = T, gard
   }
   if (garder_info_supra == T) {
     result <- result %>%
-      left_join(COGiter::communes_info_supra)
+      left_join(COGiter::communes_info_supra, by = "DEPCOM", suffix = c("_hist", ""))
   }
   if (is.grouped_df(.data)) {
     gr_data <- group_vars(.data)

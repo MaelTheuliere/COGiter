@@ -9,7 +9,6 @@
 #' @return une liste de spatial dataframe
 #' @export
 #' @importFrom dplyr filter pull
-#' @importFrom stringr str_detect
 #' @importFrom sf st_bbox st_crop st_buffer
 #' @importFrom attempt stop_if_any
 #' @examples
@@ -31,9 +30,9 @@ filtrer_cog_geo <- function(depcom = NULL,
   reg_geo <- map$reg_geo
   if (!is.null(reg)) {
     if (!garder_supra) {
-      liste_dep <- dplyr::filter(COGiter::liste_zone, stringr::str_detect(REG, reg), TypeZone == "D\u00e9partements") %>% dplyr::pull(CodeZone)
-      liste_epci <- dplyr::filter(COGiter::liste_zone, stringr::str_detect(REG, reg), TypeZone == "Epci") %>% dplyr::pull(CodeZone)
-      liste_depcom <- dplyr::filter(COGiter::liste_zone, stringr::str_detect(REG, reg), TypeZone == "Communes") %>% dplyr::pull(CodeZone)
+      liste_dep <- dplyr::filter(COGiter::liste_zone, grepl(reg, REG), TypeZone == "D\u00e9partements") %>% dplyr::pull(CodeZone)
+      liste_epci <- dplyr::filter(COGiter::liste_zone, grepl(reg, REG), TypeZone == "Epci") %>% dplyr::pull(CodeZone)
+      liste_depcom <- dplyr::filter(COGiter::liste_zone, grepl(reg, REG), TypeZone == "Communes") %>% dplyr::pull(CodeZone)
 
       reg <- reg_geo %>% dplyr::filter(REG == reg)
       dep <- dep_geo %>% dplyr::filter(DEP %in% liste_dep)
@@ -72,8 +71,8 @@ filtrer_cog_geo <- function(depcom = NULL,
   }
   if (!is.null(dep)) {
     if (!garder_supra) {
-      liste_epci <- dplyr::filter(COGiter::liste_zone, stringr::str_detect(DEP, dep), TypeZone == "Epci") %>% dplyr::pull(CodeZone)
-      liste_depcom <- dplyr::filter(COGiter::liste_zone, stringr::str_detect(DEP, dep), TypeZone == "Communes") %>% dplyr::pull(CodeZone)
+      liste_epci <- dplyr::filter(COGiter::liste_zone, grepl(dep, DEP), TypeZone == "Epci") %>% dplyr::pull(CodeZone)
+      liste_depcom <- dplyr::filter(COGiter::liste_zone, grepl(dep, DEP), TypeZone == "Communes") %>% dplyr::pull(CodeZone)
       dep <- dep_geo %>% dplyr::filter(DEP == dep)
       epci <- epci_geo %>% dplyr::filter(EPCI %in% liste_epci)
       communes <- com_geo %>% dplyr::filter(DEPCOM %in% liste_depcom)
@@ -165,43 +164,43 @@ get_map <- function(depcom = NULL,
                     dep = NULL,
                     reg = NULL) {
   attempt::stop_if_any(c(depcom, epci, dep, reg), is.numeric, msg = "Les param\u00e8tres doivent \u00eatre des chaines de caract\u00e8re")
-  reg_drom <- c("01", "02", "03", "04", "06")
-  dep_drom <- c("971", "972", "973", "974", "976")
+  reg_drom <- "01|02|03|04|06"
+  dep_drom <- "971|972|973|974|976"
   epci_drom <- COGiter::liste_zone %>%
-    dplyr::filter(stringr::str_detect(DEP, dep_drom), TypeZone == "Epci") %>%
+    dplyr::filter(grepl(dep_drom, DEP), TypeZone == "Epci") %>%
     dplyr::pull(CodeZone)
   epci_971 <- COGiter::liste_zone %>%
-    dplyr::filter(stringr::str_detect(DEP, "971"), TypeZone == "Epci") %>%
+    dplyr::filter(grepl("971", DEP), TypeZone == "Epci") %>%
     dplyr::pull(CodeZone)
   epci_972 <- COGiter::liste_zone %>%
-    dplyr::filter(stringr::str_detect(DEP, "972"), TypeZone == "Epci") %>%
+    dplyr::filter(grepl("972", DEP), TypeZone == "Epci") %>%
     dplyr::pull(CodeZone)
   epci_973 <- COGiter::liste_zone %>%
-    dplyr::filter(stringr::str_detect(DEP, "973"), TypeZone == "Epci") %>%
+    dplyr::filter(grepl("973", DEP), TypeZone == "Epci") %>%
     dplyr::pull(CodeZone)
   epci_974 <- COGiter::liste_zone %>%
-    dplyr::filter(stringr::str_detect(DEP, "974"), TypeZone == "Epci") %>%
+    dplyr::filter(grepl("974", DEP), TypeZone == "Epci") %>%
     dplyr::pull(CodeZone)
   epci_976 <- COGiter::liste_zone %>%
-    dplyr::filter(stringr::str_detect(DEP, "976"), TypeZone == "Epci") %>%
+    dplyr::filter(grepl("976", DEP), TypeZone == "Epci") %>%
     dplyr::pull(CodeZone)
   depcom_drom <- COGiter::liste_zone %>%
-    dplyr::filter(stringr::str_detect(DEP, dep_drom), TypeZone == "Communes") %>%
+    dplyr::filter(grepl(dep_drom, DEP), TypeZone == "Communes") %>%
     dplyr::pull(CodeZone)
   depcom_971 <- COGiter::liste_zone %>%
-    dplyr::filter(stringr::str_detect(DEP, "971"), TypeZone == "Communes") %>%
+    dplyr::filter(grepl("971", DEP), TypeZone == "Communes") %>%
     dplyr::pull(CodeZone)
   depcom_972 <- COGiter::liste_zone %>%
-    dplyr::filter(stringr::str_detect(DEP, "972"), TypeZone == "Communes") %>%
+    dplyr::filter(grepl("972", DEP), TypeZone == "Communes") %>%
     dplyr::pull(CodeZone)
   depcom_973 <- COGiter::liste_zone %>%
-    dplyr::filter(stringr::str_detect(DEP, "973"), TypeZone == "Communes") %>%
+    dplyr::filter(grepl("973", DEP), TypeZone == "Communes") %>%
     dplyr::pull(CodeZone)
   depcom_974 <- COGiter::liste_zone %>%
-    dplyr::filter(stringr::str_detect(DEP, "974"), TypeZone == "Communes") %>%
+    dplyr::filter(grepl("974", DEP), TypeZone == "Communes") %>%
     dplyr::pull(CodeZone)
   depcom_976 <- COGiter::liste_zone %>%
-    dplyr::filter(stringr::str_detect(DEP, "976"), TypeZone == "Communes") %>%
+    dplyr::filter(grepl("976", DEP), TypeZone == "Communes") %>%
     dplyr::pull(CodeZone)
   if (not_null(reg)) {
     if (reg %not_in% reg_drom) {

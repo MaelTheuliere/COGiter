@@ -14,8 +14,8 @@
 Un dataframe avec une ligne par régions et 3 variables.
 \describe{
 \item{REG}{Code Insee}
+\item{AREA}{Aire de la region en m2}
 \item{geometry}{géométrie}
-\item{AREA}{Aire de la region}
 }
 }
 \usage{
