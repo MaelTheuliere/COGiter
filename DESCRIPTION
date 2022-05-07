@@ -5,16 +5,19 @@ Version: 0.0.9
 Authors@R: 
     c(person(given = "Maël",
              family = "THEULIERE",
-             role = c("aut", "cre"),
+             role = c("aut"),
              email = "mael.theuliere@gmail.com"),
       person(given = "Juliette",
              family = "ENGELARE-LEFEBVRE",
-             role = "ctb",
-             email = "juliette.engelaere-lefebvre@developpement-durable.gouv.fr"),
+             role = c("cre")
+             email = "juliette.engelaere@developpement-durable.gouv.fr"),
       person(given = "Caroline",
              family = "COUDRIN",
              role = "ctb",
-             email = "caroline.coundrin@developpement-durable.gouv.fr"))
+             email = "caroline.coundrin@developpement-durable.gouv.fr"),
+      person(given = "Sebastien", family = "Rochette", email = "sebastien@thinkr.fr", 
+             role = "ctb", comment = c(ORCID = "0000-0002-1565-9313"))
+             )
 Description: Fonctions, données et fonds de carte pour gérer les données
     au territoire. Ce package permet notamment de gérer les fusions de
     communes intervenues entre 2003 et 2022.
