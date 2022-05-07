@@ -210,34 +210,54 @@ get_map <- function(depcom = NULL,
       com_geo <- COGiter::communes_metro_geo
     }
     if (reg == "01") {
-      reg_geo <- COGiter::regions_971_geo
-      dep_geo <- COGiter::departements_971_geo
-      epci_geo <- COGiter::epci_971_geo
-      com_geo <- COGiter::communes_971_geo
+      reg_geo <- COGiter::regions_971_geo %>%
+        st_transform(5490)
+      dep_geo <- COGiter::departements_971_geo %>%
+        st_transform(5490)
+      epci_geo <- COGiter::epci_971_geo %>%
+        st_transform(5490)
+      com_geo <- COGiter::communes_971_geo %>%
+        st_transform(5490)
     }
     if (reg == "02") {
-      reg_geo <- COGiter::regions_972_geo
-      dep_geo <- COGiter::departements_972_geo
-      epci_geo <- COGiter::epci_972_geo
-      com_geo <- COGiter::communes_972_geo
+      reg_geo <- COGiter::regions_972_geo %>%
+        st_transform(5490)
+      dep_geo <- COGiter::departements_972_geo %>%
+        st_transform(5490)
+      epci_geo <- COGiter::epci_972_geo %>%
+        st_transform(5490)
+      com_geo <- COGiter::communes_972_geo %>%
+        st_transform(5490)
     }
     if (reg == "03") {
-      reg_geo <- COGiter::regions_973_geo
-      dep_geo <- COGiter::departements_973_geo
-      epci_geo <- COGiter::epci_973_geo
-      com_geo <- COGiter::communes_973_geo
+      reg_geo <- COGiter::regions_973_geo %>%
+        st_transform(2972)
+      dep_geo <- COGiter::departements_973_geo %>%
+        st_transform(2972)
+      epci_geo <- COGiter::epci_973_geo %>%
+        st_transform(2972)
+      com_geo <- COGiter::communes_973_geo %>%
+        st_transform(2972)
     }
     if (reg == "04") {
-      reg_geo <- COGiter::regions_974_geo
-      dep_geo <- COGiter::departements_974_geo
-      epci_geo <- COGiter::epci_974_geo
-      com_geo <- COGiter::communes_974_geo
+      reg_geo <- COGiter::regions_974_geo %>%
+        st_transform(2975)
+      dep_geo <- COGiter::departements_974_geo %>%
+        st_transform(2975)
+      epci_geo <- COGiter::epci_974_geo %>%
+        st_transform(2975)
+      com_geo <- COGiter::communes_974_geo %>%
+        st_transform(2975)
     }
     if (reg == "06") {
-      reg_geo <- COGiter::regions_976_geo
-      dep_geo <- COGiter::departements_976_geo
-      epci_geo <- COGiter::epci_976_geo
-      com_geo <- COGiter::communes_976_geo
+      reg_geo <- COGiter::regions_976_geo %>%
+        st_transform(4471)
+      dep_geo <- COGiter::departements_976_geo %>%
+        st_transform(4471)
+      epci_geo <- COGiter::epci_976_geo %>%
+        st_transform(4471)
+      com_geo <- COGiter::communes_976_geo %>%
+        st_transform(4471)
     }
   }
   if (not_null(dep)) {
@@ -248,34 +268,54 @@ get_map <- function(depcom = NULL,
       com_geo <- COGiter::communes_metro_geo
     }
     if (dep == "971") {
-      reg_geo <- COGiter::regions_971_geo
-      dep_geo <- COGiter::departements_971_geo
-      epci_geo <- COGiter::epci_971_geo
-      com_geo <- COGiter::communes_971_geo
+      reg_geo <- COGiter::regions_971_geo %>%
+        st_transform(5490)
+      dep_geo <- COGiter::departements_971_geo %>%
+        st_transform(5490)
+      epci_geo <- COGiter::epci_971_geo %>%
+        st_transform(5490)
+      com_geo <- COGiter::communes_971_geo %>%
+        st_transform(5490)
     }
     if (dep == "972") {
-      reg_geo <- COGiter::regions_972_geo
-      dep_geo <- COGiter::departements_972_geo
-      epci_geo <- COGiter::epci_972_geo
-      com_geo <- COGiter::communes_972_geo
+      reg_geo <- COGiter::regions_972_geo %>%
+        st_transform(5490)
+      dep_geo <- COGiter::departements_972_geo %>%
+        st_transform(5490)
+      epci_geo <- COGiter::epci_972_geo %>%
+        st_transform(5490)
+      com_geo <- COGiter::communes_972_geo %>%
+        st_transform(5490)
     }
     if (dep == "973") {
-      reg_geo <- COGiter::regions_973_geo
-      dep_geo <- COGiter::departements_973_geo
-      epci_geo <- COGiter::epci_973_geo
-      com_geo <- COGiter::communes_973_geo
+      reg_geo <- COGiter::regions_973_geo %>%
+        st_transform(2972)
+      dep_geo <- COGiter::departements_973_geo %>%
+        st_transform(2972)
+      epci_geo <- COGiter::epci_973_geo %>%
+        st_transform(2972)
+      com_geo <- COGiter::communes_973_geo %>%
+        st_transform(2972)
     }
     if (dep == "974") {
-      reg_geo <- COGiter::regions_974_geo
-      dep_geo <- COGiter::departements_974_geo
-      epci_geo <- COGiter::epci_974_geo
-      com_geo <- COGiter::communes_974_geo
+      reg_geo <- COGiter::regions_974_geo %>%
+        st_transform(2975)
+      dep_geo <- COGiter::departements_974_geo %>%
+        st_transform(2975)
+      epci_geo <- COGiter::epci_974_geo %>%
+        st_transform(2975)
+      com_geo <- COGiter::communes_974_geo %>%
+        st_transform(2975)
     }
     if (dep == "976") {
-      reg_geo <- COGiter::regions_976_geo
-      dep_geo <- COGiter::departements_976_geo
-      epci_geo <- COGiter::epci_976_geo
-      com_geo <- COGiter::communes_976_geo
+      reg_geo <- COGiter::regions_976_geo %>%
+        st_transform(4471)
+      dep_geo <- COGiter::departements_976_geo %>%
+        st_transform(4471)
+      epci_geo <- COGiter::epci_976_geo %>%
+        st_transform(4471)
+      com_geo <- COGiter::communes_976_geo %>%
+        st_transform(4471)
     }
   }
   if (not_null(epci)) {
@@ -286,34 +326,54 @@ get_map <- function(depcom = NULL,
       com_geo <- COGiter::communes_metro_geo
     }
     if (epci %in% epci_971) {
-      reg_geo <- COGiter::regions_971_geo
-      dep_geo <- COGiter::departements_971_geo
-      epci_geo <- COGiter::epci_971_geo
-      com_geo <- COGiter::communes_971_geo
+      reg_geo <- COGiter::regions_971_geo %>%
+        st_transform(5490)
+      dep_geo <- COGiter::departements_971_geo %>%
+        st_transform(5490)
+      epci_geo <- COGiter::epci_971_geo %>%
+        st_transform(5490)
+      com_geo <- COGiter::communes_971_geo %>%
+        st_transform(5490)
     }
     if (epci %in% epci_972) {
-      reg_geo <- COGiter::regions_972_geo
-      dep_geo <- COGiter::departements_972_geo
-      epci_geo <- COGiter::epci_972_geo
-      com_geo <- COGiter::communes_972_geo
+      reg_geo <- COGiter::regions_972_geo %>%
+        st_transform(5490)
+      dep_geo <- COGiter::departements_972_geo %>%
+        st_transform(5490)
+      epci_geo <- COGiter::epci_972_geo %>%
+        st_transform(5490)
+      com_geo <- COGiter::communes_972_geo %>%
+        st_transform(5490)
     }
     if (epci %in% epci_973) {
-      reg_geo <- COGiter::regions_973_geo
-      dep_geo <- COGiter::departements_973_geo
-      epci_geo <- COGiter::epci_973_geo
-      com_geo <- COGiter::communes_973_geo
+      reg_geo <- COGiter::regions_973_geo %>%
+        st_transform(2972)
+      dep_geo <- COGiter::departements_973_geo %>%
+        st_transform(2972)
+      epci_geo <- COGiter::epci_973_geo %>%
+        st_transform(2972)
+      com_geo <- COGiter::communes_973_geo %>%
+        st_transform(2972)
     }
     if (epci %in% epci_974) {
-      reg_geo <- COGiter::regions_974_geo
-      dep_geo <- COGiter::departements_974_geo
-      epci_geo <- COGiter::epci_974_geo
-      com_geo <- COGiter::communes_974_geo
+      reg_geo <- COGiter::regions_974_geo %>%
+        st_transform(2975)
+      dep_geo <- COGiter::departements_974_geo %>%
+        st_transform(2975)
+      epci_geo <- COGiter::epci_974_geo %>%
+        st_transform(2975)
+      com_geo <- COGiter::communes_974_geo %>%
+        st_transform(2975)
     }
     if (epci %in% epci_976) {
-      reg_geo <- COGiter::regions_976_geo
-      dep_geo <- COGiter::departements_976_geo
-      epci_geo <- COGiter::epci_976_geo
-      com_geo <- COGiter::communes_976_geo
+      reg_geo <- COGiter::regions_976_geo %>%
+        st_transform(4471)
+      dep_geo <- COGiter::departements_976_geo %>%
+        st_transform(4471)
+      epci_geo <- COGiter::epci_976_geo %>%
+        st_transform(4471)
+      com_geo <- COGiter::communes_976_geo %>%
+        st_transform(4471)
     }
   }
   if (not_null(depcom)) {
@@ -324,34 +384,54 @@ get_map <- function(depcom = NULL,
       com_geo <- COGiter::communes_metro_geo
     }
     if (depcom %in% depcom_971) {
-      reg_geo <- COGiter::regions_971_geo
-      dep_geo <- COGiter::departements_971_geo
-      epci_geo <- COGiter::epci_971_geo
-      com_geo <- COGiter::communes_971_geo
+      reg_geo <- COGiter::regions_971_geo %>%
+        st_transform(5490)
+      dep_geo <- COGiter::departements_971_geo %>%
+        st_transform(5490)
+      epci_geo <- COGiter::epci_971_geo %>%
+        st_transform(5490)
+      com_geo <- COGiter::communes_971_geo %>%
+        st_transform(5490)
     }
     if (depcom %in% depcom_972) {
-      reg_geo <- COGiter::regions_972_geo
-      dep_geo <- COGiter::departements_972_geo
-      epci_geo <- COGiter::epci_972_geo
-      com_geo <- COGiter::communes_972_geo
+      reg_geo <- COGiter::regions_972_geo %>%
+        st_transform(5490)
+      dep_geo <- COGiter::departements_972_geo %>%
+        st_transform(5490)
+      epci_geo <- COGiter::epci_972_geo %>%
+        st_transform(5490)
+      com_geo <- COGiter::communes_972_geo %>%
+        st_transform(5490)
     }
     if (depcom %in% depcom_973) {
-      reg_geo <- COGiter::regions_973_geo
-      dep_geo <- COGiter::departements_973_geo
-      epci_geo <- COGiter::epci_973_geo
-      com_geo <- COGiter::communes_973_geo
+      reg_geo <- COGiter::regions_973_geo %>%
+        st_transform(2972)
+      dep_geo <- COGiter::departements_973_geo %>%
+        st_transform(2972)
+      epci_geo <- COGiter::epci_973_geo %>%
+        st_transform(2972)
+      com_geo <- COGiter::communes_973_geo %>%
+        st_transform(2972)
     }
     if (depcom %in% depcom_974) {
-      reg_geo <- COGiter::regions_974_geo
-      dep_geo <- COGiter::departements_974_geo
-      epci_geo <- COGiter::epci_974_geo
-      com_geo <- COGiter::communes_974_geo
+      reg_geo <- COGiter::regions_974_geo %>%
+        st_transform(2975)
+      dep_geo <- COGiter::departements_974_geo %>%
+        st_transform(2975)
+      epci_geo <- COGiter::epci_974_geo %>%
+        st_transform(2975)
+      com_geo <- COGiter::communes_974_geo %>%
+        st_transform(2975)
     }
     if (depcom %in% depcom_976) {
-      reg_geo <- COGiter::regions_976_geo
-      dep_geo <- COGiter::departements_976_geo
-      epci_geo <- COGiter::epci_976_geo
-      com_geo <- COGiter::communes_976_geo
+      reg_geo <- COGiter::regions_976_geo %>%
+        st_transform(4471)
+      dep_geo <- COGiter::departements_976_geo %>%
+        st_transform(4471)
+      epci_geo <- COGiter::epci_976_geo %>%
+        st_transform(4471)
+      com_geo <- COGiter::communes_976_geo %>%
+        st_transform(4471)
     }
   }
   return(list(com_geo = com_geo, epci_geo = epci_geo, dep_geo = dep_geo, reg_geo = reg_geo))

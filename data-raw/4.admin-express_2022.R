@@ -40,7 +40,7 @@ list.dirs(paste0(repo_mil, repo_dest)) %>% unlink(., recursive = TRUE, force = T
 com_metro <- filter(com_fce_ent, INSEE_REG >= "10") %>%
   st_transform(2154)
 
-origine_metro <- c(st_as_sfc(st_bbox(com_metro))[[1]][[1]][[1, 1]], st_as_sfc(st_bbox(com_metro))[[1]][[1]][[1, 2]] )
+origine_metro <- c(st_as_sfc(st_bbox(com_metro))[[1]][[1]][[1, 1]], st_as_sfc(st_bbox(com_metro))[[1]][[1]][[1, 2]])
 
 ## travail sur les DOM : translation + mise à l'échelle + changement EPSG
 # arguments à passer pour chaque doms : code, centroid de destination, echelle, angle)
@@ -164,12 +164,15 @@ communes_geo <- communes_geo %>%
 ## Communes DOM---
 
 com_geo_dom <- function(dep = "971", epsg = 5490) {
-  com_fce_ent %>%
+  com <- com_fce_ent %>%
     filter(INSEE_DEP == dep) %>%
     select(DEPCOM = INSEE_COM) %>%
     inner_join(superf_communes, by = "DEPCOM") %>%
     st_transform(epsg) %>%
     ms_simplify(keep = 0.075, keep_shapes = FALSE, weighting = 0.9)
+  # gestion de l'encodage des chaines wkt
+  st_crs(com)$wkt <- gsub("°|º", "\\\u00b0", st_crs(com)$wkt)
+  return(com)
 }
 
 communes_971_geo <- com_geo_dom(dep = "971", epsg = 5490)
@@ -187,11 +190,14 @@ rm(com_geo_dom)
 ## Epci DOM --------------------
 
 epci_geo_dom <- function(com_geo = communes_971_geo) {
-  filter(communes_info_supra, NOM_EPCI != "Sans objet")%>%
+  epci <- filter(communes_info_supra, NOM_EPCI != "Sans objet")%>%
     inner_join(com_geo, ., by = "DEPCOM") %>%
     select(EPCI, AREA) %>%
     group_by(EPCI) %>%
     summarise(AREA = sum(AREA), do_union = TRUE, .groups = "drop")
+  # gestion de l'encodage des chaines wkt
+  st_crs(epci)$wkt <- gsub("°|º", "\\\u00b0", st_crs(epci)$wkt)
+  return(epci)
 }
 
 epci_971_geo <- epci_geo_dom(communes_971_geo)

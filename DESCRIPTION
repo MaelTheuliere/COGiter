@@ -37,8 +37,7 @@ Imports:
     sf,
     stringr,
     tidyr,
-    tidyselect,
-    utils
+    tidyselect
 Suggests: 
     knitr,
     lifecycle,

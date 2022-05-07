@@ -63,7 +63,7 @@ get_superficie_bd_carto <- function(index = 1){
 }
 
 superf_communes <- map_dfr(.x = 1:nrow(df_url), .f = get_superficie_bd_carto) %>%
-  mutate(superf_communes, SUPERFICIE = set_units(SUPERFICIE, "m^2")*10000)
+  mutate(SUPERFICIE = set_units(SUPERFICIE, "m^2")*10000)
 
 
 # Ajout des surfaces des com de mayotte qui n'ont pas de bd carto
