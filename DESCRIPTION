@@ -9,7 +9,7 @@ Authors@R:
              email = "mael.theuliere@gmail.com"),
       person(given = "Juliette",
              family = "ENGELARE-LEFEBVRE",
-             role = c("cre")
+             role = c("cre"),
              email = "juliette.engelaere@developpement-durable.gouv.fr"),
       person(given = "Caroline",
              family = "COUDRIN",
