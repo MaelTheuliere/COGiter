@@ -10,10 +10,15 @@
 #' @param garder_info_supra booléen TRUE si on souhaite garder les informations sur les territoires supra des communes
 #' @param na.rm argument passé à la fonction d'agrégation (sum), na.rm=FALSE par défaut
 #' @return Renvoie la table de données convertie pour les codes communes valide en entrée
+#' @examples
+#' pop2015_a_jour <- passer_au_cog_a_jour(pop2015, code_commune = DEPCOM,
+#'                                        aggrege = TRUE, garder_info_supra = FALSE)
+#'
 #' @export
 #' @importFrom dplyr rename left_join inner_join select group_by summarise ungroup group_vars across is.grouped_df
 #' @importFrom tidyselect vars_select_helpers
 #' @importFrom rlang enquo sym !!
+#'
 passer_au_cog_a_jour <- function(.data, code_commune = DEPCOM, aggrege = TRUE, garder_info_supra = TRUE, na.rm=FALSE) {
   quo_code_commune <- enquo(code_commune)
   result <- .data %>%

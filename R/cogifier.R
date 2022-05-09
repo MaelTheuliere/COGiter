@@ -14,6 +14,10 @@
 #' @param na.rm argument(s) passé(s) à la fonction d'aggrégation (sum), na.rm=F par défaut
 #'
 #' @return Renvoie un dataframe ou une liste de dataframe
+#'
+#' @examples
+#' pop2015_cogifiee <- cogifier(pop2015, code_commune = DEPCOM)
+#'
 #' @export
 #' @importFrom dplyr filter mutate select group_by summarise ungroup across bind_rows vars
 #' @importFrom rlang enquo !!

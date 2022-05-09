@@ -1,4 +1,4 @@
-#' Filtrer les fonds de carte sur un territoire métropolitain
+#' Filtrer les fonds de carte sur un territoire
 #'
 #' @param depcom la commune sur laquelle filtrer les données
 #' @param epci l'epci sur lequel filtrer les données
@@ -6,7 +6,7 @@
 #' @param reg la region sur laquelle filtrer les données
 #' @param garder_supra TRUE si on souhaite une carte centrée sur le territoire mais avec les territoires environnant visible, non si on souhaite garder que le territoire sélectionné
 #' @param lg_buffer si garder_supra est a true, la largeur du buffer a garder autour du territoire (metres)
-#' @return une liste de spatial dataframe
+#' @return une liste de spatial dataframes (sf)
 #' @export
 #' @importFrom dplyr filter pull
 #' @importFrom sf st_bbox st_crop st_buffer
@@ -154,7 +154,7 @@ filtrer_cog_geo <- function(depcom = NULL,
 #' @param reg la region sur laquelle filtrer les données
 #'
 #' @importFrom dplyr filter pull
-#' @return une liste de spatial dataframe
+#' @return une liste de spatial dataframe (sf)
 #' @export
 #'
 #' @examples

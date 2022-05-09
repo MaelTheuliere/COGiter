@@ -2,7 +2,7 @@
 % Please edit documentation in R/filtrer_cog_geo.R
 \name{filtrer_cog_geo}
 \alias{filtrer_cog_geo}
-\title{Filtrer les fonds de carte sur un territoire métropolitain}
+\title{Filtrer les fonds de carte sur un territoire}
 \usage{
 filtrer_cog_geo(
   depcom = NULL,
@@ -27,10 +27,10 @@ filtrer_cog_geo(
 \item{lg_buffer}{si garder_supra est a true, la largeur du buffer a garder autour du territoire (metres)}
 }
 \value{
-une liste de spatial dataframe
+une liste de spatial dataframes (sf)
 }
 \description{
-Filtrer les fonds de carte sur un territoire métropolitain
+Filtrer les fonds de carte sur un territoire
 }
 \examples{
 nantes_metropole <- filtrer_cog_geo(epci = '244400404')

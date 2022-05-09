@@ -1,4 +1,4 @@
-#' Filtrer une fichier du cog sur un sous ensemble du territoire
+#' Filtrer un fichier du cog sur un sous ensemble du territoire
 #'
 #' @param .data la table de données a filtrer
 #' @param depcom la commune sur laquelle filtrer les données
@@ -6,7 +6,9 @@
 #' @param dep le departement sur lequel filtrer les données
 #' @param reg la region sur laquelle filtrer les données
 #' @param garder_supra ">" si on souhaite garder les territoires supra, ">=" si on souhaite garder les territoires suppra et du même niveau que celui sélectionné
-#'
+#' @examples
+#'  pop2015_cogifiee_Corse <- cogifier(pop2015,  code_commune = DEPCOM, as_df = TRUE) %>%
+#'    filtrer_cog(reg = "94", garder_supra = '>')
 #'
 #' @return Renvoie une table de donnees filtrées
 #' @export

@@ -1,4 +1,4 @@
-# Pour retrouver les code zone et nom zone des totaux qui ne sont pas présent dans liste_zone
+# Pour retrouver les codes zones et noms zones des totaux qui ne sont pas présents dans liste_zone
 augmenter_liste_zone <- function() {
   augment <- tibble::tribble(
     ~CodeZone, ~Zone, ~TypeZone, ~EPCI, ~NATURE_EPCI, ~DEP, ~REG,

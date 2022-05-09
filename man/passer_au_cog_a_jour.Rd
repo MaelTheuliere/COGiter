@@ -30,3 +30,8 @@ Renvoie la table de données convertie pour les codes communes valide en entrée
 Cette fonction vous permet de convertir vos dataframe ayant une variable correspondant au code commun Insee vers le COG le plus récent.
 Champ : code communes de la France métropolitaine et des DROM
 }
+\examples{
+pop2015_a_jour <- passer_au_cog_a_jour(pop2015, code_commune = DEPCOM,
+                                       aggrege = TRUE, garder_info_supra = FALSE)
+
+}

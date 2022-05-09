@@ -2,7 +2,7 @@
 % Please edit documentation in R/filtrer_cog.R
 \name{filtrer_cog}
 \alias{filtrer_cog}
-\title{Filtrer une fichier du cog sur un sous ensemble du territoire}
+\title{Filtrer un fichier du cog sur un sous ensemble du territoire}
 \usage{
 filtrer_cog(
   .data,
@@ -30,5 +30,10 @@ filtrer_cog(
 Renvoie une table de donnees filtrées
 }
 \description{
-Filtrer une fichier du cog sur un sous ensemble du territoire
+Filtrer un fichier du cog sur un sous ensemble du territoire
+}
+\examples{
+ pop2015_cogifiee_Corse <- cogifier(pop2015,  code_commune = DEPCOM, as_df = TRUE) \%>\%
+   filtrer_cog(reg = "94", garder_supra = '>')
+
 }

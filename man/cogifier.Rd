@@ -50,3 +50,7 @@ Renvoie un dataframe ou une liste de dataframe
 \description{
 Consolider une table de données à la commune à tous les échelles du cog
 }
+\examples{
+pop2015_cogifiee <- cogifier(pop2015, code_commune = DEPCOM)
+
+}
