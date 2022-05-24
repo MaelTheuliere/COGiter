@@ -16,7 +16,7 @@ get_map(depcom = NULL, epci = NULL, dep = NULL, reg = NULL)
 \item{reg}{la region sur laquelle filtrer les données}
 }
 \value{
-une liste de spatial dataframe
+une liste de spatial dataframe (sf)
 }
 \description{
 Obtenir les cartes en fonction de la localisation en métropole ou dans les DROM

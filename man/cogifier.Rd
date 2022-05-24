@@ -7,15 +7,15 @@
 cogifier(
   .data,
   code_commune = DEPCOM,
-  communes = T,
-  epci = T,
-  departements = T,
-  regions = T,
-  metro = T,
-  metrodrom = F,
-  franceprovince = F,
-  drom = F,
-  as_df = T,
+  communes = TRUE,
+  epci = TRUE,
+  departements = TRUE,
+  regions = TRUE,
+  metro = TRUE,
+  metrodrom = FALSE,
+  franceprovince = FALSE,
+  drom = FALSE,
+  as_df = TRUE,
   na.rm = FALSE
 )
 }
@@ -49,4 +49,8 @@ Renvoie un dataframe ou une liste de dataframe
 }
 \description{
 Consolider une table de données à la commune à tous les échelles du cog
+}
+\examples{
+pop2015_cogifiee <- cogifier(pop2015, code_commune = DEPCOM)
+
 }

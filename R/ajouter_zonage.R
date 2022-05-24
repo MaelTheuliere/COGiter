@@ -119,8 +119,7 @@ ajouter_zonage <- function(.data,
 #' library(COGiter)
 #' zonage_aav <- charger_zonage("AAV2020")
 #' cogpop2015 <- cogifier(pop2015)
-#' cogpop2015aav <- ajouter_typologie(cogpop2015,
-#'                                   zonage_df = zonage_aav)
+#' cogpop2015aav <- ajouter_typologie(.data = cogpop2015, zonage_df = zonage_aav)
 
 ajouter_typologie <- function(.data,
                               epci = FALSE,

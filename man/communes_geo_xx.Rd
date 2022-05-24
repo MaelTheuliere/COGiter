@@ -14,8 +14,8 @@
 Un dataframe avec une ligne par commune et 3 variables.
 \describe{
 \item{DEPCOM}{Code Insee}
+\item{AREA}{Aire de la commune en m2}
 \item{geometry}{géométrie}
-\item{AREA}{Aire de la commune}
 }
 }
 \usage{

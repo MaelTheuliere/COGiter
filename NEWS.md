@@ -1,3 +1,12 @@
+# COGiter 0.0.9
+
+- Mise à jour COG et fond de carte 2022.  
+- Couches géo : surfaces des territoires désormais issus du champ `superficie` de la BD Carto de l'IGN. 
+- Couches géo : toutes issues d'une simplification de la couche nationale admin express de l'IGN.
+- Couches géo : re-positionnement et ré-alignement des DOM à l'ouest du fond carto métropole.
+- Fonctions + silencieuses : suppression des messages d'alerte inutiles de `filtrer_cog()` et `filtrer_cog_geo()`, suppression du message d'information lors des jointures réalisées par la fonction `passer_au_cog_a_jour()`.
+
+
 # COGiter 0.0.8.3
 
 -  Ajout d'un paramètre à `filtrer_cog_geo()` pour élargir l'emprise des couches.
