@@ -2,7 +2,7 @@
 % Please edit documentation in R/passer_au_cog_a_jour.R
 \name{passer_au_cog_a_jour}
 \alias{passer_au_cog_a_jour}
-\title{Fonction de passage d'une table de donnée à la commune vers le millésime le plus récent du COG}
+\title{Fonction de passage d'une table de données à la commune vers le millésime le plus récent du COG}
 \usage{
 passer_au_cog_a_jour(
   .data,
@@ -27,8 +27,8 @@ passer_au_cog_a_jour(
 Renvoie la table de données convertie pour les codes communes valide en entrée
 }
 \description{
-Cette fonction vous permet de convertir vos dataframe ayant une variable correspondant au code commun Insee vers le COG le plus récent.
-Champ : code communes de la France métropolitaine et des DROM
+Cette fonction vous permet de convertir vos dataframes ayant une variable correspondant au code commune Insee vers le COG le plus récent.
+Champ : codes communes de la France métropolitaine et des DROM
 }
 \examples{
 pop2015_a_jour <- passer_au_cog_a_jour(pop2015, code_commune = DEPCOM,

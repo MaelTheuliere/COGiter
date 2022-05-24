@@ -1,8 +1,8 @@
 
 #' Fonction de passage d'une table de données à la commune vers le millésime le plus récent du COG
 #'
-#' Cette fonction vous permet de convertir vos dataframes ayant une variable correspondant au code commun Insee vers le COG le plus récent.
-#' Champ : code communes de la France métropolitaine et des DROM
+#' Cette fonction vous permet de convertir vos dataframes ayant une variable correspondant au code commune Insee vers le COG le plus récent.
+#' Champ : codes communes de la France métropolitaine et des DROM
 #'
 #' @param .data la table de données à convertir
 #' @param code_commune le nom de la variable contenant le code commune sur 5 caractères
