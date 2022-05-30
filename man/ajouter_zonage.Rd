@@ -2,8 +2,7 @@
 % Please edit documentation in R/ajouter_zonage.R
 \name{ajouter_zonage}
 \alias{ajouter_zonage}
-\title{Ajouter un zonage supra communal spécifique à une table cogifiée
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
+\title{Ajouter un zonage supra communal spécifique à une table cogifiée}
 \usage{
 ajouter_zonage(
   .data,
@@ -15,22 +14,21 @@ ajouter_zonage(
 )
 }
 \arguments{
-\item{.data}{la table de données a filtrer}
+\item{.data}{la table de données cogifiee, comportant des donnees communales, a partir de laquelle calculer les agregats selon le nouveau zonage souhaite}
 
-\item{zonage_df}{le dataframe contenant le rattachement entre le code commune et le nouveau zonage}
+\item{zonage_df}{le dataframe contenant le rattachement entre le code commune et le nouveau zonage, contenant 4 informations : le code commune, le code zone dont relève la commune, le libellé de la zone dont relève la commune, le nom du zonage (par exemple 'bassins versants')}
 
 \item{var_depcom}{le nom de la variable code commune dans zonage_df}
 
-\item{var_code_zone}{le nom de la variable code zone dans zonage_df}
+\item{var_code_zone}{le nom de la variable désignant le code zone dans zonage_df}
 
-\item{var_type_zone}{le nom de la variable type zone dans zonage_df}
+\item{var_type_zone}{le nom de la variable désignant le nom du zonage dans zonage_df}
 
-\item{var_zone}{le nom de la variable zone dans zonage_df}
+\item{var_zone}{le nom de la variable désignant le libelle de la zone dans zonage_df}
 }
 \value{
-Renvoie une table de données cogifiée augmentée des calculs pour ce nouveau zonage
+Renvoie une table de données cogifiée augmentée des agrégats selon ce nouveau zonage
 }
 \description{
-Ajouter un zonage supra communal spécifique à une table cogifiée
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }

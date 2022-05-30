@@ -2,7 +2,7 @@
 % Please edit documentation in R/ajouter_zonage.R
 \name{ajouter_typologie}
 \alias{ajouter_typologie}
-\title{Ajouter une typologie supra communale spécifique à une table cogifiée}
+\title{Ajouter une typologie supra communale spécifique à une table cogifiee}
 \usage{
 ajouter_typologie(
   .data,
@@ -21,23 +21,23 @@ ajouter_typologie(
 )
 }
 \arguments{
-\item{.data}{la table de données a filtrer}
+\item{.data}{la table de donnees cogifiee, comportant des donnees communales, a partir de laquelle calculer les indicateurs selon la typologie souhaitee}
 
-\item{epci}{booléen TRUE si on souhaite des données de chaque classe de la typologiee à l'epci}
+\item{epci}{booléen TRUE si on souhaite des données de chaque classe de la typologie à l'epci}
 
-\item{departements}{booléen TRUE si on souhaite des données de chaque classe de la typologiee  au département}
+\item{departements}{booléen TRUE si on souhaite des données de chaque classe de la typologie  au département}
 
-\item{regions}{booléen TRUE si on souhaite des données de chaque classe de la typologiee  à la région}
+\item{regions}{booléen TRUE si on souhaite des données de chaque classe de la typologie  à la région}
 
-\item{metro}{booléen TRUE si on souhaite des données de chaque classe de la typologiee sur la France métropolitaine}
+\item{metro}{booléen TRUE si on souhaite des données de chaque classe de la typologie sur la France métropolitaine}
 
-\item{metrodrom}{booléen TRUE si on souhaite des données de chaque classe de la typologiee sur la France métropolitaine et des DROM}
+\item{metrodrom}{booléen TRUE si on souhaite des données de chaque classe de la typologie sur la France métropolitaine et des DROM}
 
-\item{drom}{booléen TRUE si on souhaite des données de chaque classe de la typologiee pour les Départements et régions d'outre mer}
+\item{drom}{booléen TRUE si on souhaite des données de chaque classe de la typologie pour les Départements et régions d'outre mer}
 
-\item{franceprovince}{booléen TRUE si on souhaite des données de chaque classe de la typologiee sur la France de province}
+\item{franceprovince}{booléen TRUE si on souhaite des données de chaque classe de la typologie sur la France de province}
 
-\item{zonage_df}{le dataframe contenant le rattachement entre le code commune et la typologie}
+\item{zonage_df}{le dataframe contenant le rattachement entre le code commune et la typologie, contenant 4 informations : le code commune, le code typologique dont relève la commune, le libellé typologique dont relève la commune, le nom de la typologie}
 
 \item{var_depcom}{le nom de la variable code commune dans zonage_df}
 
@@ -51,7 +51,7 @@ ajouter_typologie(
 Renvoie une table de donnees cogifiée augmentée des calculs pour ces nouvelles typologies
 }
 \description{
-Permet de rajouter à une table COGifiée de nouveaux type de zonage basé sur des agrégations par epci, departements, régions... de typologie de commune (exemple : aire d'attraction des villes de l'insee, zonage ABC pour le logement)
+Permet de rajouter à une table COGifiée de nouveaux type de zonages basé sur des agrégations par epci, départements, régions... de typologie de commune (exemple : aire d'attraction des villes de l'insee, zonage ABC pour le logement)
 }
 \details{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}

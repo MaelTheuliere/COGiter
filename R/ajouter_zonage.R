@@ -1,13 +1,14 @@
 #' Ajouter un zonage supra communal spécifique à une table cogifiée
+#'
 #' `r lifecycle::badge("experimental")`
 #'
-#' @param .data la table de données a filtrer
-#' @param zonage_df le dataframe contenant le rattachement entre le code commune et le nouveau zonage
+#' @param .data la table de données cogifiee, comportant des donnees communales, a partir de laquelle calculer les agregats selon le nouveau zonage souhaite
+#' @param zonage_df le dataframe contenant le rattachement entre le code commune et le nouveau zonage, contenant 4 informations : le code commune, le code zone dont relève la commune, le libellé de la zone dont relève la commune, le nom du zonage (par exemple 'bassins versants')
 #' @param var_depcom le nom de la variable code commune dans zonage_df
-#' @param var_code_zone le nom de la variable code zone dans zonage_df
-#' @param var_type_zone le nom de la variable type zone dans zonage_df
-#' @param var_zone le nom de la variable zone dans zonage_df
-#' @return Renvoie une table de données cogifiée augmentée des calculs pour ce nouveau zonage
+#' @param var_code_zone le nom de la variable désignant le code zone dans zonage_df
+#' @param var_zone le nom de la variable désignant le libelle de la zone dans zonage_df
+#' @param var_type_zone le nom de la variable désignant le nom du zonage dans zonage_df
+#' @return Renvoie une table de données cogifiée augmentée des agrégats selon ce nouveau zonage
 #' @export
 #' @importFrom dplyr inner_join
 #' @importFrom dplyr mutate
@@ -79,25 +80,25 @@ ajouter_zonage <- function(.data,
 }
 
 
-#' Ajouter une typologie supra communale spécifique à une table cogifiée
+#' Ajouter une typologie supra communale spécifique à une table cogifiee
 #'
-#' Permet de rajouter à une table COGifiée de nouveaux type de zonage basé sur des agrégations par epci, departements, régions... de typologie de commune (exemple : aire d'attraction des villes de l'insee, zonage ABC pour le logement)
+#' Permet de rajouter à une table COGifiée de nouveaux type de zonages basé sur des agrégations par epci, départements, régions... de typologie de commune (exemple : aire d'attraction des villes de l'insee, zonage ABC pour le logement)
 #'
 #' `r lifecycle::badge("experimental")`
 #'
-#' @param .data la table de données a filtrer
-#' @param epci booléen TRUE si on souhaite des données de chaque classe de la typologiee à l'epci
-#' @param departements booléen TRUE si on souhaite des données de chaque classe de la typologiee  au département
-#' @param regions booléen TRUE si on souhaite des données de chaque classe de la typologiee  à la région
-#' @param metro booléen TRUE si on souhaite des données de chaque classe de la typologiee sur la France métropolitaine
-#' @param metrodrom booléen TRUE si on souhaite des données de chaque classe de la typologiee sur la France métropolitaine et des DROM
-#' @param franceprovince booléen TRUE si on souhaite des données de chaque classe de la typologiee sur la France de province
-#' @param drom booléen TRUE si on souhaite des données de chaque classe de la typologiee pour les Départements et régions d'outre mer
-#' @param zonage_df le dataframe contenant le rattachement entre le code commune et la typologie
+#' @param .data la table de donnees cogifiee, comportant des donnees communales, a partir de laquelle calculer les indicateurs selon la typologie souhaitee
+#' @param epci booléen TRUE si on souhaite des données de chaque classe de la typologie à l'epci
+#' @param departements booléen TRUE si on souhaite des données de chaque classe de la typologie  au département
+#' @param regions booléen TRUE si on souhaite des données de chaque classe de la typologie  à la région
+#' @param metro booléen TRUE si on souhaite des données de chaque classe de la typologie sur la France métropolitaine
+#' @param metrodrom booléen TRUE si on souhaite des données de chaque classe de la typologie sur la France métropolitaine et des DROM
+#' @param franceprovince booléen TRUE si on souhaite des données de chaque classe de la typologie sur la France de province
+#' @param drom booléen TRUE si on souhaite des données de chaque classe de la typologie pour les Départements et régions d'outre mer
+#' @param zonage_df le dataframe contenant le rattachement entre le code commune et la typologie, contenant 4 informations : le code commune, le code typologique dont relève la commune, le libellé typologique dont relève la commune, le nom de la typologie
 #' @param var_depcom le nom de la variable code commune dans zonage_df
 #' @param var_code_zone le nom de la variable code zone dans zonage_df
-#' @param var_type_zone le nom de la variable type zone dans zonage_df
 #' @param var_zone le nom de la variable zone dans zonage_df
+#' @param var_type_zone le nom de la variable type zone dans zonage_df
 #' @return Renvoie une table de donnees cogifiée augmentée des calculs pour ces nouvelles typologies
 #' @export
 #' @importFrom dplyr inner_join
@@ -134,14 +135,15 @@ ajouter_typologie <- function(.data,
                               var_code_zone = CodeZone,
                               var_type_zone = TypeZone,
                               var_zone = Zone) {
-  quo_Depcom <- enquo(var_depcom)
-  quo_CodeZone <- enquo(var_code_zone)
-  quo_TypeZone <- enquo(var_type_zone)
-  quo_Zone <- enquo(var_zone)
+  quo_Depcom <- rlang::enquo(var_depcom)
+  quo_CodeZone <- rlang::enquo(var_code_zone)
+  quo_TypeZone <- rlang::enquo(var_type_zone)
+  quo_Zone <- rlang::enquo(var_zone)
 
   a_ajouter <- .data %>%
     cog_df_to_list() %>%
     .$communes %>%
+    dplyr::select(-NOM_DEPCOM) %>%
     dplyr::inner_join(zonage_df %>%
       dplyr::rename(DEPCOM = {{ var_depcom }}) %>%
       dplyr::mutate(
@@ -212,7 +214,7 @@ charger_zonage <- function(zonage) {
   res <- COGiter::table_passage_communes_zonages %>%
     dplyr::select(DEPCOM,
                   rlang::sym(zonage),
-                  rlang::sym(paste0("LIB_",zonage))
+                  rlang::sym(paste0("LIB_", zonage))
     ) %>%
     dplyr::mutate(TypeZone = zonage) %>%
     purrr::set_names("DEPCOM","CodeZone","Zone","TypeZone")
