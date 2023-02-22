@@ -74,40 +74,49 @@ teste que les codes commune existent"><meta property="og:image" content="/logo.p
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">code_reg_existe</span><span class="op">(</span><span class="va">reg</span><span class="op">)</span>
-
-<span class="fu">code_dep_existe</span><span class="op">(</span><span class="va">dep</span><span class="op">)</span>
-
-<span class="fu">code_epci_existe</span><span class="op">(</span><span class="va">epci</span><span class="op">)</span>
-
-<span class="fu">code_com_existe</span><span class="op">(</span><span class="va">depcom</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">code_reg_existe</span><span class="op">(</span><span class="va">reg</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">code_dep_existe</span><span class="op">(</span><span class="va">dep</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">code_epci_existe</span><span class="op">(</span><span class="va">epci</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">code_com_existe</span><span class="op">(</span><span class="va">depcom</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>reg</dt>
 <dd><p>Vecteur de caractère. Le code de la region concernée.</p></dd>
+
+
 <dt>dep</dt>
 <dd><p>Vecteur de caractère. Le code du departement concernée.</p></dd>
+
+
 <dt>epci</dt>
 <dd><p>Vecteur de caractère. Le code de l'epci concernée.</p></dd>
+
+
 <dt>depcom</dt>
 <dd><p>Vecteur de caractère. Le code de la commune concernée.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Vecteur de booléen. TRUE si le code existe.</p>
+    
+
+<p>Vecteur de booléen. TRUE si le code existe.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">code_reg_existe</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"11"</span>,<span class="st">"99"</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">code_reg_existe</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"11"</span>,<span class="st">"99"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  TRUE FALSE</span>
-<span class="r-in"><span class="fu">code_dep_existe</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"75"</span>,<span class="st">"99"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">code_dep_existe</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"75"</span>,<span class="st">"99"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  TRUE FALSE</span>
-<span class="r-in"><span class="fu">code_epci_existe</span><span class="op">(</span><span class="st">"249740077"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">code_epci_existe</span><span class="op">(</span><span class="st">"249740077"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in"><span class="fu">code_com_existe</span><span class="op">(</span><span class="st">"75056"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">code_com_existe</span><span class="op">(</span><span class="st">"75056"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 </code></pre></div>
     </div>
@@ -123,7 +132,7 @@ teste que les codes commune existent"><meta property="og:image" content="/logo.p
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

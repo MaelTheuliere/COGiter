@@ -66,34 +66,47 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ajouter_zonage</span><span class="op">(</span>
-  <span class="va">.data</span>,
-  <span class="va">zonage_df</span>,
-  var_depcom <span class="op">=</span> <span class="va">DEPCOM</span>,
-  var_code_zone <span class="op">=</span> <span class="va">CodeZone</span>,
-  var_type_zone <span class="op">=</span> <span class="va">TypeZone</span>,
-  var_zone <span class="op">=</span> <span class="va">Zone</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ajouter_zonage</span><span class="op">(</span></span>
+<span>  <span class="va">.data</span>,</span>
+<span>  <span class="va">zonage_df</span>,</span>
+<span>  var_depcom <span class="op">=</span> <span class="va">DEPCOM</span>,</span>
+<span>  var_code_zone <span class="op">=</span> <span class="va">CodeZone</span>,</span>
+<span>  var_type_zone <span class="op">=</span> <span class="va">TypeZone</span>,</span>
+<span>  var_zone <span class="op">=</span> <span class="va">Zone</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>la table de données cogifiee, comportant des donnees communales, a partir de laquelle calculer les agregats selon le nouveau zonage souhaite</p></dd>
+
+
 <dt>zonage_df</dt>
 <dd><p>le dataframe contenant le rattachement entre le code commune et le nouveau zonage, contenant 4 informations : le code commune, le code zone dont relève la commune, le libellé de la zone dont relève la commune, le nom du zonage (par exemple 'bassins versants')</p></dd>
+
+
 <dt>var_depcom</dt>
 <dd><p>le nom de la variable code commune dans zonage_df</p></dd>
+
+
 <dt>var_code_zone</dt>
 <dd><p>le nom de la variable désignant le code zone dans zonage_df</p></dd>
+
+
 <dt>var_type_zone</dt>
 <dd><p>le nom de la variable désignant le nom du zonage dans zonage_df</p></dd>
+
+
 <dt>var_zone</dt>
 <dd><p>le nom de la variable désignant le libelle de la zone dans zonage_df</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Renvoie une table de données cogifiée augmentée des agrégats selon ce nouveau zonage</p>
+    
+
+<p>Renvoie une table de données cogifiée augmentée des agrégats selon ce nouveau zonage</p>
     </div>
 
   </div>
@@ -108,7 +121,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

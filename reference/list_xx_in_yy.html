@@ -78,43 +78,50 @@ Renvoie la liste des communes pour une région"><meta property="og:image" conten
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">list_dep_in_reg</span><span class="op">(</span><span class="va">reg</span><span class="op">)</span>
-
-<span class="fu">list_epci_in_dep</span><span class="op">(</span><span class="va">dep</span><span class="op">)</span>
-
-<span class="fu">list_epci_in_reg</span><span class="op">(</span><span class="va">reg</span><span class="op">)</span>
-
-<span class="fu">list_com_in_epci</span><span class="op">(</span><span class="va">epci</span><span class="op">)</span>
-
-<span class="fu">list_com_in_dep</span><span class="op">(</span><span class="va">dep</span><span class="op">)</span>
-
-<span class="fu">list_com_in_reg</span><span class="op">(</span><span class="va">reg</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">list_dep_in_reg</span><span class="op">(</span><span class="va">reg</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">list_epci_in_dep</span><span class="op">(</span><span class="va">dep</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">list_epci_in_reg</span><span class="op">(</span><span class="va">reg</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">list_com_in_epci</span><span class="op">(</span><span class="va">epci</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">list_com_in_dep</span><span class="op">(</span><span class="va">dep</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">list_com_in_reg</span><span class="op">(</span><span class="va">reg</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>reg</dt>
 <dd><p>Vecteur de caractère. Le code de la région concernée.</p></dd>
+
+
 <dt>dep</dt>
 <dd><p>Vecteur de caractère. Le code du département concernée.</p></dd>
+
+
 <dt>epci</dt>
 <dd><p>Vecteur de caractère. Le code de l'epci concernée.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Un vecteur de caractère.</p>
+    
+
+<p>Un vecteur de caractère.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">list_dep_in_reg</span><span class="op">(</span><span class="st">"75"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">list_dep_in_reg</span><span class="op">(</span><span class="st">"75"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "16" "17" "19" "23" "24" "33" "40" "47" "64" "79" "86" "87"</span>
-<span class="r-in"><span class="fu">list_epci_in_dep</span><span class="op">(</span><span class="st">"24"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">list_epci_in_dep</span><span class="op">(</span><span class="st">"24"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "200070647" "200040392" "243301454" "200041440" "200041168" "200034197"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "200040889" "200034833" "200041572" "200040830" "242400935" "243301371"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] "200071819" "200040400" "242401024" "200040384" "200069094" "200040095"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [19] "242400752" "200027217" "200041150" "200041051"</span>
-<span class="r-in"><span class="fu">list_epci_in_reg</span><span class="op">(</span><span class="st">"52"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">list_epci_in_reg</span><span class="op">(</span><span class="st">"52"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "244400404" "244900015" "246100663" "247200132" "200071678" "200067635"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "244400610" "244400644" "200023778" "248500589" "200083392" "200071165"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] "200060010" "200067346" "243500741" "200071876" "200070233" "244900809"</span>
@@ -127,13 +134,13 @@ Renvoie la liste des communes pour une région"><meta property="og:image" conten
 <span class="r-out co"><span class="r-pr">#&gt;</span> [55] "200072700" "200072684" "200070373" "200071553" "200040475" "200068963"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [61] "200072676" "200055887" "248500258" "247200447" "248500340" "200067866"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [67] "200071546" "200073112" "200073260" "200071900" "248500563"</span>
-<span class="r-in"><span class="fu">list_com_in_epci</span><span class="op">(</span><span class="st">"200070647"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">list_com_in_epci</span><span class="op">(</span><span class="st">"200070647"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "24037" "24051" "24054" "24126" "24140" "24145" "24148" "24182" "24191"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [10] "24193" "24194" "24197" "24222" "24224" "24225" "24237" "24246" "24267"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [19] "24274" "24276" "24277" "24296" "24331" "24340" "24345" "24349" "24351"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [28] "24357" "24413" "24419" "24420" "24437" "24472" "24487" "24499" "24523"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [37] "24534" "24549"</span>
-<span class="r-in"><span class="fu">list_com_in_dep</span><span class="op">(</span><span class="st">"24"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">list_com_in_dep</span><span class="op">(</span><span class="st">"24"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1] "24001" "24002" "24004" "24005" "24006" "24007" "24008" "24009" "24010"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [10] "24011" "24012" "24014" "24015" "24016" "24018" "24019" "24020" "24021"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [19] "24022" "24023" "24024" "24025" "24026" "24027" "24028" "24029" "24030"</span>
@@ -190,7 +197,7 @@ Renvoie la liste des communes pour une région"><meta property="og:image" conten
 <span class="r-out co"><span class="r-pr">#&gt;</span> [478] "24558" "24559" "24560" "24562" "24563" "24564" "24565" "24566" "24567"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [487] "24568" "24569" "24570" "24571" "24572" "24573" "24574" "24575" "24576"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [496] "24577" "24580" "24581" "24582" "24584" "24585" "24586" "24587"</span>
-<span class="r-in"><span class="fu">list_com_in_reg</span><span class="op">(</span><span class="st">"52"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">list_com_in_reg</span><span class="op">(</span><span class="st">"52"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    [1] "44001" "44002" "44003" "44005" "44006" "44007" "44009" "44010" "44012"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [10] "44013" "44014" "44015" "44016" "44018" "44019" "44020" "44021" "44022"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [19] "44023" "44024" "44025" "44026" "44027" "44028" "44029" "44030" "44031"</span>
@@ -343,7 +350,7 @@ Renvoie la liste des communes pour une région"><meta property="og:image" conten
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

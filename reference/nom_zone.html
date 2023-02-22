@@ -66,25 +66,30 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">nom_zone</span><span class="op">(</span><span class="va">type_zone</span>, <span class="va">code_zone</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">nom_zone</span><span class="op">(</span><span class="va">type_zone</span>, <span class="va">code_zone</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>type_zone</dt>
 <dd><p>Type de Zone</p></dd>
+
+
 <dt>code_zone</dt>
 <dd><p>Code de la Zone</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>une chaîne de caractère</p>
+    
+
+<p>une chaîne de caractère</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">nom_zone</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Communes"</span>, <span class="st">"Communes"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"75056"</span>, <span class="st">"44109"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = c("TypeZone", "CodeZone")</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">nom_zone</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Communes"</span>, <span class="st">"Communes"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"75056"</span>, <span class="st">"44109"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(TypeZone, CodeZone)`</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Paris"  "Nantes"</span>
 </code></pre></div>
     </div>
@@ -100,7 +105,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

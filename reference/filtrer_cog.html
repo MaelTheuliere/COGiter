@@ -66,42 +66,55 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">filtrer_cog</span><span class="op">(</span>
-  <span class="va">.data</span>,
-  depcom <span class="op">=</span> <span class="cn">NULL</span>,
-  epci <span class="op">=</span> <span class="cn">NULL</span>,
-  dep <span class="op">=</span> <span class="cn">NULL</span>,
-  reg <span class="op">=</span> <span class="cn">NULL</span>,
-  garder_supra <span class="op">=</span> <span class="st">"non"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">filtrer_cog</span><span class="op">(</span></span>
+<span>  <span class="va">.data</span>,</span>
+<span>  depcom <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  epci <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  dep <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  reg <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  garder_supra <span class="op">=</span> <span class="st">"non"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>la table de données a filtrer</p></dd>
+
+
 <dt>depcom</dt>
 <dd><p>la commune sur laquelle filtrer les données</p></dd>
+
+
 <dt>epci</dt>
 <dd><p>l'epci sur lequel filtrer les données</p></dd>
+
+
 <dt>dep</dt>
 <dd><p>le departement sur lequel filtrer les données</p></dd>
+
+
 <dt>reg</dt>
 <dd><p>la region sur laquelle filtrer les données</p></dd>
+
+
 <dt>garder_supra</dt>
 <dd><p>"&gt;" si on souhaite garder les territoires supra, "&gt;=" si on souhaite garder les territoires suppra et du même niveau que celui sélectionné</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Renvoie une table de donnees filtrées</p>
+    
+
+<p>Renvoie une table de donnees filtrées</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"> <span class="va">pop2015_cogifiee_Corse</span> <span class="op">&lt;-</span> <span class="fu"><a href="cogifier.html">cogifier</a></span><span class="op">(</span><span class="va">pop2015</span>,  code_commune <span class="op">=</span> <span class="va">DEPCOM</span>, as_df <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span>
-<span class="r-in">   <span class="fu">filtrer_cog</span><span class="op">(</span>reg <span class="op">=</span> <span class="st">"94"</span>, garder_supra <span class="op">=</span> <span class="st">'&gt;'</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = c("TypeZone", "CodeZone")</span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span> <span class="va">pop2015_cogifiee_Corse</span> <span class="op">&lt;-</span> <span class="fu"><a href="cogifier.html">cogifier</a></span><span class="op">(</span><span class="va">pop2015</span>,  code_commune <span class="op">=</span> <span class="va">DEPCOM</span>, as_df <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>   <span class="fu">filtrer_cog</span><span class="op">(</span>reg <span class="op">=</span> <span class="st">"94"</span>, garder_supra <span class="op">=</span> <span class="st">'&gt;'</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(TypeZone, CodeZone)`</span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -116,7 +129,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

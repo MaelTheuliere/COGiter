@@ -66,28 +66,37 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_map</span><span class="op">(</span>depcom <span class="op">=</span> <span class="cn">NULL</span>, epci <span class="op">=</span> <span class="cn">NULL</span>, dep <span class="op">=</span> <span class="cn">NULL</span>, reg <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_map</span><span class="op">(</span>depcom <span class="op">=</span> <span class="cn">NULL</span>, epci <span class="op">=</span> <span class="cn">NULL</span>, dep <span class="op">=</span> <span class="cn">NULL</span>, reg <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>depcom</dt>
 <dd><p>la commune sur laquelle filtrer les données</p></dd>
+
+
 <dt>epci</dt>
 <dd><p>l'epci sur lequel filtrer les données</p></dd>
+
+
 <dt>dep</dt>
 <dd><p>le departement sur lequel filtrer les données</p></dd>
+
+
 <dt>reg</dt>
 <dd><p>la region sur laquelle filtrer les données</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>une liste de spatial dataframe (sf)</p>
+    
+
+<p>une liste de spatial dataframe (sf)</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">get_map</span><span class="op">(</span>epci <span class="op">=</span> <span class="st">"244400404"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_map</span><span class="op">(</span>epci <span class="op">=</span> <span class="st">"244400404"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $com_geo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 34826 features and 2 fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
@@ -188,7 +197,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

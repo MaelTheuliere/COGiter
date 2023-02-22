@@ -68,38 +68,49 @@ Champ : codes communes de la France métropolitaine et des DROM</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">passer_au_cog_a_jour</span><span class="op">(</span>
-  <span class="va">.data</span>,
-  code_commune <span class="op">=</span> <span class="va">DEPCOM</span>,
-  aggrege <span class="op">=</span> <span class="cn">TRUE</span>,
-  garder_info_supra <span class="op">=</span> <span class="cn">TRUE</span>,
-  na.rm <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">passer_au_cog_a_jour</span><span class="op">(</span></span>
+<span>  <span class="va">.data</span>,</span>
+<span>  code_commune <span class="op">=</span> <span class="va">DEPCOM</span>,</span>
+<span>  aggrege <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  garder_info_supra <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  na.rm <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>la table de données à convertir</p></dd>
+
+
 <dt>code_commune</dt>
 <dd><p>le nom de la variable contenant le code commune sur 5 caractères</p></dd>
+
+
 <dt>aggrege</dt>
 <dd><p>booléen TRUE si on souhaite réaggréger les colonnes numériques sur la nouvelle carte communale</p></dd>
+
+
 <dt>garder_info_supra</dt>
 <dd><p>booléen TRUE si on souhaite garder les informations sur les territoires supra des communes</p></dd>
+
+
 <dt>na.rm</dt>
 <dd><p>argument passé à la fonction d'agrégation (sum), na.rm=FALSE par défaut</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Renvoie la table de données convertie pour les codes communes valide en entrée</p>
+    
+
+<p>Renvoie la table de données convertie pour les codes communes valide en entrée</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">pop2015_a_jour</span> <span class="op">&lt;-</span> <span class="fu">passer_au_cog_a_jour</span><span class="op">(</span><span class="va">pop2015</span>, code_commune <span class="op">=</span> <span class="va">DEPCOM</span>,</span>
-<span class="r-in">                                       aggrege <span class="op">=</span> <span class="cn">TRUE</span>, garder_info_supra <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">pop2015_a_jour</span> <span class="op">&lt;-</span> <span class="fu">passer_au_cog_a_jour</span><span class="op">(</span><span class="va">pop2015</span>, code_commune <span class="op">=</span> <span class="va">DEPCOM</span>,</span></span>
+<span class="r-in"><span>                                       aggrege <span class="op">=</span> <span class="cn">TRUE</span>, garder_info_supra <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -114,7 +125,7 @@ Champ : codes communes de la France métropolitaine et des DROM</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

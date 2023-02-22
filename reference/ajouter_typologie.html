@@ -66,55 +66,82 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ajouter_typologie</span><span class="op">(</span>
-  <span class="va">.data</span>,
-  epci <span class="op">=</span> <span class="cn">FALSE</span>,
-  departements <span class="op">=</span> <span class="cn">TRUE</span>,
-  regions <span class="op">=</span> <span class="cn">TRUE</span>,
-  metro <span class="op">=</span> <span class="cn">TRUE</span>,
-  metrodrom <span class="op">=</span> <span class="cn">TRUE</span>,
-  drom <span class="op">=</span> <span class="cn">TRUE</span>,
-  franceprovince <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="va">zonage_df</span>,
-  var_depcom <span class="op">=</span> <span class="va">DEPCOM</span>,
-  var_code_zone <span class="op">=</span> <span class="va">CodeZone</span>,
-  var_type_zone <span class="op">=</span> <span class="va">TypeZone</span>,
-  var_zone <span class="op">=</span> <span class="va">Zone</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ajouter_typologie</span><span class="op">(</span></span>
+<span>  <span class="va">.data</span>,</span>
+<span>  epci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  departements <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  regions <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  metro <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  metrodrom <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  drom <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  franceprovince <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">zonage_df</span>,</span>
+<span>  var_depcom <span class="op">=</span> <span class="va">DEPCOM</span>,</span>
+<span>  var_code_zone <span class="op">=</span> <span class="va">CodeZone</span>,</span>
+<span>  var_type_zone <span class="op">=</span> <span class="va">TypeZone</span>,</span>
+<span>  var_zone <span class="op">=</span> <span class="va">Zone</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>la table de donnees cogifiee, comportant des donnees communales, a partir de laquelle calculer les indicateurs selon la typologie souhaitee</p></dd>
+
+
 <dt>epci</dt>
 <dd><p>booléen TRUE si on souhaite des données de chaque classe de la typologie à l'epci</p></dd>
+
+
 <dt>departements</dt>
 <dd><p>booléen TRUE si on souhaite des données de chaque classe de la typologie  au département</p></dd>
+
+
 <dt>regions</dt>
 <dd><p>booléen TRUE si on souhaite des données de chaque classe de la typologie  à la région</p></dd>
+
+
 <dt>metro</dt>
 <dd><p>booléen TRUE si on souhaite des données de chaque classe de la typologie sur la France métropolitaine</p></dd>
+
+
 <dt>metrodrom</dt>
 <dd><p>booléen TRUE si on souhaite des données de chaque classe de la typologie sur la France métropolitaine et des DROM</p></dd>
+
+
 <dt>drom</dt>
 <dd><p>booléen TRUE si on souhaite des données de chaque classe de la typologie pour les Départements et régions d'outre mer</p></dd>
+
+
 <dt>franceprovince</dt>
 <dd><p>booléen TRUE si on souhaite des données de chaque classe de la typologie sur la France de province</p></dd>
+
+
 <dt>zonage_df</dt>
 <dd><p>le dataframe contenant le rattachement entre le code commune et la typologie, contenant 4 informations : le code commune, le code typologique dont relève la commune, le libellé typologique dont relève la commune, le nom de la typologie</p></dd>
+
+
 <dt>var_depcom</dt>
 <dd><p>le nom de la variable code commune dans zonage_df</p></dd>
+
+
 <dt>var_code_zone</dt>
 <dd><p>le nom de la variable code zone dans zonage_df</p></dd>
+
+
 <dt>var_type_zone</dt>
 <dd><p>le nom de la variable type zone dans zonage_df</p></dd>
+
+
 <dt>var_zone</dt>
 <dd><p>le nom de la variable zone dans zonage_df</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Renvoie une table de donnees cogifiée augmentée des calculs pour ces nouvelles typologies</p>
+    
+
+<p>Renvoie une table de donnees cogifiée augmentée des calculs pour ces nouvelles typologies</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -123,11 +150,16 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/MaelTheuliere/COGiter" class="external-link">COGiter</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="va">zonage_aav</span> <span class="op">&lt;-</span> <span class="fu"><a href="charger_zonage.html">charger_zonage</a></span><span class="op">(</span><span class="st">"AAV2020"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">cogpop2015</span> <span class="op">&lt;-</span> <span class="fu"><a href="cogifier.html">cogifier</a></span><span class="op">(</span><span class="va">pop2015</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">cogpop2015aav</span> <span class="op">&lt;-</span> <span class="fu">ajouter_typologie</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">cogpop2015</span>, zonage_df <span class="op">=</span> <span class="va">zonage_aav</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = "DEPCOM"</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/MaelTheuliere/COGiter" class="external-link">COGiter</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">zonage_aav</span> <span class="op">&lt;-</span> <span class="fu"><a href="charger_zonage.html">charger_zonage</a></span><span class="op">(</span><span class="st">"AAV2020"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">cogpop2015</span> <span class="op">&lt;-</span> <span class="fu"><a href="cogifier.html">cogifier</a></span><span class="op">(</span><span class="va">pop2015</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>There was 1 warning in `summarise()`.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> In argument: `across(.fns = ~sum(.x, na.rm = na.rm))`.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> Caused by warning:</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Using `across()` without supplying `.cols` was deprecated in dplyr 1.1.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please supply `.cols` instead.</span>
+<span class="r-in"><span><span class="va">cogpop2015aav</span> <span class="op">&lt;-</span> <span class="fu">ajouter_typologie</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">cogpop2015</span>, zonage_df <span class="op">=</span> <span class="va">zonage_aav</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(DEPCOM)`</span>
 </code></pre></div>
     </div>
   </div>
@@ -142,7 +174,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
