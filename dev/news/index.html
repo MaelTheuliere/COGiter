@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COGiter</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.8.3</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.9.1</span>
       </span>
     </div>
 
@@ -61,18 +61,26 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.0.8.3" id="cogiter-0083">COGiter 0.0.8.3<a class="anchor" aria-label="anchor" href="#cogiter-0083"></a></h2>
-<ul><li>Ajout d’un paramètre à <code><a href="../reference/filtrer_cog_geo.html">filtrer_cog_geo()</a></code> pour élargir l’emprise des couches.</li>
+<h2 class="page-header" data-toc-text="0.0.9.1" id="cogiter-0091">COGiter 0.0.9.1<a class="anchor" aria-label="anchor" href="#cogiter-0091"></a></h2>
+<ul><li>Bug fix <code><a href="../reference/nom_zone.html">nom_zone()</a></code>, <code><a href="../reference/code_zone.html">code_zone()</a></code>, <code><a href="../reference/trouver_zone.html">trouver_zone()</a></code> : lors de l’utilisation de ces fonctions pour développer un package, un préfixe manquait pour que la liste des zones de COGiter soit trouvée.</li></ul></div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.0.9" id="cogiter-009">COGiter 0.0.9<a class="anchor" aria-label="anchor" href="#cogiter-009"></a></h2>
+<ul><li>Mise à jour COG et fond de carte 2022.<br></li>
+<li>Couches géo : surfaces des territoires désormais issus du champ <code>superficie</code> de la BD Carto de l’IGN.</li>
+<li>Couches géo : toutes issues d’une simplification de la couche nationale admin express de l’IGN.</li>
+<li>Couches géo : re-positionnement et ré-alignement des DOM à l’ouest du fond carto métropole.</li>
+<li>Fonctions + silencieuses : suppression des messages d’alerte inutiles de <code><a href="../reference/filtrer_cog.html">filtrer_cog()</a></code> et <code><a href="../reference/filtrer_cog_geo.html">filtrer_cog_geo()</a></code>, suppression du message d’information lors des jointures réalisées par la fonction <code><a href="../reference/passer_au_cog_a_jour.html">passer_au_cog_a_jour()</a></code>.</li>
 </ul></div>
     <div class="section level2">
+<h2 class="page-header" data-toc-text="0.0.8.3" id="cogiter-0083">COGiter 0.0.8.3<a class="anchor" aria-label="anchor" href="#cogiter-0083"></a></h2>
+<ul><li>Ajout d’un paramètre à <code><a href="../reference/filtrer_cog_geo.html">filtrer_cog_geo()</a></code> pour élargir l’emprise des couches.</li></ul></div>
+    <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.8.2" id="cogiter-0082">COGiter 0.0.8.2<a class="anchor" aria-label="anchor" href="#cogiter-0082"></a></h2>
-<ul><li>Rajout fonction nom_zone(),code_zone() et trouver_zone()</li>
-</ul></div>
+<ul><li>Rajout fonction nom_zone(),code_zone() et trouver_zone()</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.8.1" id="cogiter-0081">COGiter 0.0.8.1<a class="anchor" aria-label="anchor" href="#cogiter-0081"></a></h2>
 <ul><li>Bug fix sur la fonction <code><a href="../reference/charger_zonage.html">charger_zonage()</a></code>
-</li>
-</ul></div>
+</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.8" id="cogiter-008">COGiter 0.0.8<a class="anchor" aria-label="anchor" href="#cogiter-008"></a></h2>
 <ul><li>Mise à jour COG 2021</li>
@@ -91,8 +99,7 @@
 <li>Explicitation de la gestion des NA dans cogifier()</li>
 </ul><div class="section level3">
 <h3 id="interne-0-0-7">interne<a class="anchor" aria-label="anchor" href="#interne-0-0-7"></a></h3>
-<ul><li>ajout de tests</li>
-</ul></div>
+<ul><li>ajout de tests</li></ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.6" id="cogiter-006">COGiter 0.0.6<a class="anchor" aria-label="anchor" href="#cogiter-006"></a></h2>
@@ -101,8 +108,7 @@
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.5" id="cogiter-005">COGiter 0.0.5<a class="anchor" aria-label="anchor" href="#cogiter-005"></a></h2>
-<ul><li>correction bug sur <code><a href="../reference/passer_au_cog_a_jour.html">passer_au_cog_a_jour()</a></code> avec le passage à la nouvelle table de passage.</li>
-</ul></div>
+<ul><li>correction bug sur <code><a href="../reference/passer_au_cog_a_jour.html">passer_au_cog_a_jour()</a></code> avec le passage à la nouvelle table de passage.</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.3" id="cogiter-003">COGiter 0.0.3<a class="anchor" aria-label="anchor" href="#cogiter-003"></a></h2>
 <ul><li>Intégration des données 2020</li>
@@ -112,8 +118,7 @@
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.2" id="cogiter-002">COGiter 0.0.2<a class="anchor" aria-label="anchor" href="#cogiter-002"></a></h2>
-<ul><li>rajout de deux agrégats possibles pour la cogification : France de province et Départements et régions d’outre-mer</li>
-</ul></div>
+<ul><li>rajout de deux agrégats possibles pour la cogification : France de province et Départements et régions d’outre-mer</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.1.9000" id="cogiter-0019000">COGiter 0.0.1.9000<a class="anchor" aria-label="anchor" href="#cogiter-0019000"></a></h2>
 <ul><li>bug fix sur liste_zone</li>
@@ -141,8 +146,7 @@
 </ul></div>
 <div class="section level3">
 <h3 id="bug-fix-0-0-0-9002">Bug fix<a class="anchor" aria-label="anchor" href="#bug-fix-0-0-0-9002"></a></h3>
-<ul><li>Bug fix sur les communes hors epci</li>
-</ul></div>
+<ul><li>Bug fix sur les communes hors epci</li></ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.0.9001" id="cogiter-0009001">COGiter 0.0.0.9001<a class="anchor" aria-label="anchor" href="#cogiter-0009001"></a></h2>
@@ -159,11 +163,11 @@
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Maël THEULIERE.</p>
+  <p></p><p>Developed by Maël THEULIERE, Juliette ENGELARE-LEFEBVRE.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

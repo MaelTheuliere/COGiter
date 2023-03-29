@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COGiter</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.8.3</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.9.1</span>
       </span>
     </div>
 
@@ -66,25 +66,30 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">code_zone</span><span class="op">(</span><span class="va">type_zone</span>, <span class="va">zone</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">code_zone</span><span class="op">(</span><span class="va">type_zone</span>, <span class="va">zone</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>type_zone</dt>
 <dd><p>Type de Zone</p></dd>
+
+
 <dt>zone</dt>
 <dd><p>Nom de la Zone</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>une chaîne de caractère</p>
+    
+
+<p>une chaîne de caractère</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">code_zone</span><span class="op">(</span><span class="st">"Communes"</span>,<span class="st">"Nantes"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = c("TypeZone", "Zone")</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">code_zone</span><span class="op">(</span><span class="st">"Communes"</span>, <span class="st">"Nantes"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(TypeZone, Zone)`</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "44109"</span>
 </code></pre></div>
     </div>
@@ -96,11 +101,11 @@
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Maël THEULIERE.</p>
+  <p></p><p>Developed by Maël THEULIERE, Juliette ENGELARE-LEFEBVRE.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

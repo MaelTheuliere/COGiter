@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COGiter</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.8.3</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.9.1</span>
       </span>
     </div>
 
@@ -101,134 +101,134 @@
     
 <p>Ce document va vous permettre de comprendre comment <a href="https://github.com/MaelTheuliere/COGiter" class="external-link">COGiter</a> vous permet de gérer les fonds de carte de France.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/MaelTheuliere/COGiter" class="external-link">COGiter</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/MaelTheuliere/COGiter" class="external-link">COGiter</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="fonds-de-carte-disponibles">Fonds de carte disponibles<a class="anchor" aria-label="anchor" href="#fonds-de-carte-disponibles"></a>
 </h2>
 <p>Il existe pour la métropole et chaque drom un fond de carte pour les niveaux communes, epci, départements, régions :</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span><span class="st">"package:COGiter"</span>, pattern <span class="op">=</span> <span class="st">"_geo$"</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "communes_971_geo"       "communes_972_geo"       "communes_973_geo"      </span>
-<span class="co">#&gt;  [4] "communes_974_geo"       "communes_976_geo"       "communes_geo"          </span>
-<span class="co">#&gt;  [7] "communes_metro_geo"     "departements_971_geo"   "departements_972_geo"  </span>
-<span class="co">#&gt; [10] "departements_973_geo"   "departements_974_geo"   "departements_976_geo"  </span>
-<span class="co">#&gt; [13] "departements_geo"       "departements_metro_geo" "epci_971_geo"          </span>
-<span class="co">#&gt; [16] "epci_972_geo"           "epci_973_geo"           "epci_974_geo"          </span>
-<span class="co">#&gt; [19] "epci_976_geo"           "epci_geo"               "epci_metro_geo"        </span>
-<span class="co">#&gt; [22] "filtrer_cog_geo"        "regions_971_geo"        "regions_972_geo"       </span>
-<span class="co">#&gt; [25] "regions_973_geo"        "regions_974_geo"        "regions_976_geo"       </span>
-<span class="co">#&gt; [28] "regions_geo"            "regions_metro_geo"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span><span class="st">"package:COGiter"</span>, pattern <span class="op">=</span> <span class="st">"_geo$"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "communes_971_geo"       "communes_972_geo"       "communes_973_geo"      </span></span>
+<span><span class="co">#&gt;  [4] "communes_974_geo"       "communes_976_geo"       "communes_geo"          </span></span>
+<span><span class="co">#&gt;  [7] "communes_metro_geo"     "departements_971_geo"   "departements_972_geo"  </span></span>
+<span><span class="co">#&gt; [10] "departements_973_geo"   "departements_974_geo"   "departements_976_geo"  </span></span>
+<span><span class="co">#&gt; [13] "departements_geo"       "departements_metro_geo" "epci_971_geo"          </span></span>
+<span><span class="co">#&gt; [16] "epci_972_geo"           "epci_973_geo"           "epci_974_geo"          </span></span>
+<span><span class="co">#&gt; [19] "epci_976_geo"           "epci_geo"               "epci_metro_geo"        </span></span>
+<span><span class="co">#&gt; [22] "filtrer_cog_geo"        "regions_971_geo"        "regions_972_geo"       </span></span>
+<span><span class="co">#&gt; [25] "regions_973_geo"        "regions_974_geo"        "regions_976_geo"       </span></span>
+<span><span class="co">#&gt; [28] "regions_geo"            "regions_metro_geo"</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">communes_973_geo</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">communes_973_geo</span><span class="op">)</span></span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="filtrer-les-fonds-de-carte">Filtrer les fonds de carte<a class="anchor" aria-label="anchor" href="#filtrer-les-fonds-de-carte"></a>
 </h2>
-<p><code><a href="../reference/filtrer_cog_geo.html">filtrer_cog_geo()</a></code> vous permet d’obtenir une liste de spatial dataframe centée sur une partie du territoire (que ce soit une commune, un epci, un département ou une région).</p>
+<p><code><a href="../reference/filtrer_cog_geo.html">filtrer_cog_geo()</a></code> vous permet d’obtenir une liste de spatial dataframe centrée sur une partie du territoire (que ce soit une commune, un epci, un département ou une région).</p>
 <p>Exemple sur Nantes métropole :</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nantes_metropole</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog_geo.html">filtrer_cog_geo</a></span><span class="op">(</span>epci <span class="op">=</span> <span class="st">"244400404"</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">)</span>
-<span class="co">#&gt; List of 2</span>
-<span class="co">#&gt;  $ communes: sf [24 × 3] (S3: sf/tbl_df/tbl/data.frame)</span>
-<span class="co">#&gt;   ..$ DEPCOM  : Factor w/ 34965 levels "01001","01002",..: 16220 16227 16229 16233 16235 16243 16253 16278 16297 16304 ...</span>
-<span class="co">#&gt;   ..$ AREA    : Units: [m^2] num [1:24] 13740150 13833840 31051609 15495124 43054354 ...</span>
-<span class="co">#&gt;   ..$ geometry:sfc_MULTIPOLYGON of length 24; first list element: List of 1</span>
-<span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "MULTIPOLYGON" "sfg"</span>
-<span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span>
-<span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span>
-<span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "DEPCOM" "AREA"</span>
-<span class="co">#&gt;  $ epci    : sf [1 × 3] (S3: sf/tbl_df/tbl/data.frame)</span>
-<span class="co">#&gt;   ..$ EPCI    : Factor w/ 1255 levels "200000172","200000438",..: 976</span>
-<span class="co">#&gt;   ..$ AREA    : Units: [m^2] num 5.34e+08</span>
-<span class="co">#&gt;   ..$ geometry:sfc_POLYGON of length 1; first list element: List of 1</span>
-<span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"</span>
-<span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span>
-<span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span>
-<span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "EPCI" "AREA"</span></code></pre></div>
-<p><code>nantes_metropole</code> est une liste de deux spatial dataframe <code>communes</code> et <code>epci</code> qui correspondent aux deux niveau de zoom possible sur la métropole.</p>
+<code class="sourceCode R"><span><span class="va">nantes_metropole</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog_geo.html">filtrer_cog_geo</a></span><span class="op">(</span>epci <span class="op">=</span> <span class="st">"244400404"</span><span class="op">)</span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 2</span></span>
+<span><span class="co">#&gt;  $ communes: sf [24 × 3] (S3: sf/tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;   ..$ DEPCOM  : chr [1:24] "44190" "44204" "44026" "44009" ...</span></span>
+<span><span class="co">#&gt;   ..$ AREA    : num [1:24] 11660000 12760000 43420000 13740000 44030000 ...</span></span>
+<span><span class="co">#&gt;   ..$ geometry:sfc_MULTIPOLYGON of length 24; first list element: List of 1</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "MULTIPOLYGON" "sfg"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "DEPCOM" "AREA"</span></span>
+<span><span class="co">#&gt;  $ epci    : sf [1 × 3] (S3: sf/tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;   ..$ EPCI    : Factor w/ 1256 levels "200000172","200000438",..: 977</span></span>
+<span><span class="co">#&gt;   ..$ AREA    : Units: [m^2] num 5.23e+08</span></span>
+<span><span class="co">#&gt;   ..$ geometry:sfc_POLYGON of length 1; first list element: List of 1</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "EPCI" "AREA"</span></span></code></pre></div>
+<p><code>nantes_metropole</code> est une liste de deux spatial dataframes <code>communes</code> et <code>epci</code> qui correspondent aux deux niveaux de zoom possible sur la métropole.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">$</span><span class="va">communes</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">$</span><span class="va">communes</span><span class="op">)</span></span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">$</span><span class="va">epci</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">$</span><span class="va">epci</span><span class="op">)</span></span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-6-2.png" width="700"></p>
 <p>On peut obtenir l’équivalent sur la région Bretagne, dans ce cas, la liste renvoyée contient également le fond de carte des départements et de la région :</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bretagne</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog_geo.html">filtrer_cog_geo</a></span><span class="op">(</span>reg <span class="op">=</span> <span class="st">"53"</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">)</span>
-<span class="co">#&gt; List of 4</span>
-<span class="co">#&gt;  $ communes    : sf [1,208 × 3] (S3: sf/tbl_df/tbl/data.frame)</span>
-<span class="co">#&gt;   ..$ DEPCOM  : Factor w/ 34965 levels "01001","01002",..: 7280 7281 7282 7283 7284 7285 7286 7287 7288 7289 ...</span>
-<span class="co">#&gt;   ..$ AREA    : Units: [m^2] num [1:1208] 24478992 12394305 6601240 36178509 14440610 ...</span>
-<span class="co">#&gt;   ..$ geometry:sfc_MULTIPOLYGON of length 1208; first list element: List of 1</span>
-<span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "MULTIPOLYGON" "sfg"</span>
-<span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span>
-<span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span>
-<span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "DEPCOM" "AREA"</span>
-<span class="co">#&gt;  $ epci        : sf [60 × 3] (S3: sf/tbl_df/tbl/data.frame)</span>
-<span class="co">#&gt;   ..$ EPCI    : Factor w/ 1255 levels "200000172","200000438",..: 45 132 133 221 241 257 302 346 347 354 ...</span>
-<span class="co">#&gt;   ..$ AREA    : Units: [m^2] num [1:60] 3.55e+08 3.56e+08 8.80e+08 7.35e+08 5.31e+08 ...</span>
-<span class="co">#&gt;   ..$ geometry:sfc_GEOMETRY of length 60; first list element: List of 1</span>
-<span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"</span>
-<span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span>
-<span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span>
-<span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "EPCI" "AREA"</span>
-<span class="co">#&gt;  $ departements: sf [4 × 3] (S3: sf/tbl_df/tbl/data.frame)</span>
-<span class="co">#&gt;   ..$ DEP     : Factor w/ 101 levels "01","02","03",..: 21 28 36 57</span>
-<span class="co">#&gt;   ..$ AREA    : Units: [m^2] num [1:4] 6.96e+09 6.76e+09 6.83e+09 6.86e+09</span>
-<span class="co">#&gt;   ..$ geometry:sfc_MULTIPOLYGON of length 4; first list element: List of 2</span>
-<span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "MULTIPOLYGON" "sfg"</span>
-<span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span>
-<span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span>
-<span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "DEP" "AREA"</span>
-<span class="co">#&gt;  $ regions     : sf [1 × 3] (S3: sf/tbl_df/tbl/data.frame)</span>
-<span class="co">#&gt;   ..$ REG     : Factor w/ 18 levels "01","02","03",..: 13</span>
-<span class="co">#&gt;   ..$ AREA    : Units: [m^2] num 2.74e+10</span>
-<span class="co">#&gt;   ..$ geometry:sfc_MULTIPOLYGON of length 1; first list element: List of 12</span>
-<span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "MULTIPOLYGON" "sfg"</span>
-<span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span>
-<span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span>
-<span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "REG" "AREA"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">bretagne</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog_geo.html">filtrer_cog_geo</a></span><span class="op">(</span>reg <span class="op">=</span> <span class="st">"53"</span><span class="op">)</span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 4</span></span>
+<span><span class="co">#&gt;  $ communes    : sf [1,207 × 3] (S3: sf/tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;   ..$ DEPCOM  : chr [1:1207] "29058" "22218" "35185" "56014" ...</span></span>
+<span><span class="co">#&gt;   ..$ AREA    : num [1:1207] 32760000 15540000 6900000 34770000 4970000 ...</span></span>
+<span><span class="co">#&gt;   ..$ geometry:sfc_MULTIPOLYGON of length 1207; first list element: List of 1</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "MULTIPOLYGON" "sfg"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "DEPCOM" "AREA"</span></span>
+<span><span class="co">#&gt;  $ epci        : sf [61 × 3] (S3: sf/tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;   ..$ EPCI    : Factor w/ 1256 levels "200000172","200000438",..: 45 130 131 219 239 255 300 344 345 352 ...</span></span>
+<span><span class="co">#&gt;   ..$ AREA    : Units: [m^2] num [1:61] 3.53e+08 3.52e+08 8.68e+08 7.39e+08 5.21e+08 ...</span></span>
+<span><span class="co">#&gt;   ..$ geometry:sfc_GEOMETRY of length 61; first list element: List of 1</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "EPCI" "AREA"</span></span>
+<span><span class="co">#&gt;  $ departements: sf [4 × 3] (S3: sf/tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;   ..$ DEP     : Factor w/ 101 levels "01","02","03",..: 21 28 36 57</span></span>
+<span><span class="co">#&gt;   ..$ AREA    : Units: [m^2] num [1:4] 6.88e+09 6.73e+09 6.77e+09 6.82e+09</span></span>
+<span><span class="co">#&gt;   ..$ geometry:sfc_MULTIPOLYGON of length 4; first list element: List of 4</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "MULTIPOLYGON" "sfg"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "DEP" "AREA"</span></span>
+<span><span class="co">#&gt;  $ regions     : sf [1 × 3] (S3: sf/tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;   ..$ REG     : Factor w/ 18 levels "01","02","03",..: 13</span></span>
+<span><span class="co">#&gt;   ..$ AREA    : Units: [m^2] num 2.72e+10</span></span>
+<span><span class="co">#&gt;   ..$ geometry:sfc_MULTIPOLYGON of length 1; first list element: List of 15</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "MULTIPOLYGON" "sfg"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "REG" "AREA"</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">$</span><span class="va">communes</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">$</span><span class="va">communes</span><span class="op">)</span></span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">$</span><span class="va">epci</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">$</span><span class="va">epci</span><span class="op">)</span></span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-8-2.png" width="700"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">$</span><span class="va">departements</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">$</span><span class="va">departements</span><span class="op">)</span></span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-8-3.png" width="700"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">$</span><span class="va">regions</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">$</span><span class="va">regions</span><span class="op">)</span></span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-8-4.png" width="700"></p>
 <p>l’option <code>garder_supra</code> permet de ne pas simplement filtrer mais de centrer la bbox des cartes sur le territoire, ce qui permet de visualiser la carte des territoires voisins.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nantes_metropole</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog_geo.html">filtrer_cog_geo</a></span><span class="op">(</span>epci <span class="op">=</span> <span class="st">"244400404"</span>, garder_supra <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">)</span>
-<span class="co">#&gt; List of 2</span>
-<span class="co">#&gt;  $ communes: sf [64 × 3] (S3: sf/tbl_df/tbl/data.frame)</span>
-<span class="co">#&gt;   ..$ DEPCOM  : Factor w/ 34965 levels "01001","01002",..: 16217 16220 16224 16227 16228 16229 16233 16235 16237 16238 ...</span>
-<span class="co">#&gt;   ..$ AREA    : Units: [m^2] num [1:64] 77719310 13740150 27912989 13833840 24689752 ...</span>
-<span class="co">#&gt;   ..$ geometry:sfc_GEOMETRY of length 64; first list element: List of 1</span>
-<span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"</span>
-<span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span>
-<span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span>
-<span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "DEPCOM" "AREA"</span>
-<span class="co">#&gt;  $ epci    : sf [10 × 3] (S3: sf/tbl_df/tbl/data.frame)</span>
-<span class="co">#&gt;   ..$ EPCI    : Factor w/ 1255 levels "200000172","200000438",..: 387 402 418 635 694 976 977 979 981 982</span>
-<span class="co">#&gt;   ..$ AREA    : Units: [m^2] num [1:10] 5.26e+08 3.11e+08 2.77e+08 3.51e+08 3.14e+08 ...</span>
-<span class="co">#&gt;   ..$ geometry:sfc_GEOMETRY of length 10; first list element: List of 1</span>
-<span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"</span>
-<span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span>
-<span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span>
-<span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "EPCI" "AREA"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">nantes_metropole</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog_geo.html">filtrer_cog_geo</a></span><span class="op">(</span>epci <span class="op">=</span> <span class="st">"244400404"</span>, garder_supra <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 2</span></span>
+<span><span class="co">#&gt;  $ communes: sf [64 × 3] (S3: sf/tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;   ..$ DEPCOM  : chr [1:64] "44190" "44029" "44084" "44204" ...</span></span>
+<span><span class="co">#&gt;   ..$ AREA    : num [1:64] 11660000 33900000 45310000 12760000 43420000 ...</span></span>
+<span><span class="co">#&gt;   ..$ geometry:sfc_GEOMETRY of length 64; first list element: List of 1</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "DEPCOM" "AREA"</span></span>
+<span><span class="co">#&gt;  $ epci    : sf [10 × 3] (S3: sf/tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;   ..$ EPCI    : Factor w/ 1256 levels "200000172","200000438",..: 384 399 415 631 690 977 978 980 982 983</span></span>
+<span><span class="co">#&gt;   ..$ AREA    : Units: [m^2] num [1:10] 5.22e+08 3.10e+08 2.76e+08 3.54e+08 3.06e+08 ...</span></span>
+<span><span class="co">#&gt;   ..$ geometry:sfc_GEOMETRY of length 10; first list element: List of 1</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span></span>
+<span><span class="co">#&gt;   .. ..- attr(*, "names")= chr [1:2] "EPCI" "AREA"</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">$</span><span class="va">communes</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">$</span><span class="va">communes</span><span class="op">)</span></span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">$</span><span class="va">epci</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">$</span><span class="va">epci</span><span class="op">)</span></span></code></pre></div>
 <p><img src="filtre_geo_files/figure-html/unnamed-chunk-10-2.png" width="700"></p>
 </div>
   </div>
@@ -245,12 +245,12 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Maël THEULIERE.</p>
+<p>Developed by Maël THEULIERE, Juliette ENGELARE-LEFEBVRE.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

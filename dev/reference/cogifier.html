@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COGiter</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.8.3</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.9.1</span>
       </span>
     </div>
 
@@ -66,54 +66,85 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">cogifier</span><span class="op">(</span>
-  <span class="va">.data</span>,
-  code_commune <span class="op">=</span> <span class="va">DEPCOM</span>,
-  communes <span class="op">=</span> <span class="cn">T</span>,
-  epci <span class="op">=</span> <span class="cn">T</span>,
-  departements <span class="op">=</span> <span class="cn">T</span>,
-  regions <span class="op">=</span> <span class="cn">T</span>,
-  metro <span class="op">=</span> <span class="cn">T</span>,
-  metrodrom <span class="op">=</span> <span class="cn">F</span>,
-  franceprovince <span class="op">=</span> <span class="cn">F</span>,
-  drom <span class="op">=</span> <span class="cn">F</span>,
-  as_df <span class="op">=</span> <span class="cn">T</span>,
-  na.rm <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cogifier</span><span class="op">(</span></span>
+<span>  <span class="va">.data</span>,</span>
+<span>  code_commune <span class="op">=</span> <span class="va">DEPCOM</span>,</span>
+<span>  communes <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  epci <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  departements <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  regions <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  metro <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  metrodrom <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  franceprovince <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  drom <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  as_df <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  na.rm <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>.data</dt>
 <dd><p>la table de données à convertir</p></dd>
+
+
 <dt>code_commune</dt>
 <dd><p>le nom de la variable contenant le code commune sur 5 charactères</p></dd>
+
+
 <dt>communes</dt>
 <dd><p>booléen TRUE si on souhaite des données à la commune</p></dd>
+
+
 <dt>epci</dt>
 <dd><p>booléen TRUE si on souhaite des données à l'epci</p></dd>
+
+
 <dt>departements</dt>
 <dd><p>booléen TRUE si on souhaite des données au département</p></dd>
+
+
 <dt>regions</dt>
 <dd><p>booléen TRUE si on souhaite des données à la région</p></dd>
+
+
 <dt>metro</dt>
 <dd><p>booléen TRUE si on souhaite des données France métropolitaine</p></dd>
+
+
 <dt>metrodrom</dt>
 <dd><p>booléen TRUE si on souhaite des données France métropolitaine et des DROM</p></dd>
+
+
 <dt>franceprovince</dt>
 <dd><p>booléen TRUE si on souhaite des données France de province</p></dd>
+
+
 <dt>drom</dt>
 <dd><p>booléen TRUE si on souhaite des données Départements et régions d'outre mer</p></dd>
+
+
 <dt>as_df</dt>
 <dd><p>booléen TRUE si on souhaite des données sous un seul dataframe, FALSE si on souhaite une liste de dataframe par type de zone</p></dd>
+
+
 <dt>na.rm</dt>
 <dd><p>argument(s) passé(s) à la fonction d'aggrégation (sum), na.rm=F par défaut</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Renvoie un dataframe ou une liste de dataframe</p>
+    
+
+<p>Renvoie un dataframe ou une liste de dataframe</p>
     </div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">pop2015_cogifiee</span> <span class="op">&lt;-</span> <span class="fu">cogifier</span><span class="op">(</span><span class="va">pop2015</span>, code_commune <span class="op">=</span> <span class="va">DEPCOM</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
@@ -122,11 +153,11 @@
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Maël THEULIERE.</p>
+  <p></p><p>Developed by Maël THEULIERE, Juliette ENGELARE-LEFEBVRE.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

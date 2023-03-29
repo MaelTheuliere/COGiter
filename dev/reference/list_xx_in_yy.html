@@ -23,7 +23,7 @@ Renvoie la liste des communes pour une région"><meta property="og:image" conten
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COGiter</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.8.3</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.0.9.1</span>
       </span>
     </div>
 
@@ -78,62 +78,69 @@ Renvoie la liste des communes pour une région"><meta property="og:image" conten
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">list_dep_in_reg</span><span class="op">(</span><span class="va">reg</span><span class="op">)</span>
-
-<span class="fu">list_epci_in_dep</span><span class="op">(</span><span class="va">dep</span><span class="op">)</span>
-
-<span class="fu">list_epci_in_reg</span><span class="op">(</span><span class="va">reg</span><span class="op">)</span>
-
-<span class="fu">list_com_in_epci</span><span class="op">(</span><span class="va">epci</span><span class="op">)</span>
-
-<span class="fu">list_com_in_dep</span><span class="op">(</span><span class="va">dep</span><span class="op">)</span>
-
-<span class="fu">list_com_in_reg</span><span class="op">(</span><span class="va">reg</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">list_dep_in_reg</span><span class="op">(</span><span class="va">reg</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">list_epci_in_dep</span><span class="op">(</span><span class="va">dep</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">list_epci_in_reg</span><span class="op">(</span><span class="va">reg</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">list_com_in_epci</span><span class="op">(</span><span class="va">epci</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">list_com_in_dep</span><span class="op">(</span><span class="va">dep</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">list_com_in_reg</span><span class="op">(</span><span class="va">reg</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>reg</dt>
 <dd><p>Vecteur de caractère. Le code de la région concernée.</p></dd>
+
+
 <dt>dep</dt>
 <dd><p>Vecteur de caractère. Le code du département concernée.</p></dd>
+
+
 <dt>epci</dt>
 <dd><p>Vecteur de caractère. Le code de l'epci concernée.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Un vecteur de caractère.</p>
+    
+
+<p>Un vecteur de caractère.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">list_dep_in_reg</span><span class="op">(</span><span class="st">"75"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">list_dep_in_reg</span><span class="op">(</span><span class="st">"75"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "16" "17" "19" "23" "24" "33" "40" "47" "64" "79" "86" "87"</span>
-<span class="r-in"><span class="fu">list_epci_in_dep</span><span class="op">(</span><span class="st">"24"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">list_epci_in_dep</span><span class="op">(</span><span class="st">"24"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "200070647" "200040392" "243301454" "200041440" "200041168" "200034197"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "200040889" "200034833" "200041572" "200040830" "242400935" "243301371"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "200071819" "200040400" "200041150" "242401024" "200040384" "200069094"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "200040095" "242400752" "200027217" "200041051"</span>
-<span class="r-in"><span class="fu">list_epci_in_reg</span><span class="op">(</span><span class="st">"52"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "244400404" "244900015" "246100663" "247200132" "200067635" "244400610"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "244400644" "200071678" "248500589" "200083392" "200071165" "200060010"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "200067346" "243500741" "200071876" "244900809" "200068955" "244900882"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "200071629" "200072726" "244400503" "244400438" "245300355" "248500191"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "200072718" "244400453" "244400537" "247200090" "200072882" "200033298"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "200072692" "200071868" "245300389" "200042182" "244400552" "245300447"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "200048551" "247200686" "248500415" "245300223" "248500662" "200000438"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [43] "248500464" "200071918" "200023778" "248500530" "248500621" "247200348"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [49] "244400586" "247200421" "247200629" "200072734" "200072700" "200072684"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [55] "200070373" "200071553" "200040475" "200068963" "200072676" "200055887"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [61] "248500258" "247200447" "248500340" "200071934" "200067866" "200071546"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [67] "200073112" "200073260" "200070233" "200071900" "248500563"</span>
-<span class="r-in"><span class="fu">list_com_in_epci</span><span class="op">(</span><span class="st">"200070647"</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "200071819" "200040400" "242401024" "200040384" "200069094" "200040095"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "242400752" "200027217" "200041150" "200041051"</span>
+<span class="r-in"><span><span class="fu">list_epci_in_reg</span><span class="op">(</span><span class="st">"52"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "244400404" "244900015" "246100663" "247200132" "200071678" "200067635"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "244400610" "244400644" "200023778" "248500589" "200083392" "200071165"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "200060010" "200067346" "243500741" "200071876" "200070233" "244900809"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "200068955" "244900882" "200071629" "200072726" "247200090" "244400503"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "245300355" "248500191" "200072718" "244400453" "244400537" "200072882"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "200033298" "200072692" "200071868" "245300389" "200042182" "244400552"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "245300447" "200048551" "200071934" "247200686" "248500415" "245300223"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [43] "248500662" "200000438" "248500464" "200071918" "248500530" "248500621"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [49] "247200348" "247200421" "244400586" "247200629" "200072734" "244400438"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [55] "200072700" "200072684" "200070373" "200071553" "200040475" "200068963"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [61] "200072676" "200055887" "248500258" "247200447" "248500340" "200067866"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [67] "200071546" "200073112" "200073260" "200071900" "248500563"</span>
+<span class="r-in"><span><span class="fu">list_com_in_epci</span><span class="op">(</span><span class="st">"200070647"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "24037" "24051" "24054" "24126" "24140" "24145" "24148" "24182" "24191"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [10] "24193" "24194" "24197" "24222" "24224" "24225" "24237" "24246" "24267"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [19] "24274" "24276" "24277" "24296" "24331" "24340" "24345" "24349" "24351"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [28] "24357" "24413" "24419" "24420" "24437" "24472" "24487" "24499" "24523"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [37] "24534" "24549"</span>
-<span class="r-in"><span class="fu">list_com_in_dep</span><span class="op">(</span><span class="st">"24"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">list_com_in_dep</span><span class="op">(</span><span class="st">"24"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1] "24001" "24002" "24004" "24005" "24006" "24007" "24008" "24009" "24010"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [10] "24011" "24012" "24014" "24015" "24016" "24018" "24019" "24020" "24021"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [19] "24022" "24023" "24024" "24025" "24026" "24027" "24028" "24029" "24030"</span>
@@ -142,56 +149,55 @@ Renvoie la liste des communes pour une région"><meta property="og:image" conten
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [46] "24054" "24055" "24056" "24057" "24058" "24059" "24060" "24061" "24062"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [55] "24063" "24064" "24066" "24067" "24068" "24069" "24070" "24071" "24073"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [64] "24074" "24075" "24076" "24077" "24080" "24081" "24082" "24083" "24084"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [73] "24085" "24086" "24087" "24088" "24089" "24090" "24091" "24094" "24095"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [82] "24096" "24097" "24098" "24100" "24101" "24102" "24104" "24105" "24106"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [91] "24107" "24108" "24109" "24110" "24111" "24113" "24114" "24115" "24116"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [100] "24117" "24119" "24120" "24121" "24122" "24123" "24124" "24126" "24128"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [109] "24129" "24130" "24131" "24132" "24133" "24134" "24135" "24136" "24137"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [118] "24138" "24139" "24140" "24141" "24142" "24143" "24144" "24145" "24146"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [127] "24147" "24148" "24150" "24151" "24152" "24153" "24154" "24155" "24156"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [136] "24157" "24158" "24159" "24160" "24161" "24162" "24163" "24164" "24165"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [145] "24167" "24168" "24171" "24172" "24174" "24175" "24176" "24177" "24179"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [154] "24180" "24182" "24183" "24184" "24186" "24188" "24189" "24190" "24191"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [163] "24192" "24193" "24194" "24195" "24196" "24197" "24199" "24200" "24202"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [172] "24205" "24206" "24207" "24208" "24209" "24210" "24211" "24212" "24213"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [181] "24214" "24215" "24216" "24217" "24218" "24220" "24221" "24222" "24223"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [190] "24224" "24225" "24226" "24227" "24228" "24229" "24230" "24231" "24232"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [199] "24234" "24236" "24237" "24238" "24240" "24241" "24242" "24243" "24244"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [208] "24245" "24246" "24247" "24248" "24251" "24252" "24253" "24254" "24255"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [217] "24256" "24257" "24259" "24260" "24261" "24262" "24263" "24264" "24266"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [226] "24267" "24268" "24269" "24271" "24272" "24273" "24274" "24276" "24277"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [235] "24278" "24279" "24280" "24281" "24282" "24284" "24285" "24286" "24287"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [244] "24288" "24289" "24290" "24291" "24292" "24293" "24294" "24295" "24296"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [253] "24297" "24299" "24300" "24301" "24302" "24303" "24304" "24305" "24306"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [262] "24307" "24308" "24309" "24311" "24312" "24313" "24314" "24316" "24317"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [271] "24318" "24319" "24320" "24321" "24322" "24323" "24324" "24325" "24326"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [280] "24327" "24328" "24329" "24330" "24331" "24334" "24335" "24336" "24337"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [289] "24338" "24339" "24340" "24341" "24345" "24346" "24347" "24348" "24349"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [298] "24350" "24351" "24352" "24353" "24354" "24355" "24356" "24357" "24359"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [307] "24360" "24361" "24362" "24364" "24365" "24366" "24367" "24370" "24371"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [316] "24372" "24373" "24374" "24375" "24376" "24377" "24378" "24379" "24380"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [325] "24381" "24382" "24383" "24384" "24385" "24386" "24388" "24390" "24392"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [334] "24393" "24394" "24395" "24396" "24397" "24398" "24399" "24401" "24403"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [343] "24404" "24405" "24406" "24407" "24408" "24409" "24410" "24411" "24412"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [352] "24413" "24414" "24415" "24416" "24417" "24418" "24419" "24420" "24421"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [361] "24422" "24423" "24424" "24425" "24426" "24428" "24429" "24432" "24434"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [370] "24436" "24437" "24438" "24441" "24442" "24443" "24444" "24445" "24446"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [379] "24448" "24449" "24450" "24451" "24452" "24453" "24454" "24455" "24456"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [388] "24457" "24458" "24459" "24460" "24461" "24462" "24463" "24464" "24465"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [397] "24466" "24468" "24470" "24471" "24472" "24473" "24474" "24476" "24477"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [406] "24478" "24479" "24480" "24481" "24482" "24483" "24484" "24485" "24486"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [415] "24487" "24488" "24489" "24490" "24491" "24492" "24493" "24494" "24495"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [424] "24496" "24498" "24499" "24500" "24501" "24502" "24504" "24505" "24507"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [433] "24508" "24509" "24510" "24511" "24512" "24513" "24514" "24515" "24516"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [442] "24517" "24518" "24519" "24520" "24521" "24522" "24523" "24524" "24525"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [451] "24526" "24527" "24528" "24529" "24531" "24532" "24533" "24534" "24535"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [460] "24536" "24537" "24538" "24540" "24541" "24542" "24543" "24544" "24545"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [469] "24546" "24547" "24548" "24549" "24550" "24551" "24552" "24553" "24554"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [478] "24555" "24557" "24558" "24559" "24560" "24562" "24563" "24564" "24565"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [487] "24566" "24567" "24568" "24569" "24570" "24571" "24572" "24573" "24574"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [496] "24575" "24576" "24577" "24580" "24581" "24582" "24584" "24585" "24586"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [505] "24587"</span>
-<span class="r-in"><span class="fu">list_com_in_reg</span><span class="op">(</span><span class="st">"52"</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [73] "24085" "24086" "24087" "24088" "24090" "24091" "24094" "24095" "24096"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [82] "24097" "24098" "24100" "24101" "24102" "24104" "24105" "24106" "24107"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [91] "24108" "24109" "24110" "24111" "24113" "24114" "24115" "24116" "24117"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [100] "24119" "24120" "24121" "24122" "24123" "24124" "24126" "24128" "24129"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [109] "24130" "24131" "24132" "24133" "24134" "24135" "24136" "24137" "24138"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [118] "24139" "24140" "24141" "24142" "24143" "24144" "24145" "24146" "24147"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [127] "24148" "24150" "24151" "24152" "24153" "24154" "24155" "24156" "24157"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [136] "24158" "24159" "24160" "24161" "24162" "24163" "24164" "24165" "24167"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [145] "24168" "24171" "24172" "24174" "24175" "24176" "24177" "24179" "24180"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [154] "24182" "24183" "24184" "24186" "24188" "24189" "24190" "24191" "24192"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [163] "24193" "24194" "24195" "24196" "24197" "24199" "24200" "24202" "24205"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [172] "24206" "24207" "24208" "24209" "24210" "24211" "24212" "24213" "24214"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [181] "24215" "24216" "24217" "24218" "24220" "24221" "24222" "24223" "24224"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [190] "24225" "24226" "24227" "24228" "24229" "24230" "24231" "24232" "24234"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [199] "24236" "24237" "24238" "24240" "24241" "24242" "24243" "24244" "24245"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [208] "24246" "24247" "24248" "24251" "24252" "24253" "24254" "24255" "24256"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [217] "24257" "24259" "24260" "24261" "24262" "24263" "24264" "24266" "24267"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [226] "24268" "24269" "24271" "24272" "24273" "24274" "24276" "24277" "24278"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [235] "24279" "24280" "24281" "24282" "24284" "24285" "24286" "24287" "24288"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [244] "24289" "24290" "24291" "24292" "24293" "24294" "24295" "24296" "24297"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [253] "24299" "24300" "24301" "24302" "24303" "24304" "24305" "24306" "24307"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [262] "24308" "24309" "24311" "24312" "24313" "24316" "24317" "24318" "24319"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [271] "24320" "24321" "24322" "24323" "24324" "24325" "24326" "24327" "24328"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [280] "24329" "24330" "24331" "24334" "24335" "24336" "24337" "24338" "24339"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [289] "24340" "24341" "24345" "24346" "24347" "24348" "24349" "24350" "24351"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [298] "24352" "24353" "24354" "24355" "24356" "24357" "24359" "24360" "24361"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [307] "24362" "24364" "24365" "24366" "24367" "24370" "24371" "24372" "24373"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [316] "24374" "24375" "24376" "24377" "24378" "24379" "24380" "24381" "24382"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [325] "24383" "24384" "24385" "24386" "24388" "24390" "24392" "24393" "24394"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [334] "24395" "24396" "24397" "24398" "24399" "24401" "24403" "24404" "24405"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [343] "24406" "24407" "24408" "24409" "24410" "24411" "24412" "24413" "24414"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [352] "24415" "24416" "24417" "24418" "24419" "24420" "24421" "24422" "24423"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [361] "24424" "24425" "24426" "24428" "24429" "24432" "24434" "24436" "24437"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [370] "24438" "24441" "24442" "24443" "24444" "24445" "24446" "24448" "24449"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [379] "24450" "24451" "24452" "24453" "24454" "24455" "24456" "24457" "24458"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [388] "24459" "24460" "24461" "24462" "24463" "24464" "24465" "24466" "24468"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [397] "24470" "24471" "24472" "24473" "24474" "24476" "24477" "24478" "24479"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [406] "24480" "24481" "24482" "24483" "24484" "24485" "24486" "24487" "24488"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [415] "24489" "24490" "24491" "24492" "24493" "24494" "24495" "24496" "24498"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [424] "24499" "24500" "24501" "24502" "24504" "24505" "24507" "24508" "24509"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [433] "24510" "24511" "24512" "24513" "24514" "24515" "24516" "24517" "24518"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [442] "24519" "24520" "24521" "24522" "24523" "24524" "24525" "24526" "24527"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [451] "24528" "24529" "24531" "24532" "24533" "24534" "24535" "24536" "24537"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [460] "24538" "24540" "24541" "24542" "24543" "24544" "24545" "24546" "24547"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [469] "24548" "24549" "24550" "24551" "24552" "24553" "24554" "24555" "24557"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [478] "24558" "24559" "24560" "24562" "24563" "24564" "24565" "24566" "24567"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [487] "24568" "24569" "24570" "24571" "24572" "24573" "24574" "24575" "24576"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [496] "24577" "24580" "24581" "24582" "24584" "24585" "24586" "24587"</span>
+<span class="r-in"><span><span class="fu">list_com_in_reg</span><span class="op">(</span><span class="st">"52"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    [1] "44001" "44002" "44003" "44005" "44006" "44007" "44009" "44010" "44012"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [10] "44013" "44014" "44015" "44016" "44018" "44019" "44020" "44021" "44022"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [19] "44023" "44024" "44025" "44026" "44027" "44028" "44029" "44030" "44031"</span>
@@ -329,7 +335,7 @@ Renvoie la liste des communes pour une région"><meta property="og:image" conten
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1207] "85274" "85276" "85277" "85278" "85280" "85281" "85282" "85284" "85285"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1216] "85286" "85287" "85288" "85289" "85290" "85291" "85292" "85293" "85294"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1225] "85295" "85296" "85297" "85298" "85300" "85301" "85302" "85303" "85304"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1234] "85305" "85306" "85307"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1234] "85305" "85306"</span>
 </code></pre></div>
     </div>
   </div>
@@ -340,11 +346,11 @@ Renvoie la liste des communes pour une région"><meta property="og:image" conten
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Maël THEULIERE.</p>
+  <p></p><p>Developed by Maël THEULIERE, Juliette ENGELARE-LEFEBVRE.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
