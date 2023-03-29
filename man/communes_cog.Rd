@@ -19,18 +19,21 @@ A data frame with 37600 rows and 12 variables:
 \item{NCCENR}{Nom en clair (typographie riche)}
 \item{CAN}{Code canton. Pour les communes « multi-cantonales » code décliné de 99 à 90 (pseudo-canton) ou de 89 à 80 (communes nouvelles) }
 \item{COMPARENT}{Code de la commune parente pour les arrondissements municipaux et les communes associées ou déléguées. }
-}\if{html}{\out{<div class="sourceCode r">}}\preformatted{head(communes_cog)
-}\if{html}{\out{</div>}}\preformatted{## # A tibble: 6 x 12
-##   TYPECOM DEPCOM REG   DEP   CTCD  ARR   TNCC  NCC     NCCENR  NOM_DEPCOM  CAN  
-##   <fct>   <fct>  <fct> <fct> <fct> <fct> <fct> <fct>   <fct>   <fct>       <fct>
-## 1 COM     01001  84    01    01D   012   5     ABERGE~ Aberge~ L'Abergeme~ 0108 
-## 2 COM     01002  84    01    01D   011   5     ABERGE~ Aberge~ L'Abergeme~ 0101 
-## 3 COM     01004  84    01    01D   011   1     AMBERI~ Ambéri~ Ambérieu-e~ 0101 
-## 4 COM     01005  84    01    01D   012   1     AMBERI~ Ambéri~ Ambérieux-~ 0122 
-## 5 COM     01006  84    01    01D   011   1     AMBLEON Ambléon Ambléon     0104 
-## 6 COM     01007  84    01    01D   011   1     AMBRON~ Ambron~ Ambronay    0101 
-## # ... with 1 more variable: COMPARENT <fct>
 }
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{head(communes_cog)
+#> # A tibble: 6 x 12
+#>   TYPECOM DEPCOM REG   DEP   CTCD  ARR   TNCC  NCC          NCCENR NOM_D~1 CAN  
+#>   <fct>   <fct>  <fct> <fct> <fct> <fct> <fct> <fct>        <fct>  <fct>   <fct>
+#> 1 COM     01001  84    01    01D   012   5     ABERGEMENT ~ Aberg~ L'Aber~ 0108 
+#> 2 COM     01002  84    01    01D   011   5     ABERGEMENT ~ Aberg~ L'Aber~ 0101 
+#> 3 COM     01004  84    01    01D   011   1     AMBERIEU EN~ Ambér~ Ambéri~ 0101 
+#> 4 COM     01005  84    01    01D   012   1     AMBERIEUX E~ Ambér~ Ambéri~ 0122 
+#> 5 COM     01006  84    01    01D   011   1     AMBLEON      Amblé~ Ambléon 0104 
+#> 6 COM     01007  84    01    01D   011   1     AMBRONAY     Ambro~ Ambron~ 0101 
+#> # ... with 1 more variable: COMPARENT <fct>, and abbreviated variable name
+#> #   1: NOM_DEPCOM
+}\if{html}{\out{</div>}}
 }
 \source{
 \url{https://www.insee.fr/fr/information/3720946#titre-bloc-3}

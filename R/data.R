@@ -243,25 +243,19 @@
 "zonage_pinel_r52"
 
 #' Contour des communes de France pour le dernier millésime connu.
-#' @rdname communes_geo_xx
-#' @format Un dataframe avec une ligne par commune et 3 variables.
-#' \describe{
-#'   \item{DEPCOM}{Code Insee}
-#'   \item{geometry}{géométrie}
-#'   \item{AREA}{Aire de la commune}
-#' }
-NULL
-
-#' Contour des communes de France pour le dernier millésime connu.
-#' @rdname communes_geo_xx
+#' @name communes_geo_xx
 #' @details Des datasets contenant pour chaque commune actuelle son contour.
 #'  Un dataset pour la france métropolitaine, un pour chaque DROM, et un assemblage de ces jeux de données pour pourvoir réaliser des cartes France Métropolitaine et DROM.
 #' @format Un dataframe avec une ligne par commune et 3 variables.
 #' \describe{
 #'   \item{DEPCOM}{Code Insee}
-#'   \item{AREA}{Aire de la commune en m2}
 #'   \item{geometry}{géométrie}
+#'   \item{AREA}{Aire de la commune en m2}
 #' }
+NULL
+
+#' @rdname communes_geo_xx
+#' @format NULL
 "communes_geo"
 
 #' @rdname communes_geo_xx
@@ -289,7 +283,9 @@ NULL
 "communes_976_geo"
 
 #' Contour des epci de France pour le dernier millésime connu.
-#' @rdname epci_geo_xx
+#' @name epci_geo_xx
+#' @details Des datasets contenant pour chaque epci actuel son contour.
+#'  Un dataset pour la france métropolitaine, un pour chaque DROM, et un assemblage de ces jeux de données pour pourvoir réaliser des cartes France Métropolitaine et DROM.
 #' @format Un dataframe avec une ligne par epci et 3 variables.
 #' \describe{
 #'   \item{EPCI}{Code Sirene}
@@ -298,18 +294,8 @@ NULL
 #' }
 NULL
 
-#' Contour des epci métropolitains pour le dernier millésime connu
-#'
-#' @details Des datasets contenant pour chaque epci actuelle son contour.
-#'  Un dataset pour la france métropolitaine, un pour chaque DROM, et un assemblage de ces jeux de données pour pourvoir réaliser des cartes France Métropolitaine et DROM.
 #' @rdname epci_geo_xx
-#'
-#' @format Un dataframe avec une ligne par epci et 3 variables.
-#' \describe{
-#'   \item{EPCI}{Code Sirene}
-#'   \item{AREA}{Aire de l'EPCI en m2}
-#'   \item{geometry}{géométrie}
-#' }
+#' @format NULL
 "epci_geo"
 
 #' @rdname epci_geo_xx
@@ -337,7 +323,8 @@ NULL
 "epci_976_geo"
 
 #' Contour des départements de France pour le dernier millésime connu.
-#' @rdname departements_geo_xx
+#' @name departements_geo_xx
+#' @details Un dataset des contours des départements pour la france métropolitaine, un pour chaque DROM, et un assemblage de ces jeux de données pour pourvoir réaliser des cartes France Métropolitaine et DROM.
 #' @format Un dataframe avec une ligne par departement et 3 variables.
 #' \describe{
 #'   \item{DEP}{Code Insee}
@@ -346,19 +333,9 @@ NULL
 #' }
 NULL
 
-#' Contour des départements pour le dernier millésime connu
-#'
 #' @rdname departements_geo_xx
-#' @details Un dataset contenant pour chaque département de France métropolitaine son contour
-#'  Un dataset pour la france métropolitaine, un pour chaque DROM, et un assemblage de ces jeux de données pour pourvoir réaliser des cartes France Métropolitaine et DROM.
-#' @format Un dataframe avec une ligne par departement et 3 variables.
-#' \describe{
-#'   \item{DEP}{Code Insee}
-#'   \item{AREA}{Aire du departement en m2}
-#'   \item{geometry}{géométrie}
-#' }
+#' @format NULL
 "departements_geo"
-
 
 #' @rdname departements_geo_xx
 #' @format NULL
@@ -386,7 +363,8 @@ NULL
 
 
 #' Contour des régions de France pour le dernier millésime connu.
-#' @rdname regions_geo_xx
+#' @name regions_geo_xx
+#' @details Dataset des contours régionaux : un pour la france métropolitaine, un pour chaque DROM, et un assemblage de ces jeux de données pour pourvoir réaliser des cartes France Métropolitaine et DROM.
 #' @format Un dataframe avec une ligne par région et 3 variables.
 #' \describe{
 #'   \item{REG}{Code Insee}
@@ -396,17 +374,8 @@ NULL
 NULL
 
 
-#' Contour des régions pour le dernier millésime connu
-#'
 #' @rdname regions_geo_xx
-#' @details Un dataset contenant pour chaque région de France son contour
-#'  Un dataset pour la france métropolitaine, un pour chaque DROM, et un assemblage de ces jeux de données pour pourvoir réaliser des cartes France Métropolitaine et DROM.
-#' @format Un dataframe avec une ligne par régions et 3 variables.
-#' \describe{
-#'   \item{REG}{Code Insee}
-#'   \item{AREA}{Aire de la region en m2}
-#'   \item{geometry}{géométrie}
-#' }
+#' @format NULL
 "regions_geo"
 
 

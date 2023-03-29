@@ -1,13 +1,8 @@
 # Pour retrouver les codes zones et noms zones des totaux qui ne sont pas présents dans liste_zone
 #' augmenter_liste_zone() ajoute les lignes de totaux et sous totaux (France, province, DROM...) au df liste_zone
 #' @return dataframe liste_zone avec ajout des lignes de total et sous total
-#' @importFrom COGiter liste_zone
 #' @importFrom dplyr bind_rows
 #' @importFrom tibble tribble
-#' @export
-#'
-#' @examples
-#' augmenter_liste_zone()
 #'
 augmenter_liste_zone <- function() {
   augment <- tibble::tribble(
