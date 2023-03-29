@@ -285,3 +285,6 @@ table_passage_com_historique2 <- table_passage_com_historique %>%
   mutate(across(where(is.factor), as.character))
 poster_data(data = table_passage_com_historique2, table = "r_tb_passage_com_hist_000", schema = "cogiter", pk = "DEPCOM_HIST", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
 poster_data(data = table_passage_com_historique2, table = paste0("r_tb_passage_com_hist_000_", millesime), schema = "cogiter", pk = "DEPCOM_HIST", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
+
+poster_data(data = table_passage_com_historique2, table = "r_cogiter_communes_000", schema = "donnee_generique", pk = "DEPCOM_HIST", post_row_name = FALSE,
+            droits_schema = TRUE, db = "consultation", overwrite = TRUE, user = "admin")

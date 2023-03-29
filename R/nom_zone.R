@@ -1,4 +1,14 @@
 # Pour retrouver les codes zones et noms zones des totaux qui ne sont pas présents dans liste_zone
+#' augmenter_liste_zone() ajoute les lignes de totaux et sous totaux (France, province, DROM...) au df liste_zone
+#' @return dataframe liste_zone avec ajout des lignes de total et sous total
+#' @importFrom COGiter liste_zone
+#' @importFrom dplyr bind_rows
+#' @importFrom tibble tribble
+#' @export
+#'
+#' @examples
+#' augmenter_liste_zone()
+#'
 augmenter_liste_zone <- function() {
   augment <- tibble::tribble(
     ~CodeZone, ~Zone, ~TypeZone, ~EPCI, ~NATURE_EPCI, ~DEP, ~REG,
@@ -7,7 +17,7 @@ augmenter_liste_zone <- function() {
     "FRPROV", "France de province", "France", NA, NA, NA, NA,
     "DROM", "D\u00e9partements et r\u00e9gions d'outre-mer", "France", NA, NA, NA, NA
   )
-  res <- liste_zone %>%
+  res <- COGiter::liste_zone %>%
     dplyr::bind_rows(augment)
   return(res)
 }
@@ -17,7 +27,7 @@ augmenter_liste_zone <- function() {
 #' @param code_zone Code de la Zone
 #'
 #' @return une chaîne de caractère
-#' @importFrom dplyr filter pull
+#' @importFrom dplyr left_join pull
 #' @export
 #'
 #' @examples
@@ -36,7 +46,7 @@ nom_zone <- function(type_zone, code_zone) {
 #' @param zone Nom de la Zone
 #'
 #' @return une chaîne de caractère
-#' @importFrom dplyr filter pull
+#' @importFrom dplyr left_join pull
 #' @export
 #'
 #' @examples

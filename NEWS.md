@@ -1,3 +1,7 @@
+# COGiter 0.0.9.1
+
+- Bug fix `nom_zone()`, `code_zone()`, `trouver_zone()` : lors de l'utilisation de ces fonctions pour développer un package, un préfixe manquait pour que la liste des zones de COGiter soit trouvée. 
+
 # COGiter 0.0.9
 
 - Mise à jour COG et fond de carte 2022.  

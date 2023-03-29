@@ -45,7 +45,7 @@ code_reg_existe_int <- function(reg) {
 #' @examples
 #' code_reg_existe(c("11","99"))
 code_reg_existe <- function(reg) {
-  purrr::map_lgl(reg,code_reg_existe_int)
+  purrr::map_lgl(reg, code_reg_existe_int)
 }
 
 
