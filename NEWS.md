@@ -1,3 +1,7 @@
+# COGiter 0.0.10  
+- Mise à jour COG et fond de carte 2023.   
+- Amélioration des fonctions `filtrer_cog()` et `filter_cog_geo()` : on peut désormais conserver toutes les communes des EPCIs à cheval sur deux régions ou deux départements si le paramètre `epci_complet` est à TRUE (ticket #22).  
+
 # COGiter 0.0.9.1
 
 - Bug fix `nom_zone()`, `code_zone()`, `trouver_zone()` : lors de l'utilisation de ces fonctions pour développer un package, un préfixe manquait pour que la liste des zones de COGiter soit trouvée. 

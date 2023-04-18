@@ -7,13 +7,13 @@ library(archive)
 library(units)
 load("data/communes_info_supra.rda")
 load("data/table_passage_com_historique.rda")
-millesime <- "2022"
+millesime <- "2023"
 
 
 # (télé)chargement Admin Express -------------------------------
 repo_mil <- paste0("data-raw/source/", millesime, "/adminexpress")
 repo_dest <- "/ADMIN-EXPRESS-COG-CARTO_3-1__SHP__FRA_WM_2022-04-15"
-
+"ADMIN-EXPRESS-COG_3-1__SHP_WGS84G_FRA_2023-03-30.7z"
 ## téléchargement des couches IGN admin express COG carto ----
 ## Chargements des données présentes sur le site IGN :https://geoservices.ign.fr/adminexpress (4min15 hors RIE)
 
