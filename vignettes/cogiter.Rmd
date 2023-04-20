@@ -20,9 +20,10 @@ knitr::opts_chunk$set(
 library(COGiter)
 ```
 
-Ce document va vous permettre de comprendre comment fonctionne les différentes fonctions de `{COGiter}` pour : 
-- gérer les fusions de communes
-- consolider vos données communales au niveau epci, départements, régions ou autres zonages en votre possession.
+Ce document va vous permettre de comprendre comment fonctionne les différentes fonctions de `{COGiter}` pour :   
+
+- gérer les fusions de communes  
+- consolider vos données communales au niveau epci, départements, régions ou autres zonages en votre possession.  
 
 
 ## Passer au cog à jour
@@ -37,8 +38,8 @@ Le périmètre de couverture de la fonction est pour l'instant la France métrop
 tibble::glimpse(pop2015)
 pop2015_a_jour <- passer_au_cog_a_jour(pop2015,
   code_commune = DEPCOM,
-  aggrege = T,
-  garder_info_supra = F
+  aggrege = TRUE,
+  garder_info_supra = FALSE
 )
 tibble::glimpse(pop2015_a_jour)
 ```
@@ -50,7 +51,7 @@ Pour reconstituer à partir d'une table de données communale l'ensemble des tot
 La fonction calcule le total en prenant en dimension toutes les variables facteur ou caractère de la table et en variable à agréger toutes les variables numériques. 
 
 
-En plus des agrégats epci, départements, régions, la fonction `cogifier()` permet de calculer : 
+En plus des agrégats epci, départements, régions, la fonction `cogifier()` permet de calculer :   
 
 - le total France métropolitaine (`metro = TRUE`)
 - le total France métropolitaine et DROM (`metrodrom = TRUE`)
@@ -91,7 +92,7 @@ tibble::glimpse(pop2015_cogifiee_r52)
 
 On peut vouloir garder les informations pour le total des autres régions ou le total France entière.
 
-```{r*-,message=F,warning=F}
+```{r,message=F,warning=F}
 pop2015_cogifiee_r52 <- filtrer_cog(pop2015_cogifiee, reg = "52", garder_supra = ">=")
 tibble::glimpse(pop2015_cogifiee_r52)
 ```
