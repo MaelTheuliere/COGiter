@@ -5,8 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fonctions, Données et Fonds de Carte pour Gérer les Données au
-    Territoire • COGiter</title>
+<title>Fonctions, Données et Fonds de Carte pour Gérer les Données au Territoire - COG 2023 • COGiter</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -18,8 +17,7 @@
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Fonctions, Données et Fonds de Carte pour Gérer les Données au
-    Territoire">
+<script src="pkgdown.js"></script><meta property="og:title" content="Fonctions, Données et Fonds de Carte pour Gérer les Données au Territoire - COG 2023">
 <meta property="og:description" content="Fonctions, données et fonds de carte pour gérer les données
     au territoire. Ce package permet notamment de gérer les fusions de
     communes intervenues entre 2003 et 2022.">
@@ -44,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">COGiter</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.10</span>
       </span>
     </div>
 
@@ -99,19 +97,20 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Installer le package avec {remotes} :</p>
+<p>Installer le package depuis <a href="https://github.com/" class="external-link">github</a> ou <a href="https://gitlab.com" class="external-link">gitlab</a></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"MaelTheuliere/COGiter"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"MaelTheuliere/COGiter"</span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_gitlab.html" class="external-link">install_gitlab</a></span><span class="op">(</span><span class="st">"dreal-datalab/COGiter"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="a-propos">A propos<a class="anchor" aria-label="anchor" href="#a-propos"></a>
 </h2>
 <p>Ce package R vise à mettre à disposition :</p>
 <ul>
-<li>les tables du COG 2022 de l’Insee en RData,</li>
-<li>une table de passage des COG historiques vers le COG millésimé 2022,</li>
-<li>les couches géomatiques correspondant au COG 2022,</li>
-<li>des fonctions d’aide à au passage de jeux de données vers le millésime du COG 2022,<br>
+<li>les tables du COG 2023 de l’Insee en RData,</li>
+<li>une table de passage des COG historiques vers le COG millésimé 2023,</li>
+<li>les couches géomatiques correspondant au COG 2023,</li>
+<li>des fonctions d’aide à au passage de jeux de données vers le millésime du COG 2023,<br>
 </li>
 <li>des fonctions de calculs d’agrégats aux différentes échelles territoriales,<br>
 </li>
@@ -124,12 +123,12 @@
 <h2 id="les-données-sources">Les données sources<a class="anchor" aria-label="anchor" href="#les-donn%C3%A9es-sources"></a>
 </h2>
 <div class="section level3">
-<h3 id="le-cog-insee-2022">Le COG Insee 2022<a class="anchor" aria-label="anchor" href="#le-cog-insee-2022"></a>
+<h3 id="le-cog-insee-2023">Le COG Insee 2023<a class="anchor" aria-label="anchor" href="#le-cog-insee-2023"></a>
 </h3>
 <ul><li><a href="https://www.insee.fr/fr/information/2560452" class="external-link uri">https://www.insee.fr/fr/information/2560452</a></li></ul>
 </div>
 <div class="section level3">
-<h3 id="admin-express-cog-carto-2022-couche-france-entière">Admin Express COG Carto 2022 (couche France entière)<a class="anchor" aria-label="anchor" href="#admin-express-cog-carto-2022-couche-france-enti%C3%A8re"></a>
+<h3 id="admin-express-cog-carto-2023-couche-france-entière">Admin Express COG Carto 2023 (couche France entière)<a class="anchor" aria-label="anchor" href="#admin-express-cog-carto-2023-couche-france-enti%C3%A8re"></a>
 </h3>
 <ul><li><a href="https://geoservices.ign.fr/adminexpress#telechargementCogCarto" class="external-link uri">https://geoservices.ign.fr/adminexpress#telechargementCogCarto</a></li></ul>
 </div>

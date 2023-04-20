@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COGiter</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.10</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@
       <h1 data-toc-skip>Gestion des fusions de communes et consolidation supra communales</h1>
                         <h4 data-toc-skip class="author">Maël THEULIERE</h4>
             
-            <h4 data-toc-skip class="date">2023-02-22</h4>
+            <h4 data-toc-skip class="date">2023-04-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/MaelTheuliere/COGiter/blob/HEAD/vignettes/cogiter.Rmd" class="external-link"><code>vignettes/cogiter.Rmd</code></a></small>
       <div class="hidden name"><code>cogiter.Rmd</code></div>
@@ -102,7 +102,12 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/MaelTheuliere/COGiter" class="external-link">COGiter</a></span><span class="op">)</span></span></code></pre></div>
-<p>Ce document va vous permettre de comprendre comment fonctionne les différentes fonctions de <a href="https://github.com/MaelTheuliere/COGiter" class="external-link">COGiter</a> pour : - gérer les fusions de communes - consolider vos données communales au niveau epci, départements, régions ou autres zonages en votre possession.</p>
+<p>Ce document va vous permettre de comprendre comment fonctionne les différentes fonctions de <a href="https://github.com/MaelTheuliere/COGiter" class="external-link">COGiter</a> pour :</p>
+<ul>
+<li>gérer les fusions de communes<br>
+</li>
+<li>consolider vos données communales au niveau epci, départements, régions ou autres zonages en votre possession.</li>
+</ul>
 <div class="section level2">
 <h2 id="passer-au-cog-à-jour">Passer au cog à jour<a class="anchor" aria-label="anchor" href="#passer-au-cog-%C3%A0-jour"></a>
 </h2>
@@ -119,11 +124,11 @@
 <span><span class="co">#&gt; $ pop2015_totale <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401, …</span></span>
 <span><span class="va">pop2015_a_jour</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/passer_au_cog_a_jour.html">passer_au_cog_a_jour</a></span><span class="op">(</span><span class="va">pop2015</span>,</span>
 <span>  code_commune <span class="op">=</span> <span class="va">DEPCOM</span>,</span>
-<span>  aggrege <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>  garder_info_supra <span class="op">=</span> <span class="cn">F</span></span>
+<span>  aggrege <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  garder_info_supra <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pop2015_a_jour</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 34,937</span></span>
+<span><span class="co">#&gt; Rows: 34,927</span></span>
 <span><span class="co">#&gt; Columns: 4</span></span>
 <span><span class="co">#&gt; $ DEPCOM         <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> 01001, 01002, 01004, 01005, 01006, 01007, 01008, 01009,…</span></span>
 <span><span class="co">#&gt; $ pop2015        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 767, 241, 14127, 1619, 109, 2615, 747, 342, 1133, 390, …</span></span>
@@ -152,7 +157,7 @@
 <span><span class="co">#&gt; $ pop2015_totale <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401, …</span></span>
 <span><span class="va">pop2015_cogifiee</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cogifier.html">cogifier</a></span><span class="op">(</span><span class="va">pop2015</span>, code_commune <span class="op">=</span> <span class="va">DEPCOM</span><span class="op">)</span></span>
 <span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 36,305</span></span>
+<span><span class="co">#&gt; Rows: 36,295</span></span>
 <span><span class="co">#&gt; Columns: 6</span></span>
 <span><span class="co">#&gt; $ TypeZone       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Communes, Communes, Communes, Communes, Communes, Commu…</span></span>
 <span><span class="co">#&gt; $ Zone           <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> "L'Abergement-Clémenciat", "L'Abergement-de-Varey", "Am…</span></span>
@@ -171,7 +176,7 @@
 <span><span class="co">#&gt; $ pop2015_totale <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401, …</span></span>
 <span><span class="va">pop2015_cogifiee_liste</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cogifier.html">cogifier</a></span><span class="op">(</span><span class="va">pop2015</span>, code_commune <span class="op">=</span> <span class="va">DEPCOM</span>, as_df <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 36,305</span></span>
+<span><span class="co">#&gt; Rows: 36,295</span></span>
 <span><span class="co">#&gt; Columns: 6</span></span>
 <span><span class="co">#&gt; $ TypeZone       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Communes, Communes, Communes, Communes, Communes, Commu…</span></span>
 <span><span class="co">#&gt; $ Zone           <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> "L'Abergement-Clémenciat", "L'Abergement-de-Varey", "Am…</span></span>
@@ -183,7 +188,7 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pop2015_cogifiee_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cog_list_to_df.html">cog_list_to_df</a></span><span class="op">(</span><span class="va">pop2015_cogifiee_liste</span><span class="op">)</span></span>
 <span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 36,305</span></span>
+<span><span class="co">#&gt; Rows: 36,295</span></span>
 <span><span class="co">#&gt; Columns: 6</span></span>
 <span><span class="co">#&gt; $ TypeZone       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Communes, Communes, Communes, Communes, Communes, Commu…</span></span>
 <span><span class="co">#&gt; $ Zone           <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> "L'Abergement-Clémenciat", "L'Abergement-de-Varey", "Am…</span></span>
@@ -200,7 +205,7 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pop2015_cogifiee_r52</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog.html">filtrer_cog</a></span><span class="op">(</span><span class="va">pop2015_cogifiee</span>, reg <span class="op">=</span> <span class="st">"52"</span><span class="op">)</span></span>
 <span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee_r52</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 1,312</span></span>
+<span><span class="co">#&gt; Rows: 1,310</span></span>
 <span><span class="co">#&gt; Columns: 6</span></span>
 <span><span class="co">#&gt; $ TypeZone       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Communes, Communes, Communes, Communes, Communes, Commu…</span></span>
 <span><span class="co">#&gt; $ Zone           <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> "Abbaretz", "Aigrefeuille-sur-Maine", "Ancenis-Saint-Gé…</span></span>
@@ -209,8 +214,17 @@
 <span><span class="co">#&gt; $ pop2015_a_part <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 28, 104, 481, 86, 31, 57, 224, 100, 47, 38, 63, 194, 14…</span></span>
 <span><span class="co">#&gt; $ pop2015_totale <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2070, 3804, 10884, 6752, 1832, 2582, 8922, 3074, 2881, …</span></span></code></pre></div>
 <p>On peut vouloir garder les informations pour le total des autres régions ou le total France entière.</p>
-<pre class="{r*-,message=f,warning=f}"><code><span><span class="va">pop2015_cogifiee_r52</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog.html">filtrer_cog</a></span><span class="op">(</span><span class="va">pop2015_cogifiee</span>, reg <span class="op">=</span> <span class="st">"52"</span>, garder_supra <span class="op">=</span> <span class="st">"&gt;="</span><span class="op">)</span></span>
-<span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee_r52</span><span class="op">)</span></span></code></pre>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pop2015_cogifiee_r52</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog.html">filtrer_cog</a></span><span class="op">(</span><span class="va">pop2015_cogifiee</span>, reg <span class="op">=</span> <span class="st">"52"</span>, garder_supra <span class="op">=</span> <span class="st">"&gt;="</span><span class="op">)</span></span>
+<span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee_r52</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 1,327</span></span>
+<span><span class="co">#&gt; Columns: 6</span></span>
+<span><span class="co">#&gt; $ TypeZone       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Communes, Communes, Communes, Communes, Communes, Commu…</span></span>
+<span><span class="co">#&gt; $ Zone           <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> "Abbaretz", "Aigrefeuille-sur-Maine", "Ancenis-Saint-Gé…</span></span>
+<span><span class="co">#&gt; $ CodeZone       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> 44001, 44002, 44003, 44005, 44006, 44007, 44009, 44010,…</span></span>
+<span><span class="co">#&gt; $ pop2015        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2042, 3700, 10403, 6666, 1801, 2525, 8698, 2974, 2834, …</span></span>
+<span><span class="co">#&gt; $ pop2015_a_part <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 28, 104, 481, 86, 31, 57, 224, 100, 47, 38, 63, 194, 14…</span></span>
+<span><span class="co">#&gt; $ pop2015_totale <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2070, 3804, 10884, 6752, 1832, 2582, 8922, 3074, 2881, …</span></span></code></pre></div>
 </div>
   </div>
 

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COGiter</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.10</span>
       </span>
     </div>
 
@@ -72,7 +72,8 @@
 <span>  epci <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  dep <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  reg <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  garder_supra <span class="op">=</span> <span class="st">"non"</span></span>
+<span>  garder_supra <span class="op">=</span> <span class="st">"non"</span>,</span>
+<span>  epci_complet <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -99,7 +100,11 @@
 
 
 <dt>garder_supra</dt>
-<dd><p>"&gt;" si on souhaite garder les territoires supra, "&gt;=" si on souhaite garder les territoires suppra et du même niveau que celui sélectionné</p></dd>
+<dd><p>"&gt;" si on souhaite garder les territoires supra, "&gt;=" si on souhaite garder les territoires supra et du même niveau que celui sélectionné, sauf si le filtre est opéré sur une commune, auquel cas seuls les territoires supra auquel appartient la commune sont renvoyés. "non" par défaut.</p></dd>
+
+
+<dt>epci_complet</dt>
+<dd><p>booleen, TRUE si on souhaite garder toutes les communes des EPCI du département ou de la région</p></dd>
 
 </dl></div>
     <div id="value">
@@ -107,6 +112,10 @@
     
 
 <p>Renvoie une table de donnees filtrées</p>
+    </div>
+    <div id="details">
+    <h2>Details</h2>
+    <p>Les parametres depcom, epci, dep et reg sont exclusifs les uns des autres.</p>
     </div>
 
     <div id="ref-examples">

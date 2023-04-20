@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COGiter</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.10</span>
       </span>
     </div>
 
@@ -131,8 +131,8 @@
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">)</span></span>
 <span><span class="co">#&gt; List of 2</span></span>
 <span><span class="co">#&gt;  $ communes: sf [24 × 3] (S3: sf/tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;   ..$ DEPCOM  : chr [1:24] "44190" "44204" "44026" "44009" ...</span></span>
-<span><span class="co">#&gt;   ..$ AREA    : num [1:24] 11660000 12760000 43420000 13740000 44030000 ...</span></span>
+<span><span class="co">#&gt;   ..$ DEPCOM  : chr [1:24] "44009" "44150" "44035" "44020" ...</span></span>
+<span><span class="co">#&gt;   ..$ AREA    : num [1:24] 13740000 17940000 33420000 31500000 65190000 ...</span></span>
 <span><span class="co">#&gt;   ..$ geometry:sfc_MULTIPOLYGON of length 24; first list element: List of 1</span></span>
 <span><span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "MULTIPOLYGON" "sfg"</span></span>
 <span><span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span></span>
@@ -159,8 +159,8 @@
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">bretagne</span><span class="op">)</span></span>
 <span><span class="co">#&gt; List of 4</span></span>
 <span><span class="co">#&gt;  $ communes    : sf [1,207 × 3] (S3: sf/tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;   ..$ DEPCOM  : chr [1:1207] "29058" "22218" "35185" "56014" ...</span></span>
-<span><span class="co">#&gt;   ..$ AREA    : num [1:1207] 32760000 15540000 6900000 34770000 4970000 ...</span></span>
+<span><span class="co">#&gt;   ..$ DEPCOM  : chr [1:1207] "22369" "22111" "22134" "29003" ...</span></span>
+<span><span class="co">#&gt;   ..$ AREA    : num [1:1207] 14560000 4150000 13910000 18370000 10530000 ...</span></span>
 <span><span class="co">#&gt;   ..$ geometry:sfc_MULTIPOLYGON of length 1207; first list element: List of 1</span></span>
 <span><span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "MULTIPOLYGON" "sfg"</span></span>
 <span><span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span></span>
@@ -185,7 +185,7 @@
 <span><span class="co">#&gt;  $ regions     : sf [1 × 3] (S3: sf/tbl_df/tbl/data.frame)</span></span>
 <span><span class="co">#&gt;   ..$ REG     : Factor w/ 18 levels "01","02","03",..: 13</span></span>
 <span><span class="co">#&gt;   ..$ AREA    : Units: [m^2] num 2.72e+10</span></span>
-<span><span class="co">#&gt;   ..$ geometry:sfc_MULTIPOLYGON of length 1; first list element: List of 15</span></span>
+<span><span class="co">#&gt;   ..$ geometry:sfc_MULTIPOLYGON of length 1; first list element: List of 14</span></span>
 <span><span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "MULTIPOLYGON" "sfg"</span></span>
 <span><span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span></span>
 <span><span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span></span>
@@ -207,10 +207,10 @@
 <code class="sourceCode R"><span><span class="va">nantes_metropole</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog_geo.html">filtrer_cog_geo</a></span><span class="op">(</span>epci <span class="op">=</span> <span class="st">"244400404"</span>, garder_supra <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">nantes_metropole</span><span class="op">)</span></span>
 <span><span class="co">#&gt; List of 2</span></span>
-<span><span class="co">#&gt;  $ communes: sf [64 × 3] (S3: sf/tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;   ..$ DEPCOM  : chr [1:64] "44190" "44029" "44084" "44204" ...</span></span>
-<span><span class="co">#&gt;   ..$ AREA    : num [1:64] 11660000 33900000 45310000 12760000 43420000 ...</span></span>
-<span><span class="co">#&gt;   ..$ geometry:sfc_GEOMETRY of length 64; first list element: List of 1</span></span>
+<span><span class="co">#&gt;  $ communes: sf [63 × 3] (S3: sf/tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;   ..$ DEPCOM  : chr [1:63] "44066" "44032" "44041" "44130" ...</span></span>
+<span><span class="co">#&gt;   ..$ AREA    : num [1:63] 33870000 13470000 32560000 21880000 5970000 ...</span></span>
+<span><span class="co">#&gt;   ..$ geometry:sfc_GEOMETRY of length 63; first list element: List of 1</span></span>
 <span><span class="co">#&gt;   .. ..- attr(*, "class")= chr [1:3] "XY" "POLYGON" "sfg"</span></span>
 <span><span class="co">#&gt;   ..- attr(*, "sf_column")= chr "geometry"</span></span>
 <span><span class="co">#&gt;   ..- attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA</span></span>
