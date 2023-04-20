@@ -8,3 +8,5 @@ data-raw/source/
 *.html
 docs/
 data-raw/archives*
+/doc/
+/Meta/

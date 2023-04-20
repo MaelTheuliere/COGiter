@@ -29,7 +29,7 @@ A data frame with 34945 rows and 23 variables:
 \item{ CATEAAV2020 }{  factor Code catégorie commune dans aire d'attraction des villes 2020}
 \item{ LIB_CATEAAV2020 }{  factor Libellé catégorie commune dans aire d'attraction des villes 2020}
 \item{ BV2022 }{  factor Code Code du bassin de vie 2022}
-\item{ LIB_BV2012 }{  factor Libellé Bassin de vie 2012}
+\item{ LIB_BV2022 }{  factor Libellé Bassin de vie 2022}
 }
 }
 \source{
