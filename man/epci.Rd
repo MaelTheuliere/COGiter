@@ -9,6 +9,7 @@ A data frame with 1255 rows and 7 variables:
 \describe{
 \item{EPCI}{Code siren de l'EPCI}
 \item{NOM_EPCI}{Nom de l'EPCI}
+\item{DEP_SIEGE_EPCI}{Code du departement de la commune siege de l'EPCI}
 \item{NATURE_EPCI}{Type de l'epci : ME,CA,CU,CC}
 \item{DEPARTEMENTS_DE_L_EPCI}{Liste des départements dans lesquels se retrouve au moins une commune de l'epci}
 \item{REGIONS_DE_L_EPCI}{Liste des régions dans lesquelles se retrouve au moins une commune de l'epci}

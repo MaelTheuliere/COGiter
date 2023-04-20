@@ -82,7 +82,7 @@ l <- pmap(arg, translate_drom)
 dom_geo <- rbind(l[[1]], l[[2]], l[[3]], l[[4]], l[[5]])
 
 # mapview::mapview(dom_geo$geometry)
-# save.image(".RData")
+
 
 ## Assemblage com DOM et métro + simplification du contour
 communes_geo_00 <- rbind(com_metro, dom_geo) %>%
@@ -91,12 +91,15 @@ communes_geo_00 <- rbind(com_metro, dom_geo) %>%
   st_as_sf() %>%
   st_make_valid()
 
-communes_geo_0 <- ms_simplify(communes_geo_00, keep = 0.05, keep_shapes = TRUE) %>%
+gc()
+save.image(".RData")
+
+communes_geo_0 <- ms_simplify(communes_geo_00, keep = 0.01, keep_shapes = TRUE, sys = TRUE, sys_mem = 10, weighting = 0.9) %>% # installation de mapshaper sur PC nécessaire
   st_set_crs(2154)
 
 communes_geo_0 %>% filter(grepl("49...", DEPCOM)) %>%  mapview::mapview()
 save(communes_geo_0, file="data-raw/source/communes_geo_0.RData" )
-rm(com_metro, dom_geo, arg, l, translate_drom)
+rm(com_metro, dom_geo, arg, l, translate_drom, communes_geo_00)
 gc()
 
 # Constitution des datasets geo du package incluant la surface du territoire--------------
@@ -104,7 +107,7 @@ gc()
 ## Communes
 
 # chargement des surface communale issues de la bd carto 2021
-# source(paste0("data-raw/bd_carto_surf_com_", millesime, ".R"))
+# source(paste0("data-raw/4.bd_carto_surf_com_", millesime, ".R"))
 load(file = "data-raw/source/2022/bd_carto/superf_communes.RData")
 superf_communes <- rename(superf_communes, DEPCOM_HIST = INSEE_COM, AREA = SUPERFICIE) %>%
   left_join(table_passage_com_historique %>% mutate(DEPCOM_HIST = as.character(DEPCOM_HIST)), by = "DEPCOM_HIST") %>%
@@ -114,7 +117,7 @@ superf_communes <- rename(superf_communes, DEPCOM_HIST = INSEE_COM, AREA = SUPER
   filter(!is.na(DEPCOM)) # %>%
   # mutate(AREA = set_units(AREA, "m^2")) --> à repasser après car gène les st_union
 
-nrow(superf_communes) == nrow(com_fce_ent)
+nrow(superf_communes) == nrow(communes_info_supra)
 communes_geo <- communes_geo_0 %>%
   left_join(superf_communes, by = c("DEPCOM")) %>%
   select(DEPCOM, AREA)
@@ -170,7 +173,7 @@ com_geo_dom <- function(dep = "971", epsg = 5490) {
     select(DEPCOM = INSEE_COM) %>%
     inner_join(superf_communes, by = "DEPCOM") %>%
     st_transform(epsg) %>%
-    ms_simplify(keep = 0.075, keep_shapes = FALSE, weighting = 0.9)
+    ms_simplify(keep = 0.05, keep_shapes = FALSE, weighting = 0.9)
   # gestion de l'encodage des chaines wkt
   st_crs(com)$wkt <- gsub("°|º", "\\\u00b0", st_crs(com)$wkt)
   return(com)

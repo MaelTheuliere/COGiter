@@ -103,8 +103,9 @@ table_passage_communes_zonages <- list(table_passage_com_zonages,
                                        libelle_ze2020) %>%
   reduce(inner_join) %>%
   mutate(across(where(is.character), as.factor)) %>%
-  rename(DEPCOM = CODGEO, NOM_DEPCOM = LIBGEO) %>%
-  select(-NOM_DEPCOM, -DEP, -REG, -EPCI, -NATURE_EPCI)
+  rename(DEPCOM = CODGEO) %>%
+  select(DEPCOM, ARR, LIB_ARR, CV, LIB_CV, ZE2020, LIB_ZE2020, UU2020, LIB_UU2020, TUU2017, LIB_TUU2017, TDUU2017, LIB_TDUU2017,
+         AAV2020, LIB_AAV2020, TAAV2017, LIB_TAAV2017, TDAAV2017, LIB_TDAAV2017, CATEAAV2020, LIB_CATEAAV2020, BV2022, LIB_BV2022)
 
 nrow(table_passage_communes_zonages) == nrow(table_passage_com_zonages)
 
@@ -119,14 +120,14 @@ liste_zonages <- tibble::tribble(
   ~"Code du zonage",~"Nom du zonage",
   "ARR","Arrondissement",
   "CV","Canton ville",
-  "ZE2020","Zone d'emploi 20220",
-  "UU2020","Unité urbaine 2020",
-  "TUU2017","Tranche d'unité urbaine 2020",
-  "TDUU2017","Tranche détaillée d'unité urbaine 2017",
-  "AAV2020","Aire d'attraction des villes 2020",
-  "TAAV2017","Tranche d'aire d'attraction des villes 2020",
-  "TDAAV2017","Tranche détaillée d'aire d'attraction des villes 2020",
-  "CATEAAV2020","Catégorie commune dans aire d'attraction des villes 2020",
-  "BV2012","Bassin de vie 2012"
+  "ZE2020","Zone d\'emploi 20220",
+  "UU2020","Unit\u00e9 urbaine 2020",
+  "TUU2017","Tranche d\'unit\u00e9 urbaine 2020 calcul\u00e9e sur la population 2017",
+  "TDUU2017","Tranche d\u00e9taill\u00e9e d\'unit\u00e9 urbaine 2017",
+  "AAV2020","Aire d\'attraction des villes 2020",
+  "TAAV2017","Tranche d\'aire d\'attraction des villes 2020 calcul\u00e9e sur la population 2017",
+  "TDAAV2017","Tranche d\u00e9taill\u00e9e d\'aire d\'attraction des villes 2020 calcul\u00e9e sur la population 2017",
+  "CATEAAV2020","Cat\u00e9gorie commune dans aire d\'attraction des villes 2020",
+  "BV2022","Bassin de vie 2022"
 )
 usethis::use_data(liste_zonages, overwrite = TRUE, internal = TRUE)
