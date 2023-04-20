@@ -10,6 +10,7 @@ filtrer_cog_geo(
   dep = NULL,
   reg = NULL,
   garder_supra = FALSE,
+  epci_complet = FALSE,
   lg_buffer = 0
 )
 }
@@ -23,6 +24,8 @@ filtrer_cog_geo(
 \item{reg}{la region sur laquelle filtrer les données}
 
 \item{garder_supra}{TRUE si on souhaite une carte centrée sur le territoire mais avec les territoires environnant visible, non si on souhaite garder que le territoire sélectionné}
+
+\item{epci_complet}{booleen, TRUE si on souhaite garder toutes les communes des EPCI du département ou de la région}
 
 \item{lg_buffer}{si garder_supra est a true, la largeur du buffer a garder autour du territoire (metres)}
 }

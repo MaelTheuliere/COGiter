@@ -130,4 +130,19 @@ liste_zonages <- tibble::tribble(
   "CATEAAV2020","Cat\u00e9gorie commune dans aire d\'attraction des villes 2020",
   "BV2022","Bassin de vie 2022"
 )
-usethis::use_data(liste_zonages, overwrite = TRUE, internal = TRUE)
+
+# un autre dataset interne, nécessaire pour les fonctions filtrer_cog
+com_limitrophes_epci_a_cheval <- select(communes, DEPCOM, NOM_DEPCOM, DEP, DEPARTEMENTS_DE_L_EPCI) %>%
+  unnest(DEPARTEMENTS_DE_L_EPCI) %>%
+  filter(DEP != DEPARTEMENTS_DE_L_EPCI) %>%
+  select(-DEP) %>%
+  rename(DEP = DEPARTEMENTS_DE_L_EPCI) %>%
+  left_join(departements %>% select(DEP, REG)) %>%
+  mutate(
+    TypeZone = factor("Communes", levels = levels(liste_zone$TypeZone)),
+    DEP = as.list(as.character(DEP)),
+    REG = as.list(as.character(REG))
+  ) %>%
+  rename(CodeZone = DEPCOM, Zone = NOM_DEPCOM)
+
+usethis::use_data(liste_zonages, com_limitrophes_epci_a_cheval, internal = TRUE, overwrite = TRUE)
