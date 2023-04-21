@@ -12,12 +12,12 @@ millesime <- "2023"
 
 # (télé)chargement Admin Express -------------------------------
 repo_mil <- paste0("data-raw/source/", millesime, "/adminexpress")
-repo_dest <- "/ADMIN-EXPRESS-COG_3-1__SHP_WGS84G_FRA_2023-03-30"
-## téléchargement des couches IGN admin express COG carto ----
-## Chargements des données présentes sur le site IGN :https://geoservices.ign.fr/adminexpress (25min hors RIE)
+repo_dest <- "/ADMIN-EXPRESS-COG-CARTO_3-1__SHP_WGS84G_FRA_2023-04-06"
 
-# download.file(paste0("https://wxs.ign.fr/x02uy2aiwjo9bm8ce5plwqmr/telechargement/prepackage/ADMINEXPRESS-COG-CARTO_SHP_WGS84G_PACK_2022-04-15$ADMIN-EXPRESS-COG-CARTO_3-1__SHP__FRA_WM_2022-04-15/file/ADMIN-EXPRESS-COG-CARTO_3-1__SHP__FRA_WM_2022-04-15.7z"),
-#               destfile = paste0(repo_mil, repo_dest, ".7z"), method = "curl")
+## téléchargement des couches IGN admin express COG carto ----
+## Chargements des données présentes sur le site IGN :https://geoservices.ign.fr/adminexpress (10min hors RIE)
+download.file(paste0("https://wxs.ign.fr/x02uy2aiwjo9bm8ce5plwqmr/telechargement/prepackage/ADMINEXPRESS-COG-CARTO_SHP_WGS84G_PACK_2023-04-06$ADMIN-EXPRESS-COG-CARTO_3-1__SHP_WGS84G_FRA_2023-04-06/file/ADMIN-EXPRESS-COG-CARTO_3-1__SHP_WGS84G_FRA_2023-04-06.7z"),
+              destfile = paste0(repo_mil, repo_dest, ".7z"), method = "curl")
 
 ## lecture du zip et dezippage
 contenu_list <- archive(paste0(repo_mil, repo_dest, ".7z"))
@@ -94,10 +94,11 @@ communes_geo_00 <- rbind(com_metro, dom_geo) %>%
 gc()
 save.image(".RData")
 
-communes_geo_0 <- ms_simplify(communes_geo_00, keep = 0.01, keep_shapes = TRUE, sys = TRUE, sys_mem = 10, weighting = 0.9) %>% # installation de mapshaper sur PC nécessaire
+communes_geo_0 <- ms_simplify(communes_geo_00, keep = 0.03, keep_shapes = TRUE, weighting = 0.8) %>%  #, sys = TRUE, sys_mem = 10) # installation de mapshaper sur PC nécessaire
   st_set_crs(2154)
 
-communes_geo_0 %>% filter(grepl("49...", DEPCOM)) %>%  mapview::mapview()
+object.size(communes_geo_0)
+communes_geo_0 %>% filter(grepl("49...", DEPCOM)) %>%  mapview::mapview(alpha.region = 0.5)
 save(communes_geo_0, file="data-raw/source/communes_geo_0.RData" )
 rm(com_metro, dom_geo, arg, l, translate_drom, communes_geo_00)
 gc()
@@ -114,8 +115,7 @@ superf_communes <- rename(superf_communes, DEPCOM_HIST = INSEE_COM, AREA = SUPER
   select(DEPCOM, AREA) %>%
   group_by(DEPCOM) %>%
   summarise(AREA = sum(drop_units(AREA)), .groups = "drop") %>%
-  filter(!is.na(DEPCOM)) # %>%
-  # mutate(AREA = set_units(AREA, "m^2")) --> à repasser après car gène les st_union
+  filter(!is.na(DEPCOM))
 
 nrow(superf_communes) == nrow(communes_info_supra)
 communes_geo <- communes_geo_0 %>%
