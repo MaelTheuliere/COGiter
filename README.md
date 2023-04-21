@@ -15,12 +15,10 @@ permettre des analyses territoriales sur les collectivités françaises.
 
 ## Installation
 
-Installer le package depuis [github](https://github.com/) ou
-[gitlab](https://gitlab.com)
+Installer le package depuis [github](https://github.com/)
 
 ``` r
 remotes::install_github("MaelTheuliere/COGiter")
-remotes::install_gitlab("dreal-datalab/COGiter")
 ```
 
 ## A propos
