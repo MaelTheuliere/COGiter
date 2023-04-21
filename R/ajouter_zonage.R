@@ -39,11 +39,11 @@ ajouter_zonage <- function(.data,
 
   a_ajouter <- .data %>%
     filter(.data$TypeZone == "Communes") %>%
-    select(-.data$Zone, -.data$TypeZone) %>%
-    rename(DEPCOM = .data$CodeZone) %>%
+    select(-"Zone", -"TypeZone") %>%
+    rename(DEPCOM = "CodeZone") %>%
     inner_join(zonage_df %>%
       rename(DEPCOM = !!quo_Depcom)) %>%
-    select(-.data$DEPCOM) %>%
+    select(-"DEPCOM") %>%
     group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
     summarise(across(.fns = sum)) %>%
     ungroup() %>%
@@ -52,7 +52,7 @@ ajouter_zonage <- function(.data,
       TypeZone = !!quo_TypeZone,
       Zone = !!quo_Zone
     ) %>%
-    mutate(across(c(.data$CodeZone, .data$TypeZone, .data$Zone), as.factor))
+    mutate(across(c("CodeZone", "TypeZone", "Zone"), as.factor))
 
   tmp <- .data %>%
     mutate(
@@ -143,7 +143,7 @@ ajouter_typologie <- function(.data,
   a_ajouter <- .data %>%
     cog_df_to_list() %>%
     .$communes %>%
-    dplyr::select(-NOM_DEPCOM) %>%
+    dplyr::select(-"NOM_DEPCOM") %>%
     dplyr::inner_join(zonage_df %>%
       dplyr::rename(DEPCOM = {{ var_depcom }}) %>%
       dplyr::mutate(
@@ -167,7 +167,7 @@ ajouter_typologie <- function(.data,
       Zone = paste(.data$ZoneTypo, .data$Zone, sep = " - ") %>% as.factor(),
       CodeZone = paste(.data$CodeZoneTypo, .data$CodeZone, sep = " - ") %>% as.factor()
     ) %>%
-    dplyr::select(-.data$CodeZoneTypo, -.data$TypeZoneTypo, -.data$ZoneTypo)
+    dplyr::select(-"CodeZoneTypo", "TypeZoneTypo", "ZoneTypo")
 
   tmp <- .data %>%
     dplyr::mutate(
@@ -212,7 +212,7 @@ charger_zonage <- function(zonage) {
   zonages_disponibles <- paste0(liste_zonages_disponibles$`Code du zonage`," (",liste_zonages_disponibles$`Nom du zonage`," )", collapse = ", ")
   if (!zonage %in% liste_zonages_disponibles$`Code du zonage`) stop(glue::glue("Zonage non disponible, merci de s\u00e9lectionner un zonage dans la liste suivante : \n{zonages_disponibles}"))
   res <- COGiter::table_passage_communes_zonages %>%
-    dplyr::select(DEPCOM,
+    dplyr::select("DEPCOM",
                   rlang::sym(zonage),
                   rlang::sym(paste0("LIB_", zonage))
     ) %>%

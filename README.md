@@ -15,25 +15,27 @@ permettre des analyses territoriales sur les collectivités françaises.
 
 ## Installation
 
-Installer le package avec {remotes} :
+Installer le package depuis [github](https://github.com/) ou
+[gitlab](https://gitlab.com)
 
 ``` r
 remotes::install_github("MaelTheuliere/COGiter")
+remotes::install_gitlab("dreal-datalab/COGiter")
 ```
 
 ## A propos
 
 Ce package R vise à mettre à disposition :
 
--   les tables du COG 2022 de l’Insee en RData,
--   une table de passage des COG historiques vers le COG millésimé 2022,
--   les couches géomatiques correspondant au COG 2022,
--   des fonctions d’aide à au passage de jeux de données vers le
-    millésime du COG 2022,  
--   des fonctions de calculs d’agrégats aux différentes échelles
-    territoriales,  
--   des fonctions d’aide à la sélection des différents fond de cartes
-    nécessaire à la mise en page de cartes statistiques.
+- les tables du COG 2023 de l’Insee en RData,
+- une table de passage des COG historiques vers le COG millésimé 2023,
+- les couches géomatiques correspondant au COG 2023,
+- des fonctions d’aide à au passage de jeux de données vers le millésime
+  du COG 2023,  
+- des fonctions de calculs d’agrégats aux différentes échelles
+  territoriales,  
+- des fonctions d’aide à la sélection des différents fond de cartes
+  nécessaire à la mise en page de cartes statistiques.
 
 Le tout avec des règles de nommage identiques pour faciliter les
 appariements.
@@ -47,13 +49,13 @@ et est par ailleurs non stabilisé.
 
 ## Les données sources
 
-### Le COG Insee 2022
+### Le COG Insee 2023
 
--   <https://www.insee.fr/fr/information/2560452>
+- <https://www.insee.fr/fr/information/2560452>
 
-### Admin Express COG Carto 2022 (couche France entière)
+### Admin Express COG Carto 2023 (couche France entière)
 
--   <https://geoservices.ign.fr/adminexpress#telechargementCogCarto>
+- <https://geoservices.ign.fr/adminexpress#telechargementCogCarto>
 
 ## Description du package
 

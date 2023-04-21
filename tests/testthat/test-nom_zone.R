@@ -9,5 +9,5 @@ test_that("code_zone() fonctionne", {
 })
 
 test_that("trouver_zone() fonctionne", {
-  expect_true(trouver_zone(pattern = "Belleville") %>%  is_tibble())
+  expect_true(trouver_zone(pattern = "Belleville") %>%  tibble::is_tibble())
 })

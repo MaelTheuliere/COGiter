@@ -4,8 +4,8 @@ library(lubridate)
 library(readxl)
 library(usethis)
 
-millesime <- "2022"
-repo_mil <- paste0("data-raw/source/", millesime, "/COG")
+millesime <- "2023"
+repo_mil <- paste0("data-raw/source/", millesime, "/COG/")
 
 fact.enc.utf8 <- function(a) {
   a <- as.factor(a) %>%
@@ -16,11 +16,11 @@ fact.enc.utf8 <- function(a) {
 # Chargement des tables du COG ------------------------------------------
 # https://www.insee.fr/fr/information/2560452
 
-# dir.create(repo_mil)
-# download.file(paste0("https://www.insee.fr/fr/statistiques/fichier/6051727/cog_ensemble_2022_csv.zip"),
+# dir.create(repo_mil, recursive = TRUE)
+# download.file("https://www.insee.fr/fr/statistiques/fichier/6800675/cog_ensemble_2023_csv.zip",
 #               destfile = paste0(repo_mil, "/cog_ensemble_", millesime, "_csv.zip"))
 # unzip(zipfile = paste0(repo_mil, "/cog_ensemble_", millesime, "_csv.zip"),
-#       exdir = repo_mil)
+#       exdir = repo_mil, overwrite = TRUE)
 
 # Création des tables suivantes:
 # régions : copie de la table régions du cog avec des noms de variables normalisées
@@ -30,30 +30,40 @@ fact.enc.utf8 <- function(a) {
 # communes_info_supra : donne pour toutes les communes les epci, départements, régions de rattachement ainsi que les info de rattachement de l'epci de rattachement
 
 
-
-
 # Table des régions --------------------------------------------------
 
-regions <- read_csv(paste0(repo_mil, "/region_", millesime, ".csv"))  %>%
+regions <- read_csv(paste0(repo_mil, "/v_region_", millesime, ".csv"))  %>%
   as_tibble() %>%
   rename_with(toupper) %>%
   rename(NOM_REG = LIBELLE) %>%
   mutate(across(everything(), fact.enc.utf8))
 
+# supervision pour vérifier évolution structure
+names(COGiter::regions) == names(regions)
+str(COGiter::regions)
+str(regions)
+
 # Table des départements --------------------------------------------------
 
-departements <- read_csv(paste0(repo_mil, "/departement_", millesime, ".csv")) %>%
+departements <- read_csv(paste0(repo_mil, "/v_departement_", millesime, ".csv")) %>%
   as_tibble() %>%
   rename_with(toupper) %>%
   rename(NOM_DEP=LIBELLE) %>%
   mutate(across(everything(), fact.enc.utf8))
 
+# supervision pour vérifier évolution structure
+names(COGiter::departements) == names(departements)
+str(COGiter::departements)
+str(departements)
+
 # Table des Epci ----------------------------------------------------------
-# download.file(url = paste0("https://www.collectivites-locales.gouv.fr/files/", millesime, "/epcicom", millesime, ".xlsx"),
-              # destfile = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), method = "curl")
+# table des départements sièges d'EPCI créée par le script 1_dep_siege_epci.R
+load(paste0("data-raw/source/", millesime,"/siege_epci.RData"))
+# table de la composition communale des EPCI : https://www.collectivites-locales.gouv.fr/institutions/liste-et-composition-des-epci-fiscalite-propre
+# download.file(url = paste0("https://www.collectivites-locales.gouv.fr/files/Accueil/DESL/", millesime, "/epcicom", millesime, ".xlsx"),
+#               destfile = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), method = "curl")
 
-
-epci <- read_excel(path = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), sheet = 1) %>%
+epci_0 <- read_excel(path = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), sheet = 1) %>%
   mutate(
     EPCI = as.factor(siren),
     NOM_EPCI = as.factor(raison_sociale),
@@ -65,7 +75,7 @@ epci <- read_excel(path = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), shee
   select(EPCI, NOM_EPCI, NATURE_EPCI) %>%
   distinct() %>%
   as_tibble() %>%
-  mutate(across(where(is.factor), ~fct_relabel(.f = .x, .fun = enc2utf8)))
+  mutate(across(where(is.factor), fact.enc.utf8))
 
 communes_epci <- read_excel(path = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), sheet = 1) %>%
   transmute(
@@ -86,15 +96,21 @@ epci_rattachement_reg_dep <- communes_epci %>%
             REGIONS_DE_L_EPCI = list(unique(as.character(REG))), .groups = "drop") %>%
   ungroup()
 
-epci <- epci %>%
-  left_join(epci_rattachement_reg_dep) # %>%
+epci <- epci_0 %>%
+  left_join(epci_rattachement_reg_dep) %>%
+  left_join(siege_epci) # %>%
   # filter(EPCI != "ZZZZZZZZZ") # devenu inutile /!\, changement du fichier, plus les communes hors epci
 
+rm(siege_epci)
 
+# supervision pour vérifier évolution structure
+names(COGiter::epci) == names(epci)
+glimpse(COGiter::epci)
+glimpse(epci)
 
 # Table des communes  --------------------------------------------------
 
-communes_cog <- read_csv(paste0("data-raw/source/", millesime, "/COG/commune_", millesime,".csv"),
+communes_cog <- read_csv(paste0("data-raw/source/", millesime, "/COG/v_commune_", millesime,".csv"),
   col_types = cols(
     TYPECOM = col_character(),
     COM = col_character(),
@@ -124,7 +140,7 @@ communes_epci <- communes_cog %>%
   filter(TYPECOM == "COM") %>%
   select(DEPCOM, NOM_DEPCOM, DEP, REG) %>%
   full_join(communes_epci, by = "DEPCOM", suffix = c("", ".dgcl")) %>%
-  # le nom de commune fourni par la DGCL ne gère pas bien les E dans l'O et la table dgcl ne contient pas les communes insulaire
+  # le nom de commune fourni par la DGCL ne gère pas bien les E dans l'O et la table dgcl ne contient pas les communes insulaires
   select(-contains(".dgcl")) %>%
   mutate(EPCI = coalesce(EPCI, "ZZZZZZZZZ"),
          NOM_EPCI = coalesce(NOM_EPCI, "Sans objet")) %>%
@@ -135,7 +151,7 @@ table_passage_com_epci <- communes_epci  %>%
 
 # Table des mouvements de communes ----------------------------------------
 
-mvtcommunes <- read_csv(paste0("data-raw/source/", millesime, "/COG/mvtcommune_", millesime, ".csv"),
+mvtcommunes <- read_csv(paste0("data-raw/source/", millesime, "/COG/v_mvtcommune_", millesime, ".csv"),
                       col_types = cols(
                         MOD = col_factor(),
                         DATE_EFF = col_date(format = ""),
@@ -188,6 +204,16 @@ communes_info_supra <- communes %>%
     REGIONS_DE_L_EPCI
   )
 
+# supervision pour vérifier évolution structure
+names(COGiter::communes_info_supra) == names(communes_info_supra)
+glimpse(COGiter::communes_info_supra)
+glimpse(communes_info_supra)
+
+names(COGiter::communes) == names(communes)
+glimpse(COGiter::communes)
+glimpse(communes)
+
+
 # Table liste zone --------------------------------------------------------
 
 liste_zone <- bind_rows(
@@ -223,6 +249,11 @@ liste_zone <- bind_rows(
   mutate(across(where(is.character), fact.enc.utf8)) %>%
   select(CodeZone, Zone, TypeZone, EPCI, NATURE_EPCI, DEP, REG)
 
+names(COGiter::liste_zone) == names(liste_zone)
+glimpse(COGiter::liste_zone)
+glimpse(liste_zone)
+
+
 # Table de passage des communes historiques ---------------------------------------
 # source : https://www.insee.fr/fr/information/2028028
 
@@ -239,6 +270,11 @@ table_passage_com_historique <- read_xlsx(paste0(repo_mil, "/table_passage_geo20
     TRUE ~ DEPCOM
   )) %>%
   mutate(across(everything(), fact.enc.utf8))
+
+names(COGiter::table_passage_com_historique) == names(table_passage_com_historique)
+glimpse(COGiter::table_passage_com_historique)
+glimpse(table_passage_com_historique)
+
 
 # Gestion des arrondissements de PLM
 # Les arrondissements sont gérés comme des anciens codes communes et rattachés à leur commune

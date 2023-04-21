@@ -5,7 +5,7 @@
 \alias{communes_cog}
 \title{Liste des communes du dernier millésime connu.}
 \format{
-A data frame with 37600 rows and 12 variables:
+A data frame with 37563 rows and 12 variables:
 \describe{
 \item{TYPECOM}{Code Insee}
 \item{DEPCOM}{Code Insee}

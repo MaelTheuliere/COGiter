@@ -6,6 +6,7 @@
 #' @param reg la region sur laquelle filtrer les données
 #' @param garder_supra TRUE si on souhaite une carte centrée sur le territoire mais avec les territoires environnant visible, non si on souhaite garder que le territoire sélectionné
 #' @param lg_buffer si garder_supra est a true, la largeur du buffer a garder autour du territoire (metres)
+#' @param epci_complet booleen, TRUE si on souhaite garder toutes les communes des EPCI du département ou de la région
 #' @return une liste de spatial dataframes (sf)
 #' @export
 #' @importFrom dplyr filter pull
@@ -20,19 +21,29 @@ filtrer_cog_geo <- function(depcom = NULL,
                             dep = NULL,
                             reg = NULL,
                             garder_supra = FALSE,
+                            epci_complet = FALSE,
                             lg_buffer = 0) {
   attempt::stop_if_any(c(depcom, epci, dep, reg), is.numeric, msg = "Les param\u00e8tres doivent \u00eatre des chaines de caract\u00e8re")
+  nb_ter_null <- is.null(depcom) + is.null(epci) + is.null(dep) + is.null(reg)
+  attempt::stop_if(nb_ter_null < 3, msg = "Les param\u00e8tres depcom, epci, dep, reg sont exclusifs les uns des autres. \n Merci de ne choisir qu'un seul territoire sur lequel filtrer vos donnees.")
+
   # on sélectionne les tables de départ suivant que le territoire est en métropole ou en drom
   map <- get_map(depcom, epci, dep, reg)
   com_geo <- map$com_geo
   epci_geo <- map$epci_geo
   dep_geo <- map$dep_geo
   reg_geo <- map$reg_geo
+  if(epci_complet) {
+    liste_zone <- COGiter::liste_zone %>%
+      dplyr::bind_rows(com_limitrophes_epci_a_cheval)
+  } else {
+    liste_zone <- COGiter::liste_zone
+  }
   if (!is.null(reg)) {
     if (!garder_supra) {
-      liste_dep <- dplyr::filter(COGiter::liste_zone, grepl(reg, REG), TypeZone == "D\u00e9partements") %>% dplyr::pull(CodeZone)
-      liste_epci <- dplyr::filter(COGiter::liste_zone, grepl(reg, REG), TypeZone == "Epci") %>% dplyr::pull(CodeZone)
-      liste_depcom <- dplyr::filter(COGiter::liste_zone, grepl(reg, REG), TypeZone == "Communes") %>% dplyr::pull(CodeZone)
+      liste_dep <- dplyr::filter(liste_zone, grepl(reg, REG), TypeZone == "D\u00e9partements") %>% dplyr::pull(CodeZone)
+      liste_epci <- dplyr::filter(liste_zone, grepl(reg, REG), TypeZone == "Epci") %>% dplyr::pull(CodeZone)
+      liste_depcom <- dplyr::filter(liste_zone, grepl(reg, REG), TypeZone == "Communes") %>% dplyr::pull(CodeZone)
 
       reg <- reg_geo %>% dplyr::filter(REG == reg)
       dep <- dep_geo %>% dplyr::filter(DEP %in% liste_dep)
@@ -71,8 +82,8 @@ filtrer_cog_geo <- function(depcom = NULL,
   }
   if (!is.null(dep)) {
     if (!garder_supra) {
-      liste_epci <- dplyr::filter(COGiter::liste_zone, grepl(dep, DEP), TypeZone == "Epci") %>% dplyr::pull(CodeZone)
-      liste_depcom <- dplyr::filter(COGiter::liste_zone, grepl(dep, DEP), TypeZone == "Communes") %>% dplyr::pull(CodeZone)
+      liste_epci <- dplyr::filter(liste_zone, grepl(dep, DEP), TypeZone == "Epci") %>% dplyr::pull(CodeZone)
+      liste_depcom <- dplyr::filter(liste_zone, grepl(dep, DEP), TypeZone == "Communes") %>% dplyr::pull(CodeZone)
       dep <- dep_geo %>% dplyr::filter(DEP == dep)
       epci <- epci_geo %>% dplyr::filter(EPCI %in% liste_epci)
       communes <- com_geo %>% dplyr::filter(DEPCOM %in% liste_depcom)

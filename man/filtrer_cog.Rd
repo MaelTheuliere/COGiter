@@ -10,7 +10,8 @@ filtrer_cog(
   epci = NULL,
   dep = NULL,
   reg = NULL,
-  garder_supra = "non"
+  garder_supra = "non",
+  epci_complet = FALSE
 )
 }
 \arguments{
@@ -24,13 +25,18 @@ filtrer_cog(
 
 \item{reg}{la region sur laquelle filtrer les données}
 
-\item{garder_supra}{">" si on souhaite garder les territoires supra, ">=" si on souhaite garder les territoires suppra et du même niveau que celui sélectionné}
+\item{garder_supra}{">" si on souhaite garder les territoires supra, ">=" si on souhaite garder les territoires supra et du même niveau que celui sélectionné, sauf si le filtre est opéré sur une commune, auquel cas seuls les territoires supra auquel appartient la commune sont renvoyés. "non" par défaut.}
+
+\item{epci_complet}{booleen, TRUE si on souhaite garder toutes les communes des EPCI du département ou de la région}
 }
 \value{
 Renvoie une table de donnees filtrées
 }
 \description{
 Filtrer un fichier du cog sur un sous ensemble du territoire
+}
+\details{
+Les parametres depcom, epci, dep et reg sont exclusifs les uns des autres.
 }
 \examples{
  pop2015_cogifiee_Corse <- cogifier(pop2015,  code_commune = DEPCOM, as_df = TRUE) \%>\%

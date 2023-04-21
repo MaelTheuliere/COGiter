@@ -7,18 +7,17 @@ library(archive)
 library(units)
 load("data/communes_info_supra.rda")
 load("data/table_passage_com_historique.rda")
-millesime <- "2022"
+millesime <- "2023"
 
 
 # (télé)chargement Admin Express -------------------------------
 repo_mil <- paste0("data-raw/source/", millesime, "/adminexpress")
-repo_dest <- "/ADMIN-EXPRESS-COG-CARTO_3-1__SHP__FRA_WM_2022-04-15"
-
+repo_dest <- "/ADMIN-EXPRESS-COG_3-1__SHP_WGS84G_FRA_2023-03-30"
 ## téléchargement des couches IGN admin express COG carto ----
-## Chargements des données présentes sur le site IGN :https://geoservices.ign.fr/adminexpress (4min15 hors RIE)
+## Chargements des données présentes sur le site IGN :https://geoservices.ign.fr/adminexpress (25min hors RIE)
 
-download.file(paste0("https://wxs.ign.fr/x02uy2aiwjo9bm8ce5plwqmr/telechargement/prepackage/ADMINEXPRESS-COG-CARTO_SHP_WGS84G_PACK_2022-04-15$ADMIN-EXPRESS-COG-CARTO_3-1__SHP__FRA_WM_2022-04-15/file/ADMIN-EXPRESS-COG-CARTO_3-1__SHP__FRA_WM_2022-04-15.7z"),
-              destfile = paste0(repo_mil, repo_dest, ".7z"), method = "curl")
+# download.file(paste0("https://wxs.ign.fr/x02uy2aiwjo9bm8ce5plwqmr/telechargement/prepackage/ADMINEXPRESS-COG-CARTO_SHP_WGS84G_PACK_2022-04-15$ADMIN-EXPRESS-COG-CARTO_3-1__SHP__FRA_WM_2022-04-15/file/ADMIN-EXPRESS-COG-CARTO_3-1__SHP__FRA_WM_2022-04-15.7z"),
+#               destfile = paste0(repo_mil, repo_dest, ".7z"), method = "curl")
 
 ## lecture du zip et dezippage
 contenu_list <- archive(paste0(repo_mil, repo_dest, ".7z"))
@@ -84,18 +83,23 @@ dom_geo <- rbind(l[[1]], l[[2]], l[[3]], l[[4]], l[[5]])
 
 # mapview::mapview(dom_geo$geometry)
 
+
 ## Assemblage com DOM et métro + simplification du contour
-communes_geo_0 <- rbind(com_metro, dom_geo) %>%
+communes_geo_00 <- rbind(com_metro, dom_geo) %>%
   as_tibble %>%
   select(DEPCOM = INSEE_COM, geometry) %>%
   st_as_sf() %>%
-  st_make_valid() %>%
-  ms_simplify(keep = 0.05, keep_shapes = TRUE) %>%
+  st_make_valid()
+
+gc()
+save.image(".RData")
+
+communes_geo_0 <- ms_simplify(communes_geo_00, keep = 0.01, keep_shapes = TRUE, sys = TRUE, sys_mem = 10, weighting = 0.9) %>% # installation de mapshaper sur PC nécessaire
   st_set_crs(2154)
 
-# communes_geo_0 %>% filter(grepl("49...", DEPCOM)) %>%  mapview::mapview()
-# save(communes_geo_0, file="data-raw/source/communes_geo_0.RData" )
-rm(com_metro, dom_geo, arg, l, translate_drom)
+communes_geo_0 %>% filter(grepl("49...", DEPCOM)) %>%  mapview::mapview()
+save(communes_geo_0, file="data-raw/source/communes_geo_0.RData" )
+rm(com_metro, dom_geo, arg, l, translate_drom, communes_geo_00)
 gc()
 
 # Constitution des datasets geo du package incluant la surface du territoire--------------
@@ -103,7 +107,7 @@ gc()
 ## Communes
 
 # chargement des surface communale issues de la bd carto 2021
-# source(paste0("data-raw/bd_carto_surf_com_", millesime, ".R"))
+# source(paste0("data-raw/4.bd_carto_surf_com_", millesime, ".R"))
 load(file = "data-raw/source/2022/bd_carto/superf_communes.RData")
 superf_communes <- rename(superf_communes, DEPCOM_HIST = INSEE_COM, AREA = SUPERFICIE) %>%
   left_join(table_passage_com_historique %>% mutate(DEPCOM_HIST = as.character(DEPCOM_HIST)), by = "DEPCOM_HIST") %>%
@@ -113,7 +117,7 @@ superf_communes <- rename(superf_communes, DEPCOM_HIST = INSEE_COM, AREA = SUPER
   filter(!is.na(DEPCOM)) # %>%
   # mutate(AREA = set_units(AREA, "m^2")) --> à repasser après car gène les st_union
 
-nrow(superf_communes) == nrow(com_fce_ent)
+nrow(superf_communes) == nrow(communes_info_supra)
 communes_geo <- communes_geo_0 %>%
   left_join(superf_communes, by = c("DEPCOM")) %>%
   select(DEPCOM, AREA)
@@ -169,7 +173,7 @@ com_geo_dom <- function(dep = "971", epsg = 5490) {
     select(DEPCOM = INSEE_COM) %>%
     inner_join(superf_communes, by = "DEPCOM") %>%
     st_transform(epsg) %>%
-    ms_simplify(keep = 0.075, keep_shapes = FALSE, weighting = 0.9)
+    ms_simplify(keep = 0.05, keep_shapes = FALSE, weighting = 0.9)
   # gestion de l'encodage des chaines wkt
   st_crs(com)$wkt <- gsub("°|º", "\\\u00b0", st_crs(com)$wkt)
   return(com)
