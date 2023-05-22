@@ -2,6 +2,7 @@
 library(tidyverse)
 library(lubridate)
 library(readxl)
+library(arrow)
 library(usethis)
 
 millesime <- "2023"
@@ -255,21 +256,36 @@ glimpse(liste_zone)
 
 
 # Table de passage des communes historiques ---------------------------------------
-# source : https://www.insee.fr/fr/information/2028028
+# sources : https://www.insee.fr/fr/information/2028028 pour les mouvements depuis 2003 mis à jour chaque année par l'INSEE + table COGiter historique
 
+#  table de passage historique avec les mouvements antérieurs à 2003
+table_passage_com_hist_old <- arrow::read_parquet("data-raw/table_passage_com_historique_2018.parquet") %>%
+  rename_with(~paste0(.x, "_old"))
+
+# table de passage à partir de 2003 tenue à jour par l'INSEE
 # download.file(paste0("https://www.insee.fr/fr/statistiques/fichier/2028028/table_passage_geo2003_geo", millesime, ".zip"),
 #               destfile = paste0(repo_mil, "/table_passage_geo2003_geo", millesime, ".zip"))
 # unzip(zipfile = paste0(repo_mil, "/table_passage_geo2003_geo", millesime, ".zip"),
 #       exdir = repo_mil)
 
-table_passage_com_historique <- read_xlsx(paste0(repo_mil, "/table_passage_geo2003_geo", millesime, ".xlsx"), skip = 5) %>%
+table_passage_com_historique_new <- read_xlsx(paste0(repo_mil, "/table_passage_geo2003_geo", millesime, ".xlsx"), skip = 5) %>%
   select(DEPCOM_HIST = CODGEO_INI, DEPCOM = paste0("CODGEO_", millesime)) %>%
   mutate(DEPCOM = case_when( # correction bug toujours présent de saint martin et saint barthélemy qui ne sont pas rattachés sur leurs nouveaux codes commune.
     DEPCOM_HIST == '97123'~'97701',
     DEPCOM_HIST == '97127'~'97801',
     TRUE ~ DEPCOM
-  )) %>%
+  ))
+
+table_passage_com_historique <- table_passage_com_hist_old %>%
+  left_join(table_passage_com_historique_new, by = c("DEPCOM_old" = "DEPCOM_HIST")) %>%
+  select(DEPCOM_HIST = DEPCOM_HIST_old, DEPCOM) %>%
+  distinct() %>%
   mutate(across(everything(), fact.enc.utf8))
+
+# Vérification : DEPCOM_HIST ne doit pas comporter de doublons
+table_passage_com_historique %>%
+  add_count(DEPCOM_HIST) %>%
+  filter(n>1)
 
 names(COGiter::table_passage_com_historique) == names(table_passage_com_historique)
 glimpse(COGiter::table_passage_com_historique)
@@ -291,8 +307,14 @@ arn_plm <- communes_cog %>%
 
 table_passage_com_historique <- table_passage_com_historique %>%
   bind_rows(arn_plm %>% select(DEPCOM_HIST = ARN, DEPCOM)) %>%
+  arrange(DEPCOM_HIST) %>%
+  distinct() %>%
   mutate(across(everything(), fact.enc.utf8))
 
+# Vérification : DEPCOM_HIST ne doit pas comporter de doublons
+table_passage_com_historique %>%
+  add_count(DEPCOM_HIST) %>%
+  filter(n>1)
 
 usethis::use_data(regions, internal = FALSE, overwrite = TRUE)
 usethis::use_data(departements, internal = FALSE, overwrite = TRUE)
