@@ -23,16 +23,15 @@ A data frame with 37563 rows and 12 variables:
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{head(communes_cog)
 #> # A tibble: 6 x 12
-#>   TYPECOM DEPCOM REG   DEP   CTCD  ARR   TNCC  NCC          NCCENR NOM_D~1 CAN  
-#>   <fct>   <fct>  <fct> <fct> <fct> <fct> <fct> <fct>        <fct>  <fct>   <fct>
-#> 1 COM     01001  84    01    01D   012   5     ABERGEMENT ~ Aberg~ L'Aber~ 0108 
-#> 2 COM     01002  84    01    01D   011   5     ABERGEMENT ~ Aberg~ L'Aber~ 0101 
-#> 3 COM     01004  84    01    01D   011   1     AMBERIEU EN~ Ambér~ Ambéri~ 0101 
-#> 4 COM     01005  84    01    01D   012   1     AMBERIEUX E~ Ambér~ Ambéri~ 0122 
-#> 5 COM     01006  84    01    01D   011   1     AMBLEON      Amblé~ Ambléon 0104 
-#> 6 COM     01007  84    01    01D   011   1     AMBRONAY     Ambro~ Ambron~ 0101 
-#> # ... with 1 more variable: COMPARENT <fct>, and abbreviated variable name
-#> #   1: NOM_DEPCOM
+#>   TYPECOM DEPCOM REG   DEP   CTCD  ARR   TNCC  NCC       NCCENR NOM_DEPCOM CAN  
+#>   <fct>   <fct>  <fct> <fct> <fct> <fct> <fct> <fct>     <fct>  <fct>      <fct>
+#> 1 COM     01001  84    01    01D   012   5     ABERGEME~ Aberg~ L'Abergem~ 0108 
+#> 2 COM     01002  84    01    01D   011   5     ABERGEME~ Aberg~ L'Abergem~ 0101 
+#> 3 COM     01004  84    01    01D   011   1     AMBERIEU~ Ambér~ Ambérieu-~ 0101 
+#> 4 COM     01005  84    01    01D   012   1     AMBERIEU~ Ambér~ Ambérieux~ 0122 
+#> 5 COM     01006  84    01    01D   011   1     AMBLEON   Amblé~ Ambléon    0104 
+#> 6 COM     01007  84    01    01D   011   1     AMBRONAY  Ambro~ Ambronay   0101 
+#> # i 1 more variable: COMPARENT <fct>
 }\if{html}{\out{</div>}}
 }
 \source{

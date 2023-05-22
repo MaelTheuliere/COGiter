@@ -14,19 +14,19 @@
 #'
 #' @return Renvoie une table de donnees filtrées
 #' @export
+#' @importFrom attempt stop_if
 #' @importFrom dplyr inner_join across mutate filter select bind_rows transmute
 #' @importFrom forcats fct_drop
-#' @importFrom rlang enquo
-#' @importFrom rlang !!
+#' @importFrom rlang enquo !!
 
 
 filtrer_cog <- function(.data, depcom = NULL, epci = NULL, dep = NULL, reg = NULL, garder_supra = "non", epci_complet = FALSE) {
   nb_ter_null <- is.null(depcom) + is.null(epci) + is.null(dep) + is.null(reg)
   attempt::stop_if(nb_ter_null < 3, msg = "Les param\u00e8tres depcom, epci, dep, reg sont exclusifs les uns des autres. \n Merci de ne choisir qu'un seul territoire sur lequel filtrer vos donnees.")
-  quo_depcom <- enquo(depcom)
-  quo_epci <- enquo(epci)
-  quo_dep <- enquo(dep)
-  quo_reg <- enquo(reg)
+  quo_depcom <- rlang::enquo(depcom)
+  quo_epci <- rlang::enquo(epci)
+  quo_dep <- rlang::enquo(dep)
+  quo_reg <- rlang::enquo(reg)
   result <- .data
 
   if(epci_complet) {
@@ -40,30 +40,30 @@ filtrer_cog <- function(.data, depcom = NULL, epci = NULL, dep = NULL, reg = NUL
   if (!is.null(reg)) {
     if (garder_supra == "non") {
       result <- result %>%
-        inner_join(
+        dplyr::inner_join(
           liste_zone %>%
-            filter(grepl(reg, REG)) %>%
-            select(TypeZone, CodeZone)
+            dplyr::filter(grepl(reg, REG)) %>%
+            dplyr::select(TypeZone, CodeZone)
         )
     }
     if (garder_supra == ">") {
       result <- result %>%
-        inner_join(
+        dplyr::inner_join(
           liste_zone %>%
-            filter(grepl(reg, REG)) %>%
-            select(TypeZone, CodeZone)) %>%
-        bind_rows(result %>%
-          filter(TypeZone %in% c("France"))
+            dplyr::filter(grepl(reg, REG)) %>%
+            dplyr::select(TypeZone, CodeZone)) %>%
+        dplyr::bind_rows(result %>%
+          dplyr::filter(TypeZone %in% c("France"))
         )
     }
     if (garder_supra == ">=") {
       result <- result %>%
-        inner_join(
+        dplyr::inner_join(
           liste_zone %>%
-            filter(grepl(reg, REG)) %>%
-            select(TypeZone, CodeZone)) %>%
-        bind_rows(result %>%
-          filter(TypeZone %in% c("France") |
+            dplyr::filter(grepl(reg, REG)) %>%
+            dplyr::select(TypeZone, CodeZone)) %>%
+        dplyr::bind_rows(result %>%
+          dplyr::filter(TypeZone %in% c("France") |
             (TypeZone %in% c("R\u00e9gions") & !(CodeZone == !!quo_reg))
           )
         )
@@ -72,30 +72,30 @@ filtrer_cog <- function(.data, depcom = NULL, epci = NULL, dep = NULL, reg = NUL
   if (!is.null(dep)) {
     if (garder_supra == "non") {
       result <- result %>%
-        inner_join(
+        dplyr::inner_join(
           liste_zone %>%
-            filter(grepl(dep, DEP)) %>%
-            select(TypeZone, CodeZone)
+            dplyr::filter(grepl(dep, DEP)) %>%
+            dplyr::select(TypeZone, CodeZone)
         )
     }
     if (garder_supra == ">") {
       result <- result %>%
-        inner_join(
+        dplyr::inner_join(
           liste_zone %>%
-            filter(grepl(dep, DEP)) %>%
-            select(TypeZone, CodeZone)) %>%
-        bind_rows(result %>%
-          filter(TypeZone %in% c("France", "R\u00e9gions"))
+            dplyr::filter(grepl(dep, DEP)) %>%
+            dplyr::select(TypeZone, CodeZone)) %>%
+        dplyr::bind_rows(result %>%
+          dplyr::filter(TypeZone %in% c("France", "R\u00e9gions"))
         )
     }
     if (garder_supra == ">=") {
       result <- result %>%
-        inner_join(
+        dplyr::inner_join(
           liste_zone %>%
-            filter(grepl(dep, DEP)) %>%
-            select(TypeZone, CodeZone)) %>%
-        bind_rows(result %>%
-          filter(TypeZone %in% c("France", "R\u00e9gions") |
+            dplyr::filter(grepl(dep, DEP)) %>%
+            dplyr::select(TypeZone, CodeZone)) %>%
+        dplyr::bind_rows(result %>%
+          dplyr::filter(TypeZone %in% c("France", "R\u00e9gions") |
             (TypeZone %in% c("D\u00e9partements") & !(CodeZone == !!quo_dep))
           )
         )
@@ -104,30 +104,30 @@ filtrer_cog <- function(.data, depcom = NULL, epci = NULL, dep = NULL, reg = NUL
   if (!is.null(epci)) {
     if (garder_supra == "non") {
       result <- result %>%
-        inner_join(
+        dplyr::inner_join(
           COGiter::liste_zone %>%
-            filter(EPCI == !!quo_epci) %>%
-            select(TypeZone, CodeZone)
+            dplyr::filter(EPCI == !!quo_epci) %>%
+            dplyr::select(TypeZone, CodeZone)
         )
     }
     if (garder_supra == ">") {
       result <- result %>%
-        inner_join(
+        dplyr::inner_join(
           COGiter::liste_zone %>%
-            filter(EPCI == !!quo_epci) %>%
-            select(TypeZone, CodeZone)) %>%
-        bind_rows(result %>%
-          filter(TypeZone %in% c("France", "R\u00e9gions", "D\u00e9partements"))
+            dplyr::filter(EPCI == !!quo_epci) %>%
+            dplyr::select(TypeZone, CodeZone)) %>%
+        dplyr::bind_rows(result %>%
+          dplyr::filter(TypeZone %in% c("France", "R\u00e9gions", "D\u00e9partements"))
         )
     }
     if (garder_supra == ">=") {
       result <- result %>%
-        inner_join(
+        dplyr::inner_join(
           COGiter::liste_zone %>%
-            filter(EPCI == !!quo_epci) %>%
-            select(TypeZone, CodeZone)) %>%
-        bind_rows(result %>%
-          filter(TypeZone %in% c("France", "R\u00e9gions", "D\u00e9partements") |
+            dplyr::filter(EPCI == !!quo_epci) %>%
+            dplyr::select(TypeZone, CodeZone)) %>%
+        dplyr::bind_rows(result %>%
+          dplyr::filter(TypeZone %in% c("France", "R\u00e9gions", "D\u00e9partements") |
             (TypeZone %in% c("Epci") & !(CodeZone == !!quo_epci))
           )
         )
@@ -136,39 +136,39 @@ filtrer_cog <- function(.data, depcom = NULL, epci = NULL, dep = NULL, reg = NUL
   if (!is.null(depcom)) {
     if (garder_supra == "non") {
       result <- result %>%
-        inner_join(
+        dplyr::inner_join(
           COGiter::liste_zone %>%
-            filter(CodeZone == !!quo_depcom, TypeZone == "Communes") %>%
-            select(TypeZone, CodeZone)
+            dplyr::filter(CodeZone == !!quo_depcom, TypeZone == "Communes") %>%
+            dplyr::select(TypeZone, CodeZone)
         )
     }
     if (grepl(">", garder_supra)) {
       com_a_garder <- COGiter::liste_zone %>%
-        filter(CodeZone == !!quo_depcom, TypeZone == "Communes")
+        dplyr::filter(CodeZone == !!quo_depcom, TypeZone == "Communes")
       epci_a_garder <- com_a_garder %>%
-        select(CodeZone = EPCI) %>%
-        left_join(COGiter::liste_zone)
+        dplyr::select(CodeZone = EPCI) %>%
+        dplyr::left_join(COGiter::liste_zone)
       dep_a_garder <- com_a_garder %>%
-        transmute(CodeZone = unlist(DEP)) %>%
-        mutate(TypeZone = factor("D\u00e9partements", levels = levels(liste_zone$TypeZone))) %>%
-        left_join(COGiter::liste_zone)
+        dplyr::transmute(CodeZone = unlist(DEP)) %>%
+        dplyr::mutate(TypeZone = factor("D\u00e9partements", levels = levels(liste_zone$TypeZone))) %>%
+        dplyr::left_join(COGiter::liste_zone)
       reg_a_garder <- com_a_garder %>%
-        transmute(CodeZone = unlist(REG)) %>%
-        mutate(TypeZone = factor("R\u00e9gions", levels = levels(liste_zone$TypeZone))) %>%
-        left_join(COGiter::liste_zone)
-      ter_a_garder <- bind_rows(com_a_garder, epci_a_garder, dep_a_garder, reg_a_garder) %>%
-        select(TypeZone, CodeZone)
+        dplyr::transmute(CodeZone = unlist(REG)) %>%
+        dplyr::mutate(TypeZone = factor("R\u00e9gions", levels = levels(liste_zone$TypeZone))) %>%
+        dplyr::left_join(COGiter::liste_zone)
+      ter_a_garder <- dplyr::bind_rows(com_a_garder, epci_a_garder, dep_a_garder, reg_a_garder) %>%
+        dplyr::select(TypeZone, CodeZone)
 
       result <- result %>%
-        inner_join(ter_a_garder) %>%
-        bind_rows(result %>%
-                    filter(TypeZone %in% "France"))
+        dplyr::inner_join(ter_a_garder) %>%
+        dplyr::bind_rows(result %>%
+                    dplyr::filter(TypeZone %in% "France"))
 
     }
 
   }
   result <- result %>%
-    dplyr::mutate(dplyr::across(c(TypeZone, Zone, CodeZone), as.factor)) %>%
-    dplyr::mutate(dplyr::across(c(TypeZone, Zone, CodeZone), forcats::fct_drop))
+    dplyr::mutate(dplyr::across(.cols = c(TypeZone, Zone, CodeZone), .fns = as.factor)) %>%
+    dplyr::mutate(dplyr::across(.cols = c(TypeZone, Zone, CodeZone), .fns = forcats::fct_drop))
   return(result)
 }

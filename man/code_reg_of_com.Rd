@@ -16,5 +16,5 @@ Un vecteur.
 Renvoie le code région d appartenance d une commune
 }
 \examples{
-code_reg_of_com(c("24037","44109"))
+code_reg_of_com(c("24037", "44109"))
 }

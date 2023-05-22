@@ -16,5 +16,5 @@ Un vecteur de booléens.
 test si les codes communes sont ceux d'un arrondissement de Paris, Lyon ou Marseille
 }
 \examples{
-code_com_plm(c("75056","75112"))
+code_com_plm(c("75056", "75112"))
 }

@@ -16,5 +16,5 @@ Un vecteur de caractère.
 Renvoie les codes de la région d appartenance de chaque département
 }
 \examples{
-code_reg_of_dep(c("75","44"))
+code_reg_of_dep(c("75", "44"))
 }

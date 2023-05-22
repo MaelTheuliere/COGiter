@@ -9,7 +9,7 @@ translate_drom(code_dom, destination, scale = 1, angle = 0, epsg = 2154)
 \arguments{
 \item{code_dom}{code departement du drom}
 
-\item{destination}{x,y du lieu de destination dans l'epsg défini}
+\item{destination}{x, y du lieu de destination dans l'epsg défini}
 
 \item{scale}{facteur de redimentionnement du territoire}
 

@@ -9,9 +9,9 @@
 #' @param epci_complet booleen, TRUE si on souhaite garder toutes les communes des EPCI du département ou de la région
 #' @return une liste de spatial dataframes (sf)
 #' @export
-#' @importFrom dplyr filter pull
+#' @importFrom dplyr filter pull bind_rows
 #' @importFrom sf st_bbox st_crop st_buffer
-#' @importFrom attempt stop_if_any
+#' @importFrom attempt stop_if_any stop_if
 #' @examples
 #' nantes_metropole <- filtrer_cog_geo(epci = '244400404')
 #' plot(nantes_metropole$communes)
@@ -170,6 +170,8 @@ filtrer_cog_geo <- function(depcom = NULL,
 #'
 #' @examples
 #' get_map(epci = "244400404")
+#' @importFrom attempt stop_if_any
+#' @importFrom dplyr filter pull
 get_map <- function(depcom = NULL,
                     epci = NULL,
                     dep = NULL,

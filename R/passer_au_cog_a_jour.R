@@ -15,31 +15,30 @@
 #'                                        aggrege = TRUE, garder_info_supra = FALSE)
 #'
 #' @export
-#' @importFrom dplyr rename left_join inner_join select group_by summarise ungroup group_vars across is.grouped_df
-#' @importFrom tidyselect vars_select_helpers
+#' @importFrom dplyr rename inner_join select group_by across summarise ungroup left_join is.grouped_df group_vars
 #' @importFrom rlang enquo sym !!
-#'
+#' @importFrom tidyselect vars_select_helpers everything
 passer_au_cog_a_jour <- function(.data, code_commune = DEPCOM, aggrege = TRUE, garder_info_supra = TRUE, na.rm=FALSE) {
-  quo_code_commune <- enquo(code_commune)
+  quo_code_commune <- rlang::enquo(code_commune)
   result <- .data %>%
-    rename(DEPCOM_HIST = !!quo_code_commune) %>%
-    inner_join(COGiter::table_passage_com_historique, by = "DEPCOM_HIST") %>%
-    select(-DEPCOM_HIST)
+    dplyr::rename(DEPCOM_HIST = !!quo_code_commune) %>%
+    dplyr::inner_join(COGiter::table_passage_com_historique, by = "DEPCOM_HIST") %>%
+    dplyr::select(-DEPCOM_HIST)
 
-  if (aggrege == T) {
+  if (aggrege == TRUE) {
     result <- result %>%
-      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
-      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
-      ungroup()
+      dplyr::group_by(dplyr::across(.cols = !tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      dplyr::summarise(dplyr::across(.cols = tidyselect::everything(), .fns = ~ sum(.x, na.rm = na.rm))) %>%
+      dplyr::ungroup()
   }
-  if (garder_info_supra == T) {
+  if (garder_info_supra == TRUE) {
     result <- result %>%
-      left_join(COGiter::communes_info_supra, by = "DEPCOM", suffix = c("_hist", ""))
+      dplyr::left_join(COGiter::communes_info_supra, by = "DEPCOM", suffix = c("_hist", ""))
   }
-  if (is.grouped_df(.data)) {
-    gr_data <- group_vars(.data)
+  if (dplyr::is.grouped_df(.data)) {
+    gr_data <- dplyr::group_vars(.data)
     result <- result %>%
-      group_by(!!sym(gr_data))
+      dplyr::group_by(!!rlang::sym(gr_data))
   }
   return(result)
 }

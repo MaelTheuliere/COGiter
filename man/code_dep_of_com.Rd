@@ -16,5 +16,5 @@ Un vecteur.
 Renvoie le code du département d appartenance d une commune
 }
 \examples{
-code_dep_of_com(c("24037","44109"))
+code_dep_of_com(c("24037", "44109"))
 }

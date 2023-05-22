@@ -40,8 +40,8 @@ Test que les codes EPCI existent
 teste que les codes commune existent
 }
 \examples{
-code_reg_existe(c("11","99"))
-code_dep_existe(c("75","99"))
+code_reg_existe(c("11", "99"))
+code_dep_existe(c("75", "99"))
 code_epci_existe("249740077")
 code_com_existe("75056")
 }

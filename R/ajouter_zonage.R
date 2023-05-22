@@ -10,21 +10,10 @@
 #' @param var_type_zone le nom de la variable désignant le nom du zonage dans zonage_df
 #' @return Renvoie une table de données cogifiée augmentée des agrégats selon ce nouveau zonage
 #' @export
-#' @importFrom dplyr inner_join
-#' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_at
-#' @importFrom dplyr select
-#' @importFrom dplyr filter
-#' @importFrom dplyr bind_rows
-#' @importFrom dplyr group_by_if
-#' @importFrom dplyr summarise_all
-#' @importFrom dplyr ungroup
-#' @importFrom dplyr rename
-#' @importFrom dplyr vars
+#' @importFrom dplyr filter select rename inner_join group_by across summarise ungroup mutate bind_rows
 #' @importFrom forcats fct_expand
-#' @importFrom rlang enquo
-#' @importFrom rlang !!
-#' @importFrom rlang .data
+#' @importFrom rlang enquo .data !!
+#' @importFrom tidyselect vars_select_helpers everything
 
 ajouter_zonage <- function(.data,
                            zonage_df,
@@ -32,30 +21,30 @@ ajouter_zonage <- function(.data,
                            var_code_zone = CodeZone,
                            var_type_zone = TypeZone,
                            var_zone = Zone) {
-  quo_Depcom <- enquo(var_depcom)
-  quo_CodeZone <- enquo(var_code_zone)
-  quo_TypeZone <- enquo(var_type_zone)
-  quo_Zone <- enquo(var_zone)
+  quo_Depcom <- rlang::enquo(var_depcom)
+  quo_CodeZone <- rlang::enquo(var_code_zone)
+  quo_TypeZone <- rlang::enquo(var_type_zone)
+  quo_Zone <- rlang::enquo(var_zone)
 
   a_ajouter <- .data %>%
-    filter(.data$TypeZone == "Communes") %>%
-    select(-"Zone", -"TypeZone") %>%
-    rename(DEPCOM = "CodeZone") %>%
-    inner_join(zonage_df %>%
-      rename(DEPCOM = !!quo_Depcom)) %>%
-    select(-"DEPCOM") %>%
-    group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
-    summarise(across(.fns = sum)) %>%
-    ungroup() %>%
-    rename(
+    dplyr::filter(.data$TypeZone == "Communes") %>%
+    dplyr::select(-"Zone", -"TypeZone") %>%
+    dplyr::rename(DEPCOM = "CodeZone") %>%
+    dplyr::inner_join(zonage_df %>%
+      dplyr::rename(DEPCOM = !!quo_Depcom)) %>%
+    dplyr::select(-"DEPCOM") %>%
+    dplyr::group_by(dplyr::across(.cols = !tidyselect::vars_select_helpers$where(is.numeric))) %>%
+    dplyr::summarise(dplyr::across(.cols = tidyselect::everything(), .fns = sum)) %>%
+    dplyr::ungroup() %>%
+    dplyr::rename(
       CodeZone = !!quo_CodeZone,
       TypeZone = !!quo_TypeZone,
       Zone = !!quo_Zone
     ) %>%
-    mutate(across(c("CodeZone", "TypeZone", "Zone"), as.factor))
+    dplyr::mutate(dplyr::across(.cols = c("CodeZone", "TypeZone", "Zone"), .fns = as.factor))
 
   tmp <- .data %>%
-    mutate(
+    dplyr::mutate(
       CodeZone = forcats::fct_expand(
         .data$CodeZone,
         levels(a_ajouter$CodeZone)
@@ -70,12 +59,12 @@ ajouter_zonage <- function(.data,
       )
     )
 
-  a_ajouter <- mutate(a_ajouter,
+  a_ajouter <- dplyr::mutate(a_ajouter,
     CodeZone = factor(.data$CodeZone, levels = levels(tmp$CodeZone)),
     Zone = factor(.data$Zone, levels = levels(tmp$Zone)),
     TypeZone = factor(.data$TypeZone, levels = levels(tmp$TypeZone)),
   )
-  res <- bind_rows(tmp, a_ajouter)
+  res <- dplyr::bind_rows(tmp, a_ajouter)
   return(res)
 }
 
@@ -101,21 +90,9 @@ ajouter_zonage <- function(.data,
 #' @param var_type_zone le nom de la variable type zone dans zonage_df
 #' @return Renvoie une table de donnees cogifiée augmentée des calculs pour ces nouvelles typologies
 #' @export
-#' @importFrom dplyr inner_join
-#' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_at
-#' @importFrom dplyr select
-#' @importFrom dplyr filter
-#' @importFrom dplyr bind_rows
-#' @importFrom dplyr group_by_if
-#' @importFrom dplyr summarise_all
-#' @importFrom dplyr ungroup
-#' @importFrom dplyr rename
-#' @importFrom dplyr vars
+#' @importFrom dplyr select inner_join rename mutate bind_rows
 #' @importFrom forcats fct_expand
-#' @importFrom rlang enquo
-#' @importFrom rlang !!
-#' @importFrom rlang .data
+#' @importFrom rlang enquo .data
 #' @examples
 #' library(COGiter)
 #' zonage_aav <- charger_zonage("AAV2020")
@@ -202,11 +179,13 @@ ajouter_typologie <- function(.data,
 #'
 #' @return Un dataframe
 #' @importFrom dplyr select mutate
+#' @importFrom glue glue
 #' @importFrom purrr set_names
 #' @importFrom rlang sym
 #' @export
 #' @examples
 #' charger_zonage("ARR")
+
 charger_zonage <- function(zonage) {
   liste_zonages_disponibles <- lister_zonages()
   zonages_disponibles <- paste0(liste_zonages_disponibles$`Code du zonage`," (",liste_zonages_disponibles$`Nom du zonage`," )", collapse = ", ")
@@ -217,7 +196,7 @@ charger_zonage <- function(zonage) {
                   rlang::sym(paste0("LIB_", zonage))
     ) %>%
     dplyr::mutate(TypeZone = zonage) %>%
-    purrr::set_names("DEPCOM","CodeZone","Zone","TypeZone")
+    purrr::set_names("DEPCOM", "CodeZone", "Zone", "TypeZone")
   return(res)
 }
 

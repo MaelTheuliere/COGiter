@@ -19,9 +19,9 @@
 #' pop2015_cogifiee <- cogifier(pop2015, code_commune = DEPCOM)
 #'
 #' @export
-#' @importFrom dplyr filter mutate select group_by summarise ungroup across bind_rows vars
+#' @importFrom dplyr select group_by across summarise ungroup filter everything
 #' @importFrom rlang enquo !!
-
+#' @importFrom tidyselect vars_select_helpers
 cogifier <- function(.data, code_commune = DEPCOM,
                      communes = TRUE,
                      epci = TRUE,
@@ -33,9 +33,9 @@ cogifier <- function(.data, code_commune = DEPCOM,
                      drom = FALSE,
                      as_df = TRUE,
                      na.rm = FALSE) {
-  quo_code_commune <- enquo(code_commune)
+  quo_code_commune <- rlang::enquo(code_commune)
   au_cog <- passer_au_cog_a_jour(.data = .data, code_commune = !!quo_code_commune,
-    garder_info_supra = T, aggrege = F, na.rm = na.rm)
+    garder_info_supra = TRUE, aggrege = FALSE, na.rm = na.rm)
   c <- NULL
   e <- NULL
   d <- NULL
@@ -44,71 +44,71 @@ cogifier <- function(.data, code_commune = DEPCOM,
   md <- NULL
   fp <- NULL
   dr <- NULL
-  if (communes == T) {
+  if (communes == TRUE) {
     c <- au_cog %>%
-      select(-REG, -NOM_REG, -DEP, -NOM_DEP, -EPCI, -NOM_EPCI, -DEPARTEMENTS_DE_L_EPCI, -REGIONS_DE_L_EPCI) %>%
-      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
-      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
-      ungroup
+      dplyr::select(-REG, -NOM_REG, -DEP, -NOM_DEP, -EPCI, -NOM_EPCI, -DEPARTEMENTS_DE_L_EPCI, -REGIONS_DE_L_EPCI) %>%
+      dplyr::group_by(dplyr::across(.cols = !tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      dplyr::summarise(dplyr::across(.cols = dplyr::everything(), .fns = ~ sum(.x, na.rm = na.rm))) %>%
+      dplyr::ungroup()
   }
-  if (epci == T) {
+  if (epci == TRUE) {
     e <- au_cog %>%
-      select(-REG, -NOM_REG, -DEP, -NOM_DEP, -DEPCOM, -NOM_DEPCOM, -DEPARTEMENTS_DE_L_EPCI, -REGIONS_DE_L_EPCI) %>%
-      filter(EPCI != "ZZZZZZZZZ") %>%
-      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
-      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
-      ungroup
+      dplyr::select(-REG, -NOM_REG, -DEP, -NOM_DEP, -DEPCOM, -NOM_DEPCOM, -DEPARTEMENTS_DE_L_EPCI, -REGIONS_DE_L_EPCI) %>%
+      dplyr::filter(EPCI != "ZZZZZZZZZ") %>%
+      dplyr::group_by(dplyr::across(.cols = !tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      dplyr::summarise(dplyr::across(.cols = dplyr::everything(), .fns = ~ sum(.x, na.rm = na.rm))) %>%
+      dplyr::ungroup()
   }
-  if (departements == T) {
+  if (departements == TRUE) {
     d <- au_cog %>%
-      select(-REG, -NOM_REG, -DEPCOM, -NOM_DEPCOM, -EPCI, -NOM_EPCI, -DEPARTEMENTS_DE_L_EPCI, -REGIONS_DE_L_EPCI) %>%
-      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
-      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
-      ungroup
+      dplyr::select(-REG, -NOM_REG, -DEPCOM, -NOM_DEPCOM, -EPCI, -NOM_EPCI, -DEPARTEMENTS_DE_L_EPCI, -REGIONS_DE_L_EPCI) %>%
+      dplyr::group_by(dplyr::across(.cols = !tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      dplyr::summarise(dplyr::across(.cols = dplyr::everything(), .fns = ~ sum(.x, na.rm = na.rm))) %>%
+      dplyr::ungroup()
   }
-  if (regions == T) {
+  if (regions == TRUE) {
     r <- au_cog %>%
-      select(-DEP, -NOM_DEP, -DEPCOM, -NOM_DEPCOM, -EPCI, -NOM_EPCI, -DEPARTEMENTS_DE_L_EPCI, -REGIONS_DE_L_EPCI) %>%
-      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
-      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
-      ungroup
+      dplyr::select(-DEP, -NOM_DEP, -DEPCOM, -NOM_DEPCOM, -EPCI, -NOM_EPCI, -DEPARTEMENTS_DE_L_EPCI, -REGIONS_DE_L_EPCI) %>%
+      dplyr::group_by(dplyr::across(.cols = !tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      dplyr::summarise(dplyr::across(.cols = dplyr::everything(),.fns = ~ sum(.x, na.rm = na.rm))) %>%
+      dplyr::ungroup()
   }
-  if (metro == T) {
+  if (metro == TRUE) {
     m <- au_cog %>%
       dplyr::filter(!(REG %in% c("01", "02", "03", "04", "05", "06"))) %>%
-      select(-REG, -NOM_REG, -DEP, -NOM_DEP, -DEPCOM, -NOM_DEPCOM, -EPCI, -NOM_EPCI, -DEPARTEMENTS_DE_L_EPCI, -REGIONS_DE_L_EPCI) %>%
-      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
-      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
-      ungroup
+      dplyr::select(-REG, -NOM_REG, -DEP, -NOM_DEP, -DEPCOM, -NOM_DEPCOM, -EPCI, -NOM_EPCI, -DEPARTEMENTS_DE_L_EPCI, -REGIONS_DE_L_EPCI) %>%
+      dplyr::group_by(dplyr::across(.cols = !tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      dplyr::summarise(dplyr::across(.cols = dplyr::everything(),.fns = ~ sum(.x, na.rm = na.rm))) %>%
+      dplyr::ungroup()
   }
-  if (metrodrom == T) {
+  if (metrodrom == TRUE) {
     md <- au_cog %>%
-      select(-REG, -NOM_REG, -DEP, -NOM_DEP, -DEPCOM, -NOM_DEPCOM, -EPCI, -NOM_EPCI, -DEPARTEMENTS_DE_L_EPCI, -REGIONS_DE_L_EPCI) %>%
-      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
-      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
-      ungroup
+      dplyr::select(-REG, -NOM_REG, -DEP, -NOM_DEP, -DEPCOM, -NOM_DEPCOM, -EPCI, -NOM_EPCI, -DEPARTEMENTS_DE_L_EPCI, -REGIONS_DE_L_EPCI) %>%
+      dplyr::group_by(dplyr::across(.cols = !tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      dplyr::summarise(dplyr::across(.cols = dplyr::everything(), .fns = ~ sum(.x, na.rm = na.rm))) %>%
+      dplyr::ungroup()
   }
-  if (franceprovince == T) {
+  if (franceprovince == TRUE) {
     fp <- au_cog %>%
       dplyr::filter(!(REG %in% c("01", "02", "03", "04", "05", "06", "11"))) %>%
-      select(-REG, -NOM_REG, -DEP, -NOM_DEP, -DEPCOM, -NOM_DEPCOM, -EPCI, -NOM_EPCI, -DEPARTEMENTS_DE_L_EPCI, -REGIONS_DE_L_EPCI) %>%
-      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
-      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
-      ungroup
+      dplyr::select(-REG, -NOM_REG, -DEP, -NOM_DEP, -DEPCOM, -NOM_DEPCOM, -EPCI, -NOM_EPCI, -DEPARTEMENTS_DE_L_EPCI, -REGIONS_DE_L_EPCI) %>%
+      dplyr::group_by(dplyr::across(.cols = !tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      dplyr::summarise(dplyr::across(.cols = dplyr::everything(), .fns = ~ sum(.x, na.rm = na.rm))) %>%
+      dplyr::ungroup()
   }
-  if (drom == T) {
+  if (drom == TRUE) {
     dr <- au_cog %>%
       dplyr::filter(REG %in% c("01", "02", "03", "04", "05", "06")) %>%
-      select(-REG, -NOM_REG, -DEP, -NOM_DEP, -DEPCOM, -NOM_DEPCOM, -EPCI, -NOM_EPCI, -DEPARTEMENTS_DE_L_EPCI, -REGIONS_DE_L_EPCI) %>%
-      group_by(across(!tidyselect::vars_select_helpers$where(is.numeric))) %>%
-      summarise(across(.fns = ~ sum(.x, na.rm = na.rm))) %>%
-      ungroup
+      dplyr::select(-REG, -NOM_REG, -DEP, -NOM_DEP, -DEPCOM, -NOM_DEPCOM, -EPCI, -NOM_EPCI, -DEPARTEMENTS_DE_L_EPCI, -REGIONS_DE_L_EPCI) %>%
+      dplyr::group_by(dplyr::across(.cols = !tidyselect::vars_select_helpers$where(is.numeric))) %>%
+      dplyr::summarise(dplyr::across(.cols = dplyr::everything(),.fns = ~ sum(.x, na.rm = na.rm))) %>%
+      dplyr::ungroup()
   }
 
 
   result <- list("communes" = c, "epci" = e, "departements" = d, "regions" = r, "metro" = m, "metrodrom" = md, "franceprovince" = fp, "drom" = dr)
 
-  if (as_df == T) {
+  if (as_df == TRUE) {
     result <- cog_list_to_df(result)
   }
 
