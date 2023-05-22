@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COGiter</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.11</span>
       </span>
     </div>
 
@@ -85,13 +85,15 @@
 
       
 
-      </header><script src="cogiter_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Gestion des fusions de communes et consolidation supra communales</h1>
-                        <h4 data-toc-skip class="author">Maël THEULIERE</h4>
+      <h1 data-toc-skip>Gestion des fusions de communes et consolidation
+supra communales</h1>
+                        <h4 data-toc-skip class="author">Maël
+THEULIERE</h4>
             
-            <h4 data-toc-skip class="date">2023-04-21</h4>
+            <h4 data-toc-skip class="date">2023-05-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/MaelTheuliere/COGiter/blob/HEAD/vignettes/cogiter.Rmd" class="external-link"><code>vignettes/cogiter.Rmd</code></a></small>
       <div class="hidden name"><code>cogiter.Rmd</code></div>
@@ -102,18 +104,26 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/MaelTheuliere/COGiter" class="external-link">COGiter</a></span><span class="op">)</span></span></code></pre></div>
-<p>Ce document va vous permettre de comprendre comment fonctionne les différentes fonctions de <a href="https://github.com/MaelTheuliere/COGiter" class="external-link">COGiter</a> pour :</p>
+<p>Ce document va vous permettre de comprendre comment fonctionne les
+différentes fonctions de <a href="https://github.com/MaelTheuliere/COGiter" class="external-link">COGiter</a> pour :</p>
 <ul>
 <li>gérer les fusions de communes<br>
 </li>
-<li>consolider vos données communales au niveau epci, départements, régions ou autres zonages en votre possession.</li>
+<li>consolider vos données communales au niveau epci, départements,
+régions ou autres zonages en votre possession.</li>
 </ul>
 <div class="section level2">
 <h2 id="passer-au-cog-à-jour">Passer au cog à jour<a class="anchor" aria-label="anchor" href="#passer-au-cog-%C3%A0-jour"></a>
 </h2>
-<p>Pour passer une table de données communale à la carte des communes à jour, vous pouvez utiliser la fonction <code><a href="../reference/passer_au_cog_a_jour.html">passer_au_cog_a_jour()</a></code> qui permet de retrouver pour tout code commune ayant existé le code commune aujourd’hui actif sur son périmètre géographique.</p>
-<p>Attention, cette règle ne marche que pour les fusions de communes.</p>
-<p>Le périmètre de couverture de la fonction est pour l’instant la France métropolitaine et les DROM.</p>
+<p>Pour passer une table de données communale à la carte des communes à
+jour, vous pouvez utiliser la fonction
+<code><a href="../reference/passer_au_cog_a_jour.html">passer_au_cog_a_jour()</a></code> qui permet de retrouver pour tout
+code commune ayant existé le code commune aujourd’hui actif sur son
+périmètre géographique.</p>
+<p>Attention, cette règle ne marche que pour les fusions de
+communes.</p>
+<p>Le périmètre de couverture de la fonction est pour l’instant la
+France métropolitaine et les DROM.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pop2015</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 35,441</span></span>
@@ -138,14 +148,24 @@
 <div class="section level2">
 <h2 id="construire-des-aggrégations-supra-communale">Construire des aggrégations supra communale<a class="anchor" aria-label="anchor" href="#construire-des-aggr%C3%A9gations-supra-communale"></a>
 </h2>
-<p>Pour reconstituer à partir d’une table de données communale l’ensemble des totaux pour les zonages supra communaux principaux de France (EPCI, départements, régions), vous pouvez utiliser la fonction <code><a href="../reference/cogifier.html">cogifier()</a></code> qui permet de recalculer sur la base d’une table communale ces totaux.</p>
-<p>La fonction calcule le total en prenant en dimension toutes les variables facteur ou caractère de la table et en variable à agréger toutes les variables numériques.</p>
-<p>En plus des agrégats epci, départements, régions, la fonction <code><a href="../reference/cogifier.html">cogifier()</a></code> permet de calculer :</p>
+<p>Pour reconstituer à partir d’une table de données communale
+l’ensemble des totaux pour les zonages supra communaux principaux de
+France (EPCI, départements, régions), vous pouvez utiliser la fonction
+<code><a href="../reference/cogifier.html">cogifier()</a></code> qui permet de recalculer sur la base d’une table
+communale ces totaux.</p>
+<p>La fonction calcule le total en prenant en dimension toutes les
+variables facteur ou caractère de la table et en variable à agréger
+toutes les variables numériques.</p>
+<p>En plus des agrégats epci, départements, régions, la fonction
+<code><a href="../reference/cogifier.html">cogifier()</a></code> permet de calculer :</p>
 <ul>
 <li>le total France métropolitaine (<code>metro = TRUE</code>)</li>
-<li>le total France métropolitaine et DROM (<code>metrodrom = TRUE</code>)</li>
-<li>le total Départements et régions d’outre mer (<code>drom = TRUE</code>)</li>
-<li>le total France de province (<code>franceprovince = TRUE</code>)</li>
+<li>le total France métropolitaine et DROM
+(<code>metrodrom = TRUE</code>)</li>
+<li>le total Départements et régions d’outre mer
+(<code>drom = TRUE</code>)</li>
+<li>le total France de province
+(<code>franceprovince = TRUE</code>)</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pop2015</span><span class="op">)</span></span>
@@ -165,7 +185,10 @@
 <span><span class="co">#&gt; $ pop2015        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 767, 241, 14127, 1619, 109, 2615, 747, 342, 1133, 390, …</span></span>
 <span><span class="co">#&gt; $ pop2015_a_part <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 18, 1, 504, 33, 6, 107, 18, 9, 19, 11, 4, 3, 94, 12, 5,…</span></span>
 <span><span class="co">#&gt; $ pop2015_totale <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401, …</span></span></code></pre></div>
-<p>Vous pouvez choisir deux types de format : un format dataframe qui constitue une table unique, un format liste qui constitue une liste de dataframes pour chaque zonage (communes, EPCI, départements, régions).</p>
+<p>Vous pouvez choisir deux types de format : un format dataframe qui
+constitue une table unique, un format liste qui constitue une liste de
+dataframes pour chaque zonage (communes, EPCI, départements,
+régions).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pop2015</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 35,441</span></span>
@@ -184,7 +207,9 @@
 <span><span class="co">#&gt; $ pop2015        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 767, 241, 14127, 1619, 109, 2615, 747, 342, 1133, 390, …</span></span>
 <span><span class="co">#&gt; $ pop2015_a_part <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 18, 1, 504, 33, 6, 107, 18, 9, 19, 11, 4, 3, 94, 12, 5,…</span></span>
 <span><span class="co">#&gt; $ pop2015_totale <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 785, 242, 14631, 1652, 115, 2722, 765, 351, 1152, 401, …</span></span></code></pre></div>
-<p>Les fonctions <code><a href="../reference/cog_df_to_list.html">cog_df_to_list()</a></code> et <code><a href="../reference/cog_list_to_df.html">cog_list_to_df()</a></code> permettent de passer d’un format à l’autre.</p>
+<p>Les fonctions <code><a href="../reference/cog_df_to_list.html">cog_df_to_list()</a></code> et
+<code><a href="../reference/cog_list_to_df.html">cog_list_to_df()</a></code> permettent de passer d’un format à
+l’autre.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pop2015_cogifiee_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cog_list_to_df.html">cog_list_to_df</a></span><span class="op">(</span><span class="va">pop2015_cogifiee_liste</span><span class="op">)</span></span>
 <span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee_df</span><span class="op">)</span></span>
@@ -200,8 +225,10 @@
 <div class="section level2">
 <h2 id="filtrer-sur-un-sous-ensemble-du-territoire">Filtrer sur un sous ensemble du territoire<a class="anchor" aria-label="anchor" href="#filtrer-sur-un-sous-ensemble-du-territoire"></a>
 </h2>
-<p><code><a href="../reference/filtrer_cog.html">filtrer_cog()</a></code> va permettre, sur une table cogifiée d’appliquer un filtre pour ne garder que certains zonages.</p>
-<p>Exemple, si je ne souhaite garder que les données relatives à la région Pays de la Loire.</p>
+<p><code><a href="../reference/filtrer_cog.html">filtrer_cog()</a></code> va permettre, sur une table cogifiée
+d’appliquer un filtre pour ne garder que certains zonages.</p>
+<p>Exemple, si je ne souhaite garder que les données relatives à la
+région Pays de la Loire.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pop2015_cogifiee_r52</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog.html">filtrer_cog</a></span><span class="op">(</span><span class="va">pop2015_cogifiee</span>, reg <span class="op">=</span> <span class="st">"52"</span><span class="op">)</span></span>
 <span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee_r52</span><span class="op">)</span></span>
@@ -213,7 +240,8 @@
 <span><span class="co">#&gt; $ pop2015        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2042, 3700, 10403, 6666, 1801, 2525, 8698, 2974, 2834, …</span></span>
 <span><span class="co">#&gt; $ pop2015_a_part <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 28, 104, 481, 86, 31, 57, 224, 100, 47, 38, 63, 194, 14…</span></span>
 <span><span class="co">#&gt; $ pop2015_totale <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2070, 3804, 10884, 6752, 1832, 2582, 8922, 3074, 2881, …</span></span></code></pre></div>
-<p>On peut vouloir garder les informations pour le total des autres régions ou le total France entière.</p>
+<p>On peut vouloir garder les informations pour le total des autres
+régions ou le total France entière.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pop2015_cogifiee_r52</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filtrer_cog.html">filtrer_cog</a></span><span class="op">(</span><span class="va">pop2015_cogifiee</span>, reg <span class="op">=</span> <span class="st">"52"</span>, garder_supra <span class="op">=</span> <span class="st">"&gt;="</span><span class="op">)</span></span>
 <span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">pop2015_cogifiee_r52</span><span class="op">)</span></span>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">COGiter</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.11</span>
       </span>
     </div>
 
@@ -153,11 +153,6 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/MaelTheuliere/COGiter" class="external-link">COGiter</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">zonage_aav</span> <span class="op">&lt;-</span> <span class="fu"><a href="charger_zonage.html">charger_zonage</a></span><span class="op">(</span><span class="st">"AAV2020"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">cogpop2015</span> <span class="op">&lt;-</span> <span class="fu"><a href="cogifier.html">cogifier</a></span><span class="op">(</span><span class="va">pop2015</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>There was 1 warning in `summarise()`.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> In argument: `across(.fns = ~sum(.x, na.rm = na.rm))`.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> Caused by warning:</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Using `across()` without supplying `.cols` was deprecated in dplyr 1.1.0.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please supply `.cols` instead.</span>
 <span class="r-in"><span><span class="va">cogpop2015aav</span> <span class="op">&lt;-</span> <span class="fu">ajouter_typologie</span><span class="op">(</span>.data <span class="op">=</span> <span class="va">cogpop2015</span>, zonage_df <span class="op">=</span> <span class="va">zonage_aav</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(DEPCOM)`</span>
 </code></pre></div>
