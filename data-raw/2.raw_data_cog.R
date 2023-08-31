@@ -278,6 +278,8 @@ table_passage_com_historique_new <- read_xlsx(paste0(repo_mil, "/table_passage_g
 
 table_passage_com_historique <- table_passage_com_hist_old %>%
   left_join(table_passage_com_historique_new, by = c("DEPCOM_old" = "DEPCOM_HIST")) %>%
+  # gestion de la scission COM 14666 - com 14712
+  mutate(DEPCOM = if_else(DEPCOM_HIST_old %in% c("14666"), DEPCOM_HIST_old, DEPCOM)) %>%
   select(DEPCOM_HIST = DEPCOM_HIST_old, DEPCOM) %>%
   distinct() %>%
   mutate(across(everything(), fact.enc.utf8))

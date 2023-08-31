@@ -1,3 +1,6 @@
+# COGiter 0.0.12  
+- Table de passage communes historiques / communes actuelles : fix erreur sur commune '14666' - Sannerville, rétablie en 31/12/2019, que l'ajout des fusions antérieures à 2003 avait mal gérée.
+
 # COGiter 0.0.11  
 - Enrichissement de la table de passage communes historiques / communes actuelles: ajout de 2396 fusions de communes antérieures à 2003.
 
