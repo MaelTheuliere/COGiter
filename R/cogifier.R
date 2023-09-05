@@ -19,7 +19,7 @@
 #' pop2015_cogifiee <- cogifier(pop2015, code_commune = DEPCOM)
 #'
 #' @export
-#' @importFrom dplyr select group_by across summarise ungroup filter everything
+#' @importFrom dplyr select group_by across summarise ungroup filter everything any_of
 #' @importFrom rlang enquo !!
 #' @importFrom tidyselect vars_select_helpers
 cogifier <- function(.data, code_commune = DEPCOM,
@@ -35,7 +35,24 @@ cogifier <- function(.data, code_commune = DEPCOM,
                      na.rm = FALSE) {
   quo_code_commune <- rlang::enquo(code_commune)
   au_cog <- passer_au_cog_a_jour(.data = .data, code_commune = !!quo_code_commune,
-    garder_info_supra = TRUE, aggrege = FALSE, na.rm = na.rm)
+                                 garder_info_supra = TRUE, aggrege = FALSE, na.rm = na.rm)
+
+  # colonnes d'appartenance geo à enlever, a priori ce ne sont pas des dimensions à conserver
+  dim_geo <- intersect(names(.data), names(COGiter::communes_info_supra)) %>%
+    setdiff("DEPCOM")
+  dim_geo_suffixee <- paste0(dim_geo, "_hist") # passer_au_cog_a_jour suffixe les noms de colonnes communs avec communes_info_supra
+  if(length(dim_geo) == 1) {
+    message("Votre jeu de donnees '.data' contient une colonne d'appartenance geo qui va etre supprimee avant traitement : '", dim_geo,
+            "',\nrenommez-la au préalable si vous souhaitez conserver cet axe d'analyse.\n" )
+    au_cog <- au_cog %>%
+      dplyr::select(-dplyr::all_of(dim_geo_suffixee))
+  } else if(length(dim_geo) > 1){
+    message("Votre jeu de donnees '.data' contient des colonnes d'appartenance geo qui vont etre supprimees avant traitement : '", paste(dim_geo, collapse = "', '"),
+            "',\nrenommez-les au préalable si vous souhaitez conserver ces axes d'analyse.\n" )
+    au_cog <- au_cog %>%
+      dplyr::select(-dplyr::all_of(dim_geo_suffixee))
+    }
+
   c <- NULL
   e <- NULL
   d <- NULL
