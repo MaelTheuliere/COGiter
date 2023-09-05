@@ -43,12 +43,12 @@ cogifier <- function(.data, code_commune = DEPCOM,
   dim_geo_suffixee <- paste0(dim_geo, "_hist") # passer_au_cog_a_jour suffixe les noms de colonnes communs avec communes_info_supra
   if(length(dim_geo) == 1) {
     message("Votre jeu de donnees '.data' contient une colonne d'appartenance geo qui va etre supprimee avant traitement : '", dim_geo,
-            "',\nrenommez-la au préalable si vous souhaitez conserver cet axe d'analyse.\n" )
+            "',\nrenommez-la au prealable si vous souhaitez conserver cet axe d'analyse." )
     au_cog <- au_cog %>%
       dplyr::select(-dplyr::all_of(dim_geo_suffixee))
   } else if(length(dim_geo) > 1){
     message("Votre jeu de donnees '.data' contient des colonnes d'appartenance geo qui vont etre supprimees avant traitement : '", paste(dim_geo, collapse = "', '"),
-            "',\nrenommez-les au préalable si vous souhaitez conserver ces axes d'analyse.\n" )
+            "',\nrenommez-les au prealable si vous souhaitez conserver ces axes d'analyse." )
     au_cog <- au_cog %>%
       dplyr::select(-dplyr::all_of(dim_geo_suffixee))
     }
