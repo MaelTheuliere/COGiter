@@ -32,8 +32,9 @@ Ce package R vise à mettre à disposition :
   du COG 2023,  
 - des fonctions de calculs d’agrégats aux différentes échelles
   territoriales,  
-- des fonctions d’aide à la sélection des différents fond de cartes
-  nécessaire à la mise en page de cartes statistiques.
+- des fonctions d’aide à la sélection des différents fonds de cartes
+  nécessaire à la mise en page de cartes statistiques,
+- des [tables de passages communales](https://maeltheuliere.github.io/COGiter/reference/table_passage_communes_zonages.html) vers les zonages d'études de l'INSEE.
 
 Le tout avec des règles de nommage identiques pour faciliter les
 appariements.
