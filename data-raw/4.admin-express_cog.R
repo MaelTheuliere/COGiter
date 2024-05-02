@@ -7,16 +7,16 @@ library(archive)
 library(units)
 load("data/communes_info_supra.rda")
 load("data/table_passage_com_historique.rda")
-millesime <- "2023"
+millesime <- "2024"
 
 
 # (télé)chargement Admin Express -------------------------------
 repo_mil <- paste0("data-raw/source/", millesime, "/adminexpress")
-repo_dest <- "/ADMIN-EXPRESS-COG-CARTO_3-1__SHP_WGS84G_FRA_2023-04-06"
+repo_dest <- "/ADMIN-EXPRESS-COG-CARTO_3-2__SHP_WGS84G_FRA_2024-02-22"
 
 ## téléchargement des couches IGN admin express COG carto ----
 ## Chargements des données présentes sur le site IGN :https://geoservices.ign.fr/adminexpress (10min hors RIE)
-download.file(paste0("https://wxs.ign.fr/x02uy2aiwjo9bm8ce5plwqmr/telechargement/prepackage/ADMINEXPRESS-COG-CARTO_SHP_WGS84G_PACK_2023-04-06$ADMIN-EXPRESS-COG-CARTO_3-1__SHP_WGS84G_FRA_2023-04-06/file/ADMIN-EXPRESS-COG-CARTO_3-1__SHP_WGS84G_FRA_2023-04-06.7z"),
+download.file(paste0("https://data.geopf.fr/telechargement/download/ADMIN-EXPRESS-COG-CARTO/ADMIN-EXPRESS-COG-CARTO_3-2__SHP_WGS84G_FRA_2024-02-22/ADMIN-EXPRESS-COG-CARTO_3-2__SHP_WGS84G_FRA_2024-02-22.7z"),
               destfile = paste0(repo_mil, repo_dest, ".7z"), method = "curl")
 
 ## lecture du zip et dezippage
@@ -107,15 +107,12 @@ gc()
 
 ## Communes
 
-# chargement des surface communale issues de la bd carto 2021
+# chargement des surfaces communales issues de la bd carto 2021
+
 # source(paste0("data-raw/4.bd_carto_surf_com_", millesime, ".R"))
-load(file = "data-raw/source/2022/bd_carto/superf_communes.RData")
-superf_communes <- rename(superf_communes, DEPCOM_HIST = INSEE_COM, AREA = SUPERFICIE) %>%
-  left_join(table_passage_com_historique %>% mutate(DEPCOM_HIST = as.character(DEPCOM_HIST)), by = "DEPCOM_HIST") %>%
-  select(DEPCOM, AREA) %>%
-  group_by(DEPCOM) %>%
-  summarise(AREA = sum(drop_units(AREA)), .groups = "drop") %>%
-  filter(!is.na(DEPCOM))
+load(file = paste0("data-raw/source/", millesime, "/adminexpress/superf_communes.RData"))
+superf_communes <- rename(surf_com, AREA = surface_m2) %>%
+  mutate(AREA = drop_units(AREA))
 
 nrow(superf_communes) == nrow(communes_info_supra)
 communes_geo <- communes_geo_0 %>%

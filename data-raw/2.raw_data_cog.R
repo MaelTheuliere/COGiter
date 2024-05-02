@@ -5,7 +5,7 @@ library(readxl)
 library(arrow)
 library(usethis)
 
-millesime <- "2023"
+millesime <- "2024"
 repo_mil <- paste0("data-raw/source/", millesime, "/COG/")
 
 fact.enc.utf8 <- function(a) {
@@ -18,10 +18,10 @@ fact.enc.utf8 <- function(a) {
 # https://www.insee.fr/fr/information/2560452
 
 # dir.create(repo_mil, recursive = TRUE)
-# download.file("https://www.insee.fr/fr/statistiques/fichier/6800675/cog_ensemble_2023_csv.zip",
+# download.file("https://www.insee.fr/fr/statistiques/fichier/7766585/cog_ensemble_2024_csv.zip",
 #               destfile = paste0(repo_mil, "/cog_ensemble_", millesime, "_csv.zip"))
-# unzip(zipfile = paste0(repo_mil, "/cog_ensemble_", millesime, "_csv.zip"),
-#       exdir = repo_mil, overwrite = TRUE)
+unzip(zipfile = paste0(repo_mil, "/cog_ensemble_", millesime, "_csv.zip"),
+      exdir = repo_mil, overwrite = TRUE)
 
 # Création des tables suivantes:
 # régions : copie de la table régions du cog avec des noms de variables normalisées
@@ -61,8 +61,8 @@ str(departements)
 # table des départements sièges d'EPCI créée par le script 1_dep_siege_epci.R
 load(paste0("data-raw/source/", millesime,"/siege_epci.RData"))
 # table de la composition communale des EPCI : https://www.collectivites-locales.gouv.fr/institutions/liste-et-composition-des-epci-fiscalite-propre
-# download.file(url = paste0("https://www.collectivites-locales.gouv.fr/files/Accueil/DESL/", millesime, "/epcicom", millesime, ".xlsx"),
-#               destfile = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), method = "curl")
+download.file(url = paste0("https://www.collectivites-locales.gouv.fr/files/Accueil/DESL/", millesime, "/epcicom", millesime, ".xlsx"),
+              destfile = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), method = "curl")
 
 epci_0 <- read_excel(path = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), sheet = 1) %>%
   mutate(
@@ -150,27 +150,6 @@ communes_epci <- communes_cog %>%
 table_passage_com_epci <- communes_epci  %>%
   select(DEPCOM, EPCI)
 
-# Table des mouvements de communes ----------------------------------------
-
-mvtcommunes <- read_csv(paste0("data-raw/source/", millesime, "/COG/v_mvtcommune_", millesime, ".csv"),
-                      col_types = cols(
-                        MOD = col_factor(),
-                        DATE_EFF = col_date(format = ""),
-                        TYPECOM_AV = col_factor(),
-                        COM_AV = col_factor(),
-                        TNCC_AV = col_factor(),
-                        NCC_AV = col_factor(),
-                        NCCENR_AV = col_factor(),
-                        LIBELLE_AV = col_factor(),
-                        TYPECOM_AP = col_factor(),
-                        COM_AP = col_factor(),
-                        TNCC_AP = col_factor(),
-                        NCC_AP = col_factor(),
-                        NCCENR_AP = col_factor(),
-                        LIBELLE_AP = col_factor()
-                      ))  %>%
-  mutate(across(where(is.factor), fact.enc.utf8))
-
 
 # Table des informations supra communales de chaque commune ---------------
 
@@ -255,46 +234,82 @@ glimpse(COGiter::liste_zone)
 glimpse(liste_zone)
 
 
-# Table de passage des communes historiques ---------------------------------------
-# sources : https://www.insee.fr/fr/information/2028028 pour les mouvements depuis 2003 mis à jour chaque année par l'INSEE + table COGiter historique
+# Table des mouvements de communes ----------------------------------------
+# Table du millésime précédent
+table_passage_com_hist_old <- COGiter::table_passage_com_historique
+# save(table_passage_com_hist_old, file = paste0("data-raw/source/", millesime, "/COG/table_passage_com_historique_", mil_precdt, ".RData"))
+mil_precdt <- as.numeric(millesime) - 1
 
-#  table de passage historique avec les mouvements antérieurs à 2003
-table_passage_com_hist_old <- arrow::read_parquet("data-raw/table_passage_com_historique_2018.parquet") %>%
-  rename_with(~paste0(.x, "_old"))
+mvtcommunes <- read_csv(paste0("data-raw/source/", millesime, "/COG/v_mvt_commune_", millesime, ".csv"),
+                        col_types = cols(
+                          MOD = col_factor(),
+                          DATE_EFF = col_date(format = ""),
+                          TYPECOM_AV = col_factor(),
+                          COM_AV = col_character(),
+                          TNCC_AV = col_factor(),
+                          NCC_AV = col_factor(),
+                          NCCENR_AV = col_factor(),
+                          LIBELLE_AV = col_factor(),
+                          TYPECOM_AP = col_factor(),
+                          COM_AP = col_character(),
+                          TNCC_AP = col_factor(),
+                          NCC_AP = col_factor(),
+                          NCCENR_AP = col_factor(),
+                          LIBELLE_AP = col_factor()
+                        ))  %>%
+  mutate(across(where(is.factor), fact.enc.utf8))
 
-# table de passage à partir de 2003 tenue à jour par l'INSEE
-# download.file(paste0("https://www.insee.fr/fr/statistiques/fichier/2028028/table_passage_geo2003_geo", millesime, ".zip"),
-#               destfile = paste0(repo_mil, "/table_passage_geo2003_geo", millesime, ".zip"))
-# unzip(zipfile = paste0(repo_mil, "/table_passage_geo2003_geo", millesime, ".zip"),
-#       exdir = repo_mil)
+# on filtre cette table pour ne garder que :
+  # - les évolutions de l'année écoulée,
+  # - concernant les seules communes,
+  # - autres que des changements de nom (MOD == 10)
 
-table_passage_com_historique_new <- read_xlsx(paste0(repo_mil, "/table_passage_geo2003_geo", millesime, ".xlsx"), skip = 5) %>%
-  select(DEPCOM_HIST = CODGEO_INI, DEPCOM = paste0("CODGEO_", millesime)) %>%
-  mutate(DEPCOM = case_when( # correction bug toujours présent de saint martin et saint barthélemy qui ne sont pas rattachés sur leurs nouveaux codes commune.
-    DEPCOM_HIST == '97123'~'97701',
-    DEPCOM_HIST == '97127'~'97801',
-    TRUE ~ DEPCOM
-  ))
+table_evol_com_mil <- mvtcommunes %>%
+  filter(DATE_EFF > paste0(mil_precdt, "-01-01"), TYPECOM_AP == "COM", TYPECOM_AV == "COM", MOD != 10) %>%
+  select(MOD, COM_AV, COM_AP) %>%
+  distinct()
 
-table_passage_com_historique <- table_passage_com_hist_old %>%
-  left_join(table_passage_com_historique_new, by = c("DEPCOM_old" = "DEPCOM_HIST")) %>%
-  # gestion de la scission COM 14666 - com 14712
-  mutate(DEPCOM = if_else(DEPCOM_HIST_old %in% c("14666"), DEPCOM_HIST_old, DEPCOM)) %>%
-  select(DEPCOM_HIST = DEPCOM_HIST_old, DEPCOM) %>%
+# communes rétablies : identification
+com_retablies <- filter(table_evol_com_mil, MOD == 21, COM_AV != COM_AP) %>%
+  pull(COM_AP)
+# communes rétablies : fonction d'identification des lignes de correspondance entre communes à supprimer
+corresp_a_suppr <- function(df, idcom = "60694") {
+  mutate(df, a_virer = case_when(COM_AP == idcom & DEPCOM_HIST != idcom ~ TRUE,
+                                 COM_AP != idcom & DEPCOM_HIST == idcom ~ TRUE,
+                                 TRUE ~ FALSE)
+  ) %>%
+    filter(a_virer) %>%
+    pull(rowid)
+}
+
+# on applique les évolutions de l'année écoulée à la table de passage du millésime précédent
+table_passage_com_historique0 <- table_passage_com_hist_old %>%
+  left_join(table_evol_com_mil, by = c("DEPCOM" = "COM_AV"), relationship = "many-to-many") %>%
+  mutate(COM_AP = coalesce(COM_AP, DEPCOM)) %>%
+  rowid_to_column()
+
+# gestion des rétablissements de communes : COM 60694 sortie de 60054, COM 85165 et 85212 sorties de 85084 en 2024
+id_a_virer <- map(.x = com_retablies, .f = ~corresp_a_suppr(df = table_passage_com_historique0, idcom = .x)) %>%
+  unlist()
+
+table_passage_com_historique <- table_passage_com_historique0 %>%
+  mutate(A_virer = rowid %in% id_a_virer) %>%
+  filter(!A_virer) %>%
+  select(DEPCOM_HIST, DEPCOM = COM_AP) %>%
   distinct() %>%
   mutate(across(everything(), fact.enc.utf8))
 
 # Vérification : DEPCOM_HIST ne doit pas comporter de doublons
 table_passage_com_historique %>%
   add_count(DEPCOM_HIST) %>%
-  filter(n>1)
+  filter(n > 1)
 
 names(COGiter::table_passage_com_historique) == names(table_passage_com_historique)
 glimpse(COGiter::table_passage_com_historique)
 glimpse(table_passage_com_historique)
 
 
-# Gestion des arrondissements de PLM
+# Gestion des arrondissements de Paris Lyon Marseille
 # Les arrondissements sont gérés comme des anciens codes communes et rattachés à leur commune
 
 arn_plm <- communes_cog %>%
@@ -332,7 +347,7 @@ usethis::use_data(table_passage_com_historique, internal = FALSE, overwrite = TR
 usethis::use_data(arn_plm, internal = FALSE, overwrite = TRUE)
 
 
-## Chargement des couches communes et table_passage_com_historique dans production.cogiter---
+## Chargement des couches communes et table_passage_com_historique dans production.scte_cogiter---
 library(datalibaba)
 communes2 <- rowwise(communes) %>%
   mutate(across(where(is.list), ~paste0(.x, collapse = ", ") %>% as.factor),

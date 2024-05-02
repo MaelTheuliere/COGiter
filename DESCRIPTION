@@ -1,6 +1,6 @@
 Package: COGiter
-Title: Fonctions, Données et Fonds de Carte pour Gérer les Données au Territoire - COG 2023
-Version: 0.0.12
+Title: Fonctions, Données et Fonds de Carte pour Gérer les Données au Territoire - COG 2024
+Version: 0.0.13
 Authors@R: 
     c(person(given = "Maël",
              family = "THEULIERE",
@@ -19,7 +19,7 @@ Authors@R:
              )
 Description: Fonctions, données et fonds de carte pour gérer les données
     au territoire. Ce package permet notamment de gérer les fusions de
-    communes intervenues entre 2003 et 2022.
+    communes intervenues entre 2003 et 2024.
 License: MIT + file LICENSE
 URL: https://github.com/MaelTheuliere/COGiter 
 BugReports: https://github.com/MaelTheuliere/COGiter/issues

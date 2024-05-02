@@ -5,7 +5,7 @@
 \alias{COGiter}
 \title{COGiter : Fonctions, données et fonds de carte pour gérer les données au territoire.}
 \description{
-Ce package permet notamment de gérer les fusions de communes intervenues entre 2003 et 2022.
+Ce package permet notamment de gérer les fusions de communes intervenues entre 2003 et 2024.
 }
 \details{
 Pour apprendre comment utiliser COGiter, utiliser les vignettes :

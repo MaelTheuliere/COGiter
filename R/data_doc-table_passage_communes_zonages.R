@@ -13,6 +13,10 @@
   #'   \item{ LIB_ZE2020 }{  factor Libellé zone d'emploi 2020}
   #'   \item{ UU2020 }{  factor Code unité urbaine 2020 }
   #'   \item{ LIB_UU2020 }{  factor Libellé unité urbaine 2020}
+  #'   \item{ COMUU2020 }{  factor Statut de la commune dans l'unité urbaine 2020 }
+  #'   \item{ LIB_COMUU2020 }{  factor Libellé du statut de la commune dans l'unité urbaine 2020}
+  #'   \item{ TYPUU2020 }{  factor Type d'unité urbaine}
+  #'   \item{ LIB_TYPUU2020 }{  factor Libellé }
   #'   \item{ TUU2017 }{  factor Code tranche d'unité urbaine 2020 calculée sur la population 2017}
   #'   \item{ LIB_TUU2017 }{  factor Libellé tranche d'unité urbaine 2020 calculée sur la population 2017}
   #'   \item{ TDUU2017 }{  factor Code tranche d'unité urbaine calculée sur la population 2017}
@@ -30,3 +34,4 @@
   #' }
   #' @source Insee : https://www.insee.fr/fr/information/2028028
   "table_passage_communes_zonages"
+
