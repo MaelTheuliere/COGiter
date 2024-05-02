@@ -1,3 +1,3 @@
 .onLoad <- function(libname, pkgname){
-  message("Afin de mieux vous connaître et de mesurer l'usage de ce package, merci de lui mettre une étoile sur github :\nhttps://github.com/MaelTheuliere/COGiter")
+  packageStartupMessage("Afin de vous connaitre et de mesurer l\'usage de ce package, merci de lui mettre une \u00e9toile sur github :\nhttps://github.com/MaelTheuliere/COGiter")
 }
