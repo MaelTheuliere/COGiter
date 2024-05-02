@@ -1,8 +1,8 @@
-pandoc: 2.19.2
-pkgdown: 2.0.7
+pandoc: 3.1.11
+pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   cogiter: cogiter.html
   filtre_geo: filtre_geo.html
-last_built: 2024-01-18T09:30Z
+last_built: 2024-05-02T20:30Z
 
