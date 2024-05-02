@@ -25,36 +25,54 @@ remotes::install_github("MaelTheuliere/COGiter")
 
 Ce package R vise à mettre à disposition :
 
-- les tables du COG 2023 de l’Insee en RData,
-- une table de passage des COG historiques vers le COG millésimé 2023,
-- les couches géomatiques correspondant au COG 2023,
+- les tables du Code Officiel Géographique (COG) au millésime 2024 de
+  l’Insee en RData,
+- une table de passage des COG historiques vers le COG millésimé 2024,
+- les fonds de carte (couches géomatiques) correspondant au COG 2024,
 - des fonctions d’aide à au passage de jeux de données vers le millésime
-  du COG 2023,  
-- des fonctions de calculs d’agrégats aux différentes échelles
-  territoriales,  
-- des fonctions d’aide à la sélection des différents fonds de cartes
-  nécessaire à la mise en page de cartes statistiques,
-- des [tables de passages communales](https://maeltheuliere.github.io/COGiter/reference/table_passage_communes_zonages.html) vers les zonages d'études de l'INSEE.
+  du COG 2024,
+- des fonctions de calculs d’agrégats aux différentes échelles territoriales,
+- des fonctions de filtrage pour ne conserver que les territoires
+  correspondant à une région ou un département dans une table ou une carte
+- des [tables de passages
+  communales](https://maeltheuliere.github.io/COGiter/reference/table_passage_communes_zonages.html)
+  vers les zonages d’études de l’Insee.
+
 
 Le tout avec des règles de nommage identiques pour faciliter les
 appariements.
 
-Le package [COGUGAISON](https://github.com/antuki/COGugaison) rempli en
-partie la même fonction et nous vous invitons à privilégier son
-utilisation. Ce présent package visant à répondre à des besoins
-spécifiques du [DREAL datalab Pays de la
-Loire](http://www.pays-de-la-loire.developpement-durable.gouv.fr/dreal-centre-de-service-de-la-donnee-r1957.html)
-et est par ailleurs non stabilisé.
+Le package [COGUGAISON](https://github.com/antuki/COGugaison) remplit en
+partie la même fonction : il est plus fin en permettant de choisir les
+millésimes de départ et d’arrivée du COG par exemple, mais est plutôt
+destiné à traiter des fichiers nationaux. Par exemple, il ne comprend
+pas les fonctionnalités de filtres aux contours d’une région, d’un
+département ou d’un EPCI, et ne propose pas les fonds de cartes
+associés.
+
+Le présent package COGiter vise à répondre aux besoins de mise à jour du
+COG des services connaissances déconcentrés, besoins initialement
+identifiés par le [DREAL datalab Pays de la
+Loire](http://www.pays-de-la-loire.developpement-durable.gouv.fr/dreal-centre-de-service-de-la-donnee-r1957.html).
+Son maintien, année après année, est réalisé dans le cadre du [pôle
+national
+connaissance](https://greentechinnovation.fr/mission-connaissance/)
+porté par la DREAL Pays de la Loire, intitulé Acter (Appui à la
+connaissance territoriale reproductible), afin de mutualiser la solution
+apportée.
 
 ## Les données sources
 
-### Le COG Insee 2023
+### Le COG Insee 2024
 
 - <https://www.insee.fr/fr/information/2560452>
 
-### Admin Express COG Carto 2023 (couche France entière)
+### Admin Express COG Carto 2024 (couche France entière)
 
 - <https://geoservices.ign.fr/adminexpress#telechargementCogCarto>
+
+Les surfaces proviennent d’une mesure opérée sur la couche commune de la
+base Admin Express de l’IGN.
 
 ## Description du package
 

@@ -1,3 +1,6 @@
+# COGiter 0.0.13  
+- Mise à jour COG et fonds de carte 2024.  
+
 # COGiter 0.0.12  
 - Table de passage communes historiques / communes actuelles : fix erreur sur commune '14666' - Sannerville, rétablie en 31/12/2019, que l'ajout des fusions antérieures à 2003 avait mal gérée.
 

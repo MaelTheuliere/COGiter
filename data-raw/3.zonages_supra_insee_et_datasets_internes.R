@@ -1,23 +1,23 @@
 
 # datapréparation de la table de passage des communes vers les zonages supra de l'insee
 
-millesime <- "2023"
+millesime <- "2024"
 repo_mil <- paste0("data-raw/source/", millesime, "/COG")
-fich_mil <- paste0("table-appartenance-geo-communes-", substr(millesime, 3, 4))
+fich_mil <- paste0("table-appartenance-geo-communes-", millesime)
 path_fic_xls <- paste0(repo_mil, "/", fich_mil, ".xlsx")
 
 library(readxl)
 library(purrr)
 library(dplyr)
+library(forcats)
 
 fact.enc.utf8 <- function(a) {
   a <- as.factor(a) %>%
     fct_relabel(.fun = enc2utf8)
 }
 
-# intégration de la table d'appartenance
-
-download.file(paste0("https://www.insee.fr/fr/statistiques/fichier/2028028/", fich_mil, ".zip"),
+# intégration de la table d'appartenance (https://www.insee.fr/fr/information/7671844, publié vers la mi mars en 2023)
+download.file(paste0("https://www.insee.fr/fr/statistiques/fichier/7671844/", fich_mil, ".zip"),
               destfile = paste0(repo_mil, "/", fich_mil, ".zip"))
 
 unzip(zipfile = paste0(repo_mil, "/", fich_mil, ".zip"),
@@ -27,11 +27,11 @@ table_passage_com_zonages <- read_excel(path_fic_xls, skip = 5) %>%
   mutate(across(everything(), fact.enc.utf8))
 
 
-# lecture des données avec les libellés des zonages onglet Zones_supra_communales  --------
+# lecture des libellés des zonages onglet Zones_supra_communales  --------
 
 libelle_cv <- read_excel(path_fic_xls, skip = 5, sheet = "Zones_supra_communales") %>%
-  filter(NIVGEO == "CV") %>%
-  select(CV = CODGEO, LIB_CV = LIBGEO)
+  filter(NIVGEO == "CANOV") %>%
+  select(CANOV = CODGEO, LIB_CV = LIBGEO)
 
 libelle_arr <- read_excel(path_fic_xls, skip = 5, sheet = "Zones_supra_communales") %>%
   filter(NIVGEO == "ARR") %>%
@@ -53,8 +53,7 @@ libelle_aav2020 <- read_excel(path_fic_xls, skip = 5, sheet = "Zones_supra_commu
   filter(NIVGEO == "AAV2020") %>%
   select(AAV2020 = CODGEO, LIB_AAV2020 = LIBGEO)
 
-# lecture des données avec les libellés des zonages onglet documentation  --------
-
+# lecture des libellés des zonages onglet documentation  --------
 
 libelle_taav2017 <- read_excel(path_fic_xls, range = "A16:A21", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
   mutate(TAAV2017 = stringr::str_split_fixed(x, n = 2, " - ")[, 1],
@@ -87,6 +86,21 @@ libelle_tduu2017 <- read_excel(path_fic_xls, range = "A72:A92", sheet = "Documen
   ) %>%
   select(TDUU2017, LIB_TDUU2017)
 
+# TYPUU2020
+libelle_typuu2020 <- read_excel(path_fic_xls, range = "A95:A100", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
+  mutate(TYPUU2020 = stringr::str_split_fixed(x, n = 2, " ")[, 1],
+         LIB_TYPUU2020 = stringr::str_split_fixed(x, n = 2, " ")[, 2]
+  ) %>%
+  select(TYPUU2020, LIB_TYPUU2020)
+
+# COMUU2020
+libelle_comuu2020 <- read_excel(path_fic_xls, range = "A105:A108", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
+  mutate(COMUU2020 = stringr::str_split_fixed(x, n = 2, " ")[, 1],
+         LIB_COMUU2020 = stringr::str_split_fixed(x, n = 2, " ")[, 2]
+  ) %>%
+  select(COMUU2020, LIB_COMUU2020)
+
+
 # intégration des libellés à la table de passage -------------
 
 table_passage_communes_zonages <- list(table_passage_com_zonages,
@@ -97,15 +111,18 @@ table_passage_communes_zonages <- list(table_passage_com_zonages,
                                        libelle_cv,
                                        libelle_taav2017,
                                        libelle_tdaav2017,
+                                       libelle_uu2020,
+                                       libelle_typuu2020,
+                                       libelle_comuu2020,
                                        libelle_tduu2017,
                                        libelle_tuu2017,
-                                       libelle_uu2020,
                                        libelle_ze2020) %>%
   reduce(inner_join) %>%
   mutate(across(where(is.character), as.factor)) %>%
   rename(DEPCOM = CODGEO) %>%
-  select(DEPCOM, ARR, LIB_ARR, CV, LIB_CV, ZE2020, LIB_ZE2020, UU2020, LIB_UU2020, TUU2017, LIB_TUU2017, TDUU2017, LIB_TDUU2017,
-         AAV2020, LIB_AAV2020, TAAV2017, LIB_TAAV2017, TDAAV2017, LIB_TDAAV2017, CATEAAV2020, LIB_CATEAAV2020, BV2022, LIB_BV2022)
+  select(DEPCOM, ARR, LIB_ARR, CV = CANOV, LIB_CV, ZE2020, LIB_ZE2020, UU2020,  LIB_UU2020, COMUU2020, LIB_COMUU2020, TYPUU2020, LIB_TYPUU2020, TUU2017, LIB_TUU2017, TDUU2017, LIB_TDUU2017,
+         AAV2020, LIB_AAV2020 = LIBAAV2020, TAAV2017, LIB_TAAV2017, TDAAV2017, LIB_TDAAV2017, CATEAAV2020, LIB_CATEAAV2020, BV2022, LIB_BV2022)
+
 
 nrow(table_passage_communes_zonages) == nrow(table_passage_com_zonages)
 
@@ -122,6 +139,8 @@ liste_zonages <- tibble::tribble(
   "CV","Canton ville",
   "ZE2020","Zone d\'emploi 20220",
   "UU2020","Unit\u00e9 urbaine 2020",
+  "COMUU2020", "Statut de la commune dans l'unit\u00e9 urbaine",
+  "TYPUU2020", "Type d'unité urbaine",
   "TUU2017","Tranche d\'unit\u00e9 urbaine 2020 calcul\u00e9e sur la population 2017",
   "TDUU2017","Tranche d\u00e9taill\u00e9e d\'unit\u00e9 urbaine 2017",
   "AAV2020","Aire d\'attraction des villes 2020",
@@ -133,7 +152,7 @@ liste_zonages <- tibble::tribble(
 
 # un autre dataset interne, nécessaire pour les fonctions filtrer_cog
 com_limitrophes_epci_a_cheval <- select(communes, DEPCOM, NOM_DEPCOM, DEP, DEPARTEMENTS_DE_L_EPCI) %>%
-  unnest(DEPARTEMENTS_DE_L_EPCI) %>%
+  tidyr::unnest(DEPARTEMENTS_DE_L_EPCI) %>%
   filter(DEP != DEPARTEMENTS_DE_L_EPCI) %>%
   select(-DEP) %>%
   rename(DEP = DEPARTEMENTS_DE_L_EPCI) %>%

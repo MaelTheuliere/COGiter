@@ -5,7 +5,7 @@
 \alias{communes_info_supra}
 \title{Information supracommunales pour les communes actuelles.}
 \format{
-A data frame with 34945 rows and 10 variables:
+A data frame with 34935 rows and 10 variables:
 \describe{
 \item{DEPCOM}{Code Insee}
 \item{NOM_DEPCOM}{Nom en clair (typographie riche) avec article }
