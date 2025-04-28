@@ -1,20 +1,19 @@
 library(readr)
 library(dplyr)
 library(tricky)
-library(tidyr)
 
-millesime <- 2024
-
+millesime <- 2025
 telech <- tempfile()
-download.file(url = paste0('https://www.banatic.interieur.gouv.fr/V5/fichiers-en-telechargement/telecharger.php?zone=N&date=01/01/', millesime,'&format=E'),
+# https://www.data.gouv.fr/fr/datasets/base-nationale-sur-les-intercommunalites/
+download.file(url = paste0('https://www.data.gouv.fr/fr/datasets/r/6e05c448-62cc-4470-aa0f-4f31adea0bc4'),
               destfile = paste0(telech, "siege_epci.csv"))
 
-siege_epci <- readr::read_tsv(paste0(telech, "siege_epci.csv"), locale = locale("fr", encoding = "latin1"), show_col_types = FALSE) %>%
-  set_standard_names() %>%
-  select(EPCI = `n°_siren`, departement_siege) %>%
-  separate(departement_siege, into = c("DEP_SIEGE_EPCI", NA), sep = " - ") %>%
+siege_epci <- readr::read_delim(file = paste0(telech, "siege_epci.csv"), delim = ";",
+                                locale = locale("fr", encoding = "latin1"), show_col_types = FALSE) %>%
+  select(EPCI = siren, DEP_SIEGE_EPCI = dept) %>%
   distinct %>%
   mutate(across(c(EPCI, DEP_SIEGE_EPCI), ~as.character(.x) %>% as.factor()))
 
-
+dir.create(paste0("data-raw/source/", millesime))
 save(siege_epci, file = paste0("data-raw/source/", millesime,"/siege_epci.RData"))
+
