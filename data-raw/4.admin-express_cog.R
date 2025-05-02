@@ -7,17 +7,17 @@ library(archive)
 library(units)
 load("data/communes_info_supra.rda")
 load("data/table_passage_com_historique.rda")
-millesime <- "2024"
+millesime <- "2025"
 
 
 # (télé)chargement Admin Express -------------------------------
 repo_mil <- paste0("data-raw/source/", millesime, "/adminexpress")
-repo_dest <- "/ADMIN-EXPRESS-COG-CARTO_3-2__SHP_WGS84G_FRA_2024-02-22"
+repo_dest <- "/ADMIN-EXPRESS-COG-CARTO_3-2__SHP_WGS84G_FRA_2025-04-02"
 
 ## téléchargement des couches IGN admin express COG carto ----
 ## Chargements des données présentes sur le site IGN :https://geoservices.ign.fr/adminexpress (10min hors RIE)
-download.file(paste0("https://data.geopf.fr/telechargement/download/ADMIN-EXPRESS-COG-CARTO/ADMIN-EXPRESS-COG-CARTO_3-2__SHP_WGS84G_FRA_2024-02-22/ADMIN-EXPRESS-COG-CARTO_3-2__SHP_WGS84G_FRA_2024-02-22.7z"),
-              destfile = paste0(repo_mil, repo_dest, ".7z"), method = "curl")
+# download.file(paste0("https://data.geopf.fr/telechargement/download/ADMIN-EXPRESS-COG-CARTO/ADMIN-EXPRESS-COG-CARTO_3-2__SHP_WGS84G_FRA_2025-04-02/ADMIN-EXPRESS-COG-CARTO_3-2__SHP_WGS84G_FRA_2025-04-02.7z"),
+              # destfile = paste0(repo_mil, repo_dest, ".7z"), method = "curl")
 
 ## lecture du zip et dezippage
 contenu_list <- archive(paste0(repo_mil, repo_dest, ".7z"))
@@ -30,8 +30,8 @@ archive_extract(archive = paste0(repo_mil, repo_dest, ".7z"),
 com_fce_ent <- st_read(paste0(repo_mil,"/", path_com[1]))
 
 ## ménage
-file.remove(paste0(repo_mil,"/", path_com))
-list.dirs(paste0(repo_mil, repo_dest)) %>% unlink(., recursive = TRUE, force = TRUE)
+list.dirs(paste0(repo_mil, repo_dest)) %>%
+  unlink(., recursive = TRUE, force = TRUE)
 
 # Assemblage des couches communales métropole + DOM ---------
 
@@ -83,7 +83,6 @@ dom_geo <- rbind(l[[1]], l[[2]], l[[3]], l[[4]], l[[5]])
 
 # mapview::mapview(dom_geo$geometry)
 
-
 ## Assemblage com DOM et métro + simplification du contour
 communes_geo_00 <- rbind(com_metro, dom_geo) %>%
   as_tibble %>%
@@ -107,12 +106,25 @@ gc()
 
 ## Communes
 
-# chargement des surfaces communales issues de la bd carto 2021
+# chargement des surfaces communales issues de la bd carto 2025 - attention ref communes COG 2024
+# en csv et par département (limite de l'api IGN wfs 5000 éléments)
+gep_surf_com_dptmt <- function(dept = "15") {
+  readr::read_csv(paste0("https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAME=BDCARTO_V5:commune&PROPERTYNAME=BDCARTO_V5:code_insee,BDCARTO_V5:nom_officiel,BDCARTO_V5:surface_en_ha&OUTPUTFORMAT=csv&FILTER=%3CFilter%3E%3CPropertyIsEqualTo%3E%3CValueReference%3EBDCARTO_V5_V3:code_insee_du_departement%3C/ValueReference%3E%3CLiteral%3E", dept,"%3C/Literal%3E%3C/PropertyIsEqualTo%3E%3C/Filter%3E"), show_col_types = FALSE, col_types = "cccc") %>%
+    mutate(code_insee = as.character(code_insee))
+}
+load("data/departements.rda")
+depsurf <- purrr::map_dfr(departements$DEP, gep_surf_com_dptmt) %>%
+  mutate(DEPCOMB = code_insee, AREA = (10000 * as.double(surface_en_ha))) %>%
+  select(DEPCOMB, AREA)
 
-# source(paste0("data-raw/4.bd_carto_surf_com_", millesime, ".R"))
-load(file = paste0("data-raw/source/", millesime, "/adminexpress/superf_communes.RData"))
-superf_communes <- rename(surf_com, AREA = surface_m2) %>%
-  mutate(AREA = drop_units(AREA))
+# si millésime précédent, agrégation sur communes fusionnées et ajout des communes issues de scission
+load("data/communes.rda")
+superf_communes <- depsurf %>%
+  left_join(table_passage_com_historique, by = join_by(DEPCOMB == DEPCOM_HIST)) %>%
+  summarise(AREA = sum(AREA), .by = DEPCOM) %>%
+  right_join(communes) %>%
+  select(DEPCOM, AREA) %>%
+  mutate(AREA = set_units(AREA, "m^2"))
 
 nrow(superf_communes) == nrow(communes_info_supra)
 communes_geo <- communes_geo_0 %>%
@@ -168,9 +180,10 @@ com_geo_dom <- function(dep = "971", epsg = 5490) {
   com <- com_fce_ent %>%
     filter(INSEE_DEP == dep) %>%
     select(DEPCOM = INSEE_COM) %>%
-    inner_join(superf_communes, by = "DEPCOM") %>%
     st_transform(epsg) %>%
-    ms_simplify(keep = 0.05, keep_shapes = FALSE, weighting = 0.9)
+    ms_simplify(keep = 0.05, keep_shapes = FALSE, weighting = 0.9) %>%
+    inner_join(superf_communes, by = "DEPCOM")%>%
+    relocate(AREA, .after = DEPCOM)
   # gestion de l'encodage des chaines wkt
   st_crs(com)$wkt <- gsub("°|º", "\\\u00b0", st_crs(com)$wkt)
   return(com)
