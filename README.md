@@ -25,19 +25,20 @@ remotes::install_github("MaelTheuliere/COGiter")
 
 Ce package R vise à mettre à disposition :
 
-- les tables du Code Officiel Géographique (COG) au millésime 2024 de
+- les tables du Code Officiel Géographique (COG) au millésime 2025 de
   l’Insee en RData,
-- une table de passage des COG historiques vers le COG millésimé 2024,
-- les fonds de carte (couches géomatiques) correspondant au COG 2024,
+- une table de passage des COG historiques vers le COG millésimé 2025,
+- les fonds de carte (couches géomatiques) correspondant au COG 2025,
 - des fonctions d’aide à au passage de jeux de données vers le millésime
-  du COG 2024,
-- des fonctions de calculs d’agrégats aux différentes échelles territoriales,
+  du COG 2025,
+- des fonctions de calculs d’agrégats aux différentes échelles
+  territoriales,
 - des fonctions de filtrage pour ne conserver que les territoires
-  correspondant à une région ou un département dans une table ou une carte
+  correspondant à une région ou un département (nouveau) dans une table
+  ou une carte
 - des [tables de passages
   communales](https://maeltheuliere.github.io/COGiter/reference/table_passage_communes_zonages.html)
   vers les zonages d’études de l’Insee.
-
 
 Le tout avec des règles de nommage identiques pour faciliter les
 appariements.
@@ -63,11 +64,11 @@ apportée.
 
 ## Les données sources
 
-### Le COG Insee 2024
+### Le COG Insee 2025
 
 - <https://www.insee.fr/fr/information/2560452>
 
-### Admin Express COG Carto 2024 (couche France entière)
+### Admin Express COG Carto 2025 (couche France entière)
 
 - <https://geoservices.ign.fr/adminexpress#telechargementCogCarto>
 
