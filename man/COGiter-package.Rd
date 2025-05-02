@@ -30,6 +30,7 @@ Authors:
 
 Other contributors:
 \itemize{
+  \item Edouard MORIN \email{edouard.morin@developpement-durable.gouv.fr} [contributor]
   \item Caroline COUDRIN \email{caroline.coundrin@developpement-durable.gouv.fr} [contributor]
   \item Sebastien Rochette \email{sebastien@thinkr.fr} (\href{https://orcid.org/0000-0002-1565-9313}{ORCID}) [contributor]
 }

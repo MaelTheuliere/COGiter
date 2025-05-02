@@ -13,7 +13,7 @@ Authors@R:
       person(given = "Edouard",
              family = "MORIN",
              role = "ctb",
-             email = "edouard.morin@developpement-durable.gouv.fr")
+             email = "edouard.morin@developpement-durable.gouv.fr"),
       person(given = "Caroline",
              family = "COUDRIN",
              role = "ctb",
