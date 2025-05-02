@@ -5,7 +5,7 @@ library(readxl)
 library(arrow)
 library(usethis)
 
-millesime <- "2024"
+millesime <- "2025"
 repo_mil <- paste0("data-raw/source/", millesime, "/COG/")
 
 fact.enc.utf8 <- function(a) {
@@ -18,15 +18,15 @@ fact.enc.utf8 <- function(a) {
 # https://www.insee.fr/fr/information/2560452
 
 # dir.create(repo_mil, recursive = TRUE)
-# download.file("https://www.insee.fr/fr/statistiques/fichier/7766585/cog_ensemble_2024_csv.zip",
-#               destfile = paste0(repo_mil, "/cog_ensemble_", millesime, "_csv.zip"))
+# download.file("https://www.insee.fr/fr/statistiques/fichier/8377162/cog_ensemble_2025_csv.zip",
+              # destfile = paste0(repo_mil, "/cog_ensemble_", millesime, "_csv.zip"))
 unzip(zipfile = paste0(repo_mil, "/cog_ensemble_", millesime, "_csv.zip"),
       exdir = repo_mil, overwrite = TRUE)
 
 # Création des tables suivantes:
 # régions : copie de la table régions du cog avec des noms de variables normalisées
 # départements : copie de la table départements du cog avec des noms de variables normalisées
-# epci : Construite à partir de la table epci du cog, pour chaque epci,liste les attributs et les départements et régions d'appartenance
+# epci : Construite à partir de la table epci du cog, pour chaque epci, liste les attributs et les départements et régions d'appartenance
 # communes : copie de la table communes du cog avec des noms de variables normalisées
 # communes_info_supra : donne pour toutes les communes les epci, départements, régions de rattachement ainsi que les info de rattachement de l'epci de rattachement
 
@@ -58,14 +58,14 @@ str(COGiter::departements)
 str(departements)
 
 # Table des Epci ----------------------------------------------------------
-# table des départements sièges d'EPCI créée par le script 1_dep_siege_epci.R
-load(paste0("data-raw/source/", millesime,"/siege_epci.RData"))
+
 # table de la composition communale des EPCI : https://www.collectivites-locales.gouv.fr/institutions/liste-et-composition-des-epci-fiscalite-propre
 download.file(url = paste0("https://www.collectivites-locales.gouv.fr/files/Accueil/DESL/", millesime, "/epcicom", millesime, ".xlsx"),
               destfile = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), method = "curl")
 
 epci_0 <- read_excel(path = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), sheet = 1) %>%
   mutate(
+    DEP_SIEGE_EPCI = as.factor(dept),
     EPCI = as.factor(siren),
     NOM_EPCI = as.factor(raison_sociale),
     NATURE_EPCI = gsub("MET69|METRO", "ME", nature_juridique) %>% as.factor() %>%
@@ -73,7 +73,7 @@ epci_0 <- read_excel(path = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), sh
     ) %>%
   arrange(NATURE_EPCI, NOM_EPCI) %>%
   mutate(EPCI = fct_inorder(EPCI)) %>%
-  select(EPCI, NOM_EPCI, NATURE_EPCI) %>%
+  select(EPCI, NOM_EPCI, NATURE_EPCI, DEP_SIEGE_EPCI) %>%
   distinct() %>%
   as_tibble() %>%
   mutate(across(where(is.factor), fact.enc.utf8))
@@ -99,10 +99,9 @@ epci_rattachement_reg_dep <- communes_epci %>%
 
 epci <- epci_0 %>%
   left_join(epci_rattachement_reg_dep) %>%
-  left_join(siege_epci) # %>%
+  relocate(DEP_SIEGE_EPCI, .after = dplyr::everything()) # %>%
   # filter(EPCI != "ZZZZZZZZZ") # devenu inutile /!\, changement du fichier, plus les communes hors epci
 
-rm(siege_epci)
 
 # supervision pour vérifier évolution structure
 names(COGiter::epci) == names(epci)
@@ -237,8 +236,8 @@ glimpse(liste_zone)
 # Table des mouvements de communes ----------------------------------------
 # Table du millésime précédent
 table_passage_com_hist_old <- COGiter::table_passage_com_historique
-# save(table_passage_com_hist_old, file = paste0("data-raw/source/", millesime, "/COG/table_passage_com_historique_", mil_precdt, ".RData"))
 mil_precdt <- as.numeric(millesime) - 1
+# save(table_passage_com_hist_old, file = paste0("data-raw/source/", millesime, "/COG/table_passage_com_historique_", mil_precdt, ".RData"))
 
 mvtcommunes <- read_csv(paste0("data-raw/source/", millesime, "/COG/v_mvt_commune_", millesime, ".csv"),
                         col_types = cols(
@@ -362,4 +361,4 @@ poster_data(data = table_passage_com_historique2, table = "r_tb_passage_com_hist
 poster_data(data = table_passage_com_historique2, table = paste0("r_tb_passage_com_hist_000_", millesime), schema = "scte_cogiter", pk = "DEPCOM_HIST", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
 
 poster_data(data = table_passage_com_historique2, table = "r_cogiter_communes_000", schema = "donnee_generique", pk = "DEPCOM_HIST", post_row_name = FALSE,
-            droits_schema = TRUE, db = "consultation", overwrite = TRUE, user = "admin")
+            droits_schema = TRUE, db = "consultation", overwrite = TRUE, user = "csd")
