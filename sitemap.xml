@@ -1,183 +1,63 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/articles/cogiter.html</loc>
-  </url>
-  <url>
-    <loc>/articles/filtre_geo.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/COGiter.html</loc>
-  </url>
-  <url>
-    <loc>/reference/add_xx_yy.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ajouter_typologie.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ajouter_zonage.html</loc>
-  </url>
-  <url>
-    <loc>/reference/arn_plm.html</loc>
-  </url>
-  <url>
-    <loc>/reference/augmenter_liste_zone.html</loc>
-  </url>
-  <url>
-    <loc>/reference/charger_zonage.html</loc>
-  </url>
-  <url>
-    <loc>/reference/code_com_non_a_jour.html</loc>
-  </url>
-  <url>
-    <loc>/reference/code_com_plm.html</loc>
-  </url>
-  <url>
-    <loc>/reference/code_dep_of_com.html</loc>
-  </url>
-  <url>
-    <loc>/reference/code_dep_of_epci.html</loc>
-  </url>
-  <url>
-    <loc>/reference/code_epci_of_com.html</loc>
-  </url>
-  <url>
-    <loc>/reference/code_reg_of_com.html</loc>
-  </url>
-  <url>
-    <loc>/reference/code_reg_of_dep.html</loc>
-  </url>
-  <url>
-    <loc>/reference/code_reg_of_epci.html</loc>
-  </url>
-  <url>
-    <loc>/reference/code_xx_existe.html</loc>
-  </url>
-  <url>
-    <loc>/reference/code_zone.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cog_df_to_list.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cog_list_to_df.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cogifier.html</loc>
-  </url>
-  <url>
-    <loc>/reference/communes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/communes_cog.html</loc>
-  </url>
-  <url>
-    <loc>/reference/communes_geo_xx.html</loc>
-  </url>
-  <url>
-    <loc>/reference/communes_info_supra.html</loc>
-  </url>
-  <url>
-    <loc>/reference/departements.html</loc>
-  </url>
-  <url>
-    <loc>/reference/departements_geo_xx.html</loc>
-  </url>
-  <url>
-    <loc>/reference/epci.html</loc>
-  </url>
-  <url>
-    <loc>/reference/epci_geo_xx.html</loc>
-  </url>
-  <url>
-    <loc>/reference/filtrer_cog.html</loc>
-  </url>
-  <url>
-    <loc>/reference/filtrer_cog_geo.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_map.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/list_xx_in_yy.html</loc>
-  </url>
-  <url>
-    <loc>/reference/liste_zone.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lister_zonages.html</loc>
-  </url>
-  <url>
-    <loc>/reference/mvtcommunes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/nom_zone.html</loc>
-  </url>
-  <url>
-    <loc>/reference/passer_au_cog_a_jour.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pipe.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pop2015.html</loc>
-  </url>
-  <url>
-    <loc>/reference/regions.html</loc>
-  </url>
-  <url>
-    <loc>/reference/regions_geo_xx.html</loc>
-  </url>
-  <url>
-    <loc>/reference/table_passage_com_epci.html</loc>
-  </url>
-  <url>
-    <loc>/reference/table_passage_com_historique.html</loc>
-  </url>
-  <url>
-    <loc>/reference/table_passage_communes_zonages.html</loc>
-  </url>
-  <url>
-    <loc>/reference/translate_drom.html</loc>
-  </url>
-  <url>
-    <loc>/reference/trouver_zone.html</loc>
-  </url>
-  <url>
-    <loc>/reference/zonage_abc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/zonage_abc_r52.html</loc>
-  </url>
-  <url>
-    <loc>/reference/zonage_pinel_r52.html</loc>
-  </url>
-  <url>
-    <loc>/reference/zone_df_to_list.html</loc>
-  </url>
-  <url>
-    <loc>/reference/zone_list_to_df.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/articles/cogiter.html</loc></url>
+<url><loc>/articles/filtre_geo.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/COGiter-package.html</loc></url>
+<url><loc>/reference/add_xx_yy.html</loc></url>
+<url><loc>/reference/ajouter_typologie.html</loc></url>
+<url><loc>/reference/ajouter_zonage.html</loc></url>
+<url><loc>/reference/arn_plm.html</loc></url>
+<url><loc>/reference/augmenter_liste_zone.html</loc></url>
+<url><loc>/reference/charger_zonage.html</loc></url>
+<url><loc>/reference/code_com_non_a_jour.html</loc></url>
+<url><loc>/reference/code_com_plm.html</loc></url>
+<url><loc>/reference/code_dep_of_com.html</loc></url>
+<url><loc>/reference/code_dep_of_epci.html</loc></url>
+<url><loc>/reference/code_epci_of_com.html</loc></url>
+<url><loc>/reference/code_reg_of_com.html</loc></url>
+<url><loc>/reference/code_reg_of_dep.html</loc></url>
+<url><loc>/reference/code_reg_of_epci.html</loc></url>
+<url><loc>/reference/code_xx_existe.html</loc></url>
+<url><loc>/reference/code_zone.html</loc></url>
+<url><loc>/reference/cog_df_to_list.html</loc></url>
+<url><loc>/reference/cog_list_to_df.html</loc></url>
+<url><loc>/reference/cogifier.html</loc></url>
+<url><loc>/reference/communes.html</loc></url>
+<url><loc>/reference/communes_cog.html</loc></url>
+<url><loc>/reference/communes_geo_xx.html</loc></url>
+<url><loc>/reference/communes_info_supra.html</loc></url>
+<url><loc>/reference/departements.html</loc></url>
+<url><loc>/reference/departements_geo_xx.html</loc></url>
+<url><loc>/reference/epci.html</loc></url>
+<url><loc>/reference/epci_geo_xx.html</loc></url>
+<url><loc>/reference/filtrer_cog.html</loc></url>
+<url><loc>/reference/filtrer_cog_geo.html</loc></url>
+<url><loc>/reference/get_map.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/list_xx_in_yy.html</loc></url>
+<url><loc>/reference/liste_zone.html</loc></url>
+<url><loc>/reference/lister_zonages.html</loc></url>
+<url><loc>/reference/mvtcommunes.html</loc></url>
+<url><loc>/reference/nom_zone.html</loc></url>
+<url><loc>/reference/passer_au_cog_a_jour.html</loc></url>
+<url><loc>/reference/pipe.html</loc></url>
+<url><loc>/reference/pop2015.html</loc></url>
+<url><loc>/reference/regions.html</loc></url>
+<url><loc>/reference/regions_geo_xx.html</loc></url>
+<url><loc>/reference/table_passage_com_epci.html</loc></url>
+<url><loc>/reference/table_passage_com_historique.html</loc></url>
+<url><loc>/reference/table_passage_communes_zonages.html</loc></url>
+<url><loc>/reference/translate_drom.html</loc></url>
+<url><loc>/reference/trouver_zone.html</loc></url>
+<url><loc>/reference/zonage_abc.html</loc></url>
+<url><loc>/reference/zonage_abc_r52.html</loc></url>
+<url><loc>/reference/zonage_pinel_r52.html</loc></url>
+<url><loc>/reference/zone_df_to_list.html</loc></url>
+<url><loc>/reference/zone_list_to_df.html</loc></url>
 </urlset>
+
