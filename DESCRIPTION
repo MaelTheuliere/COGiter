@@ -1,6 +1,6 @@
 Package: COGiter
-Title: Fonctions, Données et Fonds De Carte Pour Gérer Les Données Au Territoire - COG 2024
-Version: 0.0.13
+Title: Fonctions, Données et Fonds De Carte Pour Gérer Les Données Au Territoire - COG 2025
+Version: 0.0.14
 Authors@R: 
     c(person(given = "Maël",
              family = "THEULIERE",
@@ -10,6 +10,10 @@ Authors@R:
              family = "ENGELARE-LEFEBVRE",
              role = c("cre"),
              email = "juliette.engelaere@developpement-durable.gouv.fr"),
+      person(given = "Edouard",
+             family = "MORIN",
+             role = "ctb",
+             email = "edouard.morin@developpement-durable.gouv.fr"),
       person(given = "Caroline",
              family = "COUDRIN",
              role = "ctb",
@@ -19,7 +23,7 @@ Authors@R:
              )
 Description: Fonctions, données et fonds de carte pour gérer les données
     au territoire. Ce package permet notamment de gérer les fusions de
-    communes intervenues entre 2003 et 2024.
+    communes intervenues entre 2003 et 2025.
 License: MIT + file LICENSE
 URL: https://maeltheuliere.github.io/COGiter/
 BugReports: https://github.com/MaelTheuliere/COGiter/issues
@@ -49,4 +53,4 @@ Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
