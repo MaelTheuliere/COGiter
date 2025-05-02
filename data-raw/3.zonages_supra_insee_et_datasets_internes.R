@@ -1,7 +1,7 @@
 
 # datapréparation de la table de passage des communes vers les zonages supra de l'insee
 
-millesime <- "2024"
+millesime <- "2025"
 repo_mil <- paste0("data-raw/source/", millesime, "/COG")
 fich_mil <- paste0("table-appartenance-geo-communes-", millesime)
 path_fic_xls <- paste0(repo_mil, "/", fich_mil, ".xlsx")
@@ -54,51 +54,99 @@ libelle_aav2020 <- read_excel(path_fic_xls, skip = 5, sheet = "Zones_supra_commu
   select(AAV2020 = CODGEO, LIB_AAV2020 = LIBGEO)
 
 # lecture des libellés des zonages onglet documentation  --------
+# chargement fichier AAV2020 pour métadonnées
+download.file(paste0("https://www.insee.fr/fr/statistiques/fichier/4803954/AAV2020_au_01-01-", millesime, ".zip"),
+              destfile = paste0(repo_mil, "/AAV2020_au_01-01-", millesime, ".zip"))
+unzip(zipfile = paste0(repo_mil, "/AAV2020_au_01-01-", millesime, ".zip"),
+      exdir = repo_mil)
+path_fic_xls_aac <- paste0(repo_mil, "/AAV2020_au_01-01-", millesime, ".xlsx")
 
-libelle_taav2017 <- read_excel(path_fic_xls, range = "A16:A21", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
+libelle_taav2017 <- read_excel(path_fic_xls_aac, range = "A14:A19", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
   mutate(TAAV2017 = stringr::str_split_fixed(x, n = 2, " - ")[, 1],
-    LIB_TAAV2017 = stringr::str_split_fixed(x, n = 2, " - ")[, 2]
+         LIB_TAAV2017 = stringr::str_split_fixed(x, n = 2, " - ")[, 2]
   ) %>%
   select(TAAV2017, LIB_TAAV2017)
 
-
-libelle_tdaav2017 <- read_excel(path_fic_xls, range = "A26:A42", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
+libelle_tdaav2017 <- read_excel(path_fic_xls_aac, range = "A24:A40", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
   mutate(TDAAV2017 = stringr::str_split_fixed(x, n = 2, " - ")[, 1],
-    LIB_TDAAV2017 = stringr::str_split_fixed(x, n = 2, " - ")[, 2]
+         LIB_TDAAV2017 = stringr::str_split_fixed(x, n = 2, " - ")[, 2]
   ) %>%
   select(TDAAV2017, LIB_TDAAV2017)
 
-libelle_cateaav2020 <- read_excel(path_fic_xls, range = "A47:A51", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
+taavtdaav_bycom <- read_excel(path_fic_xls_aac, sheet = "AAV2020", skip = 5) %>%
+  select(AAV2020,TAAV2017,TDAAV2017) %>% mutate(TAAV2017 = as.character(TAAV2017))
+table_passage_com_zonages <- table_passage_com_zonages %>% inner_join(taavtdaav_bycom)
+
+libelle_cateaav2020 <- read_excel(path_fic_xls_aac, range = "A45:A49", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
   mutate(CATEAAV2020 = stringr::str_split_fixed(x, n = 2, " - ")[, 1],
-    LIB_CATEAAV2020 = stringr::str_split_fixed(x, n = 2, " - ")[, 2]
+         LIB_CATEAAV2020 = stringr::str_split_fixed(x, n = 2, " - ")[, 2]
   ) %>%
   select(CATEAAV2020, LIB_CATEAAV2020)
 
-libelle_tuu2017 <- read_excel(path_fic_xls, range = "A56:A64", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
-  mutate(TUU2017 = stringr::str_split_fixed(x, n = 2, " ")[, 1],
-    LIB_TUU2017 = stringr::str_split_fixed(x, n = 2, " ")[, 2]
-  ) %>%
-  select(TUU2017, LIB_TUU2017)
+cataav_bycom <- read_excel(path_fic_xls_aac, sheet = "Composition_communale", skip = 5) %>%
+  select(CODGEO,CATEAAV2020) %>% mutate(CATEAAV2020 = as.character(CATEAAV2020))
+table_passage_com_zonages <- table_passage_com_zonages %>% inner_join(cataav_bycom)
 
-libelle_tduu2017 <- read_excel(path_fic_xls, range = "A72:A92", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
-  mutate(TDUU2017 = stringr::str_split_fixed(x, n = 2, " ")[, 1],
-    LIB_TDUU2017 = stringr::str_split_fixed(x, n = 2, " ")[, 2]
+# chargement fichier UU2020 pour métadonnées
+download.file(paste0("https://www.insee.fr/fr/statistiques/fichier/4802589/UU2020_au_01-01-", millesime, ".zip"),
+              destfile = paste0(repo_mil, "/UU2020_au_01-01-", millesime, ".zip"))
+unzip(zipfile = paste0(repo_mil, "/UU2020_au_01-01-", millesime, ".zip"),
+      exdir = repo_mil)
+path_fic_xls_uu <- paste0(repo_mil, "/UU2020_au_01-01-", millesime, ".xlsx")
+
+libelle_tuu2017 <- read_excel(path_fic_xls_uu, range = "A13:A20", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
+  mutate(TUU2017 = stringr::str_split_fixed(x, n = 2, " ")[, 1],
+         LIB_TUU2017 = paste0("Commune appartenant à une u",
+                              stringr::str_sub(stringr::str_split_fixed(x, n = 2, " ")[, 2],2))
   ) %>%
-  select(TDUU2017, LIB_TDUU2017)
+  select(TUU2017, LIB_TUU2017) %>%
+  mutate(LIB_TUU2017 = ifelse(TUU2017 == '8', "Commune appartenant à l'unité urbaine de Paris", LIB_TUU2017))
+TUU2017 <- c('0')
+LIB_TUU2017 <- c('Commune hors unité urbaine')
+libelle_tuu2017_0 <- data.frame(TUU2017, LIB_TUU2017)
+libelle_tuu2017<-bind_rows(libelle_tuu2017_0, libelle_tuu2017)
+
+libelle_tduu2017 <- read_excel(path_fic_xls_uu, range = "A25:A44", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
+  mutate(TDUU2017 = stringr::str_split_fixed(x, n = 2, " ")[, 1],
+         LIB_TDUU2017 = paste0("Commune appartenant à une u",
+                               stringr::str_sub(stringr::str_split_fixed(x, n = 2, " ")[, 2], 2))
+  ) %>%
+  select(TDUU2017, LIB_TDUU2017) %>%
+  mutate(LIB_TDUU2017 = ifelse(TDUU2017 == '80', "Commune appartenant à l'unité urbaine de Paris", LIB_TDUU2017))
+TDUU2017 <- c('00')
+LIB_TDUU2017 <- c('Commune hors unité urbaine')
+libelle_tduu2017_0 <- data.frame(TDUU2017, LIB_TDUU2017)
+libelle_tduu2017<-bind_rows(libelle_tduu2017_0, libelle_tduu2017)
 
 # TYPUU2020
-libelle_typuu2020 <- read_excel(path_fic_xls, range = "A95:A100", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
+libelle_typuu2020 <- read_excel(path_fic_xls_uu, range = "A47:A51", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
   mutate(TYPUU2020 = stringr::str_split_fixed(x, n = 2, " ")[, 1],
          LIB_TYPUU2020 = stringr::str_split_fixed(x, n = 2, " ")[, 2]
   ) %>%
   select(TYPUU2020, LIB_TYPUU2020)
 
+TYPUU2020 <- c('0')
+LIB_TYPUU2020 <- c('- Commune hors unité urbaine')
+libelle_typuu2020_0 <- data.frame(TYPUU2020, LIB_TYPUU2020)
+libelle_typuu2020<-bind_rows(libelle_typuu2020_0, libelle_typuu2020)
+
+uuttdtyp_bycom <- read_excel(path_fic_xls_uu, sheet = "UU2020", skip = 5) %>%
+  mutate(TYPUU2020 = TYPE_UU2020) %>%
+  select(UU2020,TUU2017, TDUU2017, TYPUU2020) %>%
+  mutate(TUU2017 = as.character(TUU2017),TDUU2017 = as.character(TDUU2017),TYPUU2020 = as.character(TYPUU2020))
+table_passage_com_zonages <- table_passage_com_zonages %>% inner_join(uuttdtyp_bycom)
+
 # COMUU2020
-libelle_comuu2020 <- read_excel(path_fic_xls, range = "A105:A108", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
+libelle_comuu2020 <- read_excel(path_fic_xls_uu, range = "A56:A59", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
   mutate(COMUU2020 = stringr::str_split_fixed(x, n = 2, " ")[, 1],
          LIB_COMUU2020 = stringr::str_split_fixed(x, n = 2, " ")[, 2]
   ) %>%
   select(COMUU2020, LIB_COMUU2020)
+
+comuu_bycom <- read_excel(path_fic_xls_uu, sheet = "Composition_communale", skip = 5) %>%
+  mutate(COMUU2020 = STATUT_COM_UU) %>%
+  select(CODGEO,COMUU2020)
+table_passage_com_zonages <- table_passage_com_zonages %>% inner_join(comuu_bycom)
 
 
 # intégration des libellés à la table de passage -------------
@@ -121,7 +169,7 @@ table_passage_communes_zonages <- list(table_passage_com_zonages,
   mutate(across(where(is.character), as.factor)) %>%
   rename(DEPCOM = CODGEO) %>%
   select(DEPCOM, ARR, LIB_ARR, CV = CANOV, LIB_CV, ZE2020, LIB_ZE2020, UU2020,  LIB_UU2020, COMUU2020, LIB_COMUU2020, TYPUU2020, LIB_TYPUU2020, TUU2017, LIB_TUU2017, TDUU2017, LIB_TDUU2017,
-         AAV2020, LIB_AAV2020 = LIBAAV2020, TAAV2017, LIB_TAAV2017, TDAAV2017, LIB_TDAAV2017, CATEAAV2020, LIB_CATEAAV2020, BV2022, LIB_BV2022)
+         AAV2020, LIB_AAV2020, TAAV2017, LIB_TAAV2017, TDAAV2017, LIB_TDAAV2017, CATEAAV2020, LIB_CATEAAV2020, BV2022, LIB_BV2022)
 
 
 nrow(table_passage_communes_zonages) == nrow(table_passage_com_zonages)
@@ -151,6 +199,9 @@ liste_zonages <- tibble::tribble(
 )
 
 # un autre dataset interne, nécessaire pour les fonctions filtrer_cog
+load("data/communes.rda")
+load("data/departements.rda")
+load("data/liste_zone.rda")
 com_limitrophes_epci_a_cheval <- select(communes, DEPCOM, NOM_DEPCOM, DEP, DEPARTEMENTS_DE_L_EPCI) %>%
   tidyr::unnest(DEPARTEMENTS_DE_L_EPCI) %>%
   filter(DEP != DEPARTEMENTS_DE_L_EPCI) %>%
