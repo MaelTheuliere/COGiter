@@ -109,6 +109,7 @@ gc()
 # chargement des surfaces communales issues de la bd carto 2025 - attention ref communes COG 2024
 # en csv et par département (limite de l'api IGN wfs 5000 éléments)
 gep_surf_com_dptmt <- function(dept = "15") {
+  message("Interrogation sur le departement ", dept)
   readr::read_csv(paste0("https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAME=BDCARTO_V5:commune&PROPERTYNAME=BDCARTO_V5:code_insee,BDCARTO_V5:nom_officiel,BDCARTO_V5:surface_en_ha&OUTPUTFORMAT=csv&FILTER=%3CFilter%3E%3CPropertyIsEqualTo%3E%3CValueReference%3EBDCARTO_V5_V3:code_insee_du_departement%3C/ValueReference%3E%3CLiteral%3E", dept,"%3C/Literal%3E%3C/PropertyIsEqualTo%3E%3C/Filter%3E"), show_col_types = FALSE, col_types = "cccc") %>%
     mutate(code_insee = as.character(code_insee))
 }
