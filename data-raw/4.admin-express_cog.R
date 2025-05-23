@@ -127,6 +127,17 @@ superf_communes <- depsurf %>%
   select(DEPCOM, AREA) %>%
   mutate(AREA = set_units(AREA, "m^2"))
 
+#gestion des 4 communes du cantal après scission (fusion fin 2016, on récupère la bdtopo 2016 sur le département 15)
+#https://geoservices.ign.fr/bdtopo#telechargement2016
+com2016 <- read_sf("data-raw/source/2016/bdtopo/015/COMMUNE.shp")
+les4enscission<-com2016 %>% filter(CODE_INSEE %in% c("15031","15035","15047","15171"))
+les4enscission<-les4enscission %>% mutate(DEPCOM = CODE_INSEE, AREA = st_area(les4enscission)) %>% select(DEPCOM, AREA) %>%
+           st_drop_geometry()
+superf_communes <- superf_communes %>%
+  left_join(les4enscission, by = join_by(DEPCOM == DEPCOM))  %>%
+  mutate(AREA = ifelse(is.na(AREA.x),AREA.y,AREA.x)) %>% select(DEPCOM, AREA)%>%
+  mutate(AREA = set_units(AREA, "m^2"))
+# tests
 nrow(superf_communes) == nrow(communes_info_supra)
 communes_geo <- communes_geo_0 %>%
   left_join(superf_communes, by = c("DEPCOM")) %>%
