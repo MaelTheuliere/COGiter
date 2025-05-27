@@ -99,89 +99,89 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_map</span><span class="op">(</span>epci <span class="op">=</span> <span class="st">"244400404"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $com_geo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 34746 features and 2 fields</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: GEOMETRY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 99088.1 ymin: 6049774 xmax: 1242419 ymax: 7110497</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 99164 ymin: 6049774 xmax: 1242419 ymax: 7110497</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: RGF93 v1 / Lambert-93</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 34,746 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    DEPCOM     AREA                                                      geometry</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494;">[m^2]</span>                                            <span style="color: #949494; font-style: italic;">&lt;MULTIPOLYGON [m]&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 70177   9<span style="text-decoration: underline;">130</span>000 (((921738.8 6760207, 921659.6 6760207, 921189.9 6760832, 922…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 89050   4<span style="text-decoration: underline;">020</span>000 (((741563.4 6758626, 741320.1 6758008, 739273.9 6757967, 738…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 60414  10<span style="text-decoration: underline;">660</span>000 (((660340 6905721, 660211.1 6905210, 659332 6905186, 658695.…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 80756   3<span style="text-decoration: underline;">670</span>000 (((661403.5 7000774, 661018.1 7002027, 660347.7 7002280, 660…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 14478  10<span style="text-decoration: underline;">140</span>000 (((507839.1 6886562, 509195.2 6884716, 510632.4 6884522, 510…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 27219   4<span style="text-decoration: underline;">410</span>000 (((542995.8 6900422, 543112.4 6900476, 543708.9 6900377, 545…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 68149   2<span style="text-decoration: underline;">860</span>000 (((1044950 6732060, 1044491 6730419, 1043757 6729491, 104300…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 30249   3<span style="text-decoration: underline;">420</span>000 (((797259.9 6301672, 797651.4 6302046, 798774.4 6302539, 799…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 72363  29<span style="text-decoration: underline;">160</span>000 (((516821.2 6779360, 515867.3 6781101, 514762.1 6780382, 514…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 27396   4<span style="text-decoration: underline;">170</span>000 (((585658.9 6918990, 585542.5 6918351, 584672.7 6918058, 583…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494;">[m^2]</span>                                                 <span style="color: #949494; font-style: italic;">&lt;POLYGON [m]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 70177   9<span style="text-decoration: underline;">130</span>000 ((921738.8 6760207, 922020.2 6761183, 922906.8 6761192, 9241…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 89050   4<span style="text-decoration: underline;">020</span>000 ((741563.4 6758626, 740538.2 6758727, 740595.4 6760220, 7395…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 60414  10<span style="text-decoration: underline;">660</span>000 ((660340 6905721, 660705.7 6907293, 659664.3 6907737, 658907…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 80756   3<span style="text-decoration: underline;">670</span>000 ((661403.5 7000774, 662247 7001128, 662372.1 7002069, 662035…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 14478  10<span style="text-decoration: underline;">140</span>000 ((507839.1 6886562, 508187.4 6885226, 507560.8 6884178, 5073…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 27219   4<span style="text-decoration: underline;">410</span>000 ((542995.8 6900422, 543925.7 6899673, 544792.9 6899671, 5463…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 68149   2<span style="text-decoration: underline;">860</span>000 ((1044950 6732060, 1044486 6732286, 1043001 6731158, 1043757…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 30249   3<span style="text-decoration: underline;">420</span>000 ((797259.9 6301672, 797457.1 6300418, 799608 6300670, 798774…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 72363  29<span style="text-decoration: underline;">160</span>000 ((516821.2 6779360, 517104.6 6779775, 518817.2 6781957, 5172…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 27396   4<span style="text-decoration: underline;">170</span>000 ((585658.9 6918990, 583762.4 6920427, 583852.4 6919279, 5829…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 34,736 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $epci_geo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 1232 features and 2 fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: GEOMETRY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 111282 ymin: 6049774 xmax: 1242419 ymax: 7110497</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 111329.5 ymin: 6049774 xmax: 1242419 ymax: 7110497</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: RGF93 v1 / Lambert-93</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,232 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EPCI           AREA                                                  geometry</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494;">[m^2]</span>                                             <span style="color: #949494; font-style: italic;">&lt;POLYGON [m]&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 200000172 150<span style="text-decoration: underline;">670</span>000 ((966748.4 6552733, 966712.4 6551457, 967694.8 6550219, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 200000438 326<span style="text-decoration: underline;">800</span>000 ((319454 6714465, 321096.5 6713767, 320067.2 6711948, 32…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 200000545 104<span style="text-decoration: underline;">800</span>000 ((750344.5 6818238, 749128 6818118, 748496.8 6817507, 74…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 200000628 150<span style="text-decoration: underline;">110</span>000 ((841106 6346067, 839847.8 6345984, 839321.7 6344038, 83…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 200000172 150<span style="text-decoration: underline;">670</span>000 ((967694.8 6550219, 966871.6 6549618, 966610.9 6548763, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 200000438 326<span style="text-decoration: underline;">800</span>000 ((312908.5 6710510, 312603 6709369, 311934.8 6709729, 31…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 200000545 104<span style="text-decoration: underline;">800</span>000 ((749128 6818118, 748496.8 6817507, 748719.7 6818137, 74…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 200000628 150<span style="text-decoration: underline;">110</span>000 ((841981.7 6348616, 842129.7 6347344, 841340.9 6347339, …</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 200000800 338<span style="text-decoration: underline;">810</span>000 ((631021.1 6720275, 629746 6718932, 631310.3 6717273, 63…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 200000925 204<span style="text-decoration: underline;">390</span>000 ((861559.8 6671802, 860515.3 6673049, 859548.4 6672750, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 200000933 970<span style="text-decoration: underline;">790</span>000 ((649872.8 6684591, 648421.6 6686474, 649133 6688238, 64…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 200004802 401<span style="text-decoration: underline;">860</span>000 ((1015562 6281731, 1014114 6280342, 1013506 6278106, 101…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 200005932 414<span style="text-decoration: underline;">980</span>000 ((608691.2 6735824, 607263.9 6738882, 606471.7 6738500, …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 200005957 328<span style="text-decoration: underline;">760</span>000 ((970270.7 6803515, 968680.1 6804512, 967092.4 6803634, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 200000933 970<span style="text-decoration: underline;">790</span>000 ((658116.6 6688458, 657680.9 6686697, 654603.5 6686858, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 200004802 401<span style="text-decoration: underline;">860</span>000 ((1006225 6288900, 1006943 6288260, 1007710 6288720, 100…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 200005932 414<span style="text-decoration: underline;">980</span>000 ((608056.9 6735353, 608691.2 6735824, 607263.9 6738882, …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 200005957 328<span style="text-decoration: underline;">760</span>000 ((964840.4 6806088, 963976.2 6807368, 963012.5 6808171, …</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,222 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dep_geo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 96 features and 2 fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: GEOMETRY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 99088.1 ymin: 6049774 xmax: 1242419 ymax: 7110497</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 99164 ymin: 6049774 xmax: 1242419 ymax: 7110497</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: RGF93 v1 / Lambert-93</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 96 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    DEP         AREA                                                     geometry</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494;">[m^2]</span>                                                <span style="color: #949494; font-style: italic;">&lt;POLYGON [m]&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 01    <span style="text-decoration: underline;">5</span>762<span style="text-decoration: underline;">390</span>000 ((864753.7 6525714, 863508.9 6525325, 863172.2 6525941, 862…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 02    <span style="text-decoration: underline;">7</span>361<span style="text-decoration: underline;">650</span>000 ((731163.3 6862991, 729920.2 6862660, 729324.8 6862996, 729…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 03    <span style="text-decoration: underline;">7</span>340<span style="text-decoration: underline;">110</span>000 ((746447.1 6546598, 745506.5 6547343, 744504.1 6546707, 743…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 04    <span style="text-decoration: underline;">6</span>925<span style="text-decoration: underline;">220</span>000 ((913518.7 6306495, 912835.8 6306600, 911628.6 6306848, 911…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 05    <span style="text-decoration: underline;">5</span>548<span style="text-decoration: underline;">680</span>000 ((914132.6 6351611, 913402.6 6353234, 913478.8 6354443, 914…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 06    <span style="text-decoration: underline;">4</span>298<span style="text-decoration: underline;">580</span>000 ((1016451 6273923, 1015748 6274017, 1014116 6274778, 101490…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 07    <span style="text-decoration: underline;">5</span>528<span style="text-decoration: underline;">640</span>000 ((788033.7 6360072, 787160 6360093, 786566.1 6359438, 78561…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 08    <span style="text-decoration: underline;">5</span>228<span style="text-decoration: underline;">060</span>000 ((799092.6 6914288, 798475.4 6913799, 796762.7 6915021, 795…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 09    <span style="text-decoration: underline;">4</span>889<span style="text-decoration: underline;">920</span>000 ((595335.6 6167604, 596281.9 6168818, 596173.5 6169216, 594…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 10    <span style="text-decoration: underline;">6</span>004<span style="text-decoration: underline;">160</span>000 ((779069.5 6759565, 777953.3 6758897, 777007.1 6759702, 776…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 01    <span style="text-decoration: underline;">5</span>762<span style="text-decoration: underline;">390</span>000 ((836447.9 6538772, 835167.2 6539004, 834133.8 6539425, 833…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 02    <span style="text-decoration: underline;">7</span>361<span style="text-decoration: underline;">650</span>000 ((712067.1 6888906, 710504.2 6889186, 709997.6 6889771, 709…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 03    <span style="text-decoration: underline;">7</span>340<span style="text-decoration: underline;">110</span>000 ((666522.1 6560462, 666004.6 6563892, 664797.9 6564077, 663…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 04    <span style="text-decoration: underline;">6</span>925<span style="text-decoration: underline;">220</span>000 ((916159.9 6302361, 915178.5 6304594, 913802.1 6305681, 913…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 05    <span style="text-decoration: underline;">5</span>548<span style="text-decoration: underline;">680</span>000 ((916868.6 6348200, 916613.3 6347650, 915174 6346721, 91385…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 06    <span style="text-decoration: underline;">4</span>298<span style="text-decoration: underline;">580</span>000 ((1005824 6290060, 1004519 6291871, 1003358 6292416, 100323…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 07    <span style="text-decoration: underline;">5</span>528<span style="text-decoration: underline;">640</span>000 ((788462.6 6359716, 788033.7 6360072, 787160 6360093, 78656…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 08    <span style="text-decoration: underline;">5</span>228<span style="text-decoration: underline;">060</span>000 ((791218.8 6919801, 790282.6 6920806, 790106.9 6921038, 788…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 09    <span style="text-decoration: underline;">4</span>889<span style="text-decoration: underline;">920</span>000 ((549585.3 6180563, 548401.5 6181779, 546936.7 6182805, 546…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 10    <span style="text-decoration: underline;">6</span>004<span style="text-decoration: underline;">160</span>000 ((755041.6 6781593, 755024.3 6782295, 756156.1 6783595, 755…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 86 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $reg_geo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 13 features and 2 fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: GEOMETRY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 99088.1 ymin: 6049774 xmax: 1242419 ymax: 7110497</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 99164 ymin: 6049774 xmax: 1242419 ymax: 7110497</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: RGF93 v1 / Lambert-93</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 13 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    REG          AREA                                                    geometry</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494;">[m^2]</span>                                              <span style="color: #949494; font-style: italic;">&lt;GEOMETRY [m]&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 11    <span style="text-decoration: underline;">12</span>012<span style="text-decoration: underline;">270</span>000 POLYGON ((642366.7 6897597, 643111.3 6898042, 644154.7 689…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 24    <span style="text-decoration: underline;">39</span>145<span style="text-decoration: underline;">610</span>000 POLYGON ((542366.8 6611048, 542133.4 6612548, 540477.8 661…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 27    <span style="text-decoration: underline;">47</span>783<span style="text-decoration: underline;">300</span>000 POLYGON ((863680.5 6603221, 863641 6602376, 861623.4 66012…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 28    <span style="text-decoration: underline;">29</span>875<span style="text-decoration: underline;">130</span>000 POLYGON ((473619.7 6821776, 472865.1 6821834, 472243.3 682…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 32    <span style="text-decoration: underline;">31</span>815<span style="text-decoration: underline;">620</span>000 POLYGON ((727076.3 6866042, 727564.5 6867911, 726926 68698…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 44    <span style="text-decoration: underline;">57</span>439<span style="text-decoration: underline;">470</span>000 POLYGON ((1015421 6718167, 1016315 6718536, 1016147 671884…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 52    <span style="text-decoration: underline;">32</span>100<span style="text-decoration: underline;">660</span>000 MULTIPOLYGON (((411461.3 6585132, 410840.4 6586001, 409584…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 53    <span style="text-decoration: underline;">27</span>207<span style="text-decoration: underline;">910</span>000 MULTIPOLYGON (((286722.7 6725074, 287611.2 6724914, 288375…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 75    <span style="text-decoration: underline;">84</span>035<span style="text-decoration: underline;">740</span>000 MULTIPOLYGON (((406069 6195920, 405384.3 6196171, 405482.5…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 76    <span style="text-decoration: underline;">72</span>723<span style="text-decoration: underline;">600</span>000 MULTIPOLYGON (((612901.2 6149983, 612177.2 6151085, 610712…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 84             <span style="color: #BB0000;">NA</span> POLYGON ((890562.3 6347555, 889905.4 6347996, 888164 63489…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 93    <span style="text-decoration: underline;">31</span>399<span style="text-decoration: underline;">770</span>000 MULTIPOLYGON (((935203.8 6224052, 933354.1 6221785, 933074…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 94     <span style="text-decoration: underline;">8</span>679<span style="text-decoration: underline;">790</span>000 MULTIPOLYGON (((1192260 6190036, 1193682 6190244, 1194440 …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    REG           AREA                                                   geometry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>        <span style="color: #949494;">[m^2]</span>                                             <span style="color: #949494; font-style: italic;">&lt;GEOMETRY [m]&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 11    <span style="text-decoration: underline;">12</span>012<span style="text-decoration: underline;">270</span>000  POLYGON ((603511 6836016, 603140.4 6836375, 601706.7 6835…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 24    <span style="text-decoration: underline;">39</span>145<span style="text-decoration: underline;">610</span>000  POLYGON ((495148.7 6657993, 495492.5 6659013, 495455 6660…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 27    <span style="text-decoration: underline;">47</span>783<span style="text-decoration: underline;">300</span>000  POLYGON ((703731.2 6628693, 702866.6 6630303, 702445.6 66…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 28    <span style="text-decoration: underline;">29</span>875<span style="text-decoration: underline;">130</span>000  POLYGON ((366802.7 6835096, 366610.6 6835047, 366743.4 68…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 32    <span style="text-decoration: underline;">31</span>815<span style="text-decoration: underline;">620</span>000  POLYGON ((607721.5 6901990, 608237.8 6903395, 605920.9 69…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 44    <span style="text-decoration: underline;">57</span>439<span style="text-decoration: underline;">470</span>000  POLYGON ((758919 6780000, 758079.9 6780274, 757175.7 6781…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 52    <span style="text-decoration: underline;">32</span>100<span style="text-decoration: underline;">660</span>000  MULTIPOLYGON (((331680.4 6610035, 331097 6610579, 330522.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 53    <span style="text-decoration: underline;">27</span>207<span style="text-decoration: underline;">910</span>000  MULTIPOLYGON (((150885.2 6773349, 151308.7 6774432, 15124…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 75    <span style="text-decoration: underline;">84</span>035<span style="text-decoration: underline;">740</span>000  MULTIPOLYGON (((341100.6 6237138, 340672.7 6237834, 34143…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 76    <span style="text-decoration: underline;">72</span>723<span style="text-decoration: underline;">600</span>000  MULTIPOLYGON (((455951.4 6182703, 454293.1 6181044, 45252…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 84    <span style="text-decoration: underline;">69</span>789<span style="text-decoration: underline;">386</span>636. POLYGON ((631741.8 6399699, 631084.9 6400391, 631177.9 64…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 93    <span style="text-decoration: underline;">31</span>399<span style="text-decoration: underline;">770</span>000  MULTIPOLYGON (((848031.6 6250180, 845329 6251305, 843019.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 94     <span style="text-decoration: underline;">8</span>679<span style="text-decoration: underline;">790</span>000  MULTIPOLYGON (((1182447 6085188, 1181095 6085529, 1181795…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
@@ -197,7 +197,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
       </footer></div>
