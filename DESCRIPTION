@@ -1,6 +1,6 @@
 Package: COGiter
 Title: Fonctions, Données et Fonds De Carte Pour Gérer Les Données Au Territoire - COG 2025
-Version: 0.0.14
+Version: 0.0.15
 Authors@R: 
     c(person(given = "Maël",
              family = "THEULIERE",
