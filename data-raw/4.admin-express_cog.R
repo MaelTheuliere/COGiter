@@ -106,7 +106,7 @@ gc()
 
 ## Communes
 
-# chargement des surfaces communales issues de la bd carto 2025 - attention ref communes COG 2024
+# chargement des surfaces communales issues de la bd carto 2025 - attention mise à jour tardive
 # en csv et par département (limite de l'api IGN wfs 5000 éléments)
 gep_surf_com_dptmt <- function(dept = "15") {
   message("Interrogation sur le departement ", dept)

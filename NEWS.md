@@ -1,4 +1,11 @@
+# COGiter 0.0.16
+- Cure d'amaigrissement des jeux de données
+- Récupération de la surface officielle des communes issues de scission 
+- Mise à disposition d'une nouvelle table `table_scissions_com` listant par année les communes issues de scission
+- Suppression du message d'ouverture
+
 # COGiter 0.0.15
+- Ajout de surfaces mesurées pour les communes issues de scission
 
 # COGiter 0.0.14  
 - Mise à jour COG et fonds de carte 2025 (version provisoire, en attente des surfaces officielles).  

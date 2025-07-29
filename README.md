@@ -73,9 +73,6 @@ apportée.
 - <https://geoservices.ign.fr/adminexpress#telechargementCogCarto>
 
 Les surfaces proviennent de champs attributaires la BD Carto de l’IGN.
-Au 1er janvier 2025, seules 4 communes sont issues d’une scission. Pour
-ces 4 communes du Cantal les surfaces affectées sont celles provenant de
-la BDTOPO 2016 (avant fusion).
 
 ## Description du package
 
