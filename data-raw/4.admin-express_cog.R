@@ -118,29 +118,23 @@ depsurf <- purrr::map_dfr(departements$DEP, gep_surf_com_dptmt) %>%
   mutate(DEPCOMB = code_insee, AREA = (10000 * as.double(surface_en_ha))) %>%
   select(DEPCOMB, AREA)
 
-# si millésime précédent, agrégation sur communes fusionnées et ajout des communes issues de scission
-load("data/communes.rda")
-superf_communes <- depsurf %>%
-  left_join(table_passage_com_historique, by = join_by(DEPCOMB == DEPCOM_HIST)) %>%
-  summarise(AREA = sum(AREA), .by = DEPCOM) %>%
-  right_join(communes) %>%
-  select(DEPCOM, AREA) %>%
-  mutate(AREA = set_units(AREA, "m^2"))
-
-#gestion des 4 communes du cantal après scission (fusion fin 2016, on récupère la bdtopo 2016 sur le département 15)
-#https://geoservices.ign.fr/bdtopo#telechargement2016
-com2016 <- read_sf("data-raw/source/2016/bdtopo/015/COMMUNE.shp")
-les4enscission<-com2016 %>% filter(CODE_INSEE %in% c("15031","15035","15047","15171"))
-les4enscission<-les4enscission %>% mutate(DEPCOM = CODE_INSEE, AREA = st_area(les4enscission)) %>% select(DEPCOM, AREA) %>%
-           st_drop_geometry()
-superf_communes <- superf_communes %>%
-  left_join(les4enscission, by = join_by(DEPCOM == DEPCOM))  %>%
-  mutate(AREA = ifelse(is.na(AREA.x),AREA.y,AREA.x)) %>% select(DEPCOM, AREA)%>%
-  mutate(AREA = set_units(AREA, "m^2"))
-# tests
+# si bd carto du millésime précédent, agrégation sur communes fusionnées et ajout des communes issues de scission
+if(nrow(depsurf) != nrow(communes_info_supra)) {
+  load("data/communes.rda")
+  superf_communes <- depsurf %>%
+    left_join(table_passage_com_historique, by = join_by(DEPCOMB == DEPCOM_HIST)) %>%
+    summarise(AREA = sum(AREA), .by = DEPCOM) %>%
+    right_join(communes) %>%
+    select(DEPCOM, AREA) %>%
+    mutate(AREA = set_units(AREA, "m^2"))
+} else {
+  superf_communes <- rename(depsurf, DEPCOM = DEPCOMB)
+}
+rm(depsurf)
 nrow(superf_communes) == nrow(communes_info_supra)
+
 communes_geo <- communes_geo_0 %>%
-  left_join(superf_communes, by = c("DEPCOM")) %>%
+  left_join(superf_communes, by = "DEPCOM") %>%
   select(DEPCOM, AREA)
 
 communes_metro_geo <- communes_geo %>%
@@ -185,7 +179,7 @@ regions_metro_geo <- regions_geo %>%
 communes_geo <- communes_geo %>%
   mutate(AREA = set_units(AREA, "m^2"))
 
-# DOM : des jeux de données spé qui respecte le CRS et plus détaillé-----------------
+# DOM : des jeux de données spé qui respectent le CRS et plus détaillé-----------------
 ## Communes DOM---
 
 com_geo_dom <- function(dep = "971", epsg = 5490) {
@@ -247,10 +241,8 @@ departements_972_geo <- communes_972_geo %>%
 departements_973_geo <- communes_973_geo %>%
   summarise(DEP = "973", AREA = sum(AREA), do_union = TRUE, .groups = "drop")
 
-
 departements_974_geo <- communes_974_geo %>%
   summarise(DEP = "974", AREA = sum(AREA), do_union = TRUE, .groups = "drop")
-
 
 departements_976_geo <- communes_976_geo %>%
   summarise(DEP = "976", AREA = sum(AREA), do_union = TRUE, .groups = "drop")
@@ -266,7 +258,6 @@ reg_dom_geo <- function(dom = "971"){
     left_join(dep_reg, by = "DEP") %>%
     select(REG, everything(), -DEP) %>%
     st_buffer(0.0000000001)
-
 }
 
 regions_971_geo <- reg_dom_geo("971")
@@ -309,5 +300,5 @@ use_data(regions_973_geo, internal = FALSE, overwrite = TRUE)
 use_data(regions_974_geo, internal = FALSE, overwrite = TRUE)
 use_data(regions_976_geo, internal = FALSE, overwrite = TRUE)
 
-rm(origine_metro, millesime, communes_geo_0, reg_dom_geo, epci_geo_dom, com_fce_ent, superf_communes, contenu_list, table_passage_com_historique,
-   communes_info_supra, path_com, repo_dest, repo_mil)
+rm(origine_metro, millesime, communes_geo_0, reg_dom_geo, epci_geo_dom, com_fce_ent, superf_communes, contenu_list,
+   table_passage_com_historique, communes_info_supra, path_com, repo_dest, repo_mil)
