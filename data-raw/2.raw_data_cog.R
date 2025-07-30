@@ -308,6 +308,13 @@ glimpse(COGiter::table_passage_com_historique)
 glimpse(table_passage_com_historique)
 
 
+# Création d'une table des communes issues de scission
+table_scissions_com <- mvtcommunes %>%
+  filter(TYPECOM_AP == "COM", TYPECOM_AV == "COM", MOD %in% 20:21) %>%
+  mutate(ANNEE_SCISSION = year(DATE_EFF), across(where(is.factor), as.character)) %>%
+  select(ANNEE_SCISSION, COM_AV, COM_AV_LIB = NCC_AV, COM_AP, COM_AP_LIB = NCC_AP)
+
+
 # Gestion des arrondissements de Paris Lyon Marseille
 # Les arrondissements sont gérés comme des anciens codes communes et rattachés à leur commune
 
@@ -344,21 +351,26 @@ usethis::use_data(table_passage_com_epci, internal = FALSE, overwrite = TRUE)
 usethis::use_data(liste_zone, internal = FALSE, overwrite = TRUE)
 usethis::use_data(table_passage_com_historique, internal = FALSE, overwrite = TRUE)
 usethis::use_data(arn_plm, internal = FALSE, overwrite = TRUE)
+usethis::use_data(table_scissions_com, internal = FALSE, overwrite = TRUE)
 
 
-## Chargement des couches communes et table_passage_com_historique dans production.scte_cogiter---
+## Versement des couches communes et table_passage_com_historique dans production.scte_cogiter---
 library(datalibaba)
+
 communes2 <- rowwise(communes) %>%
   mutate(across(where(is.list), ~paste0(.x, collapse = ", ") %>% as.factor),
          across(where(is.factor), as.character)) %>%
   ungroup()
-poster_data(data = communes2, table = "r_communes_000", schema = "scte_cogiter", pk = "DEPCOM", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
-poster_data(data = communes2, table = paste0("r_communes_000_", millesime), schema = "scte_cogiter", pk = "DEPCOM", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
+poster_data(data = communes2, table = "r_communes_000", schema = "scte_cogiter", pk = "DEPCOM", post_row_name = FALSE,
+            droits_schema = TRUE, db = "production", overwrite = TRUE)
+poster_data(data = communes2, table = paste0("r_communes_000_", millesime), schema = "scte_cogiter",
+            pk = "DEPCOM", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
 
 table_passage_com_historique2 <- table_passage_com_historique %>%
   mutate(across(where(is.factor), as.character))
-poster_data(data = table_passage_com_historique2, table = "r_tb_passage_com_hist_000", schema = "scte_cogiter", pk = "DEPCOM_HIST", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
-poster_data(data = table_passage_com_historique2, table = paste0("r_tb_passage_com_hist_000_", millesime), schema = "scte_cogiter", pk = "DEPCOM_HIST", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
-
-poster_data(data = table_passage_com_historique2, table = "r_cogiter_communes_000", schema = "donnee_generique", pk = "DEPCOM_HIST", post_row_name = FALSE,
-            droits_schema = TRUE, db = "consultation", overwrite = TRUE, user = "csd")
+poster_data(data = table_passage_com_historique2, table = "r_tb_passage_com_hist_000", schema = "scte_cogiter", pk = "DEPCOM_HIST",
+            post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
+poster_data(data = table_passage_com_historique2, table = paste0("r_tb_passage_com_hist_000_", millesime), schema = "scte_cogiter",
+            pk = "DEPCOM_HIST", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
+poster_data(data = table_passage_com_historique2, table = "r_cogiter_communes_000", schema = "donnee_generique", pk = "DEPCOM_HIST",
+            post_row_name = FALSE, droits_schema = TRUE, db = "consultation", overwrite = TRUE, user = "csd")
