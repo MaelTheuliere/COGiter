@@ -1,26 +1,16 @@
 Package: COGiter
-Title: Fonctions, Données et Fonds De Carte Pour Gérer Les Données Au Territoire - COG 2025
-Version: 0.0.16
-Authors@R: 
-    c(person(given = "Maël",
-             family = "THEULIERE",
-             role = c("aut"),
-             email = "mael.theuliere@gmail.com"),
-      person(given = "Juliette",
-             family = "ENGELARE-LEFEBVRE",
-             role = c("cre"),
-             email = "juliette.engelaere@developpement-durable.gouv.fr"),
-      person(given = "Edouard",
-             family = "MORIN",
-             role = "ctb",
-             email = "edouard.morin@developpement-durable.gouv.fr"),
-      person(given = "Caroline",
-             family = "COUDRIN",
-             role = "ctb",
-             email = "caroline.coundrin@developpement-durable.gouv.fr"),
-      person(given = "Sebastien", family = "Rochette", email = "sebastien@thinkr.fr", 
-             role = "ctb", comment = c(ORCID = "0000-0002-1565-9313"))
-             )
+Title: Fonctions, Données et Fonds De Carte Pour Gérer Les Données Au
+    Territoire - COG 2025
+Version: 0.0.17
+Authors@R: c(
+    person("Maël", "THEULIERE", , "mael.theuliere@gmail.com", role = "aut"),
+    person("Juliette", "ENGELARE-LEFEBVRE", , "juliette.engelaere@developpement-durable.gouv.fr", role = "cre"),
+    person("Edouard", "MORIN", , "edouard.morin@developpement-durable.gouv.fr", role = "ctb",
+           comment = c(ORCID = "0009-0009-3447-8778")),
+    person("Caroline", "COUDRIN", , "caroline.coundrin@developpement-durable.gouv.fr", role = "ctb"),
+    person("Sebastien", "Rochette", , "sebastien@thinkr.fr", role = "ctb",
+           comment = c(ORCID = "0000-0002-1565-9313"))
+  )
 Description: Fonctions, données et fonds de carte pour gérer les données
     au territoire. Ce package permet notamment de gérer les fusions de
     communes intervenues entre 2003 et 2025.
@@ -28,7 +18,7 @@ License: MIT + file LICENSE
 URL: https://maeltheuliere.github.io/COGiter/
 BugReports: https://github.com/MaelTheuliere/COGiter/issues
 Depends: 
-    R (>= 2.10)
+    R (>= 3.5)
 Imports: 
     attempt,
     dplyr (>= 1.0.0),
@@ -41,10 +31,10 @@ Imports:
     stringr,
     tibble,
     tidyr,
-    tidyselect
+    tidyselect,
+    utils
 Suggests: 
     knitr,
-    lifecycle,
     rmarkdown,
     testthat
 VignetteBuilder: 
@@ -53,4 +43,4 @@ Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3

@@ -12,3 +12,4 @@
 data-raw/source/*
 ^doc$
 ^Meta$
+^dev$

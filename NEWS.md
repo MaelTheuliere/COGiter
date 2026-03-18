@@ -1,3 +1,6 @@
+# COGiter 0.0.17
+- Mise à jour COG et fonds de carte 2025. Reprise des geométries communales 2025 car les communes sont inchangées entre les 2 années.
+
 # COGiter 0.0.16
 - Cure d'amaigrissement des jeux de données
 - Récupération de la surface officielle des communes issues de scission 
