@@ -6,7 +6,7 @@
 \alias{COGiter-package}
 \title{COGiter : Fonctions, données et fonds de carte pour gérer les données au territoire.}
 \description{
-Ce package permet notamment de gérer les fusions de communes intervenues entre 2003 et 2025.
+Ce package permet notamment de gérer les fusions de communes intervenues entre 2003 et 2026.
 }
 \details{
 Pour apprendre comment utiliser COGiter, utiliser les vignettes :
@@ -21,7 +21,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Juliette ENGELARE-LEFEBVRE \email{juliette.engelaere@developpement-durable.gouv.fr}
+\strong{Maintainer}: Juliette ENGELARE-LEFEBVRE \email{juliette.engelaere@developpement-durable.gouv.fr} (\href{https://orcid.org/0009-0001-4102-8013}{ORCID})
 
 Authors:
 \itemize{
