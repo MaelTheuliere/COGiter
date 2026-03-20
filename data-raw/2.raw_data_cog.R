@@ -60,9 +60,8 @@ str(departements)
 # Table des Epci ----------------------------------------------------------
 
 # table de la composition communale des EPCI : https://www.collectivites-locales.gouv.fr/etudes-et-statistiques/acces-aux-statistiques-par-thematique/perimetre-des-intercommunalites/liste-et-composition-des-epci-fiscalite-propre
-# modif 2026 des liens
-#download.file(url = paste0("https://www.collectivites-locales.gouv.fr/files/files/Etudes-et-statistiques/DESL/", millesime, "/EPCI/epcicom", millesime, ".xlsx"),
-#              destfile = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), method = "curl")
+# download.file(url = paste0("https://www.collectivites-locales.gouv.fr/files/files/Etudes-et-statistiques/DESL/", millesime, "/EPCI/epcicom", millesime, ".xlsx"),
+#               destfile = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), method = "curl")
 
 epci_0 <- read_excel(path = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), sheet = 1) %>%
   mutate(
