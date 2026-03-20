@@ -5,7 +5,7 @@ library(readxl)
 library(arrow)
 library(usethis)
 
-millesime <- "2025"
+millesime <- "2026"
 repo_mil <- paste0("data-raw/source/", millesime, "/COG/")
 
 fact.enc.utf8 <- function(a) {
@@ -17,9 +17,9 @@ fact.enc.utf8 <- function(a) {
 # Chargement des tables du COG ------------------------------------------
 # https://www.insee.fr/fr/information/2560452
 
-# dir.create(repo_mil, recursive = TRUE)
-# download.file("https://www.insee.fr/fr/statistiques/fichier/8377162/cog_ensemble_2025_csv.zip",
-              # destfile = paste0(repo_mil, "/cog_ensemble_", millesime, "_csv.zip"))
+#dir.create(repo_mil, recursive = TRUE)
+#download.file("https://www.insee.fr/fr/statistiques/fichier/8740222/cog_ensemble_2026_csv.zip",
+#              destfile = paste0(repo_mil, "/cog_ensemble_", millesime, "_csv.zip"))
 unzip(zipfile = paste0(repo_mil, "/cog_ensemble_", millesime, "_csv.zip"),
       exdir = repo_mil, overwrite = TRUE)
 
@@ -59,9 +59,9 @@ str(departements)
 
 # Table des Epci ----------------------------------------------------------
 
-# table de la composition communale des EPCI : https://www.collectivites-locales.gouv.fr/institutions/liste-et-composition-des-epci-fiscalite-propre
-download.file(url = paste0("https://www.collectivites-locales.gouv.fr/files/Accueil/DESL/", millesime, "/epcicom", millesime, ".xlsx"),
-              destfile = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), method = "curl")
+# table de la composition communale des EPCI : https://www.collectivites-locales.gouv.fr/etudes-et-statistiques/acces-aux-statistiques-par-thematique/perimetre-des-intercommunalites/liste-et-composition-des-epci-fiscalite-propre
+# download.file(url = paste0("https://www.collectivites-locales.gouv.fr/files/files/Etudes-et-statistiques/DESL/", millesime, "/EPCI/epcicom", millesime, ".xlsx"),
+#               destfile = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), method = "curl")
 
 epci_0 <- read_excel(path = paste0(repo_mil, "/epcicom", millesime, ".xlsx"), sheet = 1) %>%
   mutate(
@@ -362,15 +362,15 @@ communes2 <- rowwise(communes) %>%
          across(where(is.factor), as.character)) %>%
   ungroup()
 poster_data(data = communes2, table = "r_communes_000", schema = "scte_cogiter", pk = "DEPCOM", post_row_name = FALSE,
-            droits_schema = TRUE, db = "production", overwrite = TRUE)
+            droits_schema = TRUE, db = "production", overwrite = TRUE, user = "csd")
 poster_data(data = communes2, table = paste0("r_communes_000_", millesime), schema = "scte_cogiter",
-            pk = "DEPCOM", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
+            pk = "DEPCOM", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE, user = "csd")
 
 table_passage_com_historique2 <- table_passage_com_historique %>%
   mutate(across(where(is.factor), as.character))
 poster_data(data = table_passage_com_historique2, table = "r_tb_passage_com_hist_000", schema = "scte_cogiter", pk = "DEPCOM_HIST",
-            post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
+            post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE, user = "csd")
 poster_data(data = table_passage_com_historique2, table = paste0("r_tb_passage_com_hist_000_", millesime), schema = "scte_cogiter",
-            pk = "DEPCOM_HIST", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE)
+            pk = "DEPCOM_HIST", post_row_name = FALSE, droits_schema = TRUE, db = "production", overwrite = TRUE, user = "csd")
 poster_data(data = table_passage_com_historique2, table = "r_cogiter_communes_000", schema = "donnee_generique", pk = "DEPCOM_HIST",
             post_row_name = FALSE, droits_schema = TRUE, db = "consultation", overwrite = TRUE, user = "csd")

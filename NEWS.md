@@ -1,3 +1,10 @@
+# COGiter 0.0.17
+Version précoce et provisoire pour la mise à jour annuelle 2026.
+- COG 2026 INSEE
+- Géométries communales 2025 réutilisées car les communes sont inchangées entre les 2 années, surfaces à mettre à jour 
+- Recomposition des géométries supra à partir du COG INSEE 2026 (qq EPCI ont fusionné).
+- En attente : nouvelles surfaces communales IGN, zonages études INSEE 2026
+
 # COGiter 0.0.16
 - Cure d'amaigrissement des jeux de données
 - Récupération de la surface officielle des communes issues de scission 

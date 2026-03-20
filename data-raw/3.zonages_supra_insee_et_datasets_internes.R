@@ -1,7 +1,7 @@
 
 # datapréparation de la table de passage des communes vers les zonages supra de l'insee
 
-millesime <- "2025"
+millesime <- "2026"
 repo_mil <- paste0("data-raw/source/", millesime, "/COG")
 fich_mil <- paste0("table-appartenance-geo-communes-", millesime)
 path_fic_xls <- paste0(repo_mil, "/", fich_mil, ".xlsx")
@@ -23,8 +23,29 @@ download.file(paste0("https://www.insee.fr/fr/statistiques/fichier/7671844/", fi
 unzip(zipfile = paste0(repo_mil, "/", fich_mil, ".zip"),
       exdir = repo_mil)
 
+## 18-03-2026 : le fichier ne contient pas encore les colonnes relatives au UU, AAV, ZE et BV. De même, les référentiels UU, AAV, ZE et BV
+# ne sont disponibles qu'au 1er janvier 2025. Les communes étant identiques (code INSEE) en 2026 et 2025, nous jointons avec les données 2025.
+
+download.file(paste0("https://www.insee.fr/fr/statistiques/fichier/7671844/table-appartenance-geo-communes-", (as.integer(millesime) - 1), ".zip"),
+              destfile = paste0(repo_mil, "/table-appartenance-geo-communes-", (as.integer(millesime) - 1), ".zip"))
+
+unzip(zipfile = paste0(repo_mil, "/table-appartenance-geo-communes-", (as.integer(millesime) - 1), ".zip"),
+      exdir = repo_mil)
+
+
+path_fic_xls2 <- paste0(repo_mil, "/table-appartenance-geo-communes-", (as.integer(millesime) - 1), ".xlsx")
+
+##
+
 table_passage_com_zonages <- read_excel(path_fic_xls, skip = 5) %>%
   mutate(across(everything(), fact.enc.utf8))
+
+## 2026 ajout des colonnes manquantes
+
+table_passage_com_zonages2 <- read_excel(path_fic_xls2, skip = 5) %>%
+  mutate(across(everything(), fact.enc.utf8)) %>% select(CODGEO, ZE2020, UU2020, AAV2020, BV2022)
+
+table_passage_com_zonages <- inner_join(table_passage_com_zonages, table_passage_com_zonages2, by = "CODGEO")
 
 
 # lecture des libellés des zonages onglet Zones_supra_communales  --------
@@ -37,29 +58,29 @@ libelle_arr <- read_excel(path_fic_xls, skip = 5, sheet = "Zones_supra_communale
   filter(NIVGEO == "ARR") %>%
   select(ARR = CODGEO, LIB_ARR = LIBGEO)
 
-libelle_ze2020 <- read_excel(path_fic_xls, skip = 5, sheet = "Zones_supra_communales") %>%
+libelle_ze2020 <- read_excel(path_fic_xls2, skip = 5, sheet = "Zones_supra_communales") %>%
   filter(NIVGEO == "ZE2020") %>%
   select(ZE2020 = CODGEO, LIB_ZE2020 = LIBGEO)
 
-libelle_uu2020 <- read_excel(path_fic_xls, skip = 5, sheet = "Zones_supra_communales") %>%
+libelle_uu2020 <- read_excel(path_fic_xls2, skip = 5, sheet = "Zones_supra_communales") %>%
   filter(NIVGEO == "UU2020") %>%
   select(UU2020 = CODGEO, LIB_UU2020 = LIBGEO)
 
-libelle_bv2022 <- read_excel(path_fic_xls, skip = 5, sheet = "Zones_supra_communales") %>%
+libelle_bv2022 <- read_excel(path_fic_xls2, skip = 5, sheet = "Zones_supra_communales") %>%
   filter(NIVGEO == "BV2022") %>%
   select(BV2022 = CODGEO, LIB_BV2022 = LIBGEO)
 
-libelle_aav2020 <- read_excel(path_fic_xls, skip = 5, sheet = "Zones_supra_communales") %>%
+libelle_aav2020 <- read_excel(path_fic_xls2, skip = 5, sheet = "Zones_supra_communales") %>%
   filter(NIVGEO == "AAV2020") %>%
   select(AAV2020 = CODGEO, LIB_AAV2020 = LIBGEO)
 
 # lecture des libellés des zonages onglet documentation  --------
 # chargement fichier AAV2020 pour métadonnées
-download.file(paste0("https://www.insee.fr/fr/statistiques/fichier/4803954/AAV2020_au_01-01-", millesime, ".zip"),
-              destfile = paste0(repo_mil, "/AAV2020_au_01-01-", millesime, ".zip"))
-unzip(zipfile = paste0(repo_mil, "/AAV2020_au_01-01-", millesime, ".zip"),
+download.file(paste0("https://www.insee.fr/fr/statistiques/fichier/4803954/AAV2020_au_01-01-", (as.integer(millesime) - 1), ".zip"),
+              destfile = paste0(repo_mil, "/AAV2020_au_01-01-", (as.integer(millesime) - 1), ".zip"))
+unzip(zipfile = paste0(repo_mil, "/AAV2020_au_01-01-", (as.integer(millesime) - 1), ".zip"),
       exdir = repo_mil)
-path_fic_xls_aac <- paste0(repo_mil, "/AAV2020_au_01-01-", millesime, ".xlsx")
+path_fic_xls_aac <- paste0(repo_mil, "/AAV2020_au_01-01-", (as.integer(millesime) - 1), ".xlsx")
 
 libelle_taav2017 <- read_excel(path_fic_xls_aac, range = "A14:A19", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
   mutate(TAAV2017 = stringr::str_split_fixed(x, n = 2, " - ")[, 1],
@@ -88,11 +109,11 @@ cataav_bycom <- read_excel(path_fic_xls_aac, sheet = "Composition_communale", sk
 table_passage_com_zonages <- table_passage_com_zonages %>% inner_join(cataav_bycom)
 
 # chargement fichier UU2020 pour métadonnées
-download.file(paste0("https://www.insee.fr/fr/statistiques/fichier/4802589/UU2020_au_01-01-", millesime, ".zip"),
-              destfile = paste0(repo_mil, "/UU2020_au_01-01-", millesime, ".zip"))
-unzip(zipfile = paste0(repo_mil, "/UU2020_au_01-01-", millesime, ".zip"),
+download.file(paste0("https://www.insee.fr/fr/statistiques/fichier/4802589/UU2020_au_01-01-", (as.integer(millesime) - 1), ".zip"),
+              destfile = paste0(repo_mil, "/UU2020_au_01-01-", (as.integer(millesime) - 1), ".zip"))
+unzip(zipfile = paste0(repo_mil, "/UU2020_au_01-01-", (as.integer(millesime) - 1), ".zip"),
       exdir = repo_mil)
-path_fic_xls_uu <- paste0(repo_mil, "/UU2020_au_01-01-", millesime, ".xlsx")
+path_fic_xls_uu <- paste0(repo_mil, "/UU2020_au_01-01-", (as.integer(millesime) - 1), ".xlsx")
 
 libelle_tuu2017 <- read_excel(path_fic_xls_uu, range = "A13:A20", sheet = "Documentation", col_names = FALSE, .name_repair = ~ c("x")) %>%
   mutate(TUU2017 = stringr::str_split_fixed(x, n = 2, " ")[, 1],

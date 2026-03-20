@@ -7,17 +7,19 @@ library(archive)
 library(units)
 load("data/communes_info_supra.rda")
 load("data/table_passage_com_historique.rda")
-millesime <- "2025"
-
+millesime <- "2026"
 
 # (télé)chargement Admin Express -------------------------------
 repo_mil <- paste0("data-raw/source/", millesime, "/adminexpress")
 repo_dest <- "/ADMIN-EXPRESS-COG-CARTO_3-2__SHP_WGS84G_FRA_2025-04-02"
 
+dir.create(paste0(repo_mil, repo_dest), recursive = TRUE)
+
 ## téléchargement des couches IGN admin express COG carto ----
-## Chargements des données présentes sur le site IGN :https://geoservices.ign.fr/adminexpress (10min hors RIE)
-# download.file(paste0("https://data.geopf.fr/telechargement/download/ADMIN-EXPRESS-COG-CARTO/ADMIN-EXPRESS-COG-CARTO_3-2__SHP_WGS84G_FRA_2025-04-02/ADMIN-EXPRESS-COG-CARTO_3-2__SHP_WGS84G_FRA_2025-04-02.7z"),
-              # destfile = paste0(repo_mil, repo_dest, ".7z"), method = "curl")
+## Chargements des données présentes sur le site IGN : https://geoservices.ign.fr/adminexpress (10min hors RIE)
+
+ download.file(paste0("https://data.geopf.fr/telechargement/download/ADMIN-EXPRESS-COG-CARTO-PE/ADMIN-EXPRESS-COG-CARTO-PE_4-0__GPKG_WGS84G_FRA_2025-01-01/ADMIN-EXPRESS-COG-CARTO-PE_4-0__GPKG_WGS84G_FRA_2025-01-01.7z"),
+               destfile = paste0(repo_mil, repo_dest, ".7z"), method = "curl")
 
 ## lecture du zip et dezippage
 contenu_list <- archive(paste0(repo_mil, repo_dest, ".7z"))
@@ -106,7 +108,7 @@ gc()
 
 ## Communes
 
-# chargement des surfaces communales issues de la bd carto 2025 - attention mise à jour tardive
+# chargement des surfaces communales issues de la bd carto  - attention mise à jour tardive
 # en csv et par département (limite de l'api IGN wfs 5000 éléments)
 gep_surf_com_dptmt <- function(dept = "15") {
   message("Interrogation sur le departement ", dept)
@@ -136,7 +138,9 @@ nrow(superf_communes) == nrow(communes_info_supra)
 communes_geo <- communes_geo_0 %>%
   left_join(superf_communes, by = "DEPCOM") %>%
   select(DEPCOM, AREA)
-
+rm(communes_geo_0)
+communes_geo <- COGiter::communes_geo
+#fin modif 2026
 communes_metro_geo <- communes_geo %>%
   filter(!grepl("97...", DEPCOM))
 
@@ -181,7 +185,6 @@ communes_geo <- communes_geo %>%
 
 # DOM : des jeux de données spé qui respectent le CRS et plus détaillé-----------------
 ## Communes DOM---
-
 com_geo_dom <- function(dep = "971", epsg = 5490) {
   com <- com_fce_ent %>%
     filter(INSEE_DEP == dep) %>%
@@ -300,5 +303,5 @@ use_data(regions_973_geo, internal = FALSE, overwrite = TRUE)
 use_data(regions_974_geo, internal = FALSE, overwrite = TRUE)
 use_data(regions_976_geo, internal = FALSE, overwrite = TRUE)
 
-rm(origine_metro, millesime, communes_geo_0, reg_dom_geo, epci_geo_dom, com_fce_ent, superf_communes, contenu_list,
+rm(origine_metro, millesime, reg_dom_geo, epci_geo_dom, com_fce_ent, superf_communes, contenu_list,
    table_passage_com_historique, communes_info_supra, path_com, repo_dest, repo_mil)
