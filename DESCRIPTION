@@ -1,6 +1,6 @@
 Package: COGiter
 Title: Fonctions, Données et Fonds De Carte Pour Gérer Les Données Au
-    Territoire - COG 2026p
+    Territoire - COG 2026
 Version: 0.0.18
 Authors@R: c(
     person("Maël", "THEULIERE", , "mael.theuliere@gmail.com", role = "aut"),

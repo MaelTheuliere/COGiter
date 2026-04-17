@@ -56,11 +56,11 @@ Le présent package COGiter vise à répondre aux besoins de mise à jour du COG
 
 - https://www.insee.fr/fr/information/2560452
 
-### Admin Express COG Carto 2025 (couche communes France entière simplifiée)
+### Admin Express COG Carto 2026 (couche communes France entière simplifiée)
 
-- https://geoservices.ign.fr/adminexpress#telechargementCogCarto  
+- Flux WFS géoplateforme 'ADMINEXPRESS-COG-CARTO.LATEST'  
 
-Les surfaces proviennent de champs attributaires la BD Carto de l'IGN. 
+Les surfaces territoriales fournies proviennent du champs attributaire "superficie_cadastrale" d'Admin Express COG Carto, une conversion d'ha en m² est effectuée. 
 
 ## Description du package
 

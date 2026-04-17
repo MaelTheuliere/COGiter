@@ -1,6 +1,6 @@
 # COGiter 0.0.18
-Version finale de la mise à jour 2026 basée sur admin-express COG CARTO 2026 de l'IGN pour les géométries et les surfaces.
-Intégration des zonages études INSEE 2026.
+- Version finale de la mise à jour 2026 basée sur le flux géoplateforme Admin-express COG CARTO 2026 de l'IGN pour les géométries et les surfaces.  
+- Intégration des zonages études INSEE 2026.  
 
 # COGiter 0.0.17
 Version précoce et provisoire pour la mise à jour annuelle 2026.

@@ -16,14 +16,12 @@ fact.enc.utf8 <- function(a) {
     fct_relabel(.fun = enc2utf8)
 }
 
-# intégration de la table d'appartenance (https://www.insee.fr/fr/information/7671844, publié vers la mi mars en 2023)
+# intégration de la table d'appartenance (https://www.insee.fr/fr/information/7671844, publié le 19 mars en 2026)
 download.file(paste0("https://www.insee.fr/fr/statistiques/fichier/7671844/", fich_mil, ".zip"),
               destfile = paste0(repo_mil, "/", fich_mil, ".zip"))
 
 unzip(zipfile = paste0(repo_mil, "/", fich_mil, ".zip"),
       exdir = repo_mil)
-
-##
 
 table_passage_com_zonages <- read_excel(path_fic_xls, skip = 5) %>%
   mutate(across(everything(), fact.enc.utf8))
@@ -130,7 +128,7 @@ libelle_typuu2020 <- read_excel(path_fic_xls_uu, range = "A47:A51", sheet = "Doc
 TYPUU2020 <- c('0')
 LIB_TYPUU2020 <- c('- Commune hors unité urbaine')
 libelle_typuu2020_0 <- data.frame(TYPUU2020, LIB_TYPUU2020)
-libelle_typuu2020<-bind_rows(libelle_typuu2020_0, libelle_typuu2020)
+libelle_typuu2020 <- bind_rows(libelle_typuu2020_0, libelle_typuu2020)
 
 uuttdtyp_bycom <- read_excel(path_fic_xls_uu, sheet = "UU2020", skip = 5) %>%
   mutate(TYPUU2020 = TYPE_UU2020) %>%

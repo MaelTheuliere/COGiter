@@ -10,33 +10,8 @@ load("data/communes_info_supra.rda")
 load("data/table_passage_com_historique.rda")
 millesime <- "2026"
 
-# (télé)chargement Admin Express -------------------------------
-
-## téléchargement des couches IGN admin express COG carto via GPKG----
-# repo_mil <- paste0("data-raw/source/", millesime, "/adminexpress")
-# repo_dest <- "/ADMIN-EXPRESS-COG_4-0__GPKG_WGS84G_FRA_2026-01-01"
-#
-# dir.create(paste0(repo_mil, repo_dest), recursive = TRUE)
-## Chargements des données en flux depuis https://cartes.gouv.fr
-#  download.file(paste0("https://data.geopf.fr/telechargement/download/ADMIN-EXPRESS-COG/ADMIN-EXPRESS-COG_4-0__GPKG_WGS84G_FRA_2026-01-01/ADMIN-EXPRESS-COG_4-0__GPKG_WGS84G_FRA_2026-01-01.7z"),
-#                destfile = paste0(repo_mil, repo_dest, ".7z"), method = "curl")
-#
-# ## lecture du zip et dezippage
-# contenu_list <- archive(paste0(repo_mil, repo_dest, ".7z"))
-# path_com <- filter(contenu_list, grepl(".gpkg", path, fixed = TRUE)) %>%
-#   arrange(desc(size)) %>% pull(path)
-#
-# archive_extract(archive = paste0(repo_mil, repo_dest, ".7z"),
-#                 dir = repo_mil, file = path_com)
-#
-#com_fce_ent <- st_read(paste0(repo_mil,"/", path_com[1]))
-#
-## ménage
-# list.dirs(paste0(repo_mil, repo_dest)) %>%
-#   unlink(., recursive = TRUE, force = TRUE)
-
 ## téléchargement des couches IGN admin express COG carto via flux geojson----
-## Attention s'assurer que ADMINEXPRESS-COG-CARTO.LATEST correspond au millesime souhaité
+## Attention s'assurer que ADMINEXPRESS-COG-CARTO.LATEST correspond au millésime souhaité
 
 options(timeout = 5*60)
 get_page_adexpcog <- function(index = 0) {
@@ -44,10 +19,11 @@ get_page_adexpcog <- function(index = 0) {
   geojsonsf::geojson_sf(paste0("https://data.geopf.fr/wfs?SERVICE=WFS&REQUEST=GetFeature&VERSION=2.0.0&TYPENAMES=ADMINEXPRESS-COG-CARTO.LATEST%3Acommune&OUTPUTFORMAT=application%2Fjson&SRSNAME=EPSG%3A4326&startIndex=",index)) %>%
     mutate(code_insee = as.character(code_insee))
 }
-indexes <- c(0,5000,10000,15000,20000,25000,30000)
-com_fce_ent <- purrr::map_dfr(indexes, get_page_adexpcog)
-com_fce_ent <- com_fce_ent %>% filter(code_insee_du_departement != "NR")
-options(timeout = 60)
+indexes <- c(0, 5000, 10000, 15000, 20000, 25000, 30000)
+com_fce_ent0 <- purrr::map(indexes, get_page_adexpcog)
+com_fce_ent <- list_rbind(com_fce_ent0) %>%
+  st_as_sf() %>%
+  filter(code_insee_du_departement != "NR")
 
 # Assemblage des couches communales métropole + DOM ---------
 
@@ -106,50 +82,17 @@ communes_geo_00 <- rbind(com_metro, dom_geo) %>%
   st_as_sf() %>%
   st_make_valid()
 
-gc()
+gc() ; options(timeout = 60) ; rm(com_fce_ent0)  # ménage
 save.image(".RData")
 
-communes_geo_0 <- ms_simplify(communes_geo_00, keep = 0.03, keep_shapes = TRUE, weighting = 0.8, sys = TRUE, sys_mem = 10) %>% # installation de mapshaper sur PC nécessaire
+communes_geo_0 <- ms_simplify(communes_geo_00, keep = 0.02, keep_shapes = TRUE, weighting = 0.8, sys = TRUE, sys_mem = 10) %>% # installation de mapshaper sur PC nécessaire
   st_set_crs(2154)
 
 object.size(communes_geo_0)
 communes_geo_0 %>% filter(grepl("49...", DEPCOM)) %>%  mapview::mapview(alpha.region = 0.5)
-save(communes_geo_0, file="data-raw/source/communes_geo_0.RData" )
+save(communes_geo_0, file="data-raw/source/communes_geo_0_JU.RData" )
 rm(com_metro, dom_geo, arg, l, translate_drom, communes_geo_00)
 gc()
-
-# # Constitution des datasets geo du package incluant la surface du territoire--------------
-#
-# ## Communes
-#
-# # chargement des surfaces communales issues de la bd carto  - attention mise à jour tardive
-# # en csv et par département (limite de l'api IGN wfs 5000 éléments)
-# gep_surf_com_dptmt <- function(dept = "15") {
-#   message("Interrogation sur le departement ", dept)
-#   readr::read_csv(paste0("https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAME=BDCARTO_V5:commune&PROPERTYNAME=BDCARTO_V5:code_insee,BDCARTO_V5:nom_officiel,BDCARTO_V5:surface_en_ha&OUTPUTFORMAT=csv&FILTER=%3CFilter%3E%3CPropertyIsEqualTo%3E%3CValueReference%3EBDCARTO_V5_V3:code_insee_du_departement%3C/ValueReference%3E%3CLiteral%3E", dept,"%3C/Literal%3E%3C/PropertyIsEqualTo%3E%3C/Filter%3E"), show_col_types = FALSE, col_types = "cccc") %>%
-#     mutate(code_insee = as.character(code_insee))
-# }
-# load("data/departements.rda")
-# depsurf <- purrr::map_dfr(departements$DEP, gep_surf_com_dptmt) %>%
-#   mutate(DEPCOMB = code_insee, AREA = (10000 * as.double(surface_en_ha))) %>%
-#   select(DEPCOMB, AREA)
-#
-# # si bd carto du millésime précédent, agrégation sur communes fusionnées et ajout des communes issues de scission
-# if(nrow(depsurf) != nrow(communes_info_supra)) {
-#   load("data/communes.rda")
-#   superf_communes <- depsurf %>%
-#     left_join(table_passage_com_historique, by = join_by(DEPCOMB == DEPCOM_HIST)) %>%
-#     summarise(AREA = sum(AREA), .by = DEPCOM) %>%
-#     right_join(communes) %>%
-#     select(DEPCOM, AREA) %>%
-#     mutate(AREA = set_units(AREA, "m^2"))
-# } else {
-#   superf_communes <- rename(depsurf, DEPCOM = DEPCOMB)
-# }
-# rm(depsurf)
-# nrow(superf_communes) == nrow(communes_info_supra)
-
-## recuperation surface communale directement depuis com_fce_ent
 
 communes_geo <- communes_geo_0 %>%
   inner_join(st_drop_geometry(com_fce_ent), by = join_by("DEPCOM" == "code_insee")) %>%
@@ -319,5 +262,5 @@ use_data(regions_973_geo, internal = FALSE, overwrite = TRUE)
 use_data(regions_974_geo, internal = FALSE, overwrite = TRUE)
 use_data(regions_976_geo, internal = FALSE, overwrite = TRUE)
 
-rm(origine_metro, millesime, reg_dom_geo, epci_geo_dom, com_fce_ent, superf_communes, contenu_list,
-   table_passage_com_historique, communes_info_supra, path_com, repo_dest, repo_mil)
+rm(origine_metro, millesime, reg_dom_geo, epci_geo_dom, com_fce_ent,
+   table_passage_com_historique, communes_info_supra)
