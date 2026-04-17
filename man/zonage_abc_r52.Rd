@@ -15,6 +15,6 @@ A data frame with 1238 rows and 2 variables:
 zonage_abc_r52
 }
 \description{
-Un dataset contenant pour chaque commune du GOG 2019 de la région Pays de la Loire le zonage ABC 2014 révisé en 2019 correspondant
+Un dataset contenant pour chaque commune du COG 2019 de la région Pays de la Loire le zonage ABC 2014 révisé en 2019 correspondant
 }
 \keyword{datasets}
